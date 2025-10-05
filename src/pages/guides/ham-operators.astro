@@ -1,0 +1,222 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+  pageHeading="For Ham Operators"
+  description="You already know RF. Here's how Meshtastic fits into emergency communications and repeater infrastructure."
+>
+  <!-- Intro -->
+  <section class="prose prose-lg dark:prose-invert max-w-none">
+    <h2 class="text-4xl font-semibold leading-tight text-ink-900 dark:text-cream-50">
+      If you're a ham operator
+    </h2>
+    <p class="text-xl text-ink-700 dark:text-cream-100">
+      You already know RF. You don't need me to explain propagation or link budgets.
+    </p>
+    <p class="text-xl text-ink-700 dark:text-cream-100">
+      What you might not know: Meshtastic is actually useful for EmComm. It won't replace your voice nets, but for text coordination and position reporting during public service events? It works.
+    </p>
+  </section>
+
+  <!-- Why This Matters for Hams -->
+  <section class="mt-12 rounded-3xl border-2 border-kc-blue/30 bg-gradient-to-br from-kc-blue/5 to-kc-sky/10 p-6 sm:p-8 dark:border-kc-sky/20 dark:from-kc-blue/10">
+    <h2 class="text-2xl font-semibold text-ink-900 dark:text-cream-50">Why this complements ham radio</h2>
+    <div class="mt-6 prose prose-lg dark:prose-invert max-w-none">
+      <p>
+        <strong>It's not a replacement.</strong> Voice nets, HF propagation, high power—you already have that covered. Meshtastic fills a different niche.
+      </p>
+      <p>
+        <strong>It runs in the ISM band (915 MHz unlicensed).</strong> Your non-licensed volunteers can use it. CERT members, event staff, family members who don't have tickets—they can all participate in text coordination without touching Part 97.
+      </p>
+      <p>
+        <strong>It's persistent messaging.</strong> Send a text, it hops through the mesh, delivers when it gets there. No need to monitor voice for hours hoping to catch traffic. Check messages when convenient.
+      </p>
+      <p>
+        <strong>GPS position tracking built in.</strong> Your deployed operators automatically share location. Useful for public service events, search operations, distributed emergency response.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quick Technical Overview -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold text-ink-900 dark:text-cream-50">Technical overview (your language)</h2>
+    <div class="mt-6 prose prose-lg dark:prose-invert max-w-none">
+      <p>
+        <strong>Frequency:</strong> 902-928 MHz ISM band (915 MHz center, unlicensed). LoRa modulation, typically 20-30 mW ERP.
+      </p>
+      <p>
+        <strong>Range:</strong> 2-5 miles ground-level urban. 10-20 miles with decent elevation. Comparable to 2m simplex in practice, better if you've got height.
+      </p>
+      <p>
+        <strong>Modulation:</strong> LoRa (chirp spread spectrum). SF7-SF12 configurable. KC mesh uses SF11 (LongFast preset) for good range/speed balance.
+      </p>
+      <p>
+        <strong>Power:</strong> Low. 100-200mA average consumption. Runs days on 18650, weeks on solar.
+      </p>
+      <p>
+        <strong>Routing:</strong> Flood-based mesh with hop limits (default 3). Router nodes provide extended routing. Think APRS digipeating but automatic.
+      </p>
+    </div>
+  </section>
+
+  <!-- Repeater Site Integration -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold text-ink-900 dark:text-cream-50">If you've got a repeater site</h2>
+    <div class="mt-6 prose prose-lg dark:prose-invert max-w-none">
+      <p>
+        <strong>You already have what the mesh needs most:</strong> Elevation and power.
+      </p>
+      <p>
+        A Meshtastic router at your repeater site provides massive coverage with minimal investment. We're talking $60-150 in hardware, 10-20W solar, small antenna. Uses no repeater resources—completely independent system that happens to benefit from your real estate.
+      </p>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <div class="rounded-3xl border border-border-light bg-surface-200 p-6 dark:border-border-dark dark:bg-sand-800">
+        <h3 class="text-lg font-semibold text-kc-blue dark:text-kc-sky">What you provide</h3>
+        <ul class="mt-4 space-y-2 text-sm text-ink-700 dark:text-cream-100">
+          <li>• Elevation (the expensive part)</li>
+          <li>• Maybe roof/tower mounting space</li>
+          <li>• That's it (solar handles power)</li>
+        </ul>
+      </div>
+
+      <div class="rounded-3xl border border-border-light bg-surface-200 p-6 dark:border-border-dark dark:bg-sand-800">
+        <h3 class="text-lg font-semibold text-kc-blue dark:text-kc-sky">What you get</h3>
+        <ul class="mt-4 space-y-2 text-sm text-ink-700 dark:text-cream-100">
+          <li>• Text coordination capability for your coverage area</li>
+          <li>• Non-licensed operator inclusion</li>
+          <li>• Complementary EmComm tool</li>
+          <li>• Supporting local resilience infrastructure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-6">
+      <a href="/guides/repeater-owners" class="text-base font-medium text-kc-blue hover:text-kc-red dark:text-kc-sky dark:hover:text-sunset-amber">
+        Full repeater site deployment guide →
+      </a>
+    </div>
+  </section>
+
+  <!-- EmComm Use Cases -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold text-ink-900 dark:text-cream-50">Emergency communications applications</h2>
+    <div class="mt-6 space-y-6">
+      <article class="rounded-3xl border border-border-light bg-surface-100 p-6 dark:border-border-dark dark:bg-sand-900">
+        <h3 class="text-lg font-semibold text-ink-900 dark:text-cream-50">ARES/RACES Nets</h3>
+        <p class="mt-3 text-sm text-ink-700 dark:text-cream-100">
+          <strong>Scenario:</strong> Storm takes out power. Voice nets on generator/battery. Non-licensed support personnel need coordination capability.
+        </p>
+        <p class="mt-2 text-sm text-ink-700 dark:text-cream-100">
+          <strong>Mesh role:</strong> Support staff (CERT, volunteers, family check-ins) use Meshtastic for text updates. Licensed operators maintain voice nets. Complementary systems, no interference.
+        </p>
+      </article>
+
+      <article class="rounded-3xl border border-border-light bg-surface-100 p-6 dark:border-border-dark dark:bg-sand-900">
+        <h3 class="text-lg font-semibold text-ink-900 dark:text-cream-50">Public Service Events</h3>
+        <p class="mt-3 text-sm text-ink-700 dark:text-cream-100">
+          <strong>Scenario:</strong> Marathon, parade, large community event. Staff needs coordination. Cell towers overloaded.
+        </p>
+        <p class="mt-2 text-sm text-ink-700 dark:text-cream-100">
+          <strong>Mesh role:</strong> Staff text coordination, position tracking, group channels. Voice net for critical traffic. Mesh handles routine status updates so voice stays clear.
+        </p>
+      </article>
+
+      <article class="rounded-3xl border border-border-light bg-surface-100 p-6 dark:border-border-dark dark:bg-sand-900">
+        <h3 class="text-lg font-semibold text-ink-900 dark:text-cream-50">Multi-Day Operations</h3>
+        <p class="mt-3 text-sm text-ink-700 dark:text-cream-100">
+          <strong>Scenario:</strong> Extended emergency response. Multiple shifts, distributed operators.
+        </p>
+        <p class="mt-2 text-sm text-ink-700 dark:text-cream-100">
+          <strong>Mesh role:</strong> Persistent messaging means incoming shift sees recent traffic. GPS tracking shows where operators are deployed. Text log provides documentation.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Practical Deployment -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold text-ink-900 dark:text-cream-50">Practical deployment considerations</h2>
+    <div class="mt-6 prose prose-lg dark:prose-invert max-w-none">
+      <p>
+        <strong>Antenna placement:</strong> Higher is better (you know this). 900 MHz wants line-of-sight more than 2m. Trees and buildings attenuate more than you'd expect. Get it up.
+      </p>
+      <p>
+        <strong>Polarization:</strong> Vertical is standard. Horizontal works with 3-6 dB penalty but solves some mounting challenges. Your call based on site constraints.
+      </p>
+      <p>
+        <strong>Power budget:</strong> 10W solar + 10Ah battery handles Midwest weather year-round for router operation. Overkill is fine if you've got it, but that's the working minimum.
+      </p>
+      <p>
+        <strong>Integration with existing station:</strong> Completely independent. No shared feedlines, no duplexer issues, no repeater controller integration needed. It just sits there doing its thing.
+      </p>
+    </div>
+  </section>
+
+  <!-- What It's Not -->
+  <section class="mt-12 rounded-3xl border border-kc-red/30 bg-surface-100 p-6 sm:p-8 dark:border-sunset-amber/30 dark:bg-sand-900">
+    <h2 class="text-xl font-semibold text-kc-red dark:text-sunset-amber">What this isn't</h2>
+    <ul class="mt-4 space-y-2 text-sm text-ink-700 dark:text-cream-100">
+      <li class="flex gap-2"><span class="text-kc-red dark:text-sunset-amber">✗</span> Not Part 97 operations (it's ISM band, unlicensed)</li>
+      <li class="flex gap-2"><span class="text-kc-red dark:text-sunset-amber">✗</span> Not voice capable (text/data only)</li>
+      <li class="flex gap-2"><span class="text-kc-red dark:text-sunset-amber">✗</span> Not a replacement for traditional EmComm nets</li>
+      <li class="flex gap-2"><span class="text-kc-red dark:text-sunset-amber">✗</span> Not HF propagation (it's UHF, line-of-sight limited)</li>
+      <li class="flex gap-2"><span class="text-kc-red dark:text-sunset-amber">✗</span> Not instant delivery (mesh routing takes seconds to minutes)</li>
+    </ul>
+    <p class="mt-4 text-sm leading-relaxed text-ink-700 dark:text-cream-100">
+      <strong>It's a complement, not a replacement.</strong> Use it for what it's good at: text coordination, position tracking, non-licensed operator inclusion, persistent messaging.
+    </p>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="mt-12">
+    <h2 class="text-2xl font-semibold text-ink-900 dark:text-cream-50">Getting started as a ham operator</h2>
+    <div class="mt-6 prose prose-lg dark:prose-invert max-w-none">
+      <p>
+        <strong>Option 1: Test with a client node.</strong> Buy a $30-50 device, configure it, see how it performs in your area. Low commitment, fast learning.
+      </p>
+      <p>
+        <strong>Option 2: Deploy infrastructure.</strong> If you've got a repeater site or decent home elevation, consider a router node. Provides coverage for others, helps build the backbone.
+      </p>
+      <p>
+        <strong>Option 3: Propose to your club/ARES group.</strong> This is better as a coordinated effort. Multiple operators with nodes create actual coverage. One person testing is interesting; a dozen creates capability.
+      </p>
+    </div>
+
+    <div class="mt-6 grid gap-6 md:grid-cols-2">
+      <a href="/get-started/join" class="group block rounded-3xl border-2 border-kc-blue bg-gradient-to-br from-kc-blue to-kc-red p-6 text-center text-cream-50 shadow-sm transition hover:shadow-md dark:border-kc-sky">
+        <h3 class="text-xl font-semibold">Start with a client node</h3>
+        <p class="mt-2 text-sm opacity-90">$30-50, 45 minutes, test the concept</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide">
+          Quick start guide →
+        </div>
+      </a>
+
+      <a href="/guides/repeater-owners" class="group block rounded-3xl border-2 border-border-light bg-surface-100 p-6 text-center transition hover:border-kc-blue dark:border-border-dark dark:bg-sand-900 dark:hover:border-kc-sky">
+        <h3 class="text-xl font-semibold text-ink-900 dark:text-cream-50">Deploy at your site</h3>
+        <p class="mt-2 text-sm text-ink-700 dark:text-cream-100">Repeater/tower integration details</p>
+        <div class="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wide text-kc-blue dark:text-kc-sky">
+          Infrastructure guide →
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="mt-12 text-center">
+    <div class="inline-block rounded-3xl bg-gradient-to-br from-kc-blue to-kc-red p-8 text-cream-50 shadow-card md:p-10">
+      <h3 class="text-2xl font-semibold">Questions from a ham perspective?</h3>
+      <p class="mt-3 max-w-xl text-base opacity-95">
+        I'm not pretending to be an expert on RF engineering, but I've deployed this and I'm happy to discuss practical integration with your existing infrastructure.
+      </p>
+      <a
+        href="/community/contact"
+        class="mt-6 inline-flex items-center justify-center rounded-full bg-cream-50 px-8 py-3 text-sm font-semibold uppercase tracking-wide text-kc-blue transition hover:bg-surface-200"
+      >
+        Get in touch →
+      </a>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,74 @@
+@import "tailwindcss";
+
+@theme {
+  --color-kc-red: #E31837;
+  --color-kc-blue: #004687;
+  --color-kc-sky: #5DADE2;
+  --color-mesh-green: #67C98F;
+  --color-sunset-amber: #F59E42;
+  --color-clay-base: #D4825C;
+  --color-prairie-gold: #E8B547;
+  --color-surface-100: #FDFBF7;
+  --color-surface-200: #F5EFE6;
+  --color-surface-300: #EBE3D5;
+  --color-sand-900: #1A1512;
+  --color-sand-800: #2B2420;
+  --color-sand-700: #3C352F;
+  --color-ink-900: #2B2420;
+  --color-ink-700: #5A4F47;
+  --color-ink-500: #8B7F76;
+  --color-cream-50: #F4E8D8;
+  --color-cream-100: #D9C7B3;
+  --color-cream-200: #B3A090;
+  --color-border-light: #D9D1C7;
+  --color-border-medium: #C4B8AB;
+  --color-border-dark: #9B8D80;
+  --shadow-card: 0 16px 40px -24px rgba(43, 36, 32, 0.4);
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --header-height: 4.5rem;
+    --kc-red: #E31837;
+    --kc-blue: #004687;
+    --sunset-amber: #F59E42;
+    --ink-900: #2B2420;
+  }
+
+
+  a {
+    color: var(--kc-blue);
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 4px;
+    transition: color 150ms ease, text-decoration-color 150ms ease;
+  }
+
+  a:hover {
+    color: var(--kc-red);
+    text-decoration-color: var(--kc-red);
+  }
+
+  ::selection {
+    background-color: var(--sunset-amber);
+    color: var(--ink-900);
+  }
+}
+
+@layer utilities {
+  .prose-intro {
+    @apply text-lg leading-relaxed;
+    color: var(--color-ink-700);
+  }
+
+  .task-list {
+    @apply space-y-2 text-sm;
+    color: var(--color-ink-500);
+  }
+
+  .theme-icon {
+    @apply text-base transition;
+  }
+}

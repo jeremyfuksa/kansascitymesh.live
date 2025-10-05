@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PagePlaceholder from '../../components/PagePlaceholder.astro';
+
+const summary = 'Live operations dashboard summarizing node uptime, coverage health, planned maintenance, and recent activity.';
+const tasks = [
+  'Render key performance indicators using static JSON updates (docs/03-TECHNICAL-REQUIREMENTS.md §2.4).',
+  'Add status timeline for deployments, outages, and major milestones.',
+  'Provide incident communication guidance referencing emergency use-cases.',
+  'Integrate analytics events for conversion tracking (Plausible custom events).' 
+];
+const docRefs = [
+  'docs/01-SITE-ARCHITECTURE.md §3.4.3 (Current Status)',
+  'docs/03-TECHNICAL-REQUIREMENTS.md §§2.4-2.6 (Data updates, analytics)',
+  'README.md section 4.7 (Current Status content inventory)'
+];
+---
+
+<Layout
+  pageHeading="Current Network Status"
+  description="Monitor uptime, rollout milestones, and planned maintenance across the Kansas City mesh."
+>
+  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
+</Layout>

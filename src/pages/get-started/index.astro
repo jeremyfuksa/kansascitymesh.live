@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PagePlaceholder from '../../components/PagePlaceholder.astro';
+
+const summary = 'Gateway for all onboarding paths: quick entry for experienced users and guided flow for beginners with hardware guidance.';
+const tasks = [
+  'Provide decision tree that routes visitors to Join, Quick Start, or Hardware subpages.',
+  'Display checklist preview of four-step onboarding journey.',
+  'Surface CTA to community chat/coordination from README.md section 4.3.',
+  'Add block clarifying equipment budget expectations ($25-$200) per project philosophy.'
+];
+const docRefs = [
+  'docs/01-SITE-ARCHITECTURE.md §3.3 (Get Started Section)',
+  'README.md section 4.3 (Get Started content inventory)',
+  'CLAUDE.md (Prosumer scope guidelines)'
+];
+---
+
+<Layout
+  pageHeading="Get Started"
+  description="Help every visitor choose the right onboarding path and reach mesh connectivity quickly."
+  heroVariant="compact"
+>
+  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
+</Layout>

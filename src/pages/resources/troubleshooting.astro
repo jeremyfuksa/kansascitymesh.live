@@ -1,0 +1,24 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PagePlaceholder from '../../components/PagePlaceholder.astro';
+
+const summary = 'Structured troubleshooting playbook covering connectivity issues, hardware faults, firmware glitches, and deployment tuning.';
+const tasks = [
+  'Create decision-tree layout guiding users through diagnosis by symptom.',
+  'Include quick fixes for radio range, power instability, and MQTT connectivity.',
+  'Add escalation guidance directing users to community support or emergency channels.',
+  'Embed references to anti-dogma myths with practical rebuttals tied to troubleshooting outcomes.'
+];
+const docRefs = [
+  'docs/01-SITE-ARCHITECTURE.md §3.6.3 (Troubleshooting)',
+  'README.md section 4.9 (Troubleshooting requirements)',
+  'CLAUDE.md (Anti-dogma checklist to reinforce messaging)'
+];
+---
+
+<Layout
+  pageHeading="Troubleshooting"
+  description="Resolve common Meshtastic deployment issues quickly with actionable, field-tested guidance."
+>
+  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
+</Layout>

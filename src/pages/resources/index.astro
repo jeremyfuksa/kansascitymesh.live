@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PagePlaceholder from '../../components/PagePlaceholder.astro';
+
+const summary = 'Central library for reference materials: frequencies, equipment deep dives, troubleshooting, and FAQs.';
+const tasks = [
+  'Create resource cards with concise descriptions and quick access links.',
+  'Highlight most-requested downloads or cheatsheets once available.',
+  'Surface community contact CTA for requesting additional resources.',
+  'Ensure searchability/accessibility for long-form content (consider anchor index).' 
+];
+const docRefs = [
+  'docs/01-SITE-ARCHITECTURE.md §3.6 (Resources Section)',
+  'README.md section 4.9 (Resources content inventory)',
+  'CLAUDE.md (Content scope guidelines for resources)'
+];
+---
+
+<Layout
+  pageHeading="Resource Library"
+  description="Find frequency references, equipment breakdowns, troubleshooting steps, and quick answers for KC Meshtastic."
+  heroVariant="compact"
+>
+  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
+</Layout>

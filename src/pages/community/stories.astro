@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PagePlaceholder from '../../components/PagePlaceholder.astro';
+
+const summary = 'Archive of success stories featuring real deployments, performance outcomes, and lessons learned from KC participants.';
+const tasks = [
+  'Design story cards with photos, metrics, and deployment summaries.',
+  'Collect submissions via form or survey and vet for anti-dogma reinforcement.',
+  'Highlight diversity of deployments (indoor attic, HOA stealth, repeater integration).',
+  'Add callout encouraging new contributors to share experiences.'
+];
+const docRefs = [
+  'docs/01-SITE-ARCHITECTURE.md §3.7.2 (Success Stories)',
+  'README.md section 4.10 (Success stories requirements)',
+  'CLAUDE.md (Anti-dogma evidence to showcase)'
+];
+---
+
+<Layout
+  pageHeading="Success Stories"
+  description="Showcase real-world KC Meshtastic deployments and the impact they deliver for the community."
+  heroVariant="compact"
+>
+  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
+</Layout>

@@ -1,0 +1,99 @@
+<button
+  type="button"
+  class="flex h-10 w-10 items-center justify-center rounded-full border border-border-light/60 bg-surface-200 text-ink-700 transition hover:border-kc-red hover:text-kc-red focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kc-blue dark:border-border-dark/40 dark:bg-sand-800 dark:text-cream-100 dark:hover:border-sunset-amber dark:hover:text-sunset-amber"
+  aria-label="Toggle color theme"
+  data-theme-toggle
+>
+  <span class="sr-only">Toggle dark mode</span>
+  <i class="fa-solid fa-sun theme-icon theme-icon-sun"></i>
+  <i class="fa-solid fa-moon theme-icon theme-icon-moon hidden"></i>
+</button>
+
+<script is:inline>
+  (function () {
+    const storageKey = 'kcmesh-theme';
+
+    const run = () => {
+      const toggle = document.querySelector('[data-theme-toggle]');
+      if (!toggle) return;
+
+      const root = document.documentElement;
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+      const getIcons = () => ({
+        sun: toggle.querySelector('.theme-icon-sun'),
+        moon: toggle.querySelector('.theme-icon-moon')
+      });
+
+      const updateIcon = (isDark) => {
+        const { sun, moon } = getIcons();
+        if (sun) {
+          sun.classList.toggle('hidden', isDark);
+          sun.setAttribute('aria-hidden', isDark ? 'true' : 'false');
+        }
+        if (moon) {
+          moon.classList.toggle('hidden', !isDark);
+          moon.setAttribute('aria-hidden', !isDark ? 'true' : 'false');
+        }
+      };
+
+      const applyTheme = (mode) => {
+        const isDark = mode === 'dark';
+        root.classList.toggle('dark', isDark);
+        root.dataset.theme = isDark ? 'dark' : 'light';
+        updateIcon(isDark);
+      };
+
+      const syncIcons = () => updateIcon(root.classList.contains('dark'));
+
+      // Keep icons aligned after the Font Awesome kit swaps <i> tags for <svg>.
+      const observer = new MutationObserver(() => {
+        syncIcons();
+      });
+
+      observer.observe(toggle, { childList: true, subtree: true });
+
+      try {
+        const current = localStorage.getItem(storageKey);
+        if (current === 'dark' || current === 'light') {
+          applyTheme(current);
+        } else {
+          applyTheme(mediaQuery.matches ? 'dark' : 'light');
+        }
+      } catch (err) {
+        applyTheme(mediaQuery.matches ? 'dark' : 'light');
+      }
+
+      toggle.addEventListener('click', () => {
+        const isDark = root.classList.toggle('dark');
+        const mode = isDark ? 'dark' : 'light';
+        root.dataset.theme = mode;
+        updateIcon(isDark);
+        try {
+          localStorage.setItem(storageKey, mode);
+        } catch (err) {
+          /* ignore */
+        }
+      });
+
+      mediaQuery.addEventListener('change', (event) => {
+        try {
+          const stored = localStorage.getItem(storageKey);
+          if (!stored) {
+            applyTheme(event.matches ? 'dark' : 'light');
+          }
+        } catch (err) {
+          applyTheme(event.matches ? 'dark' : 'light');
+        }
+      });
+
+      syncIcons();
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true });
+    } else {
+      run();
+    }
+  })();
+</script>

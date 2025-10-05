@@ -1,0 +1,25 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PagePlaceholder from '../../components/PagePlaceholder.astro';
+
+const summary = 'Central FAQ with beginner-to-advanced questions about Meshtastic, deployment logistics, and Kansas City specifics.';
+const tasks = [
+  'Curate 20+ questions spanning costs, coverage expectations, legality, and infrastructure commitments.',
+  'Group FAQs by audience (beginners, infrastructure hosts, emergency comms).',
+  'Embed contextual links to relevant guides and onboarding flows.',
+  'Add contact CTA for unanswered questions and feedback collection.'
+];
+const docRefs = [
+  'docs/01-SITE-ARCHITECTURE.md §3.6.4 (FAQs)',
+  'README.md section 4.9 (FAQ content requirements)',
+  'CLAUDE.md (Tone guidance: welcoming, anti-perfectionism)'
+];
+---
+
+<Layout
+  pageHeading="Frequently Asked Questions"
+  description="Answer the most common questions about joining, deploying, and maintaining the Kansas City Meshtastic network."
+  heroVariant="compact"
+>
+  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
+</Layout>
