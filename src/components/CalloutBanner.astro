@@ -1,0 +1,27 @@
+---
+interface Props {
+  title: string;
+  message: string;
+  link?: string;
+  linkText?: string;
+}
+
+const { title, message, link, linkText } = Astro.props;
+---
+
+<section class="not-prose rounded-3xl border-2 border-yellow-500/30 bg-yellow-100/10 p-6 sm:p-8">
+  <h2 class="flex items-center gap-2 text-lg font-semibold text-gray-900">
+    <i class="fa-solid fa-handshake text-yellow-600" aria-hidden="true"></i>
+    {title}
+  </h2>
+  <p class="mt-3 text-base leading-relaxed text-gray-700">
+    {message}
+    {
+      link && linkText && (
+        <a href={link} class="ml-1 font-semibold text-blue-600 hover:text-red-600">
+          {linkText}
+        </a>
+      )
+    }
+  </p>
+</section>

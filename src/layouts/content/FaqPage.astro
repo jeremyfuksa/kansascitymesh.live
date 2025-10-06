@@ -1,0 +1,66 @@
+---
+import Layout from "../Layout.astro";
+import DetailsAccordion from "../../components/DetailsAccordion.astro";
+import DiscordInviteCard from "../../components/DiscordInviteCard.astro";
+
+const { entry } = Astro.props as { entry: any };
+const { Content } = await entry.render();
+const data = entry.data ?? {};
+const {
+  title = "",
+  description = "",
+  pageHeading,
+  heroVariant,
+  lead,
+  faqs = [],
+  discordInvite,
+} = data as Record<string, any>;
+
+const leadMarkdown = lead ? await Astro.renderMarkdown(lead) : null;
+const renderedFaqs = await Promise.all(
+  faqs.map(async (faq: any) => ({
+    question: faq.question,
+    answerHtml: (await Astro.renderMarkdown(faq.answer)).html,
+  })),
+);
+---
+
+<Layout
+  title={title}
+  description={description}
+  pageHeading={pageHeading}
+  heroVariant={heroVariant}
+>
+  {leadMarkdown && (
+    <article
+      class="prose prose-lg max-w-none"
+      set:html={leadMarkdown.html}
+    />
+  )}
+
+  <article class="prose prose-lg max-w-none">
+    <Content />
+  </article>
+
+  {renderedFaqs.length > 0 && (
+    <div class="space-y-4">
+      {renderedFaqs.map((faq, index) => (
+        <DetailsAccordion summary={faq.question} key={`faq-${index}`}>
+          <div
+            class="space-y-2 text-sm text-gray-700"
+            set:html={faq.answerHtml}
+          />
+        </DetailsAccordion>
+      ))}
+    </div>
+  )}
+
+  {discordInvite && (
+    <DiscordInviteCard
+      title={discordInvite.title}
+      description={discordInvite.description}
+      link={discordInvite.link}
+      linkText={discordInvite.linkText}
+    />
+  )}
+</Layout>

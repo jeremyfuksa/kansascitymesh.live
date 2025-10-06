@@ -1,0 +1,23 @@
+---
+interface Props {
+  summary: string;
+}
+
+const { summary } = Astro.props;
+---
+
+<details class="group rounded-2xl border border-gray-200 bg-gray-100 p-5 not-prose">
+  <summary
+    class="cursor-pointer text-base font-semibold text-gray-900 flex items-center justify-between"
+  >
+    {summary}
+    <span
+      class="ml-2 transform transition-transform duration-200 group-open:rotate-180"
+    >
+      <i class="fa-solid fa-chevron-down"></i>
+    </span>
+  </summary>
+  <div class="mt-3 text-sm text-gray-700 space-y-2">
+    <slot />
+  </div>
+</details>

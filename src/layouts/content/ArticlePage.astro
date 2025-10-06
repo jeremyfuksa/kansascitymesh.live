@@ -1,0 +1,62 @@
+---
+import Layout from "../Layout.astro";
+import ButtonRow from "../../components/ButtonRow.astro";
+import ButtonLink from "../../components/ButtonLink.astro";
+import DiscordInviteCard from "../../components/DiscordInviteCard.astro";
+
+const { entry } = Astro.props as { entry: any };
+const { Content } = await entry.render();
+const data = entry.data ?? {};
+const {
+  title = "",
+  description = "",
+  pageHeading,
+  heroVariant,
+  lead,
+  actions = [],
+  discordInvite,
+} = data as Record<string, any>;
+
+const leadMarkdown = lead ? await Astro.renderMarkdown(lead) : null;
+---
+
+<Layout
+  title={title}
+  description={description}
+  pageHeading={pageHeading}
+  heroVariant={heroVariant}
+>
+  {leadMarkdown && (
+    <article
+      class="prose prose-lg max-w-none"
+      set:html={leadMarkdown.html}
+    />
+  )}
+
+  <article class="prose prose-lg max-w-none">
+    <Content />
+  </article>
+
+  {actions.length > 0 && (
+    <ButtonRow>
+      {actions.map((action: any, index: number) => (
+        <ButtonLink
+          key={`action-${index}`}
+          href={action.href}
+          variant={action.variant}
+        >
+          {action.label}
+        </ButtonLink>
+      ))}
+    </ButtonRow>
+  )}
+
+  {discordInvite && (
+    <DiscordInviteCard
+      title={discordInvite.title}
+      description={discordInvite.description}
+      link={discordInvite.link}
+      linkText={discordInvite.linkText}
+    />
+  )}
+</Layout>

@@ -1,25 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import { getEntry } from "astro:content";
+import BasePage from "../../layouts/content/BasePage.astro";
 
-const summary = 'Community hub connecting visitors to contact methods, success stories, and contribution opportunities.';
-const tasks = [
-  'Summarize available communication channels (email, chat, in-person meetups) and response expectations.',
-  'Highlight featured success stories and link to detailed narratives.',
-  'Invite volunteers to contribute documentation, infrastructure, or outreach support.',
-  'Integrate contact form CTA using PHP handler described in docs/03-TECHNICAL-REQUIREMENTS.md §2.5.'
-];
-const docRefs = [
-  'docs/01-SITE-ARCHITECTURE.md §3.7 (Community Section)',
-  'README.md section 4.10 (Community content inventory)',
-  'CLAUDE.md (Tone and coordination messaging)'
-];
+const entry = await getEntry("pages", "community/index");
 ---
 
-<Layout
-  pageHeading="Community"
-  description="Connect with the Kansas City Meshtastic team, share your deployment wins, and find ways to contribute."
-  heroVariant="compact"
->
-  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
-</Layout>
+<BasePage entry={entry} />

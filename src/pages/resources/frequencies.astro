@@ -1,24 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import { getEntry } from "astro:content";
+import ArticlePage from "../../layouts/content/ArticlePage.astro";
 
-const summary = 'Publish frequency charts, regulatory context, and recommended monitoring lists tailored to Kansas City operations.';
-const tasks = [
-  'Compile KC business and retail monitoring frequencies per README.md section 4.9.',
-  'Explain regional regulations and how Meshtastic operates within ISM guidelines.',
-  'Provide printable/downloadable references optimized for mobile and field use.',
-  'Include safety disclaimers and etiquette reminders for spectrum monitoring.'
-];
-const docRefs = [
-  'docs/01-SITE-ARCHITECTURE.md §3.6.1 (Frequency Reference)',
-  'README.md section 4.9 (Frequency reference detail requirements)',
-  'CLAUDE.md (Target audience expectations)'
-];
+const entry = await getEntry("pages", "resources/frequencies");
 ---
 
-<Layout
-  pageHeading="Frequency Reference"
-  description="Quickly access Kansas City monitoring frequencies, etiquette guidelines, and regulatory notes."
->
-  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
-</Layout>
+<ArticlePage entry={entry} />

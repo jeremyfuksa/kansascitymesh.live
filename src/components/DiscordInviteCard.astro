@@ -1,0 +1,39 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  link?: string;
+  linkText?: string;
+}
+
+const {
+  title = "Join the Discord",
+  description =
+    "Hop into the KC Meshtastic Discord to coordinate installs, swap coverage notes, and chat with other builders.",
+  link = "https://discord.gg/eP5VSPKU",
+  linkText = "Open Discord",
+} = Astro.props;
+---
+
+<section class="not-prose rounded-3xl border border-blue-600/40 bg-blue-600/5 p-6 sm:p-8">
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <div class="max-w-xl space-y-2">
+      <h2 class="flex items-center gap-2 text-xl font-semibold text-blue-700">
+        <i class="fa-brands fa-discord text-2xl" aria-hidden="true"></i>
+        {title}
+      </h2>
+      <p class="text-base leading-relaxed text-gray-800">
+        {description}
+      </p>
+    </div>
+    <a
+      href={link}
+      class="inline-flex items-center justify-center gap-2 rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-red-600"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      {linkText}
+      <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+    </a>
+  </div>
+</section>

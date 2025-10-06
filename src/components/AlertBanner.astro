@@ -1,0 +1,48 @@
+---
+type Variant = "info" | "warning" | "success";
+
+interface Props {
+  message: string;
+  link?: string;
+  linkText?: string;
+  variant?: Variant;
+}
+
+const { message, link, linkText, variant = "info" } = Astro.props;
+
+const variantClasses: Record<Variant, string> = {
+  info: "border-blue-200 bg-blue-50 text-blue-800",
+  warning: "border-amber-200 bg-amber-50 text-amber-800",
+  success: "border-green-200 bg-green-50 text-green-800",
+};
+
+const iconClasses: Record<Variant, string> = {
+  info: "fa-circle-info",
+  warning: "fa-triangle-exclamation",
+  success: "fa-circle-check",
+};
+---
+
+<div
+  class={`not-prose flex items-start gap-3 rounded-xl border p-4 text-sm sm:text-base ${variantClasses[variant]}`}
+  role="status"
+>
+  <i class={`fa-solid ${iconClasses[variant]} text-lg sm:text-xl`} aria-hidden="true"></i>
+  <div class="space-y-2">
+    <p class="font-semibold leading-relaxed">{message}</p>
+    {
+      link && (
+        <p class="text-sm">
+          <a
+            href={link}
+            class="font-semibold underline decoration-2 decoration-current underline-offset-4 hover:opacity-80"
+            rel="noopener noreferrer"
+            target={link.startsWith("/") ? undefined : "_blank"}
+          >
+            {linkText ?? link}
+          </a>
+        </p>
+      )
+    }
+  </div>
+</div>

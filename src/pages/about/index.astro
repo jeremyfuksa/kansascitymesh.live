@@ -1,25 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import { getEntry } from "astro:content";
+import ArticlePage from "../../layouts/content/ArticlePage.astro";
 
-const summary = 'Introduce the Kansas City Meshtastic Network mission, highlight collaboration goals, and direct visitors to coordination and education subpages.';
-const tasks = [
-  'Author an overview narrative that bridges the resource hub and coordination mission.',
-  'Surface quick links to /about/coordination and /about/why-meshtastic with distinct value props.',
-  'Showcase backbone roadmap (four-router strategy) with visual callout.',
-  'Embed CTA to join coordination channels once contact strategy is finalized.'
-];
-const docRefs = [
-  'docs/01-SITE-ARCHITECTURE.md §3.2 (About Section)',
-  'README.md: Project Overview & Design System directives',
-  'CLAUDE.md: Community coordination messaging priorities'
-];
+const entry = await getEntry("pages", "about/index");
 ---
 
-<Layout
-  pageHeading="About the KC Mesh Network"
-  description="Define why the project exists, who we collaborate with, and how newcomers can plug into the planning process."
-  heroVariant="compact"
->
-  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
-</Layout>
+<ArticlePage entry={entry} />

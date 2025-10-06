@@ -1,25 +1,8 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import PagePlaceholder from '../../components/PagePlaceholder.astro';
+import { getEntry } from "astro:content";
+import ArticlePage from "../../layouts/content/ArticlePage.astro";
 
-const summary = 'Landing page for all network intelligence: highlight coverage, architecture, live status, and growth roadmap with direct links.';
-const tasks = [
-  'Design summary cards pointing to coverage, architecture, status, and growth subpages.',
-  'Showcase the four-router backbone vision with a simplified map graphic.',
-  'Expose top-line metrics pulled from network-stats.json once automation is ready.',
-  'Clarify update cadence and data sources per docs/03-TECHNICAL-REQUIREMENTS.md §2.4.'
-];
-const docRefs = [
-  'docs/01-SITE-ARCHITECTURE.md §3.4 (Network Info Section)',
-  'README.md section 4.7 (Network Info requirements)',
-  'docs/03-TECHNICAL-REQUIREMENTS.md §§2.3-2.4 (Interactive map & data pipeline)'
-];
+const entry = await getEntry("pages", "network/index");
 ---
 
-<Layout
-  pageHeading="Network Information"
-  description="Track current coverage, understand the backbone, and follow growth milestones for the Kansas City mesh."
-  heroVariant="compact"
->
-  <PagePlaceholder summary={summary} tasks={tasks} docRefs={docRefs} />
-</Layout>
+<ArticlePage entry={entry} />

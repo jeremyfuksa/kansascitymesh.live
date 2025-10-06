@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  link: string;
+  linkText: string;
+}
+
+const { title, description, link, linkText } = Astro.props;
+---
+
+<section class="mt-12 text-center not-prose">
+  <div
+    class="inline-block rounded-3xl bg-gradient-to-br from-blue-600 to-red-600 p-8 text-white shadow-2xl md:p-10"
+  >
+    <h3 class="text-2xl font-semibold">{title}</h3>
+    <p class="mt-3 max-w-xl text-base opacity-95">
+      {description}
+    </p>
+    <a
+      href={link}
+      class="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3 text-sm font-semibold uppercase tracking-wide text-blue-600 transition hover:bg-gray-200"
+    >
+      {linkText}
+      <i class="fa-solid fa-arrow-right"></i>
+    </a>
+  </div>
+</section>

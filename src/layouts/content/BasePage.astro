@@ -1,0 +1,105 @@
+---
+import Layout from "../Layout.astro";
+import AlertBanner from "../../components/AlertBanner.astro";
+import CalloutBanner from "../../components/CalloutBanner.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import CardGrid from "../../components/CardGrid.astro";
+import Card from "../../components/Card.astro";
+import CtaBlock from "../../components/CtaBlock.astro";
+import DiscordInviteCard from "../../components/DiscordInviteCard.astro";
+
+const { entry } = Astro.props as { entry: any };
+const { Content } = await entry.render();
+const data = entry.data ?? {};
+const {
+  title = "",
+  description = "",
+  pageHeading,
+  heroVariant,
+  lead,
+  alerts = [],
+  callouts = [],
+  cardsSections = [],
+  cta,
+  discordInvite,
+} = data as Record<string, any>;
+
+const leadMarkdown = lead ? await Astro.renderMarkdown(lead) : null;
+---
+
+<Layout
+  title={title}
+  description={description}
+  pageHeading={pageHeading}
+  heroVariant={heroVariant}
+>
+  {alerts.map((alert, index) => (
+    <AlertBanner
+      key={`alert-${index}`}
+      variant={alert.variant}
+      message={alert.message}
+      link={alert.link}
+      linkText={alert.linkText}
+    />
+  ))}
+
+  {leadMarkdown && (
+    <article
+      class="prose prose-lg max-w-none"
+      set:html={leadMarkdown.html}
+    />
+  )}
+
+  {callouts.map((callout, index) => (
+    <CalloutBanner
+      key={`callout-${index}`}
+      title={callout.title}
+      message={callout.message}
+      link={callout.link}
+      linkText={callout.linkText}
+    />
+  ))}
+
+  {discordInvite && (
+    <DiscordInviteCard
+      title={discordInvite.title}
+      description={discordInvite.description}
+      link={discordInvite.link}
+      linkText={discordInvite.linkText}
+    />
+  )}
+
+  <article class="prose prose-lg max-w-none">
+    <Content />
+  </article>
+
+  {cardsSections.map((section: any, sectionIndex: number) => (
+    <SectionHeader
+      title={section.heading}
+      description={section.description}
+      key={`cards-${sectionIndex}`}
+    >
+      <CardGrid>
+        {(section.cards ?? []).map((card: any, cardIndex: number) => (
+          <Card
+            key={`card-${sectionIndex}-${cardIndex}`}
+            title={card.title}
+            description={card.description}
+            link={card.link}
+            linkText={card.linkText}
+            status={card.status}
+          />
+        ))}
+      </CardGrid>
+    </SectionHeader>
+  ))}
+
+  {cta && (
+    <CtaBlock
+      title={cta.title}
+      description={cta.description}
+      link={cta.link}
+      linkText={cta.linkText}
+    />
+  )}
+</Layout>

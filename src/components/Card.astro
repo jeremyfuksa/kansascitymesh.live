@@ -1,0 +1,78 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  link?: string;
+  linkText?: string;
+  status?: "operational" | "gap" | "needed" | "suggested";
+}
+
+const { title, description, link, linkText, status } = Astro.props;
+
+let borderColorClass = "border-gray-200";
+let bgColorClass = "bg-gray-100";
+let titleColorClass = "text-gray-900";
+let statusColorClass = "text-gray-500";
+let statusBgClass = "bg-gray-200";
+
+if (status === "operational") {
+  borderColorClass = "border-green-600/30";
+  bgColorClass = "bg-green-100/5";
+  titleColorClass = "text-green-600";
+  statusColorClass = "text-gray-900";
+  statusBgClass = "bg-green-600";
+} else if (status === "gap") {
+  borderColorClass = "border-yellow-500/30";
+  bgColorClass = "bg-yellow-100/5";
+  titleColorClass = "text-yellow-500";
+  statusColorClass = "text-white";
+  statusBgClass = "bg-yellow-500";
+} else if (status === "needed") {
+  borderColorClass = "border-gray-300";
+  bgColorClass = "bg-gray-100/5";
+  titleColorClass = "text-gray-900";
+  statusColorClass = "text-gray-900";
+  statusBgClass = "bg-gray-200";
+} else if (status === "suggested") {
+  borderColorClass = "border-blue-600/20";
+  bgColorClass = "bg-blue-100/5";
+  titleColorClass = "text-blue-600";
+  statusColorClass = "text-white";
+  statusBgClass = "bg-blue-600";
+}
+---
+
+<article class={`rounded-3xl border ${borderColorClass} ${bgColorClass} p-6`}>
+  <div class="flex items-start justify-between">
+    <h3 class={`text-xl font-semibold ${titleColorClass}`}>{title}</h3>
+    {
+      status && (
+        <span
+          class={`inline-flex items-center gap-1 rounded-full ${statusBgClass} px-3 py-1 text-xs font-semibold ${statusColorClass}`}
+        >
+          {status === "operational" && <i class="fa-solid fa-check-circle" />}
+          {status === "gap" && <i class="fa-solid fa-exclamation-triangle" />}
+          {status === "needed" && <i class="fa-solid fa-circle" />}
+          {status === "suggested" && <i class="fa-solid fa-lightbulb" />}
+          {status === "operational" ? "LIVE" : status.toUpperCase()}
+        </span>
+      )
+    }
+  </div>
+  <div class="mt-4 space-y-3 text-sm text-gray-700">
+    {description && <p>{description}</p>}
+    <slot />
+  </div>
+  {
+    link && linkText && (
+      <div class="mt-6">
+        <a
+          href={link}
+          class="inline-flex items-center text-sm font-medium text-blue-600 hover:text-red-600"
+        >
+          {linkText} &rarr;
+        </a>
+      </div>
+    )
+  }
+</article>
