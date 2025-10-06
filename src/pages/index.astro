@@ -2,7 +2,8 @@
 import { getEntry } from "astro:content";
 import BasePage from "../layouts/content/BasePage.astro";
 
-const entry = await getEntry("pages", "index");
+const entry = await getEntry({ collection: "pages", slug: "index" });
+if (!entry) throw new Error("Missing content entry: pages/index");
 ---
 
 <BasePage entry={entry} />
