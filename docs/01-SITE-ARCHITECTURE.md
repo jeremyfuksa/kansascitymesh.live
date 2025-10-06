@@ -44,7 +44,7 @@ Content/front matter drives layout selection. Each route imports the relevant la
 | Layout | Path | Used by | Description |
 | --- | --- | --- | --- |
 | `BasePage.astro` | `src/layouts/content/BasePage.astro` | Home, Get Started index, Community index | Renders optional alerts, callouts, Discord CTA, card sections, and closing CTA. |
-| `ArticlePage.astro` | `src/layouts/content/ArticlePage.astro` | All narrative pages (About, Network pages, Get Started guides, Resources except FAQ) | Simple prose article with optional lead copy, action buttons, Discord CTA. |
+| `ArticlePage.astro` | `src/layouts/content/ArticlePage.astro` | All narrative pages (About, Network pages, Get Started guides, Resources except FAQ) | Simple prose article with optional button row and Discord CTA. |
 | `FaqPage.astro` | `src/layouts/content/FaqPage.astro` | `resources/faqs` | Converts Q&A front matter into accordion UI. |
 
 Front matter reference lives in `README.md`.

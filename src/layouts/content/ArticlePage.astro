@@ -12,12 +12,9 @@ const {
   description = "",
   pageHeading,
   heroVariant,
-  lead,
   actions = [],
   discordInvite,
 } = data as Record<string, any>;
-
-const leadMarkdown = lead ? await Astro.renderMarkdown(lead) : null;
 ---
 
 <Layout
@@ -26,13 +23,6 @@ const leadMarkdown = lead ? await Astro.renderMarkdown(lead) : null;
   pageHeading={pageHeading}
   heroVariant={heroVariant}
 >
-  {leadMarkdown && (
-    <article
-      class="prose prose-lg max-w-none"
-      set:html={leadMarkdown.html}
-    />
-  )}
-
   <article class="prose prose-lg max-w-none">
     <Content />
   </article>

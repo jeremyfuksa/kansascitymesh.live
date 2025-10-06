@@ -13,9 +13,9 @@ All page content lives under `src/content/pages/`. Each Markdown file describes 
 ### Layout matrix
 | Layout | File | When to use | YAML fields consumed |
 | --- | --- | --- | --- |
-| **BasePage** | `src/layouts/content/BasePage.astro` | Landing pages with alerts/callouts/cards/CTAs (e.g., Home, Get Started index, Community index) | `title`, `description`, `pageHeading`, `heroVariant`, `lead`, `alerts`, `callouts`, `cardsSections`, `cta`, `discordInvite` |
-| **ArticlePage** | `src/layouts/content/ArticlePage.astro` | Narrative pages or guides that may include CTA buttons | `title`, `description`, `pageHeading`, `heroVariant`, `lead`, `actions`, `discordInvite` |
-| **FaqPage** | `src/layouts/content/FaqPage.astro` | FAQ lists rendered as accordions | `title`, `description`, `pageHeading`, `heroVariant`, `lead`, `faqs`, `discordInvite` |
+| **BasePage** | `src/layouts/content/BasePage.astro` | Landing pages with alerts/callouts/cards/CTAs (e.g., Home, Get Started index, Community index) | `title`, `description`, `pageHeading`, `heroVariant`, `alerts`, `callouts`, `cardsSections`, `cta`, `discordInvite` |
+| **ArticlePage** | `src/layouts/content/ArticlePage.astro` | Narrative pages or guides that may include CTA buttons | `title`, `description`, `pageHeading`, `heroVariant`, `actions`, `discordInvite` |
+| **FaqPage** | `src/layouts/content/FaqPage.astro` | FAQ lists rendered as accordions | `title`, `description`, `pageHeading`, `heroVariant`, `faqs`, `discordInvite` |
 
 Routes simply select the layout, e.g.:
 
@@ -37,8 +37,7 @@ title: Page title (defaults to empty string)
 description: Meta description / hero paragraph
 pageHeading: Optional hero heading override
 heroVariant: default | compact
-lead: Optional intro markdown rendered before body markdown
-alerts: # array of alert banners
+  alerts: # array of alert banners
   - message: Text
     link: Optional URL
     linkText: Optional label
@@ -66,9 +65,9 @@ actions: # for ArticlePage – renders button row
   - href: URL
     label: Button label
     variant: primary | outline (default primary)
-faqs: # for FaqPage – question/answer pairs
+  faqs: # for FaqPage – question/answer pairs
   - question: Prompt
-    answer: Markdown answer
+    answer: Plain text (newline separated) shown inside accordion
 discordInvite: # renders reusable Discord CTA card
   title: Optional override (defaults provided)
   description: Custom copy

@@ -16,15 +16,12 @@ const {
   description = "",
   pageHeading,
   heroVariant,
-  lead,
   alerts = [],
   callouts = [],
   cardsSections = [],
   cta,
   discordInvite,
 } = data as Record<string, any>;
-
-const leadMarkdown = lead ? await Astro.renderMarkdown(lead) : null;
 ---
 
 <Layout
@@ -42,13 +39,6 @@ const leadMarkdown = lead ? await Astro.renderMarkdown(lead) : null;
       linkText={alert.linkText}
     />
   ))}
-
-  {leadMarkdown && (
-    <article
-      class="prose prose-lg max-w-none"
-      set:html={leadMarkdown.html}
-    />
-  )}
 
   {callouts.map((callout, index) => (
     <CalloutBanner

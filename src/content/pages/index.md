@@ -1,17 +1,6 @@
 ---
 title: Kansas City Meshtastic Network
 description: Building mesh backup communications for KC. One person, one router at a time. Want to help?
-lead: |
-  # I'm building a mesh network for Kansas City
-
-  Not because I'm some RF expert. I figured out that a $35 radio on my roof can
-  reach five miles, and four of these things in the right spots could cover most
-  of the metro with backup communications. This site documents what I've learned
-  so far, what I'm doing, and how AI analysis helped me understand what it takes
-  for a robust KC mesh.
-
-  I put the first router up. It works. Now I am looking for help with the other
-  three.
 alerts:
   - variant: info
     message: Found this site after Googling "Meshtastic"? Welcome. This project documents Kansas City's build-out; the official project lives over at meshtastic.org.
@@ -63,6 +52,17 @@ discordInvite:
   description: Today's I-435 loop showed zero telemetry west of I-29. If you can help bridge that gap—or just want real-time coordination—hop into the KC Meshtastic Discord.
   linkText: Coordinate on Discord
 ---
+
+# I'm building a mesh network for Kansas City
+
+Not because I'm some RF expert. I figured out that a $35 radio on my roof can
+reach five miles, and four of these things in the right spots could cover most
+of the metro with backup communications. This site documents what I've learned
+so far, what I'm doing, and how AI analysis helped me understand what it takes
+for a robust KC mesh.
+
+I put the first router up. It works. Now I am looking for help with the other
+three.
 
 ## What this actually is
 
