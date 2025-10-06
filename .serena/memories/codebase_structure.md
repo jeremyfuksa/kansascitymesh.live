@@ -1,0 +1,4 @@
+- The project is an Astro project.
+- The `src` directory contains the pages, layouts, and components.
+- The `docs` directory contains all the planning and documentation for the project.
+- The `public` directory contains static assets like the favicon.

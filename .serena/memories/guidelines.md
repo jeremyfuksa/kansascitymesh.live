@@ -1,0 +1,3 @@
+- The project has a very detailed design system specified in `04-DESIGN-SYSTEM.md`.
+- The project has a clear content strategy and SEO plan.
+- The project has a detailed deployment guide for OCI/Nginx.

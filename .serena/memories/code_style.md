@@ -1,0 +1,4 @@
+- The project uses a strict TypeScript configuration (`extends: "astro/tsconfigs/strict"`).
+- The content has a very specific voice and tone: first person, conversational, honest, and anti-dogma. See `06-CONTENT-VOICE-GUIDELINES.md` for details.
+- The project uses a system font stack for performance.
+- A detailed design system is specified in `04-DESIGN-SYSTEM.md`.

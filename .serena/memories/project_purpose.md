@@ -1,0 +1,1 @@
+The project is a website for the Kansas City Meshtastic Network, a community-built, independent emergency communications infrastructure using LoRa radio technology. The site aims to be a resource hub and a coordination point for the community, with a focus on a prosumer/hobbyist approach.

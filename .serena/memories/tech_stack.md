@@ -1,0 +1,6 @@
+- **Framework:** Astro
+- **Styling:** Tailwind CSS
+- **Hosting:** OCI with Nginx
+- **Analytics:** Plausible Analytics
+- **Map:** Leaflet.js
+- **Forms:** PHP handler on OCI server

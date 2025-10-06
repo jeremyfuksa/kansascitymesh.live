@@ -1,0 +1,3 @@
+- `npm run dev`: Starts the development server.
+- `npm run build`: Builds the site for production.
+- `npm run preview`: Previews the built site.
