@@ -30,66 +30,68 @@ const {
   pageHeading={pageHeading}
   heroVariant={heroVariant}
 >
-  {alerts.map((alert, index) => (
-    <AlertBanner
-      key={`alert-${index}`}
-      variant={alert.variant}
-      message={alert.message}
-      link={alert.link}
-      linkText={alert.linkText}
-    />
-  ))}
+  <div class="d-flex flex-column gap-4">
+    {alerts.map((alert: any, index: number) => (
+      <AlertBanner
+        key={`alert-${index}`}
+        variant={alert.variant}
+        message={alert.message}
+        link={alert.link}
+        linkText={alert.linkText}
+      />
+    ))}
 
-  {callouts.map((callout, index) => (
-    <CalloutBanner
-      key={`callout-${index}`}
-      title={callout.title}
-      message={callout.message}
-      link={callout.link}
-      linkText={callout.linkText}
-    />
-  ))}
+    {callouts.map((callout: any, index: number) => (
+      <CalloutBanner
+        key={`callout-${index}`}
+        title={callout.title}
+        message={callout.message}
+        link={callout.link}
+        linkText={callout.linkText}
+      />
+    ))}
 
-  {discordInvite && (
-    <DiscordInviteCard
-      title={discordInvite.title}
-      description={discordInvite.description}
-      link={discordInvite.link}
-      linkText={discordInvite.linkText}
-    />
-  )}
+    {discordInvite && (
+      <DiscordInviteCard
+        title={discordInvite.title}
+        description={discordInvite.description}
+        link={discordInvite.link}
+        linkText={discordInvite.linkText}
+      />
+    )}
 
-  <article class="prose prose-lg max-w-none">
-    <Content />
-  </article>
+    <article class="content-body">
+      <Content />
+    </article>
 
-  {cardsSections.map((section: any, sectionIndex: number) => (
-    <SectionHeader
-      title={section.heading}
-      description={section.description}
-      key={`cards-${sectionIndex}`}
-    >
-      <CardGrid>
-        {(section.cards ?? []).map((card: any, cardIndex: number) => (
-          <Card
-            key={`card-${sectionIndex}-${cardIndex}`}
-            title={card.title}
-            description={card.description}
-            link={card.link}
-            linkText={card.linkText}
-            status={card.status}
-          />
-        ))}
-      </CardGrid>
-    </SectionHeader>
-  ))}
+    {cardsSections.map((section: any, sectionIndex: number) => (
+      <SectionHeader
+        key={`cards-${sectionIndex}`}
+        title={section.heading}
+        description={section.description}
+      >
+        <CardGrid>
+          {(section.cards ?? []).map((card: any, cardIndex: number) => (
+            <Card
+              key={`card-${sectionIndex}-${cardIndex}`}
+              title={card.title}
+              description={card.description}
+              link={card.link}
+              linkText={card.linkText}
+              status={card.status}
+            />
+          ))}
+        </CardGrid>
+      </SectionHeader>
+    ))}
 
-  {cta && (
-    <CtaBlock
-      title={cta.title}
-      description={cta.description}
-      link={cta.link}
-      linkText={cta.linkText}
-    />
-  )}
+    {cta && (
+      <CtaBlock
+        title={cta.title}
+        description={cta.description}
+        link={cta.link}
+        linkText={cta.linkText}
+      />
+    )}
+  </div>
 </Layout>

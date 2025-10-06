@@ -1,4 +1,6 @@
 # Project Overview
+
+> **Design system update**: The implementation now uses Bootstrap 5 rather than Tailwind. Any Tailwind references below describe earlier planning assumptions and can be revisited as Bootstrap theming solidifies.
 ## Kansas City Meshtastic Network Website
 
 **Version**: 2.0

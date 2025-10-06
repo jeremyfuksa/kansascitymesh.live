@@ -23,30 +23,32 @@ const {
   pageHeading={pageHeading}
   heroVariant={heroVariant}
 >
-  <article class="prose prose-lg max-w-none">
-    <Content />
-  </article>
+  <div class="d-flex flex-column gap-4">
+    <article class="content-body">
+      <Content />
+    </article>
 
-  {actions.length > 0 && (
-    <ButtonRow>
-      {actions.map((action: any, index: number) => (
-        <ButtonLink
-          key={`action-${index}`}
-          href={action.href}
-          variant={action.variant}
-        >
-          {action.label}
-        </ButtonLink>
-      ))}
-    </ButtonRow>
-  )}
+    {actions.length > 0 && (
+      <ButtonRow>
+        {actions.map((action: any, index: number) => (
+          <ButtonLink
+            key={`action-${index}`}
+            href={action.href}
+            variant={action.variant}
+          >
+            {action.label}
+          </ButtonLink>
+        ))}
+      </ButtonRow>
+    )}
 
-  {discordInvite && (
-    <DiscordInviteCard
-      title={discordInvite.title}
-      description={discordInvite.description}
-      link={discordInvite.link}
-      linkText={discordInvite.linkText}
-    />
-  )}
+    {discordInvite && (
+      <DiscordInviteCard
+        title={discordInvite.title}
+        description={discordInvite.description}
+        link={discordInvite.link}
+        linkText={discordInvite.linkText}
+      />
+    )}
+  </div>
 </Layout>

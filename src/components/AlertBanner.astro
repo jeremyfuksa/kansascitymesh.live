@@ -11,9 +11,9 @@ interface Props {
 const { message, link, linkText, variant = "info" } = Astro.props;
 
 const variantClasses: Record<Variant, string> = {
-  info: "border-blue-200 bg-blue-50 text-blue-800",
-  warning: "border-amber-200 bg-amber-50 text-amber-800",
-  success: "border-green-200 bg-green-50 text-green-800",
+  info: "alert-info border-info-subtle text-info-emphasis",
+  warning: "alert-warning border-warning-subtle text-warning-emphasis",
+  success: "alert-success border-success-subtle text-success-emphasis",
 };
 
 const iconClasses: Record<Variant, string> = {
@@ -23,25 +23,20 @@ const iconClasses: Record<Variant, string> = {
 };
 ---
 
-<div
-  class={`not-prose flex items-start gap-3 rounded-xl border p-4 text-sm sm:text-base ${variantClasses[variant]}`}
-  role="status"
->
-  <i class={`fa-solid ${iconClasses[variant]} text-lg sm:text-xl`} aria-hidden="true"></i>
-  <div class="space-y-2">
-    <p class="font-semibold leading-relaxed">{message}</p>
+<div class={`alert d-flex align-items-start gap-3 ${variantClasses[variant]}`} role="alert">
+  <span class="fs-4"><i class={`fa-solid ${iconClasses[variant]}`} aria-hidden="true"></i></span>
+  <div>
+    <p class="fw-semibold mb-1">{message}</p>
     {
       link && (
-        <p class="text-sm">
-          <a
-            href={link}
-            class="font-semibold underline decoration-2 decoration-current underline-offset-4 hover:opacity-80"
-            rel="noopener noreferrer"
-            target={link.startsWith("/") ? undefined : "_blank"}
-          >
-            {linkText ?? link}
-          </a>
-        </p>
+        <a
+          href={link}
+          class="fw-semibold link-primary"
+          rel="noopener noreferrer"
+          target={link.startsWith("/") ? undefined : "_blank"}
+        >
+          {linkText ?? link}
+        </a>
       )
     }
   </div>

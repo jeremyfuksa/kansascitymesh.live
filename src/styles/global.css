@@ -1,1 +1,50 @@
-@import "tailwindcss";
+body {
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  background-color: #f5efe6;
+  color: #2b2420;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.section-eyebrow {
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  color: #6c757d;
+}
+
+.content-body h1,
+.content-body h2,
+.content-body h3,
+.content-body h4,
+.content-body h5,
+.content-body h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.content-body p,
+.content-body ul,
+.content-body ol {
+  margin-bottom: 1rem;
+}
+
+.content-body ul,
+.content-body ol {
+  padding-left: 1.5rem;
+}
+
+.discord-card {
+  border-left: 4px solid #5865f2;
+}
+
+.callout-card {
+  border-left: 4px solid #f59e42;
+}

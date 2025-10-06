@@ -27,274 +27,126 @@ const navLinks = [
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const resolvedTitle = currentPath === "/" ? title : `${title} | KC Meshtastic`;
-const mainSpacing =
-  heroVariant === "compact" ? "py-10 lg:py-14" : "py-14 lg:py-20";
+const spacingClass = heroVariant === "compact" ? "py-4" : "py-5";
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="dns-prefetch" href="https://kit.fontawesome.com" />
-    <link rel="preconnect" href="https://kit.fontawesome.com" crossorigin />
-    <link rel="preconnect" href="https://ka-f.fontawesome.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QY6EhlLBZbduCMsZ/HXtdguG3V7lxZlCk7nct/6fruKbyNVRcN6UWNa1lm7T0Pp6"
+      crossorigin="anonymous"
+    />
     <meta name="generator" content={Astro.generator} />
     <title>{resolvedTitle}</title>
     <meta name="description" content={description} />
     <script
       src="https://kit.fontawesome.com/02023a5bb5.js"
       crossorigin="anonymous"
-      async></script>
+      async>
+    </script>
   </head>
-  <body class="flex min-h-screen flex-col">
-    <header class="sticky top-0 z-50 border-b backdrop-blur-lg">
-      <div
-        class="mx-auto flex w-full items-center justify-between gap-4 px-6 py-4 sm:px-8 md:py-5 lg:px-10 xl:px-12"
-      >
-        <a
-          href="/"
-          class="flex items-center gap-3 font-semibold tracking-tight text-gray-900 transition"
-        >
+  <body class="d-flex flex-column min-vh-100 bg-light-subtle">
+    <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm sticky-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/">
           <img
             src={kcMeshLogo.src}
             alt="Kansas City Meshtastic Network logo"
-            class="h-10 w-10 rounded-full object-cover"
+            class="rounded-circle"
             width="40"
             height="40"
             loading="lazy"
             decoding="async"
           />
-          <span class="hidden text-base leading-5 sm:inline md:text-lg"
-            >Kansas City Meshtastic Network</span
-          >
-          <span class="text-base sm:hidden">KC Meshtastic</span>
+          <span class="d-none d-sm-inline fw-semibold">Kansas City Meshtastic Network</span>
+          <span class="d-sm-none fw-semibold">KC Meshtastic</span>
         </a>
         <button
+          class="navbar-toggler"
           type="button"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-gray-100 text-gray-700 transition hover:border-red-600 hover:text-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 md:hidden"
-          aria-label="Open navigation"
-          aria-controls="mobile-site-nav"
+          data-bs-toggle="collapse"
+          data-bs-target="#primaryNav"
+          aria-controls="primaryNav"
           aria-expanded="false"
-          data-nav-toggle
+          aria-label="Toggle navigation"
         >
-          <i class="fa-solid fa-bars text-lg"></i>
+          <span class="navbar-toggler-icon"></span>
         </button>
-        <nav
-          class="hidden items-center gap-6 text-sm font-medium md:flex lg:gap-8"
-        >
-          {
-            navLinks.map((link) => {
-              const normalized = link.href === "/" ? "/" : link.href;
-              const isActive =
-                currentPath === normalized ||
-                currentPath.startsWith(`${normalized}/`);
-              return (
-                <a
-                  href={link.href}
-                  class={`rounded-full px-3 py-2 transition ${
-                    isActive
-                      ? "bg-blue-600/10 text-blue-600"
-                      : "text-gray-700 hover:text-red-600"
-                  }`}
-                >
-                  {link.label}
-                </a>
-              );
-            })
-          }
-        </nav>
+        <div class="collapse navbar-collapse" id="primaryNav">
+          <ul class="navbar-nav ms-auto align-items-md-center gap-1 gap-md-2 text-uppercase small fw-semibold">
+            {
+              navLinks.map((link) => {
+                const normalized = link.href === "/" ? "/" : link.href;
+                const isActive =
+                  currentPath === normalized || currentPath.startsWith(`${normalized}/`);
+                return (
+                  <li class="nav-item">
+                    <a
+                      href={link.href}
+                      class={`nav-link ${isActive ? "active text-primary" : ""}`}
+                      aria-current={isActive ? "page" : undefined}
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                );
+              })
+            }
+          </ul>
+        </div>
       </div>
-    </header>
-    <div
-      class="fixed inset-0 z-40 bg-white/40 opacity-0 transition duration-200 ease-out pointer-events-none invisible md:hidden"
-      data-nav-overlay
-    >
-    </div>
-    <div
-      id="mobile-site-nav"
-      data-nav-panel
-      role="dialog"
-      aria-modal="true"
-      aria-label="Site navigation"
-      tabindex="-1"
-      class="fixed inset-y-0 right-0 z-50 flex w-72 max-w-[80vw] translate-x-full flex-col bg-gray-100 shadow-xl transition-transform duration-200 ease-out md:hidden"
-    >
-      <div
-        class="flex items-center justify-between border-b border-gray-200 px-6 py-4"
-      >
-        <span
-          class="text-sm font-semibold uppercase tracking-wide text-gray-700"
-          >Navigation</span
-        >
-        <button
-          type="button"
-          class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-gray-100 text-gray-700 transition hover:border-red-600 hover:text-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600"
-          aria-label="Close navigation"
-          data-nav-close
-        >
-          <i class="fa-solid fa-xmark text-lg"></i>
-        </button>
-      </div>
-      <nav class="flex-1 overflow-y-auto px-6 py-6">
-        <ul class="space-y-4 text-base">
-          {
-            navLinks.map((link) => {
-              const normalized = link.href === "/" ? "/" : link.href;
-              const isActive =
-                currentPath === normalized ||
-                currentPath.startsWith(`${normalized}/`);
-              return (
-                <li>
-                  <a
-                    class={`flex items-center justify-between rounded-2xl border px-4 py-3 text-sm font-medium transition ${
-                      isActive
-                        ? "border-blue-600/40 bg-blue-600/10 text-blue-600"
-                        : "border-gray-200 text-gray-700 hover:border-red-600 hover:text-red-600"
-                    }`}
-                    href={link.href}
-                    data-nav-link
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              );
-            })
-          }
-        </ul>
-      </nav>
-      <div class="border-t border-gray-200 px-6 py-5 text-xs text-gray-500">
-        <p class="leading-relaxed">
-          Looking to collaborate? Visit the coordination hub or email
-          <a
-            class="ml-1 text-blue-600 hover:text-red-600"
-            href="mailto:contact@kansascitymesh.live"
-          >
-            contact@kansascitymesh.live
-          </a>
-        </p>
-      </div>
-    </div>
-    <main
-      class={`mx-auto flex w-full max-w-3xl flex-1 flex-col gap-10 px-6 sm:px-8 lg:gap-14 lg:px-10 xl:gap-16 xl:px-12 ${mainSpacing}`}
-    >
-      {
-        pageHeading && (
-          <div class="max-w-3xl space-y-3 lg:max-w-4xl">
-            <p class="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500">
-              Kansas City Meshtastic
-            </p>
-            <h1 class="text-3xl font-semibold leading-tight text-gray-900 md:text-4xl lg:text-5xl">
-              {pageHeading}
-            </h1>
-            <p class="text-lg leading-relaxed md:text-xl lg:text-[1.35rem]">
-              {description}
-            </p>
-          </div>
-        )
-      }
-      <div class="flex w-full flex-col gap-10">
-        <slot />
+    </nav>
+
+    <main class={`flex-grow-1 ${spacingClass}`}>
+      <div class="container">
+        {
+          pageHeading && (
+            <div class="mb-4">
+              <p class="section-eyebrow mb-2">Kansas City Meshtastic</p>
+              <h1 class="display-5 fw-semibold mb-3">{pageHeading}</h1>
+              <p class="lead text-secondary">{description}</p>
+            </div>
+          )
+        }
+        <div class="d-flex flex-column gap-4">
+          <slot />
+        </div>
       </div>
     </main>
-    <footer class="border-t py-10">
-      <div
-        class="mx-auto flex w-full flex-col gap-4 px-6 text-sm transition sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10 xl:px-12"
-      >
-        <p class="text-center sm:text-left">
-          &copy; {new Date().getFullYear()} Kansas City Meshtastic Network.
-          <span class="block text-xs text-gray-500 sm:text-right">
-            Not affiliated with meshtastic.org or the Meshtastic Foundation.
-          </span>
-        </p>
-        <div
-          class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-center sm:justify-end"
-        >
-          <a
-            href="mailto:contact@kansascitymesh.live"
-            class="hover:text-red-600"
-          >
-            contact@kansascitymesh.live
-          </a>
+
+    <footer class="bg-white border-top py-4 mt-auto">
+      <div class="container d-flex flex-column flex-lg-row justify-content-between align-items-lg-center gap-3 small text-muted">
+        <div>
+          <div>&copy; {new Date().getFullYear()} Kansas City Meshtastic Network.</div>
+          <div class="text-muted">Not affiliated with meshtastic.org or the Meshtastic Foundation.</div>
+        </div>
+        <div class="d-flex flex-wrap align-items-center gap-3">
+          <a href="mailto:contact@kansascitymesh.live" class="link-secondary">contact@kansascitymesh.live</a>
           <a
             href="https://discord.gg/eP5VSPKU"
-            class="inline-flex items-center gap-2 rounded-full border border-blue-600 px-4 py-2 text-sm font-semibold text-blue-600 transition hover:border-red-600 hover:text-red-600"
+            class="btn btn-outline-primary btn-sm d-inline-flex align-items-center gap-2"
             target="_blank"
             rel="noopener noreferrer"
           >
             <i class="fa-brands fa-discord" aria-hidden="true"></i>
             Join the Discord
           </a>
-          <span>Live status updates coming soon.</span>
+          <span class="text-secondary">Live status updates coming soon.</span>
         </div>
       </div>
     </footer>
-    <script is:inline>
-      const navToggle = document.querySelector("[data-nav-toggle]");
-      const navClose = document.querySelector("[data-nav-close]");
-      const navPanel = document.querySelector("[data-nav-panel]");
-      const navOverlay = document.querySelector("[data-nav-overlay]");
-      const navLinks = navPanel?.querySelectorAll("[data-nav-link]");
-      const setExpanded = (expanded) => {
-        if (navToggle) {
-          navToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
-        }
-      };
-      const openNav = () => {
-        if (!navPanel || !navOverlay) return;
-        navPanel.classList.remove("translate-x-full");
-        navPanel.classList.add("translate-x-0");
-        navOverlay.classList.remove(
-          "opacity-0",
-          "pointer-events-none",
-          "invisible",
-        );
-        navOverlay.classList.add(
-          "opacity-100",
-          "pointer-events-auto",
-          "visible",
-        );
-        document.body.classList.add("overflow-hidden");
-        setExpanded(true);
-        navPanel.focus();
-      };
-      const closeNav = () => {
-        if (!navPanel || !navOverlay) return;
-        navPanel.classList.add("translate-x-full");
-        navPanel.classList.remove("translate-x-0");
-        navOverlay.classList.add(
-          "opacity-0",
-          "pointer-events-none",
-          "invisible",
-        );
-        navOverlay.classList.remove(
-          "opacity-100",
-          "pointer-events-auto",
-          "visible",
-        );
-        document.body.classList.remove("overflow-hidden");
-        setExpanded(false);
-        navToggle?.focus();
-      };
-      navToggle?.addEventListener("click", () => {
-        const isExpanded = navToggle.getAttribute("aria-expanded") === "true";
-        if (isExpanded) {
-          closeNav();
-        } else {
-          openNav();
-        }
-      });
-      navClose?.addEventListener("click", closeNav);
-      navOverlay?.addEventListener("click", closeNav);
-      navLinks?.forEach((link) => {
-        link.addEventListener("click", closeNav);
-      });
-      window.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-          closeNav();
-        }
-      });
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-NeMJ7C0xE+lA7DHCOUM3FZ3VAb9Y/jGj33jjXNMTvEihQ/HUkNzxaz2+XyXcV0r1"
+      crossorigin="anonymous"
+      defer>
     </script>
   </body>
 </html>

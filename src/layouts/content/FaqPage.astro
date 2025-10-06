@@ -1,6 +1,5 @@
 ---
 import Layout from "../Layout.astro";
-import DetailsAccordion from "../../components/DetailsAccordion.astro";
 import DiscordInviteCard from "../../components/DiscordInviteCard.astro";
 
 const { entry } = Astro.props as { entry: any };
@@ -14,10 +13,8 @@ const {
   faqs = [],
   discordInvite,
 } = data as Record<string, any>;
-const renderedFaqs = faqs.map((faq: any) => ({
-  question: faq.question,
-  answer: faq.answer,
-}));
+
+const accordionId = "faqAccordion";
 ---
 
 <Layout
@@ -26,26 +23,58 @@ const renderedFaqs = faqs.map((faq: any) => ({
   pageHeading={pageHeading}
   heroVariant={heroVariant}
 >
-  <article class="prose prose-lg max-w-none">
-    <Content />
-  </article>
+  <div class="d-flex flex-column gap-4">
+    <article class="content-body">
+      <Content />
+    </article>
 
-  {renderedFaqs.length > 0 && (
-    <div class="space-y-4">
-      {renderedFaqs.map((faq, index) => (
-        <DetailsAccordion summary={faq.question} key={`faq-${index}`}>
-          <p class="whitespace-pre-line text-sm text-gray-700">{faq.answer}</p>
-        </DetailsAccordion>
-      ))}
-    </div>
-  )}
+    {faqs.length > 0 && (
+      <div class="accordion" id={accordionId}>
+        {faqs.map((faq: any, index: number) => {
+          const itemId = `${accordionId}-item-${index}`;
+          const headerId = `${itemId}-header`;
+          const paragraphs = String(faq.answer ?? "").split(/\n\s*\n/);
+          return (
+            <div class="accordion-item" key={`faq-${index}`}>
+              <h2 class="accordion-header" id={headerId}>
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target={`#${itemId}`}
+                  aria-expanded="false"
+                  aria-controls={itemId}
+                >
+                  {faq.question}
+                </button>
+              </h2>
+              <div
+                id={itemId}
+                class="accordion-collapse collapse"
+                aria-labelledby={headerId}
+                data-bs-parent={`#${accordionId}`}
+              >
+                <div class="accordion-body">
+                  {paragraphs.map((paragraph, pIndex) => (
+                    <p class="mb-2" key={`faq-${index}-p-${pIndex}`}>
+                      {paragraph.trim()}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    )}
 
-  {discordInvite && (
-    <DiscordInviteCard
-      title={discordInvite.title}
-      description={discordInvite.description}
-      link={discordInvite.link}
-      linkText={discordInvite.linkText}
-    />
-  )}
+    {discordInvite && (
+      <DiscordInviteCard
+        title={discordInvite.title}
+        description={discordInvite.description}
+        link={discordInvite.link}
+        linkText={discordInvite.linkText}
+      />
+    )}
+  </div>
 </Layout>

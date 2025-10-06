@@ -5,6 +5,8 @@
 **Date**: 2025-10-04
 **Status**: Planning Phase
 
+> **Design system update:** the implementation now uses Bootstrap 5 components. Tailwind token exports in this document describe the earlier palette and can be translated to Bootstrap variables.
+
 ---
 
 ## 1. Executive Summary

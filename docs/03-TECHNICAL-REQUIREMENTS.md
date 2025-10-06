@@ -5,6 +5,8 @@
 **Date**: 2025-10-04
 **Status**: Implementation Ready
 
+> **Implementation note:** the production build now relies on Bootstrap 5 rather than Tailwind CSS. Tailwind references below capture earlier planning work and will be refreshed in a future revision.
+
 ---
 
 ## 1. Executive Summary

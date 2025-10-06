@@ -1,11 +1,11 @@
 # Kansas City Meshtastic Network
 
-Astro + Tailwind site documenting the Kansas City Meshtastic build-out and coordinating regional deployments. Content now lives almost entirely in Markdown with YAML front matter so writers can focus on copy while layouts handle presentation.
+Astro + Bootstrap site documenting the Kansas City Meshtastic build-out and coordinating regional deployments. Content lives in Markdown with YAML front matter so writers can focus on copy while layouts handle presentation.
 
 ## Tech Stack
 - [Astro](https://astro.build/) for static generation
-- Tailwind CSS tokenized in `src/styles/global.css`
-- Minimal client-side JavaScript (navigation drawer only)
+- [Bootstrap 5](https://getbootstrap.com/) via CDN for UI components
+- Minimal client-side JavaScript (Bootstrap bundle for nav/collapses)
 
 ## Content Authoring
 All page content lives under `src/content/pages/`. Each Markdown file describes a route and is rendered by one of the content layouts.

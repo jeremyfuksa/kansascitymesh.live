@@ -1,23 +1,22 @@
 # Kansas City Meshtastic Site Implementation
 
-The repository root contains the Astro + Tailwind implementation scaffold for kansascitymesh.live. The goal is to translate the planning assets under `/docs` and `CLAUDE.md` into production-ready pages while preserving the project’s prosumer scope.
+The repository now ships as an Astro + Bootstrap implementation for kansascitymesh.live. Content is authored in Markdown (`src/content/pages/**`) and rendered through reusable layouts so we can scale copy updates without touching presentation code.
 
 ## Project Structure
 
 ```
 ./
-├── astro.config.mjs           # Astro config with Tailwind Vite plugin
+├── astro.config.mjs           # Astro config (no Tailwind plugin)
 ├── package.json               # npm scripts (dev, build, preview)
-├── tailwind.config.mjs        # Content glob + container sizing
 ├── tsconfig.json              # TypeScript + JSX settings
 ├── src/
-│   ├── components/
-│   │   ├── PagePlaceholder.astro  # Shared scaffold for unfinished pages
-│   │   └── ThemeToggle.astro      # Dark/light toggle (Font Awesome icons)
+│   ├── components/                # Bootstrap-based UI primitives (alerts, cards, CTA blocks)
 │   ├── layouts/
-│   │   └── Layout.astro           # Global layout, responsive shell, navigation
-│   ├── pages/                     # Routing aligned with docs/01-SITE-ARCHITECTURE.md
-│   └── styles/global.css          # Tailwind import + color tokens (light/dark)
+│   │   ├── Layout.astro           # Global layout, navbar/footer, Bootstrap includes
+│   │   └── content/               # BasePage / ArticlePage / FaqPage layouts
+│   ├── pages/                     # Routes selecting the appropriate layout
+│   ├── assets/                    # Static assets (e.g., kc-mesh.png)
+│   └── styles/global.css          # Light custom overrides (letter spacing, typography)
 ├── public/
 │   └── favicon.svg
 ├── dist/                          # Build output (gitignored)
@@ -25,22 +24,19 @@ The repository root contains the Astro + Tailwind implementation scaffold for ka
 └── .vscode/                       # Recommended editor extensions
 ```
 
-Every top-level route from the site architecture has a placeholder page listing the content requirements and source document references. Replace each `PagePlaceholder` instance with production copy and components as content becomes available.
+Each top-level route simply imports the layout and passes its markdown entry, keeping the Astro files thin and focused. Add new sections by creating a markdown file under `src/content/pages/**` and updating the corresponding route to reference the slug.
 
 ## Implemented Features
 
-- Base Astro project with Tailwind v4 configured for class-based dark mode.
-- Global layout including responsive container, sticky header, footer, and content framing.
-- Accessible navigation with Font Awesome icons and an off-canvas mobile drawer (focus trapping, overlay, ESC close).
-- Theme toggle that respects saved preference, system preference, and synchronises icons (`fa-sun` / `fa-moon`).
-- Color palette, shadows, and typography tokens expressed as CSS variables with light/dark overrides.
-- Homepage hero scaffold showing the intended two-column layout, CTA buttons, and implementation checklist.
-- Route placeholders for every page defined in the site architecture, each documenting required tasks and source docs.
-- Font Awesome kit (02023a5bb5) loaded globally.
+- Astro 5 project with Bootstrap 5 (via CDN) handling layout, typography, and components.
+- Global layout with sticky navbar, responsive containers, and a shared footer.
+- Content layouts (`BasePage`, `ArticlePage`, `FaqPage`) that map YAML front matter to Bootstrap components (alerts, callouts, card grids, accordions).
+- Discord CTA and alert/callout components reusable across pages.
+- Font Awesome kit (02023a5bb5) loaded globally for icon support.
 
 ## Outstanding Work Before Feature Complete
 
-- Populate all pages with the final copy from README sections 4.1–4.10, replacing placeholders.
+- Populate all pages with the final copy from README sections 4.1–4.10 (some sections still in-progress).
 - Build the homepage coordination banner, live network stats widget, and recent updates feed.
 - Implement the Join flow UI (stepper, checklists, troubleshooting) with proper accessibility.
 - Create the Coverage Map using Leaflet, loading GeoJSON/static JSON produced by the automation pipeline.
@@ -49,7 +45,7 @@ Every top-level route from the site architecture has a placeholder page listing 
 - Integrate Plausible analytics and custom conversion events for forms, hardware clicks, etc.
 - Implement audience-specific guide layouts with media, CTAs, and responsive tables/accordions.
 - Add automated linting/tests (markdownlint, Astro `check`, component/Playwright tests) and document the commands.
-- Finalize accessibility (skip links, focus outlines, reduced motion), animation polish, and theme QA.
+- Finalize accessibility (skip links, focus outlines, reduced motion) and polish animations/transitions if needed.
 
 ## Development Commands
 
