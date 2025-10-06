@@ -1,6 +1,6 @@
 body {
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  background-color: #f5efe6;
+  background-color: #f8f9fa;
   color: #2b2420;
 }
 
@@ -19,26 +19,55 @@ a:hover {
   color: #6c757d;
 }
 
+.content-body {
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.content-body > :first-child {
+  margin-top: 0;
+}
+
 .content-body h1,
 .content-body h2,
 .content-body h3,
 .content-body h4,
 .content-body h5,
 .content-body h6 {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
   margin-bottom: 0.75rem;
   font-weight: 600;
 }
 
+.content-body h1 {
+  font-size: 2.5rem;
+}
+
+.content-body h2 {
+  font-size: 2rem;
+}
+
+.content-body h3 {
+  font-size: 1.65rem;
+}
+
 .content-body p,
 .content-body ul,
-.content-body ol {
-  margin-bottom: 1rem;
+.content-body ol,
+.content-body blockquote {
+  margin-bottom: 1.1rem;
 }
 
 .content-body ul,
 .content-body ol {
   padding-left: 1.5rem;
+}
+
+.content-body blockquote {
+  border-left: 4px solid rgba(0, 0, 0, 0.1);
+  padding-left: 1rem;
+  font-style: italic;
+  color: #6c757d;
 }
 
 .discord-card {
