@@ -59,7 +59,7 @@ Flashing happens in the browser and takes about two minutes.
 
 **Troubleshooting:** If the computer does not see the device, install the
 [CP210x drivers](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers).
-I've only needed them once on Windows; macOS has worked out of the box.
+Windows might need these; macOS has worked out of the box.
 
 ### Step 3: Install the Meshtastic app
 
@@ -78,12 +78,12 @@ You need the app (or web client) to configure the node.
 ### Step 4: Apply the KC configuration
 
 Keep the settings simple until you see traffic moving. These match what I run on
-my indoor test nodes.
+my indoor nodes.
 
 - Region: **United States 915 MHz**
-- Role: **Client** (routers come later)
+- Role: **Client** (routers stay reserved for high-elevation partners—keep new nodes in client mode until you coordinate in Discord)
 - Channel preset: **LongFast** at 21 dBm
-- Device name: pick something recognizable (e.g. `KC-Midtown-Loft`)
+- Device name: pick something recognizable. It doesn't hurt to have 30 `Meshtastic xxxx` nodes, but it doesn't make for good recognition.
 
 When the node behaves, feel free to explore the rest of the app. I document more
 advanced tweaks on the [quick start checklist](/get-started/quick-start).

@@ -46,7 +46,7 @@ Refute common mesh networking myths that prevent deployment:
 ### Strategic Network Design
 
 **Four-Router Backbone**:
-- Router 1: East Anchor (✓ Operational) - MQTT gateway
+- Router 1: East Anchor (◆ Seeking host) - planned backbone; MQTT currently runs on a Raspberry Pi gateway
 - Router 2: West Side (◆ SEEKING HOST) - Critical gap
 - Router 3: North Metro (○ Planned) - River crossing
 - Router 4: South Metro (○ Planned) - Cardinal coverage

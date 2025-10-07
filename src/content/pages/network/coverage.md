@@ -22,9 +22,13 @@ I mapped existing nodes, captured signal reports, and combined them with elevati
 
 ## Current coverage snapshot
 
-Router 1 sits on the northeast side of the metro (Liberty). It's an indoor node with a decent antenna and elevates the public channel roughly 10–12 miles depending on terrain. It also feeds an MQTT gateway for remote monitoring.
+Right now the mesh runs entirely on client-class nodes clustered around the northeast side of the metro. Elevated home installs near Liberty and North Kansas City can usually hear each other five to eight miles out, but nothing is acting as a 24/7 backbone router yet. Once we secure a rooftop or tower host, that node will anchor the rest of the metro.
 
 Drive testing from North Kansas City down to Midtown shows consistent reception, with occasional dead spots where buildings or terrain block the signal. Moving southeast or west, coverage falls off quickly.
+
+### Router strategy
+
+The metro only needs routers where we can combine serious elevation with 24/7 power and clean RF environments. If you have access to a repeater tower, commercial rooftop, or other tall structure, let's coordinate so you can take on one of those backbone deployments. Everyone else should keep their nodes in client or client base roles so the channel stays efficient. That also means the four-router backbone remains a roadmap until we recruit the right high-elevation partners.
 
 ## What counts as "good enough"
 
@@ -46,7 +50,7 @@ A router near Shawnee Mission or Prairie Village with decent height bridges the 
 
 ### 2. North KC reinforcement
 
-Nodes on higher ground in Gladstone, Claycomo, or Smithville would create redundancy and extend coverage with Router 1.
+Nodes on higher ground in Gladstone, Claycomo, or Smithville would create redundancy and extend coverage with the existing Northland client cluster.
 
 - Look for opportunities to place antennas on rooftops, water towers (with permission), or hilltops.
 - Even a portable node on a third-floor apartment balcony helps validate range.
@@ -70,7 +74,7 @@ Blue Springs, Independence, and Grain Valley already show light coverage. A few 
 When someone proposes a site, here's what to look at:
 
 1. **Elevation:** Natural high ground beats adding metal towers unless you're going total overkill.
-2. **Line-of-sight:** Can you see (or almost see) `KF0NUI Router`? If not, can you bridge to it?
+2. **Line-of-sight:** Can you see (or almost see) the Northland/Downtown cluster or a candidate rooftop host? If not, can you bridge to someone who can?
 3. **Power and maintenance:** Indoor power is the dream. Outdoor setups should have weatherproof enclosures and surge protection.
 4. **Community impact:** Will this help a dense area or connect two existing nodes? That's the deciding factor.
 

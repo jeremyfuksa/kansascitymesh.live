@@ -109,7 +109,7 @@ COMMUNITY
 ## Network Architecture Context
 
 **Four-Router Backbone Strategy**:
-- Router 1: East side (operational) - anchor + MQTT gateway
+- Router 1: East side (seeking host) - planned anchor; MQTT currently runs on standalone Pi gateway
 - Router 2: West side (PRIORITY - seeking host) - critical gap
 - Router 3: North metro (planned) - river crossing, northland coverage
 - Router 4: South metro (planned) - completes cardinal coverage

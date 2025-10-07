@@ -806,7 +806,7 @@ Next Steps:
 ### 12.3 Success Metrics (Growth Strategy)
 
 **Phase Milestones** (publicly trackable):
-- Phase 1: ✅ Router 1 operational, 5+ client nodes → Complete
+- Phase 1: ✅ Northland client cluster online, MQTT Pi gateway logging packets → Complete
 - Phase 2: Router 2 deployed, east-west bridge established → In Progress
 - Phase 3: Routers 3 & 4 deployed, cardinal coverage complete → Planned
 - Phase 4: 50+ active nodes, metro-wide density → Future

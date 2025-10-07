@@ -20,7 +20,7 @@ The site you're on is my notebook in public. It's a mix of build logs, functiona
 
 Right now, this website is just me. But I'm not trying to build this entire network alone. I'm using what I know to create options for the right people to get involved.
 
-I deployed the first router, documented what I learned, and built this site because those are things I can do. The actual network grows when other people find this useful and decide to participate.
+I documented what I learned and built this site because those are things I can do. The actual network grows when other people find this useful and decide to participate.
 
 If you've got elevation and want to host 24/7 infrastructure, go for it. If you want to run your own mobile node and see what happens, the documentation is here. If you know someone with a ham repeater site or commercial building access, send them this way. The goal is a useful metro-wide mesh. I can't build that by myself, and I don't want to. What I can do is make it easier for the people who should be involved to actually get started.
 

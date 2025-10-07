@@ -9,8 +9,8 @@ alerts:
 cardsSections:
   - heading: Where things stand right now
     cards:
-      - title: The first KC Router
-        description: Northeast KC (Liberty). Indoors on top floor. AC-powered for now (solar on deck). Regularly links up with nodes in Independence and downtown KC. Feeds an MQTT gateway.
+      - title: Northland client cluster
+        description: Elevated client nodes around Liberty and North Kansas City. Indoors for now, AC-powered, and already linking up with Independence and Downtown. MQTT logging runs on a Raspberry Pi gateway.
         status: operational
       - title: Growth Opportunities
         description: Drive tests show that west of I-29 is silent. An elevated site west of State Line would bring the mesh westward and is the next logical move.

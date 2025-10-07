@@ -419,8 +419,8 @@ updated: 2025-10-04
     {
       "id": "router1",
       "name": "Router 1 - East Anchor",
-      "status": "operational",
-      "uptime": 99.2
+      "status": "seeking-host",
+      "uptime": 0.0
     }
   ]
 }

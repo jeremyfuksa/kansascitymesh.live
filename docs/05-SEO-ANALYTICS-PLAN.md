@@ -405,7 +405,7 @@ Example in Hardware Selection:
 ### 5.4 E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
 
 **Experience**:
-- Real deployment stories (Router 1 operational)
+- Real deployment stories (Northland client cluster + MQTT Pi gateway)
 - Actual hardware testing and comparisons
 - Documented challenges and solutions
 - Community-contributed success stories
@@ -596,7 +596,7 @@ Example in Hardware Selection:
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Router 1 East Anchor Deployment",
+  "headline": "Northland client cluster coverage study",
   "author": "Kansas City Meshtastic Network",
   "datePublished": "2025-09-15",
   "image": "https://kansascitymesh.live/images/router-1.jpg"

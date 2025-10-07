@@ -23,13 +23,11 @@ Two months ago I didn't know what [LoRa](https://en.wikipedia.org/wiki/LoRa) was
 
 I'm getting 10+ miles from 15 feet off the ground indoors next to a window. Would 40 feet be better? You bet. But as the mesh grows, height for the majority of us matters less.
 
-The online consensus says "indoor is a last resort" and "you need a tower." My router runs on the top floor of my house and reaches nodes across the metro. Not perfect, but functional.
+The online consensus says "indoor is a last resort" and "you need a tower." My node runs on the top floor of my house and reaches nodes across the metro. Not perfect, but functional.
 
 ### "Indoor deployment is pointless"
 
-I started indoors to test before committing to outdoor installation. My house isn't full of materials that [attenuate radio signals](https://en.wikipedia.org/wiki/Attenuation#Radio). The node sits near an outward-facing wall on the highest floor.
-
-Testing indoor first told me whether this project was worth pursuing. If your building kills RF signals, you'll know fast.
+I started indoors to test before committing to outdoor installation. My house isn't full of materials that [attenuate radio signals](https://en.wikipedia.org/wiki/Attenuation#Radio). The node sits near an outward-facing wall on the highest floor. If your building kills RF signals, you'll know fast.
 
 ### "You must use vertical polarization"
 
@@ -63,6 +61,6 @@ Scale matters. Flagpole integration, decorative fence extensions, attic installa
 
 ## Where KC stands now
 
-There are 40+ nodes scattered across the metro. Most are client nodes... people experimenting. A few elevated sites could provide better backbone connectivity.
+There are 40+ nodes scattered across the metro. Client nodes... people experimenting. A few elevated sites could provide better backbone connectivity.
 
 I've thought of strategic router placements to create reliable coverage across the metro. [Full architecture details](/network/architecture) if you want the technical depth. Short version: a handful of well-placed 24/7 nodes dramatically improves what those 40+ client nodes can do.

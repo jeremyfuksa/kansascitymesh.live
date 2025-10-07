@@ -20,7 +20,7 @@ telemetry. MQTT gives us an off-mesh log of packets that we can analyze to see
 where routers connect, how often they fall offline, and which parts of the metro
 are still quiet. We do **not** need every node uploading to make that happen—too
 many uplinks just create duplicate traffic. What helps most is a handful of
-24/7, well-placed routers with stable internet doing the uploads.
+24/7, well-placed routers with stable internet doing the uploads. Until those hosts come online, the Liberty Pi gateway handles the baseline logging. Long term the broker should ride on a downtown high-rise or other central backbone site so the uplink lives at the heart of the mesh.
 
 If you have a high, reliable site that already reaches several neighborhoods,
 share the details in the
@@ -90,10 +90,8 @@ both RF access to the mesh **and** an internet connection.
 
 ## KC broker status
 
-Router 1 in Liberty currently feeds the KC MQTT broker. It mirrors packets for
-monitoring, coverage notes, and post-event analysis. If you're brand new to
+A Raspberry Pi paired with a Meshtastic node in Liberty currently feeds the KC MQTT broker. It mirrors packets for monitoring, coverage notes, and post-event analysis. If you're brand new to
 Meshtastic, finish [Join the Network](/get-started/join) first so your node is
 stable before you add MQTT, then review the
 [quick start checklist](/get-started/quick-start) for the full radio config.
-When you're ready to upload, drop a note in Discord so we can keep the broker
-balanced.
+When you're ready to upload, drop a note in Discord so we can keep the broker balanced. The Pi setup is a temporary bridge—once a downtown backbone router is live, we'll migrate the gateway there for better reach and redundancy.

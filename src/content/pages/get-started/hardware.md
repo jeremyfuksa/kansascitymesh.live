@@ -10,8 +10,7 @@ heroVariant: compact
 The quick win is getting any 915 MHz node online fast, then upgrading once the
 spot proves useful. What follows is gear that keeps showing up in the KC mesh
 and broader Meshtastic chatter. Most of it comes from comparing Reddit threads,
-public node inventories, and what locals have actually deployed—not a personal
-gear closet.
+public node inventories, and what locals have actually deployed.
 
 Whenever I list a part, assume the 915 MHz version unless I call it out. The 868
 MHz and 433 MHz variants will not reach the KC mesh.
@@ -38,8 +37,7 @@ MHz and 433 MHz variants will not reach the KC mesh.
 
 ### Antennas that actually help
 
-- **Stock / rubber duck (2–3 dBi):** Fine for table-top testing and quick range
-  checks. Keep one around for firmware flashes and troubleshooting.
+- **Stock / rubber duck (2–3 dBi):** This will be your first upgrade. The stock antennas are rarely ideal.
 - **Indoor 915 MHz replacement (claimed 5.8 dBi):** Cheap way to beat the
   factory rubber duck while keeping everything inside. This
   [915 MHz whip](https://www.amazon.com/dp/B0D3KPFVH3?tag=jeremyfuksa00-20) has
