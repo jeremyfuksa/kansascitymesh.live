@@ -1,64 +1,112 @@
 ---
 title: Join the Network
-description: How I got my first Meshtastic node running. Takes about 45 minutes and roughly fifty bucks.
+description: Getting started with Meshtastic is easy.
 pageHeading: Join the Network
+heroVariant: compact
 ---
 
-## Getting your first node running
+## Start here
 
-This took me about 45 minutes total. Most of that was waiting for delivery. If
-you can pair Bluetooth headphones and follow five steps, you can do this.
+The instructions below
+are what I wish I'd had when I flashed my first node. If you're already fluent
+with Meshtastic, jump to the [quick start checklist](/get-started/quick-start)
+for the abbreviated version.
 
-### Why bother?
+### Step 1: Pick hardware that fits your plan
 
-- **Emergency backup communications.** When cell towers are down, Meshtastic
-  keeps working.
-- **Off-grid messaging.** Camping, events, rural areas—portable coverage on the
-  cheap.
-- **Because it's fun.** Building infrastructure with affordable radios is
-  satisfying. Watching packets hop across a network you built is addicting.
+> **Affiliate note:** Some links go through my Amazon affiliate account. If you
+> buy through them, I earn a small commission at no extra cost to you.
 
-### Step 1: Get hardware
+<div class="row g-4 mb-4">
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <img src="/src/assets/heltec-v3.jpg" class="img-fluid rounded mb-3" alt="Heltec LoRa32 V3">
+        <h5 class="card-title">Heltec LoRa32 V3</h5>
+        <p class="card-text"><strong>Best for getting started</strong></p>
+        <p class="card-text">Under $35. Screen shows live packets. Needs your phone for messaging, which is perfect for first-time setup.</p>
+        <a href="https://www.amazon.com/dp/B0DG5F1YNX?tag=jeremyfuksa00-20" class="btn btn-primary">Buy on Amazon</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card h-100">
+      <div class="card-body">
+        <img src="/src/assets/lilygo-t-deck.jpg" class="img-fluid rounded mb-3" alt="LILYGO T-Deck">
+        <h5 class="card-title">LILYGO T-Deck</h5>
+        <p class="card-text"><strong>Standalone device</strong></p>
+        <p class="card-text">~$70. Full keyboard and screen so you can send messages without a phone. GPS built-in for location sharing.</p>
+        <a href="https://www.amazon.com/dp/B0FBGTYQH3?tag=jeremyfuksa00-20" class="btn btn-primary">Buy on Amazon</a>
+      </div>
+    </div>
+  </div>
+</div>
 
-- Start with a **Heltec LoRa32 V3** if you just want to try things. Under $35.
-- Want GPS and better mobile usability? Buy a **LILYGO T-Beam** (~$45).
-- Order from Amazon or reputable electronics shops. Confirm you purchase the
-  **915 MHz** variant.
+Need more options? I keep an expanded list with pros and cons on the
+[hardware page](/get-started/hardware). Whatever you buy, make sure it states
+**915 MHz** for the US ISM band. The 868 MHz and 433 MHz variants will not reach
+KC nodes.
 
-### Step 2: Install the Meshtastic app
+### Step 2: Flash firmware first
 
-- Android: install from the Play Store.
-- iOS: use TestFlight.
-- Desktop: flash firmware with the USB flasher, then use the Web UI if you
-  prefer.
+Flashing happens in the browser and takes about two minutes.
 
-### Step 3: Flash firmware
+- Plug the radio into your computer with a known-good USB-C cable.
+- Using Chrome, Edge, or another Chromium browser, open
+  [flasher.meshtastic.org](https://flasher.meshtastic.org).
+- Pick the board that matches your device and choose the latest stable build.
+- Click "Flash" and wait. Do not disconnect until it finishes.
 
-- Plug the radio into your computer with a USB-C cable.
-- Visit [flasher.meshtastic.org](https://flasher.meshtastic.org).
-- Select the correct device profile (Heltec V3 or T-Beam) and flash the latest
-  release.
+**Troubleshooting:** If the computer does not see the device, install the
+[CP210x drivers](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers).
+I've only needed them once on Windows; macOS has worked out of the box.
 
-### Step 4: Configure KC settings
+### Step 3: Install the Meshtastic app
 
-- Open the Meshtastic app while connected to the device.
-- Set region to **US 915 MHz**.
-- Choose **LongFast** channel at 21 dBm output.
-- Change device name to something unique and recognizable (e.g. `KC-YourName`).
+You need the app (or web client) to configure the node.
 
-### Step 5: Verify and get on the air
+- **Android:** Install from the
+  [Google Play Store](https://play.google.com/store/apps/details?id=com.geeksville.mesh).
+  The app usually finds the node automatically.
+- **iOS:** Install from the
+  [App Store](https://apps.apple.com/us/app/meshtastic/id1586432531) and pair via
+  Bluetooth.
+- **Desktop/Web:** The
+  [Meshtastic Web Client](https://client.meshtastic.org/) works in any browser if
+  you want to configure over USB.
 
-- Watch for nearby nodes in the app. Router 1 in Liberty should appear if you're
-  anywhere east of the city.
-- Send a test message—say hi and mention where you're located.
-- Favor the nodes you want prioritized rebroadcasts from; Router 1 is a good
-  start.
+### Step 4: Apply the KC configuration
 
-### Optional: Improve your setup
+Keep the settings simple until you see traffic moving. These match what I run on
+my indoor test nodes.
 
-- Add an outdoor antenna or elevate the stock whip for better range.
-- Use a USB power brick or 12 V supply for continuous operation.
-- Keep the node near a window until you invest in weatherproof enclosures.
+- Region: **United States 915 MHz**
+- Role: **Client** (routers come later)
+- Channel preset: **LongFast** at 21 dBm
+- Device name: pick something recognizable (e.g. `KC-Midtown-Loft`)
 
-Document what you learn and share it with the community. Every successful node
-makes the KC mesh stronger.
+When the node behaves, feel free to explore the rest of the app. I document more
+advanced tweaks on the [quick start checklist](/get-started/quick-start).
+
+### Step 5: Verify you are on the mesh
+
+This part can feel anticlimactic. KC traffic is still light, so be patient.
+
+- Watch the Nearby Nodes list for a few minutes. If it stays empty, leave the
+  device running overnight and check again.
+- Send a short hello with your general location. Responses can take hours; the
+  channel is intentionally quiet.
+- Keep the node powered for a few days so others can see it appear on the mesh.
+
+## Optional next moves
+
+- Move the node to a better spot and upgrade antennas once you know it works.
+- Add always-on power and MQTT after reading the
+  [MQTT checklist](/get-started/mqtt).
+- Share what you learn in the [Discord server](https://discord.gg/eP5VSPKU) so we
+  can map coverage faster.
+- Ready for a faster path? Deploy multiple nodes using the
+  [quick start checklist](/get-started/quick-start).
+- Dreaming up something unusual (custom scripts, long-range relays, automation)?
+  Pitch it in `#kc-coordination` on Discord first so we make sure it helps the
+  mesh.

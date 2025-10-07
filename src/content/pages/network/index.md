@@ -3,43 +3,28 @@ title: Network Information
 description: Track current coverage, understand the backbone, and follow growth milestones for the Kansas City mesh.
 pageHeading: Network Information
 heroVariant: compact
+cardsSections:
+  - heading: Explore the network
+    cards:
+      - title: Coverage priorities
+        description: Where the mesh reaches today and which deployments help most.
+        link: /network/coverage
+        linkText: View coverage guidance
+      - title: Network architecture
+        description: Four-router backbone strategy, device roles, and MQTT design.
+        link: /network/architecture
+        linkText: Read the architecture plan
+cta:
+  title: Building something new?
+  description: Share your plan in the KC Meshtastic Discord so we can confirm it helps the mesh.
+  link: https://discord.gg/eP5VSPKU
+  linkText: Open Discord
 ---
 
-This is the central source of truth for the Kansas City Meshtastic network. Here
-you can find information about current coverage, infrastructure design, and the
-plan for future growth.
+## Current state of the KC mesh
 
-## Explore the network
+There are 40+ nodes scattered across the Kansas City metro. Most are client nodes—people experimenting. One router provides backbone connectivity from northeast KC.
 
-- **Coverage map:** Coming soon. This will visualize real-world reach and help
-  identify high-impact deployment zones.
-- **Network status:** A live dashboard is on the roadmap so you can quickly see
-  router health and backbone uptime.
-- **Network architecture:** Read the [architecture deep dive](/network/architecture)
-  for the strategic plan behind the four-router backbone.
+Reliable metro-wide coverage needs strategic router placements at elevated sites. That's where you come in.
 
-## The four-router backbone vision
-
-The KC mesh backbone is designed around four strategically placed routers:
-
-1. **Router 1 — Liberty (operational):** Northeast anchor with MQTT gateway.
-2. **Router 2 — Western bridge (seeking host):** Needs elevation on the Kansas
-   side to connect Johnson County.
-3. **Router 3 — Northern river crossing (needed):** Southern Clay County bluffs
-   to link the Northland back to the core.
-4. **Router 4 — Southern sentinel (needed):** Northern Cass County to extend
-   coverage south.
-
-Hosting one of these routers is the fastest way to expand metro-wide coverage.
-If you have a candidate site, [reach out](/community/contact).
-
-## Metrics roadmap
-
-We're preparing automated dashboards that track:
-
-- Total active nodes and daily check-ins.
-- Estimated coverage area by elevation and antenna gain.
-- Message volume and MQTT activity.
-
-Until those dashboards launch, status updates will appear in the [network
-status](/network/status) section and the community chat.
+Jump to the coverage page for regional priorities or the architecture guide for the technical roadmap.

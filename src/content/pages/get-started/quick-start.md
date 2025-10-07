@@ -7,38 +7,44 @@ heroVariant: compact
 
 ## Quick start for experienced Meshtastic users
 
-You've deployed before. You don't need hand-holding. Here's the Kansas City mesh
-configuration and the five steps to confirm you're online. Ten minutes, tops.
+Keep your base firmware current, match the config below, and you should see the
+mesh within ten minutes.
+
+Need a refresher or hardware advice? The
+[join walkthrough](/get-started/join) covers every step, and
+[hardware picks](/get-started/hardware) includes the gear most popular in KC.
 
 ## Kansas City mesh config
 
 - **Region:** United States (915 MHz)
 - **Preset:** LongFast (SF11, 125 kHz bandwidth)
 - **Primary channel:** LongFast default (public)
+- **Tx power:** 21 dBm
 - **Hop limit:** 3 (default)
 
-Match these settings and you're on the metro mesh. Layer your own encrypted
-channels on top if needed, but keep the primary channel compatible so you still
-relay KC traffic.
+Match these and the node plays nicely with the rest of the metro. Layer your own
+encrypted channels on top if you need privacy, but leave the public channel in
+place so you still help route traffic.
 
 ## Five-step deployment checklist
 
-1. **Flash firmware (if needed):** Use the latest stable release via
-   [flasher.meshtastic.org](https://flasher.meshtastic.org). Confirm the device
-   boots cleanly.
-2. **Pair via Bluetooth:** Connect in the Meshtastic app (iOS/Android). Default
-   PIN is usually `123456` unless the screen shows otherwise.
-3. **Set radio parameters:** Region US-915, preset LongFast, output 21 dBm.
-   Update device name to something recognizable (e.g. `KC-Rooftop-West`).
-4. **Favor backbone routers:** Add Router 1 (`KC-Liberty-GW`) to your favorites
-   so rebroadcast priority stays sane.
-5. **Announce yourself:** Send a short intro message with your approximate
-   location and whether you're portable or fixed. That helps us map coverage.
+1. **Flash the latest stable firmware:**
+   [flasher.meshtastic.org](https://flasher.meshtastic.org) gets it done fast.
+   Confirm the node reboots cleanly before unplugging it.
+2. **Pair over Bluetooth:** You already know the dance. Default PIN is usually
+   `123456` unless the screen shows something else.
+3. **Apply KC radio parameters:** Region US-915, preset LongFast, output 21 dBm.
+   Rename the device to something recognizable.
+4. **Announce yourself:** Send a quick hello with rough location and whether the
+   node is portable or fixed. That helps me update coverage notes.
 
-## Optional extras
+## Keep going
 
-- Add a secondary channel with a private key for your own group chatter.
-- Enable MQTT only if you're on stable power/internet. See the [MQTT
-  checklist](/get-started/mqtt) before turning it on.
-- If your node will run 24/7, let the community know. We'll add it to the
-  coverage notes.
+- Want MQTT? Run through the
+  [MQTT checklist](/get-started/mqtt) before enabling uplink.
+- Deploying infrastructure? Post your node details in the
+  [KC Meshtastic Discord](https://discord.gg/eP5VSPKU) so everyone knows it's on
+  the air. Planning something unusual? Ask in `#kc-coordination` first so we can
+  sanity-check the impact.
+- Testing antennas? Share range results in
+  [Discord](https://discord.gg/eP5VSPKU).

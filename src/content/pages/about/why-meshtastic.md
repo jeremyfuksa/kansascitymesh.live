@@ -1,110 +1,68 @@
 ---
 title: Why Meshtastic
-description: What I wish someone had told me before I started building mesh infrastructure.
+description: I want to save you from all the dead ends I hit while playing with this technology.
 pageHeading: Why Meshtastic?
 heroVariant: compact
 ---
 
-## What I wish someone had told me about Meshtastic
+## The standard answer (and why it might not be your answer)
 
-Six months ago I didn't know what LoRa was. Now I've got a solar-powered node on
-my roof that can text someone 15 miles away with zero cell service.
+**Emergency backup communications.** When cell towers go down—severe weather, power outages, infrastructure failure... Mad Max wastelands—[Meshtastic](https://meshtastic.org/) keeps working. Text messaging and GPS position sharing without depending on commercial infrastructure.
 
-Here's the thing nobody tells you up front: mesh networking isn't replacing your
-phone. It's stupidly simple backup communication that costs $50 to try and might
-save your community when the cell towers are down.
+That's the boilerplate answer. It's true.
 
-## The mesh networking thing, explained simply
+Most people on [r/meshtastic](https://reddit.com/r/meshtastic) aren't there for emergency prep. They're building infrastructure with $35 radios because it's fun. Watching messages hop across nodes you deployed yourself is just plain cool.
 
-Your phone depends on cell towers. Those towers need power, fiber connections,
-and working infrastructure. When any of that breaks, your phone becomes a brick.
+Deploy it for fun. Emergency capability comes along for the ride. (I wrote about [the challenge of explaining infrastructure-as-hobby](https://www.jeremyfuksa.com/im-building-a-network-i-cant-explain/) if that tension resonates.)
 
-**Mesh networking is different.** Every device relays messages for every other
-device. No towers, no central infrastructure. Just cheap radios talking to each
-other, passing messages along until they reach who you're trying to contact.
+Two months ago I didn't know what [LoRa](https://en.wikipedia.org/wiki/LoRa) was. I bought a radio, stuck it next to a window, started testing. What I learned contradicts some of the perfectionist advice online... the kind that almost stopped me from trying.
 
-One node fails? Messages route around it. Power goes out? Nodes run on batteries
-or solar. Cell towers overloaded during an emergency? Mesh doesn't care—it was
-never using them.
+## The myths that almost stopped me
 
-## What Meshtastic actually does
+### "You need serious elevation or don't bother"
 
-I'm using Meshtastic because it's the simplest way to build a mesh network
-without needing expensive equipment or a ham license.
+I'm getting 10+ miles from 15 feet off the ground indoors next to a window. Would 40 feet be better? You bet. But as the mesh grows, height for the majority of us matters less.
 
-It uses LoRa radio (915 MHz, unlicensed band). Range depends on terrain and
-elevation, but I'm getting 5+ miles from my roof with a basic antenna. People
-with better setups are hitting 20–40 miles.
+The online consensus says "indoor is a last resort" and "you need a tower." My router runs on the top floor of my house and reaches nodes across the metro. Not perfect, but functional.
 
-**Yes, MeshCore exists.** It's a newer project that borrows a lot of the same
-ideas. It's promising, but the vast majority of real-world deployments,
-documentation, and firmware tooling today are centered around Meshtastic. That
-ubiquity matters when you're trying to bootstrap a metro-wide mesh on hobbyist
-gear.
+### "Indoor deployment is pointless"
 
-Meshtastic is fully open source, the firmware and apps are under active
-maintenance, and hardware vendors across the ecosystem ship boards that are
-Meshtastic-ready out of the box. That openness—and the fact you can own the whole
-stack without depending on a single vendor—is why I'm building on Meshtastic
-while keeping an eye on MeshCore as it matures.
+I started indoors to test before committing to outdoor installation. My house isn't full of materials that [attenuate radio signals](https://en.wikipedia.org/wiki/Attenuation#Radio). The node sits near an outward-facing wall on the highest floor.
 
-- **What it does:** Text messages, GPS position sharing, and basic sensor data.
-  Range is shockingly good for the power level—I'm running 20 mW and getting
-  miles of coverage.
-- **What it doesn't do:** Voice calls (text only). Internet access (it's not
-  Wi-Fi). Instant delivery (messages take seconds to minutes). Guaranteed reach
-  (depends on node density).
-- **The cost thing:** $30–$50 gets you started. No license needed (915 MHz ISM
-  band). No monthly fees. Open source, so no vendor lock-in.
+Testing indoor first told me whether this project was worth pursuing. If your building kills RF signals, you'll know fast.
 
-## Why you might want to do this
+### "You must use vertical polarization"
 
-**Honestly? Because it's fun.** Building stuff is satisfying. Learning how radio
-actually works by deploying hardware beats reading about it. Seeing your
-messages hop across nodes you deployed yourself is cool.
+Conventional wisdom says everyone orients their antennas vertically, so you should too for signal matching. That's absolutely true, but if you've got installation constraints, horizontal antenna placement won't brick your setup.
 
-**But yeah, the emergency thing is real.** Severe weather knocks out power and
-cell towers. Your node runs on battery or solar and keeps working. You
-coordinate with neighbors, check on family, report conditions. Some people care
-deeply about this backup capability. If that's you, great.
+### "Solar systems need 50W panels and massive batteries"
 
-**Events, camping, off-grid communication.** Big festival with overloaded cell
-towers. Hiking trip with no service. Private text messaging and position
-tracking without infrastructure. All valid use cases.
+Meshtastic nodes sip power—under 100mA. A 10W panel and small battery runs through multiple cloudy days. Small, cheap setups work fine for these low-power radios.
 
-**Practice before you need it.** Whether your motivation is fun or emergency
-prep, building capability now means you already know how it works when you
-actually need it.
+### "HOAs make mesh networking impossible"
 
-## Kansas City's strategic approach
+I have HOA restrictions. Solar setups are small enough that nobody notices. A 10W panel with a small enclosure on a fence post doesn't trigger enforcement the way a 30-foot mast does.
 
-Most people buy a Meshtastic node, turn it on, and hope to connect to someone.
-That's fine for experimenting, but it doesn't build reliable infrastructure.
-We're taking a more strategic approach.
+Scale matters. Flagpole integration, decorative fence extensions, attic installations... Solutions exist that stay under HOA radar because they're not screaming "radio infrastructure."
 
-**We're building a four-router backbone**, placing high-performance nodes at
-strategic, elevated locations around the Kansas City metro. This creates a
-reliable, wide-area network that individual users can connect to. Here's the
-backbone layout:
+## What Meshtastic actually is
 
-- **Router 1 — The Liberty Anchor (operational):** Installed on the northeast
-  side of the metro near Liberty. Serves as the network's primary anchor and
-  MQTT gateway. Its moderate elevation provides reliable coverage across
-  Liberty, Gladstone, and much of the Northland.
-- **Router 2 — The Western Bridge (high priority):** Needed in northern Johnson
-  County, KS (Shawnee, Lenexa). Strategically placed on a high point, it will
-  bridge the western coverage gap, connecting the Kansas side of the metro to
-  the rest of the network.
-- **Router 3 — The Northern River Crossing (needed):** Positioned on the bluffs
-  in southern Clay County to provide robust coverage across the Missouri River,
-  linking the Northland suburbs to the central and southern parts of the mesh.
-- **Router 4 — The Southern Sentinel (needed):** A prominent hill in northern
-  Cass County (near Belton/Grandview) completes the cardinal coverage,
-  extending the network's reach to the southern metro.
+[LoRa radio](https://en.wikipedia.org/wiki/LoRa) (915 MHz, unlicensed [ISM band](https://en.wikipedia.org/wiki/ISM_radio_band)) running [open-source firmware](https://github.com/meshtastic/firmware). Text messages, GPS sharing, basic telemetry. No voice, no internet access, no instant delivery.
 
-This backbone ensures that even with sparse client node density, there's a
-reliable path for messages to traverse the entire Kansas City metropolitan area.
+**Why Meshtastic and not [MeshCore](https://meshcore.net/)?** Ecosystem maturity. Meshtastic has deployed nodes, [documentation](https://meshtastic.org/docs/introduction), hardware support. The whole stack is open source. No vendor lock-in, no monthly fees, no license requirement for 915 MHz.
 
-We're coordinating each router deployment carefully so the mesh grows with
-purpose instead of noise. If you think you can host one of these backbone sites,
-[reach out](/community/contact).
+## What you're getting into
+
+**Cost:** $35 radio to start. [Hardware recommendations](/get-started/join).
+
+**Range:** I'm seeing 10+ miles from my mediocre indoor setup. People with good outdoor installs report 20–40 miles. It's heavily dependent on elevation and terrain—you won't know until you test.
+
+**Limitations:** Text only. Delivery takes seconds to minutes depending on hops. No guaranteed reach if node density is low in your area. [Technical details in the Meshtastic docs](https://meshtastic.org/docs/overview/mesh-algo).
+
+**Why do it?** Browse [r/meshtastic](https://reddit.com/r/meshtastic)—people optimizing antenna placement, troubleshooting range, celebrating multi-hop connections. The emergency communications angle gets mentioned, but the actual motivation is "I'm building something and want it to work better." That's what keeps me engaged too.
+
+## Where KC stands now
+
+There are 40+ nodes scattered across the metro. Most are client nodes... people experimenting. A few elevated sites could provide better backbone connectivity.
+
+I've thought of strategic router placements to create reliable coverage across the metro. [Full architecture details](/network/architecture) if you want the technical depth. Short version: a handful of well-placed 24/7 nodes dramatically improves what those 40+ client nodes can do.

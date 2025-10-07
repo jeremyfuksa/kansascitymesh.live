@@ -8,11 +8,8 @@ heroVariant: compact
 This is the central library for technical references, troubleshooting guides,
 and quick answers for the Kansas City Meshtastic network.
 
-## Explore the library
+## Status
 
-- **FAQs:** [Frequently asked questions](/resources/faqs) about Meshtastic, the
-  KC network, and onboarding.
-- **Frequencies:** [KC-specific frequency reference](/resources/frequencies) for
-  the 915 MHz ISM band.
-- **Troubleshooting:** [Common fixes](/resources/troubleshooting) for hardware
-  quirks, firmware hiccups, and connectivity issues.
+I'm still drafting the reference material. Expect FAQs, frequency charts, and
+troubleshooting notes once they're ready for publication. For now, everything
+lives in my internal notes and deployment docs.

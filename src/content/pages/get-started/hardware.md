@@ -5,51 +5,66 @@ pageHeading: Hardware Selection
 heroVariant: compact
 ---
 
-## What hardware to buy
+## How I evaluate hardware
 
-This isn't amateur radio. You don't need thousands of dollars of equipment.
-Spend $25–$50 to get started. Budget $100–$200 for a permanent outdoor router.
+The quick win is getting any 915 MHz node online fast, then upgrading once the
+spot proves useful. What follows is gear that keeps showing up in the KC mesh
+and broader Meshtastic chatter. Most of it comes from comparing Reddit threads,
+public node inventories, and what locals have actually deployed—not a personal
+gear closet.
 
-## Radio devices
+Whenever I list a part, assume the 915 MHz version unless I call it out. The 868
+MHz and 433 MHz variants will not reach the KC mesh.
 
-- **Heltec LoRa32 V3 (budget entry, $25–$30):** My first device. Great for
-  trying Meshtastic on the cheap. No GPS, basic antenna, needs external battery
-  for portable use, but works well indoors. Requires the Meshtastic phone app.
-- **LILYGO T-Beam (mobile/GPS, $40–$50):** Built-in GPS, 18650 battery support,
-  and reliable firmware. Perfect for vehicles and portable deployments. Still
-  pairs with the phone app for messaging.
-- **RAK WisBlock Meshtastic (infrastructure, $60–$80):** Modular, weather-ready
-  hardware suited for permanent router sites. Runs standalone once configured
-  and is ideal for backbone installations.
+### Budget radios (try it first)
 
-Where to buy: Amazon (fast, easy returns), the official Meshtastic store, or
-AliExpress (cheaper, slower shipping). Double-check that you buy the **915 MHz
-version**—the EU 868 MHz variant will not work on the KC mesh.
+- **Heltec LoRa32 V3 ($25–$35):** Common entry node thanks to the OLED screen
+  and low cost. Needs a phone or laptop for messaging. [Buy on Amazon](https://www.amazon.com/dp/B0DG5F1YNX?tag=jeremyfuksa00-20).
+- **LILYGO T-Beam ($40–$55):** Popular for mobile nodes because it includes GPS
+  and an 18650 tray. [Buy on Amazon](https://a.co/d/1Wo3rXa).
 
-## Antennas
+### Portable plus keyboard
 
-- **Stock / rubber duck:** Free to $10. About 2–3 dBi gain. Good for testing and
-  indoor nodes.
-- **Outdoor omnidirectional:** $15–$40. Roughly 5–8 dBi. Ideal for residential
-  routers with some elevation.
-- **High-gain collinear:** $30–$60. Eight to 12 dBi, but only worth it if you
-  have tower-level height and a permanent site.
+- **LILYGO T-Deck ($65–$75):** Favored by folks who want a standalone keyboard
+  and screen without carrying a phone. [Buy on Amazon](https://www.amazon.com/dp/B0FBGTYQH3?tag=jeremyfuksa00-20).
 
-## Power and enclosures
+### Infrastructure-ready nodes
 
-- **Indoor nodes:** USB wall adapters or power banks are fine.
-- **Outdoor routers:** 12 V power bricks or solar kits with charge controllers
-  keep things running 24/7. Spend a little extra on waterproof enclosures and
-  proper cable glands so you aren't chasing leaks.
+- **RAK WisBlock Meshtastic ($70–$90):** Modular boards designed for outdoor
+  enclosures; frequent choice for KC backbone candidates.
+  [Buy on Amazon](https://a.co/d/5Zitq0n).
+- **DIY Raspberry Pi gateway:** A Meshtastic radio paired with a Pi (often using
+  the Waveshare HAT) powers automation and MQTT scripts. [Get the LoRaWAN HAT](https://www.waveshare.com/sx1262-lorawan-hat.htm).
 
-## Accessories that help
+### Antennas that actually help
 
-- **Coax adapters and short SMA pigtails** to keep antennas outside while the
-  radio stays indoors.
-- **Mounting hardware** (J-mounts, tripods, chimney straps) for elevation.
-- **Weatherproof boxes** (Bud Industries, ABB, or generic IP65 enclosures) to
-  keep electronics dry.
+- **Stock / rubber duck (2–3 dBi):** Fine for table-top testing and quick range
+  checks. Keep one around for firmware flashes and troubleshooting.
+- **Indoor 915 MHz replacement (claimed 5.8 dBi):** Cheap way to beat the
+  factory rubber duck while keeping everything inside. This
+  [915 MHz whip](https://www.amazon.com/dp/B0D3KPFVH3?tag=jeremyfuksa00-20) has
+  become a staple for window-mount setups and short coax runs.
+- **Outdoor omni (5–8 dBi) for 902–928 MHz:** Look for fiberglass or ABS
+  housings with N-female connectors. Pair them with low-loss coax and a proper ground block and you get a
+  metro-friendly gain bump without going overboard.
 
-Start simple, learn the gear, then upgrade strategically. Everything here scales
-from hobby experimentation to infrastructure once you add better power, shelter,
-and antennas.
+### Power and enclosures
+
+- **Indoor:** USB wall warts or power banks keep demo nodes alive for weeks.
+- **Outdoor:** 12 V bricks or small solar kits paired with charge controllers are
+  the pattern most deployments follow. Weatherproof boxes and gland fittings
+  are non-negotiable.
+
+### Extras people keep buying
+
+- Short SMA pigtails to park the radio indoors while the antenna lives outside.
+- Mounting hardware (J-mounts, eave brackets, chimney straps) to reclaim
+  elevation without custom fabrication.
+- Desiccant packs inside outdoor boxes to fight condensation.
+
+Ready to build? Follow the [join walkthrough](/get-started/join) for firmware and
+app setup, or jump to the [quick start checklist](/get-started/quick-start) if
+you already run Meshtastic nodes elsewhere. Planning something elaborate (solar
+arrays, custom gateways, automation)? Drop the idea in the
+[Discord server](https://discord.gg/eP5VSPKU) so the community can sanity-check
+it before you spend the money.

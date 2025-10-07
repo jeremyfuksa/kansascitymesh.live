@@ -1,71 +1,49 @@
 ---
-title: Contact & Coordination
-description: Get in touch about hosting Router 2, coordinating with KC mesh efforts, or just asking questions.
-pageHeading: Contact & Coordination
+title: Coordination & Support
+description: Deploy gear, share results, and use Discord for questions.
+pageHeading: Coordination & Support
 heroVariant: compact
 ---
 
-## Let's talk about building the KC mesh
+## Build first, ask later
 
-This is a one-person project right now, but I'm actively looking for
-collaborators, Router 2 hosts, and anyone who wants to help build mesh
-infrastructure in Kansas City.
+You don't need permission to light up a node. Buy the hardware, follow the
+[getting started guide](/get-started/join), and put it on the air. The mesh grows
+when more people deploy infrastructure, not when messages land in my inbox.
 
-## Reasons to reach out
+## Primary coordination channel
 
-- **I have a west-side site for Router 2.** Top priority. If you have elevation
-  west of State Line Road (Johnson County, western KC) and you're willing to
-  host Router 2, let's talk immediately.
-- **I operate kansascitymesh.net.** I know you exist. I don't want to compete—I
-  want to collaborate. Let's coordinate efforts and build this together.
-- **I want to help build infrastructure.** Repeater site owner? Technical
-  skills? Time to volunteer? All of these help. Reach out and tell me what you
-  can contribute.
-- **I have questions about getting started.** Check the guides first, but if
-you're still stuck or confused, I'll help. New users welcome.
+All real-time coordination lives in the
+[KC Meshtastic Discord](https://discord.gg/eP5VSPKU). That's where we swap
+coverage reports, plan router installs, and work through troubleshooting. Join
+the server, say hi in `#kc-coordination`, and share what you're building.
 
-## How to reach me
+Email isn't part of the workflow and I don't monitor direct contact requests.
+Discord keeps the conversation public so everyone benefits from the answers.
+Thinking about an unusual experiment or permanent install? Float the plan in
+Discord first so we can confirm it helps the network instead of creating extra
+noise.
 
-- **Discord:** [KC Meshtastic server](https://discord.gg/eP5VSPKU) — fastest
-  way to coordinate installs, share coverage reports, and find open projects.
-- **Email (primary):** [`contact@kansascitymesh.live`](mailto:contact@kansascitymesh.live)
-  — best for Router 2 hosting, coordination with kansascitymesh.net, and
-  infrastructure discussions. I usually respond within 24 hours.
-- **Meshtastic direct message:** Node `KC-Router1` (visible if you're in
-  coverage). I check the mesh app a few times daily—great for quick tests and
-  mesh-specific questions.
-- **GitHub issues:** [github.com/jeremyfuksa/kansascitymesh.live](https://github.com/jeremyfuksa/kansascitymesh.live)
-  for website bugs, content corrections, or technical suggestions.
+## Already running infrastructure?
 
-> **Coordination fast-track:** kansascitymesh.net operator—DM me in Discord or
-> email with the subject line "kansascitymesh.net coordination" so it jumps to
-> the top of my inbox.
+- Document your deployment in the Discord so others know what routes through
+  your node.
+- Post signal reports, GPS traces, and range tests in `#coverage-notes`.
+- Planning a permanent router? Compare your site with the
+  [coverage priorities](/network/coverage) and let us know which gap you're
+  filling.
 
-## Coordination with kansascitymesh.net
+## For kansascitymesh.org
 
-I know there's an existing kansascitymesh.net operator. I found the domain
-registration while researching KC mesh activity.
+If you operate [kansascitymesh.org](https://kansascitymesh.org) or any other KC
+mesh effort, jump into the Discord and tag `@jeremyfuksa`. I'd rather combine
+notes than create competing resources.
 
-I don't want to compete. I want to collaborate. Two people trying to build the
-same infrastructure separately is wasteful. We should coordinate.
+## Update the site or docs
 
-Current status: waiting to hear from the kansascitymesh.net operator. If that's
-you, please reach out. Let's talk about combining efforts, coordinating router
-placements, and building this together.
+Found an issue with this site or the documentation? Open an issue or pull
+request on the
+[GitHub repo](https://github.com/jeremyfuksa/kansascitymesh.live). Keeping it in
+GitHub makes the history transparent and easy to track.
 
-## What to expect when you contact me
-
-- **I'm responsive but not instant.** This is a side project. I'll reply within
-  a day or two for most things, faster for urgent Router 2 hosting inquiries.
-- **I'm helpful but blunt.** I'll answer your questions honestly. If I think
-you're overthinking something, I'll tell you. If the guides already answer your
-question, I'll point you there.
-- **I'm building this in public.** Conversations about network architecture,
-  router placements, and coordination are fair game for documenting publicly
-  (anonymized if requested).
-
-## Want to dive in without emailing?
-
-You don't need permission to join the mesh. Buy a device, configure it for the
-KC mesh settings (915 MHz, LongFast), deploy it, and start contributing. Every
-node you deploy makes the network better.
+Bottom line: deploy radios, share what you learn in Discord, and keep building.

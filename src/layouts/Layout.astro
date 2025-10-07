@@ -18,11 +18,10 @@ const {
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/get-started", label: "Get Started" },
+  { href: "/about/why-meshtastic", label: "About" },
+  { href: "/get-started/join", label: "Get Started" },
   { href: "/network", label: "Network" },
-  { href: "/resources", label: "Resources" },
-  { href: "/community", label: "Community" },
+  { href: "/community/contact", label: "Coordination" },
 ] as const;
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
@@ -127,7 +126,6 @@ const spacingClass = heroVariant === "compact" ? "py-4" : "py-5";
           <div class="text-muted">Not affiliated with meshtastic.org or the Meshtastic Foundation.</div>
         </div>
         <div class="d-flex flex-wrap align-items-center gap-3">
-          <a href="mailto:contact@kansascitymesh.live" class="link-secondary">contact@kansascitymesh.live</a>
           <a
             href="https://discord.gg/eP5VSPKU"
             class="btn btn-outline-primary btn-sm d-inline-flex align-items-center gap-2"
@@ -137,7 +135,14 @@ const spacingClass = heroVariant === "compact" ? "py-4" : "py-5";
             <i class="fa-brands fa-discord" aria-hidden="true"></i>
             Join the Discord
           </a>
-          <span class="text-secondary">Live status updates coming soon.</span>
+          <a
+            href="https://github.com/jeremyfuksa/kansascitymesh.live"
+            class="link-secondary"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            GitHub repo
+          </a>
         </div>
       </div>
     </footer>

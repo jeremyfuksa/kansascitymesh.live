@@ -40,5 +40,6 @@ Having trouble? It happens. Start here.
 - Lower transmit power if you're only covering short distances.
 - Use a quality 18650 cell or external USB power bank for longer runtimes.
 
-Still stuck? Jump into the [community chat](/community/contact) with details and
-we'll debug it together.
+Still stuck? Post the details in the
+[KC Meshtastic Discord](https://discord.gg/eP5VSPKU) and we'll debug it
+alongside the rest of the community.
