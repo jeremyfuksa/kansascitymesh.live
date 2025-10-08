@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import kcMeshLogo from "../assets/kc-mesh.png";
 import { Image } from 'astro:assets';
+import bootstrapBundleUrl from "bootstrap/dist/js/bootstrap.bundle.min.js?url";
 
 interface Props {
   title?: string;
@@ -40,6 +41,7 @@ const spacingClass = heroVariant === "compact" ? "py-4" : "py-5";
     <meta name="generator" content={Astro.generator} />
     <title>{resolvedTitle}</title>
     <meta name="description" content={description} />
+    <script src={bootstrapBundleUrl} defer></script>
     <script
       src="https://kit.fontawesome.com/02023a5bb5.js"
       crossorigin="anonymous"

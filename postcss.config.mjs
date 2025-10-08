@@ -1,6 +1,8 @@
 // postcss.config.mjs
 import autoprefixer from 'autoprefixer';
-import { purgeCSSPlugin } from '@fullhuman/postcss-purgecss'; // Changed to named import
+import purgecss from '@fullhuman/postcss-purgecss';
+
+const purgeCSSPlugin = typeof purgecss === 'function' ? purgecss : purgecss.default;
 
 export default {
   plugins: [
@@ -28,6 +30,7 @@ export default {
             /^align-/,
             /^gap-/,
             /^text-/,
+            /^text-bg-/,
             /^bg-/,
             /^border-/,
             /^shadow-/,
@@ -47,6 +50,10 @@ export default {
             /^m-/,
             /^rounded-/,
             /^active/,
+            /^badge/,
+            /^alert-/,
+            /^accordion/,
+            /^collapse/,
             /^page/,
             /^fa-/, // Font Awesome icons
           ],

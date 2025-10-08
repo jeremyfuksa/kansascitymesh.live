@@ -1,0 +1,25 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption?: string;
+  className?: string;
+}
+
+const { src, alt, caption, className } = Astro.props;
+---
+
+<figure class={`mb-4 ${className ?? ""}`.trim()}>
+  <img
+    src={src}
+    alt={alt}
+    class="img-fluid rounded shadow-sm"
+    loading="lazy"
+    decoding="async"
+  />
+  {caption && (
+    <figcaption class="small text-muted mt-2">
+      {caption}
+    </figcaption>
+  )}
+</figure>

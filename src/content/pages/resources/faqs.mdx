@@ -1,0 +1,45 @@
+---
+title: Frequently Asked Questions
+description: The most common questions about Meshtastic, the KC network, and how to get involved.
+pageHeading: Frequently Asked Questions
+heroVariant: compact
+faqs:
+  - question: Do I need a license to use Meshtastic?
+    answer: |
+      No. Meshtastic uses the 915 MHz ISM band in the United States, which is
+      unlicensed and open to anyone.
+  - question: How much does it cost to get started?
+    answer: |
+      Budget $30–$50 for a basic node. A permanent, solar-powered outdoor router
+      might run $150–$200. There are no recurring fees.
+  - question: Is this a replacement for my cell phone?
+    answer: |
+      Nope. Think of Meshtastic as a backup text and location network. No voice
+      calls, no browsing—just resilient messaging when infrastructure fails.
+  - question: What's the range?
+    answer: |
+      Elevation and terrain matter. My roof (about 15 feet of elevation) reaches
+      5–8 miles with a decent antenna. With tower height and clean line of sight,
+      20–40 miles is possible.
+  - question: Do I need a huge antenna or tower?
+    answer: |
+      No. Get the antenna outside with a clear view of the horizon. A modest pole
+      in a backyard is often plenty to cover a neighborhood.
+  - question: Can other people read my messages?
+    answer: |
+      Messages are encrypted. The default public channel uses a shared key so
+      anyone on that channel can read them. Create private channels with your own
+      keys for exclusive groups.
+  - question: Is this an official organization?
+    answer: |
+      No. It's a hobbyist project documented in public so anyone can join in. The
+      goal is to collaborate with anyone who wants to help build resilient
+      infrastructure.
+  - question: How can I help the network grow?
+    answer: |
+      Deploy a node. Indoor units add density; outdoor routers extend reach. If
+      you have elevation, hosting a router is the biggest contribution you can
+      make.
+---
+
+Here are the questions I get the most—and what I learned while answering them.
