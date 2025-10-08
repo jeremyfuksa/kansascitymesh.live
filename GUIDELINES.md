@@ -25,3 +25,5 @@ Git history is not tracked yet, but plan to use Conventional Commits once mirror
 ## Security & Configuration Tips
 
 Never commit credentials, precise node coordinates, or MQTT endpoints—load secrets from `.env.local` (git-ignored). Respect the performance budget: total JavaScript should stay under 100 KB, so defer heavy libraries and tree-shake aggressively. When implementing the contact form, sanitize inputs server-side and confirm HTTPS termination per `docs/07-OCI-NGINX-DEPLOYMENT.md`. Handle Font Awesome usage via the existing kit script (see `Layout.astro`) and avoid bundling icons statically.
+
+<!-- This is a minimal change to trigger a new deployment. -->
