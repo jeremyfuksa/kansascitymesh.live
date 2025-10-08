@@ -10,7 +10,7 @@
 
 ## 1. Overview
 
-The Astro project now renders page content from Markdown files (`src/content/pages/**`) and uses a small set of content layouts to keep presentation consistent. Navigation mirrors the public site:
+The Astro project renders page content from MDX files (`src/content/pages/**`) and uses a small set of content layouts plus shared components to keep presentation consistent. Navigation mirrors the public site:
 
 ```
 Home

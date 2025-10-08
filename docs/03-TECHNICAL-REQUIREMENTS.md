@@ -394,7 +394,7 @@ add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" alway
 
 ## 9. Content Management
 
-### 9.1 Markdown Structure
+### 9.1 MDX Structure
 
 **Frontmatter**:
 
@@ -416,6 +416,8 @@ updated: 2025-10-04
     /get-started
     /guides
   /blog (future)
+
+MDX entries may import shared UI primitives (cards, CTA blocks, figures) directly at the top of the file. Keep presentation concerns inside components and reserve MDX for structured copy and component composition.
 ```
 
 ### 9.2 Image Management

@@ -4,6 +4,8 @@
 
 The Kansas City Meshtastic Network Website, built with Astro, currently exhibits significant architectural and implementation challenges. These issues manifest as brittle code, convoluted asset handling, and a lack of clear conventions, leading to frequent errors and difficult maintenance. This plan outlines a phased approach to refactor the codebase, standardize practices, and establish a robust, maintainable foundation for future development. The primary goal is to transform the project into a smooth-running, idiomatic Astro setup that is easy to understand, extend, and debug.
 
+> **Status note (2025-10-08):** The remediation described below has been completed. Legacy Markdown content referenced throughout has been migrated to MDX with shared components, and the asset/convention fixes are now part of the live codebase.
+
 ## 2. Current State Analysis & Identified Issues
 
 The project's current state is characterized by several critical issues that have contributed to its brittleness and complexity:

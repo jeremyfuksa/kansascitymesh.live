@@ -4,15 +4,15 @@ This document outlines the general guidelines and conventions for the Kansas Cit
 
 ## Project Structure & Module Organization
 
-`README.md` remains the canonical site plan while `docs/` stores numbered deep dives (00–09). Keep new strategy files in `docs/` with zero-padded names. Implementation lives at the project root as an Astro + Bootstrap scaffold that mirrors the navigation from `docs/01-SITE-ARCHITECTURE.md`. Each route under `src/pages/` currently renders a content layout backed by Markdown—replace these with production copy and UI as sections go live. Group upcoming data assets inside `public/data/` or `src/assets/` using page-specific folders.
+`README.md` remains the canonical site plan while `docs/` stores numbered deep dives (00–09). Keep new strategy files in `docs/` with zero-padded names. Implementation lives at the project root as an Astro + Bootstrap scaffold that mirrors the navigation from `docs/01-SITE-ARCHITECTURE.md`. Each route under `src/pages/` renders a content layout backed by MDX entries—replace the MDX copy with production content and richer components as sections go live. Group upcoming data assets inside `public/data/` or `src/assets/` using page-specific folders.
 
 ## Build, Test, and Development Commands
 
-Run `npm install` from the project root, then `npm run dev` for local work and `npm run build` / `npm run preview` before release. Bootstrap is loaded via CDN in `Layout.astro`, with light custom overrides in `src/styles/global.css`. Until automated tooling lands, lint Markdown with `npx markdownlint-cli2 "**/*.md"` from the repo root. Add Astro `check`, component tests, or Playwright coverage once interactive pieces ship and document new commands here.
+Run `npm install` from the project root, then `npm run dev` for local work and `npm run build` / `npm run preview` before release. After installing dependencies, run `npm run prepare` once to install Husky hooks. Bootstrap is loaded via CDN in `Layout.astro`, with light custom overrides in `src/styles/global.css`. Lint the project with `npm run lint` and keep formatting in sync with `npm run format:check`; both commands run automatically on commit.
 
 ## Coding Style & Naming Conventions
 
-Write Markdown in sentence case with 80–100 character lines when practical and retain the anti-dogma, professional tone defined in `CLAUDE.md`. In the Astro project, use kebab-case filenames (`coverage-map.astro`) and descriptive module names. Use Bootstrap components/utilities for styling; additional tweaks belong in `src/styles/global.css`. Inline comments should be rare and only for non-obvious logic. Layout props available to pages are `title`, `description`, `pageHeading`, and optional `heroVariant="compact"`.
+Author MDX in sentence case with 80–100 character lines when practical and retain the anti-dogma, professional tone defined in `CLAUDE.md`. Prefer the shared components in `src/components/` (e.g., `Card`, `CtaBlock`, `Figure`) over raw Bootstrap markup to keep presentation consistent. Use Bootstrap utilities for incidental styling; additional tweaks belong in `src/styles/global.css`. Inline comments should be rare and only for non-obvious logic. Layout props exposed to MDX entries are `title`, `description`, `pageHeading`, and optional `heroVariant="compact"` alongside collection-specific fields defined in `src/content/config.ts`.
 
 ## Testing Guidelines
 

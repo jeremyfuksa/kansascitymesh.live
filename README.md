@@ -1,6 +1,6 @@
 # Kansas City Meshtastic Network
 
-Astro + Bootstrap site documenting the Kansas City Meshtastic build-out and coordinating regional deployments. Content lives in Markdown with YAML front matter so writers can focus on copy while layouts handle presentation.
+Astro + Bootstrap site documenting the Kansas City Meshtastic build-out and coordinating regional deployments. Content lives in MDX with YAML front matter so writers can focus on copy while layouts and shared components handle presentation.
 
 ## Tech Stack
 
@@ -89,6 +89,14 @@ Any field you omit simply collapses in the layout.
 - **Composable UI:** Prefer the shared components in `src/components/` (`Card`, `CardGrid`, `CtaBlock`, `Figure`, etc.) instead of raw Bootstrap markup. They keep styling consistent and simplify later redesigns.
 - **Content collections:** Front matter is validated by `src/content/config.ts`. Adding new fields? Update the schema first so builds fail fast when data drifts.
 - **Quality gates:** Run `npm run lint` and `npm run format:check` before committing. Husky ties the same checks to `pre-commit` once you run `npm run prepare` locally.
+
+## Documentation Map
+
+- `README.md` – High-level project overview, contributor checklist, and development conventions.
+- `GUIDELINES.md` – Canonical practices for structure, tooling, and coding style.
+- `IMPLEMENTATION.md` – Astro implementation notes and outstanding feature work.
+- `docs/00–07` – Strategy dossiers (architecture, content, design, analytics, deployment, voice) that inform future phases.
+- `docs/ARCHITECTURAL_PLAN.md` – Completed remediation roadmap documenting how the scaffold matured into the current MDX/component model.
 
 ## Geofence Focus
 
