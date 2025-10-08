@@ -21,6 +21,8 @@ MHz and 433 MHz variants will not reach the KC mesh.
   and low cost. Needs a phone or laptop for messaging. [Buy on Amazon](https://www.amazon.com/dp/B0DG5F1YNX?tag=jeremyfuksa00-20).
 - **LILYGO T-Beam ($40–$55):** Popular for mobile nodes because it includes GPS
   and an 18650 tray. [Buy on Amazon](https://a.co/d/1Wo3rXa).
+- **SenseCAP T1000-E ($50–$60):** A compact, card-sized tracker with GPS and
+  Bluetooth, ideal for personal tracking and mobile Meshtastic nodes. [Buy on Amazon](https://www.amazon.com/SenseCAP-T1000-Tracker-Meshtastic-Bluetooth/dp/B0C7Q359Y).
 
 ### Portable plus keyboard
 
