@@ -531,7 +531,7 @@ Pre-commit hooks ensure code quality before commits.
 
 ## 12. Third-Party Integrations
 
-### 12.1 Plausible Analytics
+### 12.1 Plausible Analytics (Planned)
 
 ```html
 <script
@@ -569,13 +569,13 @@ Load conditionally on Coverage Map page:
 </script>
 ```
 
-### 12.3 Google Tag Manager
+### 12.3 Google Tag Manager (Active)
 
 Load Google Tag Manager container `GTM-NV5FCM83` globally to coordinate lightweight analytics tags.
 
 - Inject the standard GTM loader script inline in `<head>` of the root layout so it executes before other scripts.
 - Include the companion `<noscript>` iframe immediately after `<body>` to support users without JavaScript.
-- Document any additional tags (e.g., Plausible events) in the privacy copy and avoid adding scripts that set cookies unless explicitly required.
+- Document any additional tags (e.g., future Plausible events) in the privacy copy and avoid adding scripts that set cookies unless explicitly required.
 
 ---
 
