@@ -48,7 +48,8 @@ const spacingClass = heroVariant === "compact" ? "py-4" : "py-5";
       async>
     </script>
   </head>
-  <body class="d-flex flex-column min-vh-100 bg-light-subtle">
+<body class="d-flex flex-column min-vh-100 bg-light-subtle">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <nav class="navbar navbar-expand-md navbar-light bg-white border-bottom shadow-sm sticky-top">
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/">
@@ -100,7 +101,7 @@ const spacingClass = heroVariant === "compact" ? "py-4" : "py-5";
       </div>
     </nav>
 
-    <main class={`flex-grow-1 ${spacingClass}`}>
+    <main id="main-content" class={`flex-grow-1 ${spacingClass}`}>
       <div class="container">
         {
           pageHeading && (

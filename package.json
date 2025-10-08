@@ -8,7 +8,10 @@
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "lint": "eslint \"src/**/*.{js,ts,astro}\"",
+    "lint:fix": "npm run lint -- --fix",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
@@ -22,6 +25,12 @@
     "sharp": "^0.34.4"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.11.0",
+    "@typescript-eslint/parser": "^8.11.0",
+    "eslint": "^9.13.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-astro": "^0.34.0",
+    "husky": "^9.1.6",
     "prettier": "^3.3.3",
     "prettier-plugin-astro": "^0.14.1"
   }

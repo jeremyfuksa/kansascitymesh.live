@@ -14,6 +14,25 @@ body {
   color: #2b2420;
 }
 
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1.25rem;
+  background-color: #ffffff;
+  color: #0d6efd;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.75rem 1.5rem rgba(0, 0, 0, 0.15);
+  font-weight: 600;
+  transition: top 0.2s ease;
+  z-index: 1050;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
 a {
   text-decoration: none;
 }
@@ -86,4 +105,15 @@ a:hover {
 
 .callout-card {
   border-left: 4px solid #f59e42;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

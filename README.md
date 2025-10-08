@@ -10,7 +10,7 @@ Astro + Bootstrap site documenting the Kansas City Meshtastic build-out and coor
 
 ## Content Authoring
 
-All page content lives under `src/content/pages/`. Each Markdown file describes a route and is rendered by one of the content layouts.
+All page content lives under `src/content/pages/`. Each MDX file describes a route and is rendered by one of the content layouts.
 
 ### Layout matrix
 
@@ -82,6 +82,14 @@ discordInvite: # renders reusable Discord CTA card
 
 Any field you omit simply collapses in the layout.
 
+## Development Conventions
+
+- **Asset strategy:** Use `src/assets/` only for files imported through Astro's image pipeline (e.g., the site logo). Serve everything else from `public/`—images belong in `public/images/` and should be referenced with an absolute path such as `/images/example.jpg`.
+- **Authoring with MDX:** Rich pages live in `.mdx` files so you can import shared UI components directly in the markup. Stick to Markdown when you only need prose; switch to MDX the moment you embed components like `<Card />` or `<Figure />`.
+- **Composable UI:** Prefer the shared components in `src/components/` (`Card`, `CardGrid`, `CtaBlock`, `Figure`, etc.) instead of raw Bootstrap markup. They keep styling consistent and simplify later redesigns.
+- **Content collections:** Front matter is validated by `src/content/config.ts`. Adding new fields? Update the schema first so builds fail fast when data drifts.
+- **Quality gates:** Run `npm run lint` and `npm run format:check` before committing. Husky ties the same checks to `pre-commit` once you run `npm run prepare` locally.
+
 ## Geofence Focus
 
 The immediate build objective is a robust mesh within this bounding box:
@@ -99,9 +107,11 @@ Copy on home, network, and community pages references that geofence so we stay f
 npm install
 npm run dev   # local development
 npm run build # production build
+npm run lint  # static analysis
+npm run format:check # confirm formatting
 ```
 
-> Note: `npm` is not available in the hosted CLI environment, so run commands locally.
+> Note: `npm` is not available in the hosted CLI environment, so run commands locally. Run `npm run prepare` once after installing dependencies to activate the Husky git hooks.
 
 ## Navigation & Performance Notes
 
