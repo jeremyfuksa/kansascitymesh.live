@@ -32,6 +32,7 @@ Each top-level route simply imports the layout and passes its MDX entry, keeping
 - Global layout with sticky navbar, skip link, reduced-motion guard, responsive containers, and shared footer.
 - Content layouts (`BasePage`, `ArticlePage`, `FaqPage`) that map YAML front matter to shared UI primitives (alerts, callouts, card grids, accordions).
 - Shared component library covering alerts, callouts, CTA blocks, card grids with optional imagery, captioned figures, and Discord CTA.
+- Google Tag Manager (`GTM-NV5FCM83`) injected globally for lightweight analytics alongside Plausible.
 - Font Awesome kit (02023a5bb5) loaded globally for icon support, with Bootstrap's JavaScript bundle deferred for toggles/accordions.
 
 ## Outstanding Work Before Feature Complete

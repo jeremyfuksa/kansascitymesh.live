@@ -89,6 +89,7 @@ Any field you omit simply collapses in the layout.
 - **Composable UI:** Prefer the shared components in `src/components/` (`Card`, `CardGrid`, `CtaBlock`, `Figure`, etc.) instead of raw Bootstrap markup. They keep styling consistent and simplify later redesigns.
 - **Content collections:** Front matter is validated by `src/content/config.ts`. Adding new fields? Update the schema first so builds fail fast when data drifts.
 - **Quality gates:** Run `npm run lint` and `npm run format:check` before committing. Husky ties the same checks to `pre-commit` once you run `npm run prepare` locally.
+- **Analytics:** Google Tag Manager (`GTM-NV5FCM83`) loads via the global layout alongside Plausible. Keep tracking lightweight and update site privacy copy when instrumentation changes.
 
 ## Documentation Map
 
