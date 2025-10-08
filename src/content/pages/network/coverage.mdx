@@ -7,34 +7,21 @@ heroVariant: compact
 
 import Figure from '../../../components/Figure.astro';
 
-I mapped existing nodes, captured signal reports, and combined them with elevation data to figure out which placements move the Kansas City mesh forward fastest. Here's what I know so far.
+This page will probably change often. Just a few days ago, I had a screenshot of the map in my phone app on here, and it was out-of-date in two days.
 
-<Figure
-  src="/images/latest-node-map.jpeg"
-  alt="Current Kansas City mesh coverage map"
-  caption="Quick snapshot of KC nodes as of early 2025. The live map will replace this once the data pipeline is wired up."
-/>
+I see 1-2 new nodes popping up every day, so blank spots I identify now may fill in quickly. 
 
 ## Current coverage snapshot
 
-Right now the mesh runs entirely on client-class nodes clustered around the northeast side of the metro. Elevated home installs near Liberty and North Kansas City can usually hear each other five to eight miles out, but nothing is acting as a 24/7 backbone router yet. Once we secure a rooftop or tower host, that node will anchor the rest of the metro.
+Right now the mesh is primarily all clients, which is expected. Once a rooftop or tower host comes online, that node will be a prime candidate for a router.
 
-Drive testing from North Kansas City down to Midtown shows consistent reception, with occasional dead spots where buildings or terrain block the signal. Moving southeast or west, coverage falls off quickly.
+Drive testing from North Kansas City down to Midtown shows consistent reception. Moving southeast or west, coverage falls off quickly.
 
 ### Router strategy
 
-The metro only needs routers where we can combine serious elevation with 24/7 power and clean RF environments. If you have access to a repeater tower, commercial rooftop, or other tall structure, let's coordinate so you can take on one of those backbone deployments. Everyone else should keep their nodes in client or client base roles so the channel stays efficient. That also means the four-router backbone remains a roadmap until we recruit the right high-elevation partners.
+The metro only needs routers where we can combine serious elevation with clean RF environments. If you have access to a repeater tower, commercial rooftop, or other tall structure, consider taking on one of those backbone deployments. Everyone else should keep their nodes in client or client base roles so the channel stays efficient.
 
-## What counts as "good enough"
-
-- **15–20 ft up, even indoors** is an immediate win if your house sits on a hill or has consistent line-of-sight.
-- **Outdoor omni antennas at 20–30 ft** will reliably cover most neighborhoods.
-- **Commercial rooftops or tall apartment buildings** become area-wide repeaters.
-- **Portable nodes** won't make a backbone, but they provide valuable coverage reports along their routes.
-
-If you can hit one or more of those, you're useful right now.
-
-## Priority zones
+## Priority zones (will change as more nodes go up)
 
 ### 1. West-side backbone (Johnson County)
 
@@ -66,32 +53,27 @@ Blue Springs, Independence, and Grain Valley already show light coverage. A few 
 
 ## How to evaluate placements
 
-When someone proposes a site, here's what to look at:
-
-1. **Elevation:** Natural high ground beats adding metal towers unless you're going total overkill.
+1. **Elevation:** Natural high ground beats adding metal towers unless you've got access to an antenna mast.
 2. **Line-of-sight:** Can you see (or almost see) the Northland/Downtown cluster or a candidate rooftop host? If not, can you bridge to someone who can?
-3. **Power and maintenance:** Indoor power is the dream. Outdoor setups should have weatherproof enclosures and surge protection.
-4. **Community impact:** Will this help a dense area or connect two existing nodes? That's the deciding factor.
+3. **Power and maintenance:** Indoor power should have battery backup. Outdoor setups should have weatherproof enclosures and charge protection.
+4. **Community impact:** Will this help an established area or connect two existing pockets?
 
-Before you invest in a permanent install or elaborate experiment, pitch it in the
-[KC Meshtastic Discord](https://discord.gg/eP5VSPKU). A thirty-second sanity
-check saves everyone from fighting extra noise or duplicate work.
+Do you have an idea for an experiment? Pitch it in the [KC Meshtastic Discord](https://discord.gg/eP5VSPKU).
 
 ## DIY coverage mapping
 
-I use USGS elevation data, and drive tests to validate what's possible. You can do the same:
+I use USGS elevation data and drive tests to validate what's possible. You can do the same:
 
-1. Deploy a node on your roof or balcony.
-2. Leave it running for a week.
-3. Capture GPS traces while driving around your neighborhood.
-4. Drop your findings in the Discord so we can adjust the plan.
+1. Deploy a node on your roof or balcony. Leave it running for a week.
+2. Toss a mobile node in your car and capture GPS traces while driving around your neighborhood.
+4. Drop your findings in the Discord and see if the plan adjusts.
 
 ## GeoJSON target area
 
-Here's the exact geo-fence I'm focusing on:
+Here's a feasible target area for the KC mesh. It's a rough box around the metro area.
 
 <details>
-<summary>KC mesh priority polygon</summary>
+<summary>Click for the KC mesh priority polygon</summary>
 
 ```json
 {
@@ -125,7 +107,6 @@ Here's the exact geo-fence I'm focusing on:
 
 </details>
 
-Deployments inside that box strengthen the core metro mesh. Once we have solid coverage there, expanding outward makes more sense.
+Deployments inside that box strengthen the core metro mesh. Once we have solid coverage there, Who knows? I think it's not that far-fetched to link the mesh between Manhattan, KS and St. Louis. There are enough college towns in between that probably have meshes going already. The trick is to find the right high points to bridge the gaps.
 
-**Want to help?** [Get started with your own node](/get-started/join) and log your progress in the
-[KC Meshtastic Discord](https://discord.gg/eP5VSPKU).
+**Want to help?** [Get started with your own node](/get-started/join) and log your progress in the [KC Meshtastic Discord](https://discord.gg/eP5VSPKU).
