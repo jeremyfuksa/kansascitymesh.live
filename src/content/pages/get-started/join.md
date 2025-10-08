@@ -21,7 +21,7 @@ for the abbreviated version.
   <div class="col-md-6">
     <div class="card h-100">
       <div class="card-body">
-        <img src="/src/assets/heltec-v3.jpg" class="img-fluid rounded mb-3" alt="Heltec LoRa32 V3">
+        <img src="/images/heltec-v3.jpg" class="img-fluid rounded mb-3" alt="Heltec LoRa32 V3">
         <h5 class="card-title">Heltec LoRa32 V3</h5>
         <p class="card-text"><strong>Best for getting started</strong></p>
         <p class="card-text">Under $35. Screen shows live packets. Needs your phone for messaging, which is perfect for first-time setup.</p>
@@ -32,7 +32,7 @@ for the abbreviated version.
   <div class="col-md-6">
     <div class="card h-100">
       <div class="card-body">
-        <img src="/src/assets/lilygo-t-deck.jpg" class="img-fluid rounded mb-3" alt="LILYGO T-Deck">
+        <img src="/images/lilygo-t-deck.jpg" class="img-fluid rounded mb-3" alt="LILYGO T-Deck">
         <h5 class="card-title">LILYGO T-Deck</h5>
         <p class="card-text"><strong>Standalone device</strong></p>
         <p class="card-text">~$70. Full keyboard and screen so you can send messages without a phone. GPS built-in for location sharing.</p>

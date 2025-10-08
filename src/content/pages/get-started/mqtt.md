@@ -58,13 +58,13 @@ both RF access to the mesh **and** an internet connection.
   [Node-RED](https://nodered.org/) speak MQTT, so it is handy when you want
   alerts, analytics, or custom automations tied to the mesh.
 
-## What it does *not* do
+## What it does _not_ do
 
 - **It will not rescue nodes that can't reach anyone over RF.** If a packet never
   makes it to an MQTT-enabled node, the broker never sees it.
 - **It is not a private backchannel.** Anyone with the topic key can read what
   you upload. Treat it like the public mesh unless you control every hop.
-- **It is not an internet-only chat room.** You cannot send packets *only*
+- **It is not an internet-only chat room.** You cannot send packets _only_
   through MQTT. The message still starts (and usually ends) on the air.
 - **It is not unlimited bandwidth.** Spamming MQTT still spams RF first because
   every packet has to be transmitted locally before the broker relays it.

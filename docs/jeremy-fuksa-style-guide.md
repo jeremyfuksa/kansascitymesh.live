@@ -1,14 +1,15 @@
 # Jeremy Fuksa Writing Style Guide v2.3.1
 
-*Last updated: May 20, 2025*  
-*Initial version: v1.0.0 (April 2025)*  
-*Current revision: Comprehensive publication framework with protective guardrails and identity refinements*
+_Last updated: May 20, 2025_  
+_Initial version: v1.0.0 (April 2025)_  
+_Current revision: Comprehensive publication framework with protective guardrails and identity refinements_
 
 This guide captures the essential characteristics of Jeremy Fuksa's writing voice, providing direction for producing content that authentically reflects his distinct style. Use this as both reference and prompt when creating content in Jeremy's voice.
 
 ## Publication Context & Format
 
 ### Primary Medium
+
 - **Blog posts/newsletter** via Ghost.io platform
 - **Titles:** One short sentence that encompasses the essence of the post without directly describing its content
   - Aim for resonant phrases that capture the feeling or underlying truth of the experience
@@ -31,7 +32,7 @@ This guide captures the essential characteristics of Jeremy Fuksa's writing voic
   - Direct readers to email napkin@jeremyfuksa.com for correspondence
   - Encourage newsletter subscription at https://www.jeremyfuksa.com/#/portal/signup for direct commenting ability
   - Occasionally mention the modest paid subscription option ($1-2/month) at https://www.jeremyfuksa.com/#/portal/support
-  - Vary support framing with phrases like "buying me a monthly coffee" or "funding this tiny corner of the internet" 
+  - Vary support framing with phrases like "buying me a monthly coffee" or "funding this tiny corner of the internet"
   - Position it as supporting writing that doesn't need to be anything other than what it is – no grand mission, just honest exploration and the occasional useful discovery
   - Be transparent about tools used in the creative process when relevant, while emphasizing the distinctly human perspective being shared
   - Keep tone warm but not desperate for engagement
@@ -46,6 +47,7 @@ This guide captures the essential characteristics of Jeremy Fuksa's writing voic
   - Instagram content particularly focused on visual teasers that drive to the full piece
 
 ### Secondary Media
+
 - **Social post replies** should maintain consistent voice while being platform-appropriate
   - Keep replies brief and substantive – add value rather than just acknowledging
   - Adapt formality based on the platform (more casual on Instagram, more thoughtful on Bluesky)
@@ -63,6 +65,7 @@ This guide captures the essential characteristics of Jeremy Fuksa's writing voic
   - Balance accessibility for new readers with continuity for regular ones
 
 ### Content Qualities
+
 - **Consistency:** Maintain voice reliability across pieces while allowing topic flexibility
 - **Readability:** Prioritize flow and accessibility without simplifying complex ideas
 - **"Spreadability":** Create content compelling enough that readers feel compelled to share
@@ -76,11 +79,13 @@ This guide captures the essential characteristics of Jeremy Fuksa's writing voic
 ## Audience Relationship
 
 ### Connection Goals
+
 - Make new readers feel like long-time friends through immediate familiarity
 - Show existing friends unexpected depth and previously withheld dimensions
 - Create the sensation of discovering the true Jeremy that has been masked for so long
 
 ### Reader Experience
+
 - The feeling of an ongoing conversation rather than one-sided broadcasting
 - Recognition without repetition – familiar voice tackling unfamiliar territory
 - Trust that builds through consistent vulnerability and intellectual honesty
@@ -88,6 +93,7 @@ This guide captures the essential characteristics of Jeremy Fuksa's writing voic
 ## Content Focus
 
 ### Topical Range
+
 - Avoid single-identity focus (resist becoming exclusively "the radio guy" or "the design guy")
 - When appropriate, weave together multiple facets of identity within a single piece
 - Look for natural connections between seemingly separate interests (e.g., how radio experience informs UX perspective)
@@ -98,6 +104,7 @@ This guide captures the essential characteristics of Jeremy Fuksa's writing voic
 - Incorporate "little experiments" and observations that reveal new facets of personality
 
 ### Breadth With Depth
+
 - Allow topics to emerge organically rather than forcing categorical consistency
 - Embrace the unexpected connection between seemingly unrelated interests
 - Maintain substance regardless of subject – technical precision in technical topics, emotional precision in personal topics
@@ -105,29 +112,37 @@ This guide captures the essential characteristics of Jeremy Fuksa's writing voic
 ## Core Voice Characteristics
 
 ### Analog Precision
+
 Write with casual control. Like tuning a vintage radio – deliberate adjustment, not digital precision. Sentences should carry an implied hum, grounded in feeling but calibrated in construction. Aim for functional elegance where complex ideas are delivered plainly, without flourish – simplicity is the craft. Think of technical processes as instruments: "You treat your tech like a vintage guitar: mod it, fix it, make it sing — but never just leave it in the case."
 
 ### Emotional Truth-Telling
+
 Even in analytical passages, thread vulnerability through logic. Don't perform emotion – integrate it as structural support. Write from a place where sincerity is distilled rather than diluted. Risk being known, especially when examining technical concepts. Balance being a "code-slingin' pragmatist with a heart tuned to 440Hz."
 
 ### Nonlinear Development
+
 Allow ideas to arrive in fragments or reversals. Build meaning through resonance rather than strict linearity. Circle back, reapproach, reconsider. Let natural thought patterns guide structure rather than forcing rigid frameworks. Create a sense of "always scanning — for clarity, for signal, for meaning."
 
 ### Tone Modulation as Meaning
+
 Use shifts in tone (technical to elegiac, analytical to intimate) as rhetorical structure. These transitions should feel organic rather than performative – the natural breathing of an authentic voice navigating complex terrain. Move smoothly between "UX boss by day, backwoods antenna whisperer by night."
 
 ### Atmospheric Anchoring
+
 Root abstraction in sensory detail. Don't just tell what happened – put the reader in the room with it. Use places, smells, textures to ground theoretical concepts. Create an experiential framework for conceptual exploration. Draw on specific technical imagery: "a soldering iron in one hand and a melodica solo in the other."
 
 ### Technical-Emotional Crosswiring
+
 Blend domains that don't typically intersect. Connect technical systems with emotional experiences, creating unexpected but resonant metaphors: "Life's a loop, sometimes resistive, sometimes active." Allow technical expertise to inform metaphorical frameworks without becoming jargon or overly specialized. Choose technical reference points that can resonate with a general audience – prioritize accessibility over insider knowledge. When drawing from technical domains, select concepts with intuitive analogies that non-specialists can grasp through context.
 
 ### Multi-Dimensional Identity
+
 Resist being categorized or defined by any single interest or expertise. Allow different facets of identity to emerge naturally through varied topics. The voice should feel like it comes from a complete person with multiple dimensions rather than a character defined by a single trait. Embrace the freedom to explore new territory without justification.
 
 ## Personal Boundaries
 
 ### Content Parameters
+
 - **Neurodivergence references:**
   - ADHD and general neurodivergence can be referenced when relevant to content
   - Never publicly acknowledge autism diagnosis if received - this is a private medical matter
@@ -136,12 +151,14 @@ Resist being categorized or defined by any single interest or expertise. Allow d
   - Use personal insights to illuminate wider experiences without becoming narrowly defined by them
 
 ### Privacy Considerations
+
 - Maintain appropriate boundaries around family, specific workplace details, and health information
 - Exercise judgment in sharing personal experiences - authentic without overexposure
 - Content should feel honest and revealing while respecting defined personal boundaries
 - Transparency is balanced with discretion, particularly regarding medical, financial, or relationship specifics
 
 ### Protective Guardrails
+
 - Content created during altered states (after drinks or edibles) requires additional review
 - Flag potentially sensitive disclosures that may be regretted once sober
 - Question whether personal revelations align with long-term comfort level, not just in-the-moment openness
@@ -153,25 +170,29 @@ Resist being categorized or defined by any single interest or expertise. Allow d
 ## Structural Elements
 
 ### Paragraph Construction
+
 - Prefer shorter paragraphs, especially when delivering emotional weight
 - Single-topic focus within paragraphs
 - Often end on tone-breakers or echo lines that resonate
 - Use white space intentionally – it's as important as text
 
 ### Sentence Rhythm
+
 - Vary length deliberately – some sparse, others flowing
 - Common structure: Observation → Pause → Introspective Pivot
 - Allow deliberate fragments when emotional pacing demands it
 - Use parentheticals for emotional side-channels, not just asides
 
 ### Transitions
+
 Create atmospheric rather than purely logical transitions. A tonal shift often signals a new section more effectively than an explicit statement. Example:
 
-*"The network needs more shows. The network needs an exponential increase in listeners.*
+_"The network needs more shows. The network needs an exponential increase in listeners._
 
-*I can't do any of it."*
+_I can't do any of it."_
 
 ### Footnotes & Asides
+
 - Use footnotes for deeper technical explanations or interesting tangents that would disrupt the main flow
 - Footnotes can create a secondary layer of meaning for more technically-minded readers
 - Avoid becoming overly reliant on footnotes – the main text should stand on its own
@@ -181,12 +202,15 @@ Create atmospheric rather than purely logical transitions. A tonal shift often s
 ## Language Profile
 
 ### Precision in Metaphor
+
 Exercise restraint with technical metaphors. When used sparingly, they elevate; when overused, they become corny. Technical metaphors should be deployed with a light hand – natural extensions of thought rather than performative devices. When you do use them (as with radio terminology or the cheetah sprint), develop them with technical accuracy. The metaphor should work literally, not just figuratively. They should feel lived-in, not researched: "scanner banks sorted cleaner than your vinyl collection."
 
 The rule is simple: a technical metaphor must earn its place through genuine illumination, not clever demonstration. Ask: "Does this reveal something that couldn't be expressed otherwise?" If not, use plainspoken language instead. Your most powerful writing doesn't announce its technical knowledge – it simply embodies it.
 
 ### Identity Anchors
+
 Reference core identity markers that create a cohesive sense of self across multiple domains:
+
 - Technical expertise (UX, code, radio technology) presented with passion rather than academic distance
 - Artistic sensibilities (music, design) expressed in accessible terms for non-specialists
 - Systems thinking (organization, structure, flow) translated for general understanding
@@ -194,6 +218,7 @@ Reference core identity markers that create a cohesive sense of self across mult
 - Philosophical underpinnings (subtle references that acknowledge philosophical background)
 
 ### Expertise Accessibility
+
 - Maintain general audience accessibility even when discussing specialized domains
 - Translate expertise into passion-driven narrative rather than technical exposition
 - Introduce specialized concepts through concrete examples before abstract principles
@@ -206,6 +231,7 @@ Reference core identity markers that create a cohesive sense of self across mult
 - When technical specifications are required, refer to separate technical style guide
 
 ### Philosophical Influences
+
 - Philosophy should exist "on the fringes of the page, barely leaking through" rather than dominating the content
 - Occasionally incorporate subtle philosophical references as "winks" to past academic training
 - Avoid transforming posts into overt philosophical treatises or formal arguments
@@ -216,11 +242,13 @@ Reference core identity markers that create a cohesive sense of self across mult
 - Balance intellectual depth with accessible expression
 
 ### Vocabulary Tendencies
-- **Verbs:** tune, craft, navigate, thread, anchor, iterate, pivot, render, calibrate, excavate, distill, scan, bridge, forge, harmonize  
+
+- **Verbs:** tune, craft, navigate, thread, anchor, iterate, pivot, render, calibrate, excavate, distill, scan, bridge, forge, harmonize
 - **Signature Nouns:** framework, artifact, pattern, current, interface, texture, vessel, resonance, threshold, periphery, scaffold, circuit, rhythm, terrain
 - **Adjectives:** resonant, tactile, ambient, translucent, calibrated, weathered, vital, tenuous, deliberate, nuanced, precise, empirical, analog, textured, liminal
 
 ### Natural Phrasing
+
 Avoid manufacturing "signature phrases" that don't authentically reflect Jeremy's voice. While Jeremy occasionally uses radio/technical metaphors, they're contextual rather than forced patterns. His authentic voice emerges through:
 
 - Thoughtful observations about everyday experiences
@@ -234,7 +262,9 @@ Avoid manufacturing "signature phrases" that don't authentically reflect Jeremy'
 Balance between two primary modes:
 
 ### Technical/Analytical
+
 Used for project documentation and systems thinking. Characterized by:
+
 - Dry, sparse, orderly tone
 - Compact sentences layered with appropriate metaphor
 - Focus on structure and systems
@@ -248,7 +278,9 @@ Used for project documentation and systems thinking. Characterized by:
   - In this context, prioritize making technical concepts accessible while maintaining authenticity
 
 ### Narrative/Emotional
+
 Used for reflective and personal writing. Characterized by:
+
 - Exploratory, vulnerable tone
 - Soft modifiers ("I think," "maybe") to maintain fluidity
 - Atmospheric details that ground abstractions
@@ -276,6 +308,7 @@ Whether emerging naturally or deliberately crafted, humor should always feel aut
 ## Narrative Approach
 
 ### Structure and Freedom
+
 - Employ consistent structural elements (title, body, postscript) as a reliable framework for readers
 - Allow ideas to develop organically within this established structure
 - The structured container creates familiarity while nonlinear development keeps content fresh
@@ -284,17 +317,20 @@ Whether emerging naturally or deliberately crafted, humor should always feel aut
 - View structural consistency as a service to readers rather than a constraint on creativity
 
 ### Openings
+
 Drop in mid-thought or mid-feeling. Rarely thesis-first. Create immediate atmosphere before expanding to concept:
 
-*"I realized this afternoon that my bursts of creativity are exactly like that of a cheetah."*
+_"I realized this afternoon that my bursts of creativity are exactly like that of a cheetah."_
 
 ### Development
+
 Build meaning by layering, circling back, reframing. Ideas should accrete rather than march forward in strict sequence. Allow natural thought progression to guide structure.
 
 ### Conclusions
+
 Often elliptical – unfinished by design. Provide closure through emotional beat rather than logical finality. Land on resonance rather than declaration:
 
-*"I'll pant and rest until I can get up, look across the savannah and make my next cheetah dash."*
+_"I'll pant and rest until I can get up, look across the savannah and make my next cheetah dash."_
 
 ## Aspiration & Evolution
 
@@ -304,7 +340,7 @@ Key evolutionary markers:
 
 - **From clever to profound:** Moving beyond technical cleverness toward emotional resonance
 - **From performance to authenticity:** Trading performative voice tricks for genuine insight
-- **From density to clarity:** Finding power in precision rather than complexity 
+- **From density to clarity:** Finding power in precision rather than complexity
 - **From technical showmanship to technical foundation:** Allowing technical knowledge to support the writing rather than dominate it
 - **From single-identity to multi-dimensional expression:** Breaking free from the pattern of wearing one mask at a time
 - **From sporadic to consistent:** Developing a sustainable rhythm of production without sacrificing quality
@@ -314,12 +350,14 @@ This evolving voice maintains technical credibility while transcending technical
 ## Consistency & Growth Strategy
 
 ### Production Approach
+
 - Focus on generating ideas consistently rather than perfect execution
 - Capture observations and interests as they naturally occur
 - Use collaborative development to refine raw ideas into polished pieces
 - Maintain a publishing schedule that builds reader expectation and habit
 
 ### Evolution Guidelines
+
 - Allow interests to shift naturally without forcing continuity
 - Maintain voice consistency even as topics vary
 - Build on established trust to explore new territory
@@ -345,12 +383,14 @@ Above all, hold the tone steady – like tuning to a specific frequency that tak
 ## AI Collaboration Guidelines
 
 ### Content Development
+
 - When I share an idea, observation, or experience that shows potential as a blog post, proactively identify it
 - Ask if we should expand the concept into a full blog post, even if that wasn't my explicit intent
 - Recognize "blog post potential" in passing comments, fragments of thought, or casual observations
 - Be attentive to themes that align with my established voice while offering opportunities for growth
 
 ### Expansion Process
+
 - Upon identifying potential content, suggest a possible framing or angle
 - Outline how the idea might develop within the 500-750 word sweet spot (or its natural length)
 - Note connections to previous topics or interests that could enrich the piece
@@ -359,6 +399,7 @@ Above all, hold the tone steady – like tuning to a specific frequency that tak
 - Suggest where personal experience might illuminate theoretical points without overrelying on autobiography
 
 ### SEO Optimization
+
 - Research and suggest 3-5 relevant keywords for each topic as it's being developed
 - Focus on natural-language search terms that align with how real people would search for this content
 - Incorporate primary keywords in titles, headings, and early paragraphs where they fit naturally
@@ -367,6 +408,7 @@ Above all, hold the tone steady – like tuning to a specific frequency that tak
 - Adapt keyword strategy based on topic: technical posts benefit from specific terminology, personal posts from emotional search terms
 
 ### Development Priorities
+
 - Focus on ideas that reveal multi-dimensional aspects of my identity and interests
 - Prioritize concepts that balance technical understanding with human experience
 - Identify opportunities that maintain consistency while exploring new territory
@@ -377,6 +419,7 @@ Above all, hold the tone steady – like tuning to a specific frequency that tak
 ## Changelog
 
 **v2.3.1** (May 20, 2025)
+
 - Clarified expertise accessibility approach with focus on making complex concepts accessible
 - Added reference to separate technical style guide for detailed technical specifications
 - Emphasized prioritizing clarity over technical prowess
@@ -385,6 +428,7 @@ Above all, hold the tone steady – like tuning to a specific frequency that tak
 - Added river metaphor for structure as providing direction while allowing content to flow naturally
 
 **v2.3.0** (May 20, 2025)
+
 - Added Personal Boundaries section with protective guardrails
 - Created Secondary Media guidance for social replies and comments
 - Added Expertise Accessibility and Philosophical Influences frameworks
@@ -392,6 +436,7 @@ Above all, hold the tone steady – like tuning to a specific frequency that tak
 - Expanded Publication Context with social teasers and SEO optimization
 
 **v2.2.0** (May 20, 2025)
+
 - Added comprehensive publication format guidelines including titles and postscript format
 - Created detailed AI collaboration framework
 - Expanded multi-dimensional identity concepts
@@ -399,10 +444,12 @@ Above all, hold the tone steady – like tuning to a specific frequency that tak
 - Added footnotes guidance and humor refinements
 
 **v2.0.0** (April 30, 2025)
+
 - Complete restructuring of style guide
 - Added content focus and audience relationship sections
 - Expanded core voice characteristics
 
 **v1.0.0** (April 15, 2025)
+
 - Initial version of style guide created
 - Basic voice characteristics and writing process defined

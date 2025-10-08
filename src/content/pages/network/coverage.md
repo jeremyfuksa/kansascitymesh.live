@@ -9,7 +9,7 @@ I mapped existing nodes, captured signal reports, and combined them with elevati
 
 <figure class="mb-4">
   <img
-    src="/src/assets/latest-node-map.jpeg"
+    src="/images/latest-node-map.jpeg"
     alt="Current Kansas City mesh coverage map"
     class="img-fluid rounded shadow-sm"
     loading="lazy"
@@ -101,28 +101,33 @@ Here's the exact geo-fence I'm focusing on:
 ```json
 {
   "type": "FeatureCollection",
-  "features": [{
-    "type": "Feature",
-    "properties": {
-      "name": "KC Metro Mesh Target Area",
-      "stroke": "#E31837",
-      "stroke-width": 3,
-      "fill": "#E31837",
-      "fill-opacity": 0.2
-    },
-    "geometry": {
-      "type": "Polygon",
-      "coordinates": [[
-        [-95.148729, 39.561616],
-        [-93.948472, 39.561616],
-        [-93.948472, 38.649439],
-        [-95.148729, 38.649439],
-        [-95.148729, 39.561616]
-      ]]
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "name": "KC Metro Mesh Target Area",
+        "stroke": "#E31837",
+        "stroke-width": 3,
+        "fill": "#E31837",
+        "fill-opacity": 0.2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [-95.148729, 39.561616],
+            [-93.948472, 39.561616],
+            [-93.948472, 38.649439],
+            [-95.148729, 38.649439],
+            [-95.148729, 39.561616]
+          ]
+        ]
+      }
     }
-  }]
+  ]
 }
 ```
+
 </details>
 
 Deployments inside that box strengthen the core metro mesh. Once we have solid coverage there, expanding outward makes more sense.

@@ -3,19 +3,22 @@
 Astro + Bootstrap site documenting the Kansas City Meshtastic build-out and coordinating regional deployments. Content lives in Markdown with YAML front matter so writers can focus on copy while layouts handle presentation.
 
 ## Tech Stack
+
 - [Astro](https://astro.build/) for static generation
 - [Bootstrap 5](https://getbootstrap.com/) via CDN for UI components
 - Minimal client-side JavaScript (Bootstrap bundle for nav/collapses)
 
 ## Content Authoring
+
 All page content lives under `src/content/pages/`. Each Markdown file describes a route and is rendered by one of the content layouts.
 
 ### Layout matrix
-| Layout | File | When to use | YAML fields consumed |
-| --- | --- | --- | --- |
-| **BasePage** | `src/layouts/content/BasePage.astro` | Landing pages with alerts/callouts/cards/CTAs (e.g., Home, Get Started index, Community index) | `title`, `description`, `pageHeading`, `heroVariant`, `alerts`, `callouts`, `cardsSections`, `cta`, `discordInvite` |
-| **ArticlePage** | `src/layouts/content/ArticlePage.astro` | Narrative pages or guides that may include CTA buttons | `title`, `description`, `pageHeading`, `heroVariant`, `actions`, `discordInvite` |
-| **FaqPage** | `src/layouts/content/FaqPage.astro` | FAQ lists rendered as accordions | `title`, `description`, `pageHeading`, `heroVariant`, `faqs`, `discordInvite` |
+
+| Layout          | File                                    | When to use                                                                                    | YAML fields consumed                                                                                                |
+| --------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **BasePage**    | `src/layouts/content/BasePage.astro`    | Landing pages with alerts/callouts/cards/CTAs (e.g., Home, Get Started index, Community index) | `title`, `description`, `pageHeading`, `heroVariant`, `alerts`, `callouts`, `cardsSections`, `cta`, `discordInvite` |
+| **ArticlePage** | `src/layouts/content/ArticlePage.astro` | Narrative pages or guides that may include CTA buttons                                         | `title`, `description`, `pageHeading`, `heroVariant`, `actions`, `discordInvite`                                    |
+| **FaqPage**     | `src/layouts/content/FaqPage.astro`     | FAQ lists rendered as accordions                                                               | `title`, `description`, `pageHeading`, `heroVariant`, `faqs`, `discordInvite`                                       |
 
 Routes simply select the layout, e.g.:
 
@@ -31,6 +34,7 @@ const entry = await getEntry("pages", "get-started/index");
 ```
 
 ### Front matter quick reference
+
 ```yaml
 ---
 title: Page title (defaults to empty string)
@@ -79,7 +83,9 @@ discordInvite: # renders reusable Discord CTA card
 Any field you omit simply collapses in the layout.
 
 ## Geofence Focus
+
 The immediate build objective is a robust mesh within this bounding box:
+
 1. 39.561616° N, -93.948472° W
 2. 39.561616° N, -95.148729° W
 3. 38.649439° N, -95.148729° W
@@ -88,6 +94,7 @@ The immediate build objective is a robust mesh within this bounding box:
 Copy on home, network, and community pages references that geofence so we stay focused before expanding outward.
 
 ## Development
+
 ```bash
 npm install
 npm run dev   # local development
@@ -97,9 +104,11 @@ npm run build # production build
 > Note: `npm` is not available in the hosted CLI environment, so run commands locally.
 
 ## Navigation & Performance Notes
+
 - Header menu is the only interactive script; keep additional JS lean.
 - Font Awesome loads via kit script; `preconnect` & `dns-prefetch` hints are in place to reduce first render cost.
 - Main column width is capped at `max-w-3xl` for readability across breakpoints.
 
 ## Discord Coordination
+
 The shared server lives at `https://discord.gg/eP5VSPKU`. Layouts expose a reusable CTA card so you can surface the invite by dropping a `discordInvite` block into front matter.

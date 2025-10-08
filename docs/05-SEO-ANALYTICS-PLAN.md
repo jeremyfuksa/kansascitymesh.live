@@ -1,4 +1,5 @@
 # SEO and Analytics Plan
+
 ## Kansas City Meshtastic Network Website
 
 **Version**: 1.0
@@ -18,18 +19,21 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ### 2.1 Primary Objectives
 
 **Awareness** (Top of Funnel):
+
 - Rank for "Kansas City mesh network" and variations
 - Capture searches from people learning about mesh networking
 - Appear in results for emergency communications topics
 - Geographic dominance: KC metro area mesh networking queries
 
 **Consideration** (Middle of Funnel):
+
 - Rank for "how to join mesh network" type queries
 - Capture hardware selection searches
 - Appear for deployment guide searches (HOA-friendly, solar, etc.)
 - Audience-specific: ham operators, repeater owners
 
 **Conversion** (Bottom of Funnel):
+
 - Rank for specific hardware model searches
 - Capture troubleshooting queries
 - Appear for "Meshtastic [specific problem]" searches
@@ -38,22 +42,26 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ### 2.2 Success Metrics
 
 **Traffic Goals** (6-month targets):
+
 - Organic search traffic: 500-1000 sessions/month
 - Direct traffic: 200-300 sessions/month (brand awareness)
 - Referral traffic: 100-200 sessions/month (community sharing)
 
 **Ranking Goals** (6-month targets):
+
 - Top 3: "Kansas City mesh network"
 - Top 5: "Meshtastic Kansas City"
 - Top 10: "join mesh network", "Meshtastic setup"
 - Top 20: "best Meshtastic device", "HOA mesh antenna"
 
 **Engagement Goals**:
+
 - Average session duration: > 2 minutes
 - Pages per session: > 2
 - Bounce rate: < 60% (landing pages), < 40% (content pages)
 
 **Conversion Goals**:
+
 - Contact form submissions: 10-20/month
 - Community chat joins: 20-30/month
 - Hardware purchase click-throughs: 50-100/month
@@ -65,6 +73,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ### 3.1 Primary Keywords (High Priority)
 
 **Brand and Geographic**:
+
 - `Kansas City mesh network` (10 monthly searches, low competition)
 - `Meshtastic Kansas City` (5 monthly searches, low competition)
 - `KC emergency communications` (20 monthly searches, medium competition)
@@ -77,6 +86,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ---
 
 **General Mesh Networking**:
+
 - `what is Meshtastic` (1000 monthly searches, medium competition)
 - `mesh networking explained` (500 monthly searches, medium competition)
 - `LoRa mesh network` (400 monthly searches, medium competition)
@@ -89,6 +99,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ---
 
 **Getting Started**:
+
 - `join mesh network` (50 monthly searches, low competition)
 - `Meshtastic setup guide` (300 monthly searches, low competition)
 - `how to start Meshtastic` (200 monthly searches, low competition)
@@ -101,6 +112,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ---
 
 **Hardware Selection**:
+
 - `best Meshtastic device` (500 monthly searches, medium competition)
 - `Meshtastic hardware` (400 monthly searches, medium competition)
 - `Heltec vs T-Beam` (50 monthly searches, low competition)
@@ -113,6 +125,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ### 3.2 Secondary Keywords (Medium Priority)
 
 **Deployment Guides**:
+
 - `HOA friendly mesh antenna` (20 monthly searches, low competition)
 - `stealth mesh deployment` (10 monthly searches, very low competition)
 - `mesh antenna disguise` (5 monthly searches, very low competition)
@@ -126,6 +139,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ---
 
 **Audience-Specific**:
+
 - `Meshtastic for ham radio` (150 monthly searches, low competition)
 - `mesh networking amateur radio` (80 monthly searches, low competition)
 - `ARES Meshtastic` (20 monthly searches, very low competition)
@@ -138,6 +152,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ---
 
 **Technical**:
+
 - `Meshtastic router setup` (80 monthly searches, low competition)
 - `Meshtastic gateway` (100 monthly searches, low competition)
 - `mesh network architecture` (200 monthly searches, medium competition)
@@ -150,6 +165,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ### 3.3 Long-Tail Keywords (Low Priority but High Conversion)
 
 **Specific Problems**:
+
 - `Meshtastic not connecting to network` (20 monthly searches)
 - `how to improve Meshtastic range` (30 monthly searches)
 - `Meshtastic battery drain` (15 monthly searches)
@@ -162,6 +178,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ---
 
 **Specific Hardware**:
+
 - `Heltec LoRa32 V3 Meshtastic` (50 monthly searches)
 - `LILYGO T-Beam Meshtastic setup` (80 monthly searches)
 - `RAK WisBlock Meshtastic` (30 monthly searches)
@@ -173,6 +190,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 ---
 
 **Geographic Long-Tail**:
+
 - `mesh network Kansas City Missouri` (0-5 searches, but highly targeted)
 - `emergency communications KC metro` (0-5 searches)
 - `off-grid radio Kansas City` (0-5 searches)
@@ -183,20 +201,20 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 
 ### 3.4 Keyword Targeting by Page
 
-| Page | Primary Keyword | Secondary Keywords |
-|------|----------------|-------------------|
-| **Homepage** | Kansas City mesh network | Meshtastic Kansas City, KC emergency communications |
-| **Why Meshtastic** | what is Meshtastic | mesh networking explained, LoRa mesh network |
-| **Join the Network** | join mesh network | Meshtastic setup guide, how to start Meshtastic |
-| **Quick Start** | Meshtastic for beginners | quick Meshtastic setup |
-| **Hardware Selection** | best Meshtastic device | Meshtastic hardware, Heltec vs T-Beam, cheapest Meshtastic |
-| **Coverage Map** | Kansas City mesh coverage | Meshtastic coverage map |
-| **Network Architecture** | mesh network architecture | Meshtastic router, how mesh networks work |
-| **Ham Operators** | Meshtastic for ham radio | mesh networking amateur radio, ARES Meshtastic |
-| **Repeater Owners** | repeater site mesh deployment | Meshtastic repeater integration |
-| **Residential Solar** | HOA friendly mesh antenna | stealth mesh deployment, Meshtastic solar setup |
-| **Troubleshooting** | Meshtastic troubleshooting | Meshtastic not connecting, improve Meshtastic range |
-| **FAQs** | Meshtastic FAQ | Meshtastic questions, how does Meshtastic work |
+| Page                     | Primary Keyword               | Secondary Keywords                                         |
+| ------------------------ | ----------------------------- | ---------------------------------------------------------- |
+| **Homepage**             | Kansas City mesh network      | Meshtastic Kansas City, KC emergency communications        |
+| **Why Meshtastic**       | what is Meshtastic            | mesh networking explained, LoRa mesh network               |
+| **Join the Network**     | join mesh network             | Meshtastic setup guide, how to start Meshtastic            |
+| **Quick Start**          | Meshtastic for beginners      | quick Meshtastic setup                                     |
+| **Hardware Selection**   | best Meshtastic device        | Meshtastic hardware, Heltec vs T-Beam, cheapest Meshtastic |
+| **Coverage Map**         | Kansas City mesh coverage     | Meshtastic coverage map                                    |
+| **Network Architecture** | mesh network architecture     | Meshtastic router, how mesh networks work                  |
+| **Ham Operators**        | Meshtastic for ham radio      | mesh networking amateur radio, ARES Meshtastic             |
+| **Repeater Owners**      | repeater site mesh deployment | Meshtastic repeater integration                            |
+| **Residential Solar**    | HOA friendly mesh antenna     | stealth mesh deployment, Meshtastic solar setup            |
+| **Troubleshooting**      | Meshtastic troubleshooting    | Meshtastic not connecting, improve Meshtastic range        |
+| **FAQs**                 | Meshtastic FAQ                | Meshtastic questions, how does Meshtastic work             |
 
 ---
 
@@ -207,6 +225,7 @@ This document defines the search engine optimization (SEO) strategy, keyword tar
 **Format**: `Primary Keyword - Secondary Benefit | Kansas City Meshtastic Network`
 
 **Examples**:
+
 ```
 Homepage: Kansas City Mesh Network - Independent Emergency Communications | KC Meshtastic
 Why Meshtastic: What is Meshtastic? Mesh Networking Explained | KC Mesh Network
@@ -216,6 +235,7 @@ Residential Solar: HOA-Friendly Mesh Antenna Guide - Stealth Deployment Options
 ```
 
 **Best Practices**:
+
 - Keep under 60 characters (avoid truncation in SERPs)
 - Include primary keyword near beginning
 - Include brand/location when space allows
@@ -226,6 +246,7 @@ Residential Solar: HOA-Friendly Mesh Antenna Guide - Stealth Deployment Options
 **Format**: Concise benefit statement (150-160 characters)
 
 **Examples**:
+
 ```
 Homepage: Join the Kansas City Meshtastic mesh network - independent emergency communications infrastructure for the KC metro area. Learn how to get started.
 
@@ -237,6 +258,7 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 ```
 
 **Best Practices**:
+
 - Include primary keyword naturally
 - Include benefit/value proposition
 - Use active voice
@@ -246,12 +268,14 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 ### 4.3 Header Tags (H1-H4)
 
 **H1 (One per page)**:
+
 - Include primary keyword
 - Clear, descriptive page title
 - Example: "Kansas City Metropolitan Meshtastic Network"
 - Example: "What is Meshtastic Mesh Networking?"
 
 **H2 (Section headings)**:
+
 - Include secondary keywords where natural
 - Descriptive of section content
 - Scannable by users and search engines
@@ -259,12 +283,14 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 - Example: "Kansas City's Strategic Approach"
 
 **H3 (Subsections)**:
+
 - Long-tail keyword opportunities
 - Specific topics within sections
 - Example: "Real-World Applications"
 - Example: "Entry-Level Hardware Options"
 
 **H4 (Sub-subsections)**:
+
 - Detailed breakdowns
 - Less critical for SEO, more for user scanning
 - Example: "Heltec LoRa32 V3"
@@ -272,6 +298,7 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 ### 4.4 URL Structure
 
 **Clean, Descriptive, Hierarchical**:
+
 ```
 ✅ kansascitymesh.live/about/why-meshtastic
 ✅ kansascitymesh.live/get-started/join
@@ -286,6 +313,7 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 ```
 
 **Best Practices**:
+
 - Lowercase only
 - Hyphens (not underscores)
 - Include primary keyword when natural
@@ -295,6 +323,7 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 ### 4.5 Image Optimization
 
 **File Names**:
+
 ```
 ✅ kansas-city-mesh-network-coverage-map.jpg
 ✅ heltec-lora32-v3-antenna-upgrade.jpg
@@ -306,17 +335,26 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 ```
 
 **Alt Text**:
-```html
-✅ <img src="..." alt="Kansas City mesh network coverage map showing east side router operational, west side seeking host" />
-✅ <img src="..." alt="Heltec LoRa32 V3 device with upgraded 5dBi antenna" />
-✅ <img src="..." alt="Flagpole mesh antenna installation - HOA-friendly stealth deployment" />
 
-❌ <img src="..." alt="Map" />
-❌ <img src="..." alt="Device" />
-❌ <img src="..." alt="" /> <!-- when image is meaningful -->
+```html
+✅
+<img
+  src="..."
+  alt="Kansas City mesh network coverage map showing east side router operational, west side seeking host"
+/>
+✅ <img src="..." alt="Heltec LoRa32 V3 device with upgraded 5dBi antenna" /> ✅
+<img
+  src="..."
+  alt="Flagpole mesh antenna installation - HOA-friendly stealth deployment"
+/>
+
+❌ <img src="..." alt="Map" /> ❌ <img src="..." alt="Device" /> ❌
+<img src="..." alt="" />
+<!-- when image is meaningful -->
 ```
 
 **Best Practices**:
+
 - Descriptive file names (keywords when natural)
 - Alt text describes image content and context
 - Include keywords in alt text when relevant (not stuffed)
@@ -329,16 +367,19 @@ Residential Solar: HOA-friendly Meshtastic deployment guide. Stealth integration
 **Strategic Link Structure**:
 
 **Hub Pages** (receive many internal links):
+
 - Homepage
 - Join the Network
 - Community & Coordination
 
 **Content Clusters** (pages link within cluster):
+
 - Get Started pages all link to each other
 - Deployment Guides all link to each other
 - Network Info pages all link to each other
 
 **Contextual Links** (natural within content):
+
 ```
 Example in Why Meshtastic page:
 "Ready to join? See our complete [join the network guide](/get-started/join) for step-by-step instructions."
@@ -348,6 +389,7 @@ Example in Hardware Selection:
 ```
 
 **Best Practices**:
+
 - Descriptive anchor text (not "click here")
 - Link to relevant pages naturally within content
 - 3-5 internal links per page minimum
@@ -361,6 +403,7 @@ Example in Hardware Selection:
 ### 5.1 Content Depth
 
 **Comprehensive Coverage**:
+
 - Pillar pages: 2000-3000+ words (Why Meshtastic, Hardware Selection, Residential Solar)
 - Standard pages: 1000-1500 words (Join the Network, Deployment Guides)
 - Reference pages: 800-1200 words (Troubleshooting, FAQs)
@@ -371,6 +414,7 @@ Example in Hardware Selection:
 ### 5.2 Content Freshness
 
 **Update Schedule**:
+
 - Homepage: Monthly (recent updates section)
 - Get Started section: Quarterly (hardware/pricing changes)
 - Deployment Guides: Semi-annual (technique refinements)
@@ -378,6 +422,7 @@ Example in Hardware Selection:
 - Coverage Map: Weekly during growth phase
 
 **Last Updated Timestamps**:
+
 - Display on all content pages
 - Signal freshness to users and search engines
 - Example: "Last updated: October 4, 2025"
@@ -385,11 +430,13 @@ Example in Hardware Selection:
 ### 5.3 Content Uniqueness
 
 **Avoid Duplicate Content**:
+
 - Every page has unique title, description, H1
 - No copied content from other sites
 - Unique value proposition (anti-dogma, KC-specific strategy)
 
 **Unique Content Opportunities**:
+
 - KC-specific mesh network planning (unique)
 - Anti-dogma practical deployment guides (unique angle)
 - Stealth/HOA deployment techniques (underserved niche)
@@ -397,6 +444,7 @@ Example in Hardware Selection:
 - Community coordination transparency (unique feature)
 
 **Competitive Advantage**:
+
 - Official Meshtastic docs: Technical, not beginner-friendly
 - Other community sites: Generic, not geographically focused
 - Forums: Fragmented, not comprehensive guides
@@ -405,24 +453,28 @@ Example in Hardware Selection:
 ### 5.4 E-E-A-T (Experience, Expertise, Authoritativeness, Trustworthiness)
 
 **Experience**:
+
 - Real deployment stories (Northland client cluster + MQTT Pi gateway)
 - Actual hardware testing and comparisons
 - Documented challenges and solutions
 - Community-contributed success stories
 
 **Expertise**:
+
 - Technical accuracy (LoRa specs, configurations)
 - Ham radio operator knowledge (repeater integration)
 - UX expertise (accessible explanations)
 - Demonstrate depth without jargon
 
 **Authoritativeness**:
+
 - Comprehensive guides (most complete resource)
 - Regular updates (active project)
 - Community engagement (coordination transparency)
 - External links from Meshtastic community (backlinks)
 
 **Trustworthiness**:
+
 - Honest expectations (not overpromising)
 - Transparent coordination efforts (status panel)
 - Accurate technical information (verified)
@@ -439,34 +491,40 @@ Example in Hardware Selection:
 **Target Sources**:
 
 **Meshtastic Community**:
+
 - Official Meshtastic Discord/forums (community thread, link in bio)
 - Reddit r/meshtastic (Kansas City mesh network post)
 - Meshtastic GitHub Discussions (community showcase)
 - Other regional mesh networks (resource exchange)
 
 **Ham Radio Community**:
+
 - Local ham radio clubs (KCARC, JCHRC) websites
 - ARRL Kansas City section newsletter
 - Repeater directories (USDX, RepeaterBook) - mention mesh integration
 - Ham radio blogs/forums (QRZ profiles, discussion posts)
 
 **Emergency Communications**:
+
 - ARES/RACES groups (resource for emcomm preparedness)
 - Emergency preparedness organizations (KC Emergency Preparedness Coalition)
 - Prepper/resilience communities (mesh as backup comms)
 
 **Local/Regional**:
+
 - Kansas City tech community (KC Tech Council, local maker spaces)
 - Local news (pitch story: "KC Community Builds Independent Mesh Network")
 - University tech programs (UMKC, KU engineering programs)
 - Smart city initiatives (KC as technology testbed)
 
 **Tech/DIY Communities**:
+
 - Hackaday (submit project log)
 - Maker forums (LoRa/RF projects)
 - Self-hosting communities (independent infrastructure)
 
 **Outreach Tactics**:
+
 - Submit to community directories (one-time links)
 - Write guest posts for relevant blogs (link in bio)
 - Participate in forums with signature link
@@ -474,6 +532,7 @@ Example in Hardware Selection:
 - Submit to "awesome lists" on GitHub (Meshtastic resources)
 
 **Link Velocity**:
+
 - Target: 5-10 quality backlinks in first 6 months
 - Focus on relevance over quantity
 - Avoid spammy link schemes
@@ -482,18 +541,21 @@ Example in Hardware Selection:
 ### 6.2 Social Signals
 
 **Social Media Presence**:
+
 - Twitter/X: @KCMeshNetwork (network updates, recruitment)
 - Facebook: Kansas City Meshtastic Network group
 - Reddit: Active in r/meshtastic, r/amateurradio, r/kansascity
 - Discord/Matrix: Community chat (linked from site)
 
 **Content Sharing**:
+
 - Share blog posts/updates on social channels
 - Encourage community to share deployment stories
 - Success stories with photos (visual content performs well)
 - Infographics (coverage maps, setup guides)
 
 **Social Proof**:
+
 - Display node count, coverage stats (homepage)
 - Testimonials from participants
 - Success stories with names/photos (permission)
@@ -502,21 +564,25 @@ Example in Hardware Selection:
 ### 6.3 Local SEO
 
 **Google Business Profile**:
+
 - Not applicable (not a business, virtual organization)
 - Consider future: Community organization profile?
 
 **Local Citations**:
+
 - Kansas City community directories
 - Tech community listings
 - Ham radio club affiliations
 - Emergency preparedness resource lists
 
 **Local Keywords**:
+
 - Include "Kansas City", "KC", "Missouri", "Johnson County"
 - Neighborhood names (Brookside, Westport, etc.) in success stories
 - Local landmarks in photo descriptions
 
 **Structured Data (Local Organization)**:
+
 ```json
 {
   "@context": "https://schema.org",
@@ -543,11 +609,13 @@ Example in Hardware Selection:
 ### 7.1 Site Performance
 
 **Core Web Vitals** (SEO ranking factor):
+
 - LCP (Largest Contentful Paint): < 2.5s
 - FID (First Input Delay): < 100ms
 - CLS (Cumulative Layout Shift): < 0.1
 
 **Performance Optimizations**:
+
 - Static site generation (pre-rendered HTML)
 - Image optimization (WebP, lazy loading)
 - Minimal JavaScript (defer non-critical)
@@ -555,6 +623,7 @@ Example in Hardware Selection:
 - Minified CSS/JS
 
 **Mobile Performance**:
+
 - Mobile-first design
 - Responsive images
 - Touch-friendly UI
@@ -563,6 +632,7 @@ Example in Hardware Selection:
 ### 7.2 Mobile Optimization
 
 **Mobile-Friendly Test** (Google):
+
 - Responsive design (passes test)
 - No horizontal scrolling
 - Text readable without zooming
@@ -570,6 +640,7 @@ Example in Hardware Selection:
 - Mobile viewport meta tag
 
 **Mobile Ranking**:
+
 - Google uses mobile-first indexing
 - Mobile experience = primary ranking factor
 - Desktop experience secondary
@@ -579,6 +650,7 @@ Example in Hardware Selection:
 **Schema.org Markup**:
 
 **Organization** (all pages):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -592,6 +664,7 @@ Example in Hardware Selection:
 ```
 
 **Article** (blog posts, success stories):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -604,6 +677,7 @@ Example in Hardware Selection:
 ```
 
 **HowTo** (guides like Join the Network, Hardware Selection):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -620,6 +694,7 @@ Example in Hardware Selection:
 ```
 
 **FAQPage** (FAQs page):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -638,6 +713,7 @@ Example in Hardware Selection:
 ```
 
 **Breadcrumb** (all pages):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -667,6 +743,7 @@ Example in Hardware Selection:
 ### 7.4 XML Sitemap
 
 **Auto-Generated by Framework** (Astro, Next.js):
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -687,10 +764,12 @@ Example in Hardware Selection:
 ```
 
 **Submit to**:
+
 - Google Search Console
 - Bing Webmaster Tools
 
 **Priority Values**:
+
 - Homepage: 1.0
 - Primary pages (Join, Coordination): 0.9
 - Secondary pages (Guides, Network Info): 0.8
@@ -711,11 +790,13 @@ Sitemap: https://kansascitymesh.live/sitemap.xml
 ### 7.6 Canonical URLs
 
 **Prevent Duplicate Content**:
+
 ```html
 <link rel="canonical" href="https://kansascitymesh.live/get-started/join" />
 ```
 
 **All Pages Include**:
+
 - Canonical tag pointing to primary URL
 - Handles www vs non-www
 - Handles trailing slash variations
@@ -728,6 +809,7 @@ Sitemap: https://kansascitymesh.live/sitemap.xml
 ### 8.1 Analytics Platform: Plausible Analytics
 
 **Why Plausible**:
+
 - Privacy-friendly (GDPR compliant, no cookies)
 - Lightweight (< 1KB script)
 - Simple, clear interface
@@ -739,6 +821,7 @@ Sitemap: https://kansascitymesh.live/sitemap.xml
 ### 8.2 Key Metrics to Track
 
 **Traffic Metrics**:
+
 - Sessions (total visits)
 - Pageviews (total pages viewed)
 - Unique visitors
@@ -748,12 +831,14 @@ Sitemap: https://kansascitymesh.live/sitemap.xml
 - Exit pages (where users leave)
 
 **Engagement Metrics**:
+
 - Average session duration
 - Pages per session
 - Bounce rate (single-page sessions)
 - Scroll depth (how far users read)
 
 **Conversion Metrics** (custom events):
+
 - Contact form submissions
 - Community chat joins (link clicks)
 - Hardware purchase link clicks
@@ -761,12 +846,14 @@ Sitemap: https://kansascitymesh.live/sitemap.xml
 - Specific CTA clicks
 
 **SEO Metrics**:
+
 - Organic search traffic (sessions from Google/Bing)
 - Top search keywords (via Google Search Console)
 - Click-through rate from SERPs
 - Average position in search results
 
 **Technical Metrics**:
+
 - Page load time (via Plausible or separate tool)
 - Browser/device distribution
 - Operating system distribution
@@ -775,31 +862,41 @@ Sitemap: https://kansascitymesh.live/sitemap.xml
 ### 8.3 Custom Event Tracking
 
 **Setup in Plausible**:
+
 ```javascript
 // Track hardware purchase link clicks
-plausible('HardwarePurchase', {props: {
-  device: 'Heltec V3',
-  vendor: 'Amazon'
-}});
+plausible("HardwarePurchase", {
+  props: {
+    device: "Heltec V3",
+    vendor: "Amazon",
+  },
+});
 
 // Track contact form submission
-plausible('ContactForm', {props: {
-  source: 'Community Coordination page'
-}});
+plausible("ContactForm", {
+  props: {
+    source: "Community Coordination page",
+  },
+});
 
 // Track community chat join
-plausible('JoinChat', {props: {
-  platform: 'Discord'
-}});
+plausible("JoinChat", {
+  props: {
+    platform: "Discord",
+  },
+});
 
 // Track guide CTA clicks
-plausible('GuideCTA', {props: {
-  guide: 'Ham Operators',
-  cta: 'Get Started'
-}});
+plausible("GuideCTA", {
+  props: {
+    guide: "Ham Operators",
+    cta: "Get Started",
+  },
+});
 ```
 
 **Events to Track**:
+
 - `HardwarePurchase` - clicks to vendor sites (props: device, vendor)
 - `ContactForm` - form submissions (props: source page)
 - `JoinChat` - community chat link clicks (props: platform)
@@ -810,6 +907,7 @@ plausible('GuideCTA', {props: {
 ### 8.4 Goals and Funnels
 
 **Primary Goal: New Participant**
+
 ```
 Funnel:
 1. Land on Homepage OR Why Meshtastic (entry)
@@ -820,6 +918,7 @@ Funnel:
 **Metric**: Funnel completion rate > 10%
 
 **Secondary Goal: Infrastructure Recruitment**
+
 ```
 Funnel:
 1. Land on Repeater Owners OR West Side Infrastructure (entry)
@@ -830,6 +929,7 @@ Funnel:
 **Metric**: Guide → Contact conversion > 5%
 
 **Tertiary Goal: Community Coordination**
+
 ```
 Funnel:
 1. Land on Homepage OR About/Coordination (entry)
@@ -842,6 +942,7 @@ Funnel:
 ### 8.5 Google Search Console Integration
 
 **Setup**:
+
 - Verify site ownership (HTML tag or DNS)
 - Submit sitemap
 - Monitor regularly
@@ -849,27 +950,32 @@ Funnel:
 **Key Reports**:
 
 **Performance**:
+
 - Total clicks from Google search
 - Total impressions in search results
 - Average click-through rate (CTR)
 - Average position in search results
 
 **Queries**:
+
 - Top search queries driving traffic
 - Queries with impressions but low clicks (opportunity)
 - Queries with high position but low CTR (improve meta descriptions)
 
 **Pages**:
+
 - Top performing pages in search
 - Pages with high impressions, low clicks (improve titles)
 - Pages with high position but low traffic (improve CTR)
 
 **Coverage**:
+
 - Indexed pages (should match sitemap)
 - Excluded pages (errors to fix)
 - Mobile usability issues (fix immediately)
 
 **Core Web Vitals**:
+
 - LCP, FID, CLS metrics (real user data)
 - URLs needing improvement
 - Mobile vs desktop performance
@@ -877,12 +983,14 @@ Funnel:
 ### 8.6 Analytics Review Schedule
 
 **Weekly**:
+
 - Traffic overview (sessions, sources)
 - Top pages
 - Conversion events
 - Any anomalies or spikes
 
 **Monthly**:
+
 - Comprehensive traffic review
 - Funnel analysis
 - SEO performance (Search Console)
@@ -890,6 +998,7 @@ Funnel:
 - Content performance (which pages succeed, which underperform)
 
 **Quarterly**:
+
 - Full SEO audit
 - Keyword ranking changes
 - Backlink growth
@@ -903,6 +1012,7 @@ Funnel:
 ### 9.1 CRO Principles
 
 **Hypothesis-Driven Testing**:
+
 - Identify conversion bottlenecks (analytics)
 - Form hypothesis (e.g., "Simplifying contact form will increase submissions")
 - Test change (A/B test or before/after comparison)
@@ -910,6 +1020,7 @@ Funnel:
 - Iterate
 
 **For Static Site** (no A/B testing initially):
+
 - Use analytics to identify drop-off points
 - Implement changes sequentially
 - Measure before/after metrics
@@ -918,11 +1029,13 @@ Funnel:
 ### 9.2 Conversion Points
 
 **Primary Conversions**:
+
 1. Hardware purchase link clicks
 2. Contact form submissions
 3. Community chat joins
 
 **Micro-Conversions** (steps toward primary):
+
 1. Join the Network page visits
 2. Hardware Selection page visits
 3. Deployment guide page visits
@@ -932,27 +1045,32 @@ Funnel:
 ### 9.3 Optimization Tactics
 
 **Clear Value Proposition** (homepage):
+
 - Above-fold: What it is, why it matters, how to join
 - Community coordination banner prominent
 - CTAs visible without scrolling
 
 **Reduce Friction**:
+
 - Contact form: Minimal fields (name, email, message)
 - Navigation: < 3 clicks to any page
 - Mobile: Touch-friendly, fast loading
 
 **Build Trust**:
+
 - Live network stats (transparency)
 - Success stories (social proof)
 - Honest expectations (not overpromising)
 - Contact information visible (footer, dedicated page)
 
 **Urgency/Scarcity** (when genuine):
+
 - West Side Infrastructure: "Seeking host - limited positions"
 - Network stats: "12 nodes online - growing weekly"
 - Not: Fake countdown timers, false scarcity
 
 **Directional Cues**:
+
 - CTAs use action verbs ("Join the Network", not "Click Here")
 - Contextual next steps ("Ready to start? See Join the Network")
 - Related links at page end
@@ -966,6 +1084,7 @@ Funnel:
 **Purpose**: Fresh content for SEO, community engagement
 
 **Topics**:
+
 - Router deployment updates (Router 2 progress, Router 3/4 planning)
 - Success stories (new participants, coverage expansion)
 - Technical deep-dives (advanced configurations, integrations)
@@ -975,6 +1094,7 @@ Funnel:
 **Frequency**: 2-4 posts/month (sustainable)
 
 **SEO Benefit**:
+
 - Fresh content signals (search engines favor active sites)
 - Long-tail keyword opportunities (specific topics)
 - Internal linking (blog posts link to guides)
@@ -983,18 +1103,21 @@ Funnel:
 ### 10.2 Guest Posting (Outreach)
 
 **Target Blogs**:
+
 - Hackaday (project log format)
 - Ham radio blogs (mesh networking for emcomm)
 - Prepper/resilience sites (independent comms)
 - Local tech blogs (KC tech community)
 
 **Article Ideas**:
+
 - "How Kansas City is Building a Community Mesh Network" (local angle)
 - "Mesh Networking for Emergency Communications: A Beginner's Guide" (ham radio audience)
 - "Deploying Meshtastic on a Shoestring: Complete $100 Setup" (budget/DIY angle)
 - "HOA-Friendly Mesh Antenna: Stealth Deployment Techniques" (unique value)
 
 **SEO Benefit**:
+
 - Backlink from guest post
 - Brand awareness
 - Traffic from author bio link
@@ -1002,6 +1125,7 @@ Funnel:
 ### 10.3 Social Media Content
 
 **Content Types**:
+
 - Network updates (node count, coverage expansion)
 - Deployment photos (hardware setups, installations)
 - Tips and tricks (optimization advice)
@@ -1009,6 +1133,7 @@ Funnel:
 - Educational snippets (mesh networking concepts)
 
 **Platforms**:
+
 - Twitter/X: Technical updates, industry news, quick tips
 - Facebook: Community discussion, event coordination
 - Reddit: In-depth Q&A, project showcases
@@ -1017,6 +1142,7 @@ Funnel:
 **Frequency**: 3-5 posts/week (mix platforms)
 
 **SEO Benefit**:
+
 - Social signals (indirect ranking factor)
 - Traffic from social channels
 - Brand awareness (searches for "KC mesh network")
@@ -1028,21 +1154,25 @@ Funnel:
 ### 11.1 Primary Competitors
 
 **Official Meshtastic Documentation**:
+
 - Strengths: Authoritative, comprehensive technical docs
 - Weaknesses: Not beginner-friendly, no local focus, generic
 - Opportunity: We provide local, beginner-focused alternative
 
 **Other Regional Mesh Networks**:
+
 - Strengths: Established communities, real-world experience
 - Weaknesses: Most lack comprehensive online presence, not KC-specific
 - Opportunity: Learn from their approaches, reference their success
 
 **Ham Radio Emergency Comms**:
+
 - Strengths: Established infrastructure, recognized by emergency services
 - Weaknesses: Different technology (voice nets, not mesh data)
 - Opportunity: Position as complement, recruit from ham community
 
 **Commercial Mesh Solutions** (goTenna, etc.):
+
 - Strengths: Polished, funded, marketing
 - Weaknesses: Proprietary, expensive, subscription models
 - Opportunity: Emphasize open-source, community-owned, low-cost
@@ -1050,17 +1180,20 @@ Funnel:
 ### 11.2 SEO Competitive Gaps
 
 **Keywords We Can Dominate**:
+
 - "Kansas City mesh network" (no current competitors)
 - "HOA-friendly mesh antenna" (underserved)
 - "Meshtastic for repeater owners" (unique angle)
 - "stealth mesh deployment" (unique content)
 
 **Keywords Where We'll Compete**:
+
 - "best Meshtastic device" (medium competition, we add value with comparisons)
 - "Meshtastic setup guide" (low competition, comprehensive guide wins)
 - "what is Meshtastic" (medium competition, beginner-friendly approach differentiates)
 
 **Keywords We Won't Target** (too competitive):
+
 - "mesh networking" (too broad, dominated by enterprise solutions)
 - "emergency communications" (too broad, government/commercial sites)
 - "LoRa" (component, not application)
@@ -1072,6 +1205,7 @@ Funnel:
 ### 12.1 Pre-Launch SEO Tasks
 
 **Technical Setup**:
+
 - [ ] Verify domain configured correctly (DNS)
 - [ ] HTTPS enabled (SSL certificate)
 - [ ] Canonical tags on all pages
@@ -1084,6 +1218,7 @@ Funnel:
 - [ ] Custom events configured (hardware purchase, contact, etc.)
 
 **On-Page SEO**:
+
 - [ ] Unique title tags on all pages (< 60 chars)
 - [ ] Unique meta descriptions on all pages (150-160 chars)
 - [ ] H1 tags on all pages (one per page, includes primary keyword)
@@ -1096,6 +1231,7 @@ Funnel:
 - [ ] Breadcrumbs on all pages (except homepage)
 
 **Content**:
+
 - [ ] All pages have minimum word count (see content strategy)
 - [ ] Primary keyword integrated naturally (not stuffed)
 - [ ] Secondary keywords sprinkled throughout
@@ -1105,6 +1241,7 @@ Funnel:
 - [ ] Author attribution (if applicable)
 
 **Mobile**:
+
 - [ ] Responsive design tested on mobile devices
 - [ ] Mobile-friendly test (Google) passed
 - [ ] Touch targets minimum 44×44px
@@ -1112,6 +1249,7 @@ Funnel:
 - [ ] Text readable without zooming
 
 **Performance**:
+
 - [ ] Lighthouse audit: Performance > 90
 - [ ] Lighthouse audit: Accessibility 100
 - [ ] Lighthouse audit: Best Practices > 90
@@ -1123,6 +1261,7 @@ Funnel:
 ### 12.2 Post-Launch SEO Tasks
 
 **Week 1**:
+
 - [ ] Monitor Google Search Console for indexing
 - [ ] Verify all pages indexed (check Coverage report)
 - [ ] Fix any indexing errors immediately
@@ -1130,6 +1269,7 @@ Funnel:
 - [ ] Test all custom events fire correctly
 
 **Month 1**:
+
 - [ ] Submit site to Meshtastic community directories/forums
 - [ ] Reach out to local ham radio clubs (link request)
 - [ ] Create social media profiles (Twitter, Facebook)
@@ -1138,6 +1278,7 @@ Funnel:
 - [ ] Identify quick-win keywords (low competition, relevant)
 
 **Month 2-3**:
+
 - [ ] Publish first blog post/update (if blog section exists)
 - [ ] Reach out for first backlinks (low-hanging fruit)
 - [ ] Monitor Google Search Console for ranking improvements
@@ -1146,6 +1287,7 @@ Funnel:
 - [ ] Add FAQ schema to FAQs page
 
 **Month 4-6**:
+
 - [ ] Comprehensive SEO audit (all elements)
 - [ ] Backlink outreach campaign (guest posts, partnerships)
 - [ ] Publish success story content (social proof)
@@ -1160,35 +1302,42 @@ Funnel:
 ### 13.1 Free Tools
 
 **Google Search Console** (essential):
+
 - Monitor indexing, rankings, clicks
 - Identify technical issues
 - Submit sitemap
 - Track Core Web Vitals
 
 **Google Analytics** or **Plausible** (analytics):
+
 - Traffic metrics
 - User behavior
 - Conversion tracking
 
 **Google Lighthouse** (performance/SEO audit):
+
 - Built into Chrome DevTools
 - Comprehensive site audit
 - Generates actionable recommendations
 
 **Google Mobile-Friendly Test**:
+
 - Verify mobile optimization
 - Identify mobile usability issues
 
 **PageSpeed Insights**:
+
 - Performance metrics (Core Web Vitals)
 - Mobile and desktop
 - Real-world data + lab data
 
 **Bing Webmaster Tools**:
+
 - Similar to Google Search Console
 - Bing-specific insights (smaller traffic share, but worth it)
 
 **Screaming Frog SEO Spider** (free up to 500 URLs):
+
 - Crawl site for technical SEO issues
 - Find broken links, missing meta tags, etc.
 - Export data for bulk analysis
@@ -1196,17 +1345,20 @@ Funnel:
 ### 13.2 Paid Tools (Optional)
 
 **Ahrefs** ($99/month):
+
 - Keyword research
 - Backlink analysis
 - Competitor research
 - Rank tracking
 
 **SEMrush** ($119/month):
+
 - Similar to Ahrefs
 - Keyword research, competitor analysis
 - Site audit
 
 **Moz Pro** ($99/month):
+
 - Keyword research
 - Rank tracking
 - Link analysis
@@ -1216,6 +1368,7 @@ Funnel:
 ### 13.3 Keyword Research Tools
 
 **Free**:
+
 - Google Keyword Planner (requires Google Ads account, but no spend required)
 - Google Trends (identify trending topics)
 - Google Search autocomplete (type keyword, see suggestions)
@@ -1223,6 +1376,7 @@ Funnel:
 - Google Search Console (queries already driving traffic)
 
 **Paid**:
+
 - Ahrefs Keyword Explorer
 - SEMrush Keyword Magic Tool
 - Moz Keyword Explorer
@@ -1232,6 +1386,7 @@ Funnel:
 ## 14. Appendix: SEO Checklist by Page
 
 ### Homepage
+
 - [x] Title: "Kansas City Mesh Network - Independent Emergency Communications | KC Meshtastic"
 - [x] Meta: "Join the Kansas City Meshtastic mesh network - independent emergency communications infrastructure for the KC metro area. Learn how to get started."
 - [x] H1: "Kansas City Metropolitan Meshtastic Network"
@@ -1242,6 +1397,7 @@ Funnel:
 - [x] Internal links: Join Network, Why Meshtastic, Community & Coordination
 
 ### Join the Network
+
 - [x] Title: "Join the Kansas City Mesh Network - Complete Setup Guide"
 - [x] Meta: "Complete guide to joining the Kansas City mesh network in 4 steps. From hardware selection to configuration - get your Meshtastic node online today."
 - [x] H1: "Join the Kansas City Mesh Network"
@@ -1252,6 +1408,7 @@ Funnel:
 - [x] Internal links: Hardware Selection, Quick Start, Troubleshooting
 
 ### Hardware Selection
+
 - [x] Title: "Best Meshtastic Device Guide - Hardware Comparison & Reviews"
 - [x] Meta: "Comprehensive Meshtastic hardware selection guide. Compare devices, find the best option for your budget and use case. Entry-level to infrastructure options."
 - [x] H1: "Meshtastic Hardware Selection Guide"

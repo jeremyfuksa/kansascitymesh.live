@@ -1,4 +1,5 @@
 # Design System Specification
+
 ## Kansas City Meshtastic Network Website
 
 **Version**: 1.0
@@ -20,27 +21,32 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 2.1 Core Principles
 
 **Mobile-First**: Design for smallest screen, enhance for larger
+
 - Touch-friendly targets (44×44px minimum)
 - Thumb-reachable primary actions
 - Vertical scrolling preferred over horizontal
 
 **Professional but Accessible**: High-end aesthetic without intimidation
+
 - Clean, spacious layouts
 - Clear hierarchy and scanning
 - Welcoming to all skill levels
 
 **Local Identity**: Kansas City pride without gimmicks
+
 - KC color palette (red, blue, gold)
 - Skyline imagery where appropriate
 - Midwestern straightforward tone in design
 
 **Warm Undertones**: Counter cold blue/green tech feeling
+
 - Warm browns for dark mode backgrounds
 - Warm off-white for light mode backgrounds
 - Amber and gold accent colors
 - Human, approachable feeling
 
 **Performance-Conscious**: Beautiful but fast
+
 - Minimal decorative elements
 - System fonts primarily
 - Optimized images only
@@ -53,131 +59,150 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 3.1 Brand Colors
 
 **Primary Colors**:
+
 ```css
---kc-red: #E31837;        /* Kansas City Red - Primary CTAs, alerts */
---kc-blue: #004687;       /* Kansas City Blue - Secondary elements, links */
---kc-sky: #5DADE2;        /* Kansas City Sky Blue - Accents, info callouts */
---mesh-green: #67C98F;    /* Meshtastic Green - Success states, network status */
+--kc-red: #e31837; /* Kansas City Red - Primary CTAs, alerts */
+--kc-blue: #004687; /* Kansas City Blue - Secondary elements, links */
+--kc-sky: #5dade2; /* Kansas City Sky Blue - Accents, info callouts */
+--mesh-green: #67c98f; /* Meshtastic Green - Success states, network status */
 ```
 
 **Warm Accents** (balance blue/green dominance):
+
 ```css
---sunset-amber: #F59E42;  /* Warm highlights, secondary CTAs */
---kc-clay: #D4825C;       /* Tertiary accents, borders */
---prairie-gold: #E8B547;  /* Attention elements, badges */
+--sunset-amber: #f59e42; /* Warm highlights, secondary CTAs */
+--kc-clay: #d4825c; /* Tertiary accents, borders */
+--prairie-gold: #e8b547; /* Attention elements, badges */
 ```
 
 ### 3.2 Light Mode Theme
 
 **Backgrounds**:
+
 ```css
---bg-primary: #FDFBF7;    /* Warm off-white (not stark white) */
---bg-secondary: #F5EFE6;  /* Cream/warm gray for cards */
---bg-tertiary: #EBE3D5;   /* Slightly darker for subtle contrast */
+--bg-primary: #fdfbf7; /* Warm off-white (not stark white) */
+--bg-secondary: #f5efe6; /* Cream/warm gray for cards */
+--bg-tertiary: #ebe3d5; /* Slightly darker for subtle contrast */
 ```
 
 **Text**:
+
 ```css
---text-primary: #2B2420;   /* Warm dark brown (not black) */
---text-secondary: #5A4F47; /* Muted brown for secondary text */
---text-tertiary: #8B7F76;  /* Light brown for meta/captions */
+--text-primary: #2b2420; /* Warm dark brown (not black) */
+--text-secondary: #5a4f47; /* Muted brown for secondary text */
+--text-tertiary: #8b7f76; /* Light brown for meta/captions */
 ```
 
 **Borders**:
+
 ```css
---border-light: #D9D1C7;   /* Subtle warm border */
---border-medium: #C4B8AB;  /* Medium contrast border */
---border-dark: #9B8D80;    /* Strong border */
+--border-light: #d9d1c7; /* Subtle warm border */
+--border-medium: #c4b8ab; /* Medium contrast border */
+--border-dark: #9b8d80; /* Strong border */
 ```
 
 ### 3.3 Dark Mode Theme
 
 **Backgrounds**:
+
 ```css
---bg-primary: #1A1512;     /* Warm dark brown (not black) */
---bg-secondary: #2B2420;   /* Warm charcoal for cards */
---bg-tertiary: #3C352F;    /* Slightly lighter for contrast */
+--bg-primary: #1a1512; /* Warm dark brown (not black) */
+--bg-secondary: #2b2420; /* Warm charcoal for cards */
+--bg-tertiary: #3c352f; /* Slightly lighter for contrast */
 ```
 
 **Text**:
+
 ```css
---text-primary: #F4E8D8;   /* Warm off-white */
---text-secondary: #D9C7B3; /* Muted warm tan */
---text-tertiary: #B3A090;  /* Subtle warm gray */
+--text-primary: #f4e8d8; /* Warm off-white */
+--text-secondary: #d9c7b3; /* Muted warm tan */
+--text-tertiary: #b3a090; /* Subtle warm gray */
 ```
 
 **Borders**:
+
 ```css
---border-light: #3C352F;   /* Subtle border in dark */
---border-medium: #5A4F47;  /* Medium contrast border */
---border-dark: #8B7F76;    /* Strong border */
+--border-light: #3c352f; /* Subtle border in dark */
+--border-medium: #5a4f47; /* Medium contrast border */
+--border-dark: #8b7f76; /* Strong border */
 ```
 
 ### 3.4 Semantic Colors
 
 **Success** (operational, completed):
+
 ```css
---success-light: #67C98F;  /* Meshtastic Green */
---success-dark: #52A675;   /* Darker green for dark mode */
+--success-light: #67c98f; /* Meshtastic Green */
+--success-dark: #52a675; /* Darker green for dark mode */
 ```
 
 **Warning** (caution, attention needed):
+
 ```css
---warning-light: #E8B547;  /* Prairie Gold */
---warning-dark: #C99B3A;   /* Darker gold for dark mode */
+--warning-light: #e8b547; /* Prairie Gold */
+--warning-dark: #c99b3a; /* Darker gold for dark mode */
 ```
 
 **Error** (problems, critical):
+
 ```css
---error-light: #E31837;    /* KC Red */
---error-dark: #B91329;     /* Darker red for dark mode */
+--error-light: #e31837; /* KC Red */
+--error-dark: #b91329; /* Darker red for dark mode */
 ```
 
 **Info** (helpful information):
+
 ```css
---info-light: #5DADE2;     /* KC Sky Blue */
---info-dark: #4A8AB8;      /* Darker blue for dark mode */
+--info-light: #5dade2; /* KC Sky Blue */
+--info-dark: #4a8ab8; /* Darker blue for dark mode */
 ```
 
 ### 3.5 Color Usage Guidelines
 
 **KC Red (#E31837)**:
+
 - Primary CTAs ("Join the Network", "Get Started")
 - Alert badges ("SEEKING INFRASTRUCTURE")
 - Error states
 - Navigation hover states (sparingly)
 
 **KC Blue (#004687)**:
+
 - Links (text links, navigation)
 - Secondary CTAs
 - Headings (optional, if want color)
 - Icons (infrastructure, technical)
 
 **KC Sky Blue (#5DADE2)**:
+
 - Info callouts
 - Highlights
 - Tooltips backgrounds
 - Code blocks (optional)
 
 **Meshtastic Green (#67C98F)**:
+
 - Success states ("Operational", "Connected")
 - Positive metrics (uptime, active nodes)
 - Confirmation messages
 - Progress indicators
 
 **Sunset Amber (#F59E42)**:
+
 - Community Coordination Banner background (warm, welcoming)
 - Secondary CTAs (softer than red)
 - Warm highlights
 - Badges (non-critical attention)
 
 **KC Clay (#D4825C)**:
+
 - Tertiary accents
 - Border highlights
 - Decorative elements
 - Subtle backgrounds
 
 **Prairie Gold (#E8B547)**:
+
 - Date badges
 - Update indicators
 - "New" or "Updated" labels
@@ -186,16 +211,19 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 3.6 Contrast Ratios
 
 **WCAG AA Compliance Minimum**:
+
 - Normal text (< 18pt): 4.5:1
 - Large text (≥ 18pt or 14pt bold): 3:1
 - UI components and graphics: 3:1
 
 **Verified Combinations** (light mode):
+
 - `#2B2420` on `#FDFBF7`: 11.2:1 ✅
 - `#004687` on `#FDFBF7`: 10.8:1 ✅
 - `#E31837` on `#FDFBF7`: 5.2:1 ✅
 
 **Verified Combinations** (dark mode):
+
 - `#F4E8D8` on `#1A1512`: 12.1:1 ✅
 - `#5DADE2` on `#1A1512`: 6.7:1 ✅
 - `#67C98F` on `#1A1512`: 7.3:1 ✅
@@ -207,23 +235,28 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 4.1 Font Stack
 
 **Body Text** (system fonts for performance):
+
 ```css
---font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-             "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-             "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+--font-sans:
+  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+  Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
 ```
 
 **Monospace** (code, technical specs):
+
 ```css
---font-mono: "SF Mono", Monaco, "Cascadia Code", "Roboto Mono",
-             Consolas, "Courier New", monospace;
+--font-mono:
+  "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New",
+  monospace;
 ```
 
 **Optional Custom Font** (headings only, if brand identity requires):
+
 ```css
 /* Consider: Inter, Manrope, or similar geometric sans */
 /* Only load if performance budget allows */
---font-heading: 'Inter Variable', var(--font-sans);
+--font-heading: "Inter Variable", var(--font-sans);
 ```
 
 **Recommendation**: Use system fonts entirely for MVP, add custom heading font only if design requires and performance testing validates.
@@ -233,41 +266,44 @@ This document defines the complete design system for the Kansas City Meshtastic 
 **Type Scale** (1.25 ratio, responsive):
 
 **Mobile** (< 768px):
+
 ```css
---text-xs: 0.75rem;    /* 12px - Captions, meta */
---text-sm: 0.875rem;   /* 14px - Small text, labels */
---text-base: 1rem;     /* 16px - Body text */
---text-lg: 1.125rem;   /* 18px - Emphasized body */
---text-xl: 1.25rem;    /* 20px - H4 */
---text-2xl: 1.5rem;    /* 24px - H3 */
---text-3xl: 1.875rem;  /* 30px - H2 */
---text-4xl: 2.25rem;   /* 36px - H1 */
---text-5xl: 3rem;      /* 48px - Hero headline (mobile) */
+--text-xs: 0.75rem; /* 12px - Captions, meta */
+--text-sm: 0.875rem; /* 14px - Small text, labels */
+--text-base: 1rem; /* 16px - Body text */
+--text-lg: 1.125rem; /* 18px - Emphasized body */
+--text-xl: 1.25rem; /* 20px - H4 */
+--text-2xl: 1.5rem; /* 24px - H3 */
+--text-3xl: 1.875rem; /* 30px - H2 */
+--text-4xl: 2.25rem; /* 36px - H1 */
+--text-5xl: 3rem; /* 48px - Hero headline (mobile) */
 ```
 
 **Desktop** (≥ 768px):
+
 ```css
---text-xs: 0.75rem;    /* 12px */
---text-sm: 0.875rem;   /* 14px */
---text-base: 1rem;     /* 16px */
---text-lg: 1.125rem;   /* 18px */
---text-xl: 1.375rem;   /* 22px - H4 */
---text-2xl: 1.75rem;   /* 28px - H3 */
---text-3xl: 2.25rem;   /* 36px - H2 */
---text-4xl: 3rem;      /* 48px - H1 */
---text-5xl: 4rem;      /* 64px - Hero headline */
+--text-xs: 0.75rem; /* 12px */
+--text-sm: 0.875rem; /* 14px */
+--text-base: 1rem; /* 16px */
+--text-lg: 1.125rem; /* 18px */
+--text-xl: 1.375rem; /* 22px - H4 */
+--text-2xl: 1.75rem; /* 28px - H3 */
+--text-3xl: 2.25rem; /* 36px - H2 */
+--text-4xl: 3rem; /* 48px - H1 */
+--text-5xl: 4rem; /* 64px - Hero headline */
 ```
 
 ### 4.3 Font Weights
 
 ```css
---font-normal: 400;    /* Body text */
---font-medium: 500;    /* Emphasized body, labels */
---font-semibold: 600;  /* Subheadings, buttons */
---font-bold: 700;      /* Headings */
+--font-normal: 400; /* Body text */
+--font-medium: 500; /* Emphasized body, labels */
+--font-semibold: 600; /* Subheadings, buttons */
+--font-bold: 700; /* Headings */
 ```
 
 **Usage**:
+
 - Body paragraphs: 400
 - Labels, emphasized text: 500
 - Buttons, CTAs: 600
@@ -276,14 +312,15 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 4.4 Line Heights
 
 ```css
---leading-tight: 1.25;   /* Headings */
---leading-snug: 1.375;   /* Subheadings, large text */
---leading-normal: 1.5;   /* Body text (default) */
---leading-relaxed: 1.625;/* Long-form content */
---leading-loose: 2;      /* Captions, annotations */
+--leading-tight: 1.25; /* Headings */
+--leading-snug: 1.375; /* Subheadings, large text */
+--leading-normal: 1.5; /* Body text (default) */
+--leading-relaxed: 1.625; /* Long-form content */
+--leading-loose: 2; /* Captions, annotations */
 ```
 
 **Usage**:
+
 - H1-H2: 1.25
 - H3-H4: 1.375
 - Paragraphs: 1.5
@@ -292,19 +329,20 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 4.5 Letter Spacing
 
 ```css
---tracking-tighter: -0.05em;  /* Large headings (H1) */
---tracking-tight: -0.025em;   /* Headings (H2-H3) */
---tracking-normal: 0;         /* Default */
---tracking-wide: 0.025em;     /* Labels, buttons */
---tracking-wider: 0.05em;     /* All-caps text */
+--tracking-tighter: -0.05em; /* Large headings (H1) */
+--tracking-tight: -0.025em; /* Headings (H2-H3) */
+--tracking-normal: 0; /* Default */
+--tracking-wide: 0.025em; /* Labels, buttons */
+--tracking-wider: 0.05em; /* All-caps text */
 ```
 
 ### 4.6 Heading Styles
 
 **H1** (Page Title):
+
 ```css
 .h1 {
-  font-size: var(--text-4xl);  /* Mobile: 36px, Desktop: 48px */
+  font-size: var(--text-4xl); /* Mobile: 36px, Desktop: 48px */
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tighter);
@@ -314,9 +352,10 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **H2** (Section Heading):
+
 ```css
 .h2 {
-  font-size: var(--text-3xl);  /* Mobile: 30px, Desktop: 36px */
+  font-size: var(--text-3xl); /* Mobile: 30px, Desktop: 36px */
   font-weight: var(--font-bold);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
@@ -327,9 +366,10 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **H3** (Subsection):
+
 ```css
 .h3 {
-  font-size: var(--text-2xl);  /* Mobile: 24px, Desktop: 28px */
+  font-size: var(--text-2xl); /* Mobile: 24px, Desktop: 28px */
   font-weight: var(--font-bold);
   line-height: var(--leading-snug);
   letter-spacing: var(--tracking-tight);
@@ -340,9 +380,10 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **H4** (Sub-subsection):
+
 ```css
 .h4 {
-  font-size: var(--text-xl);   /* Mobile: 20px, Desktop: 22px */
+  font-size: var(--text-xl); /* Mobile: 20px, Desktop: 22px */
   font-weight: var(--font-semibold);
   line-height: var(--leading-snug);
   color: var(--text-primary);
@@ -352,9 +393,10 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Body Text**:
+
 ```css
 .body {
-  font-size: var(--text-base);  /* 16px */
+  font-size: var(--text-base); /* 16px */
   font-weight: var(--font-normal);
   line-height: var(--leading-normal);
   color: var(--text-primary);
@@ -363,9 +405,10 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Subheadline** (below H1):
+
 ```css
 .subheadline {
-  font-size: var(--text-lg);   /* 18px */
+  font-size: var(--text-lg); /* 18px */
   font-weight: var(--font-normal);
   line-height: var(--leading-snug);
   color: var(--text-secondary);
@@ -374,9 +417,10 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Caption/Meta**:
+
 ```css
 .caption {
-  font-size: var(--text-sm);   /* 14px */
+  font-size: var(--text-sm); /* 14px */
   font-weight: var(--font-normal);
   line-height: var(--leading-normal);
   color: var(--text-tertiary);
@@ -392,37 +436,41 @@ This document defines the complete design system for the Kansas City Meshtastic 
 **Base Unit**: 4px (0.25rem)
 
 ```css
---space-1: 0.25rem;   /* 4px */
---space-2: 0.5rem;    /* 8px */
---space-3: 0.75rem;   /* 12px */
---space-4: 1rem;      /* 16px */
---space-5: 1.25rem;   /* 20px */
---space-6: 1.5rem;    /* 24px */
---space-8: 2rem;      /* 32px */
---space-10: 2.5rem;   /* 40px */
---space-12: 3rem;     /* 48px */
---space-16: 4rem;     /* 64px */
---space-20: 5rem;     /* 80px */
---space-24: 6rem;     /* 96px */
---space-32: 8rem;     /* 128px */
+--space-1: 0.25rem; /* 4px */
+--space-2: 0.5rem; /* 8px */
+--space-3: 0.75rem; /* 12px */
+--space-4: 1rem; /* 16px */
+--space-5: 1.25rem; /* 20px */
+--space-6: 1.5rem; /* 24px */
+--space-8: 2rem; /* 32px */
+--space-10: 2.5rem; /* 40px */
+--space-12: 3rem; /* 48px */
+--space-16: 4rem; /* 64px */
+--space-20: 5rem; /* 80px */
+--space-24: 6rem; /* 96px */
+--space-32: 8rem; /* 128px */
 ```
 
 ### 5.2 Component Spacing
 
 **Card/Section Padding**:
+
 - Mobile: `--space-6` (24px)
 - Desktop: `--space-8` (32px)
 
 **Section Margins** (between major page sections):
+
 - Mobile: `--space-12` (48px)
 - Desktop: `--space-16` (64px)
 
 **Element Margins** (between elements within section):
+
 - Heading → Body: `--space-4` (16px)
 - Paragraph → Paragraph: `--space-4` (16px)
 - List items: `--space-2` (8px)
 
 **Button Padding**:
+
 - Small: `--space-2` `--space-4` (8px 16px)
 - Medium: `--space-3` `--space-6` (12px 24px)
 - Large: `--space-4` `--space-8` (16px 32px)
@@ -430,17 +478,19 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 5.3 Layout Margins
 
 **Page Margins** (horizontal):
+
 - Mobile (< 768px): `--space-4` (16px)
 - Tablet (768-1024px): `--space-6` (24px)
 - Desktop (> 1024px): `--space-8` (32px) or auto (centered with max-width)
 
 **Max Widths** (content containers):
+
 ```css
---max-width-sm: 640px;   /* Narrow content (not used often) */
---max-width-md: 768px;   /* Standard content pages */
---max-width-lg: 1024px;  /* Wide content, guides */
---max-width-xl: 1280px;  /* Homepage, landing pages */
---max-width-full: 100%;  /* Full-width (map, hero) */
+--max-width-sm: 640px; /* Narrow content (not used often) */
+--max-width-md: 768px; /* Standard content pages */
+--max-width-lg: 1024px; /* Wide content, guides */
+--max-width-xl: 1280px; /* Homepage, landing pages */
+--max-width-full: 100%; /* Full-width (map, hero) */
 ```
 
 ---
@@ -450,10 +500,11 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 6.1 Buttons
 
 **Primary Button** (KC Red, high emphasis):
+
 ```css
 .btn-primary {
   background-color: var(--kc-red);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: var(--space-3) var(--space-6);
   font-size: var(--text-base);
   font-weight: var(--font-semibold);
@@ -464,7 +515,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 }
 
 .btn-primary:hover {
-  background-color: #B91329; /* Darker red */
+  background-color: #b91329; /* Darker red */
 }
 
 .btn-primary:focus-visible {
@@ -474,10 +525,11 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Secondary Button** (KC Blue, medium emphasis):
+
 ```css
 .btn-secondary {
   background-color: var(--kc-blue);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: var(--space-3) var(--space-6);
   font-size: var(--text-base);
   font-weight: var(--font-semibold);
@@ -493,6 +545,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Tertiary Button** (Sunset Amber, warm alternative):
+
 ```css
 .btn-tertiary {
   background-color: var(--sunset-amber);
@@ -507,11 +560,12 @@ This document defines the complete design system for the Kansas City Meshtastic 
 }
 
 .btn-tertiary:hover {
-  background-color: #D98A35;
+  background-color: #d98a35;
 }
 ```
 
 **Outline Button** (low emphasis):
+
 ```css
 .btn-outline {
   background-color: transparent;
@@ -522,7 +576,9 @@ This document defines the complete design system for the Kansas City Meshtastic 
   border-radius: 0.375rem;
   border: 2px solid var(--border-medium);
   cursor: pointer;
-  transition: border-color 0.2s ease, color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .btn-outline:hover {
@@ -532,6 +588,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Button Sizes**:
+
 ```css
 .btn-sm {
   padding: var(--space-2) var(--space-4);
@@ -552,6 +609,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 6.2 Cards
 
 **Basic Card**:
+
 ```css
 .card {
   background-color: var(--bg-secondary);
@@ -568,6 +626,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Card with Header**:
+
 ```html
 <div class="card">
   <div class="card-header">
@@ -592,10 +651,13 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Interactive Card** (clickable):
+
 ```css
 .card-interactive {
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .card-interactive:hover {
@@ -607,6 +669,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 6.3 Badges
 
 **Status Badges**:
+
 ```css
 .badge {
   display: inline-flex;
@@ -621,7 +684,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 
 .badge-success {
   background-color: var(--success-light);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .badge-warning {
@@ -631,16 +694,17 @@ This document defines the complete design system for the Kansas City Meshtastic 
 
 .badge-error {
   background-color: var(--error-light);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .badge-info {
   background-color: var(--info-light);
-  color: #FFFFFF;
+  color: #ffffff;
 }
 ```
 
 **Usage Examples**:
+
 ```html
 <span class="badge badge-success">Operational</span>
 <span class="badge badge-warning">Seeking Host</span>
@@ -651,6 +715,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 6.4 Forms
 
 **Input Fields**:
+
 ```css
 .input {
   width: 100%;
@@ -682,6 +747,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Labels**:
+
 ```css
 .label {
   display: block;
@@ -692,12 +758,13 @@ This document defines the complete design system for the Kansas City Meshtastic 
 }
 
 .label-required::after {
-  content: ' *';
+  content: " *";
   color: var(--error-light);
 }
 ```
 
 **Textarea**:
+
 ```css
 .textarea {
   /* Inherits from .input */
@@ -707,11 +774,12 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Select**:
+
 ```css
 .select {
   /* Inherits from .input */
   appearance: none;
-  background-image: url("data:image/svg+xml...");  /* Dropdown arrow */
+  background-image: url("data:image/svg+xml..."); /* Dropdown arrow */
   background-position: right var(--space-3) center;
   background-repeat: no-repeat;
   padding-right: var(--space-8);
@@ -719,27 +787,33 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Checkbox/Radio**:
+
 ```css
-.checkbox, .radio {
+.checkbox,
+.radio {
   width: 1.25rem;
   height: 1.25rem;
   border: 2px solid var(--border-medium);
   border-radius: 0.25rem; /* Checkbox square corners */
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
 }
 
 .radio {
   border-radius: 50%; /* Radio circular */
 }
 
-.checkbox:checked, .radio:checked {
+.checkbox:checked,
+.radio:checked {
   background-color: var(--kc-blue);
   border-color: var(--kc-blue);
 }
 ```
 
 **Form Layout**:
+
 ```html
 <form class="form">
   <div class="form-group">
@@ -770,6 +844,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 6.5 Alerts/Callouts
 
 **Alert Box**:
+
 ```css
 .alert {
   padding: var(--space-4);
@@ -804,6 +879,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Usage**:
+
 ```html
 <div class="alert alert-info">
   <strong>Note:</strong> Network coverage improves as more nodes join.
@@ -813,6 +889,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 6.6 Navigation
 
 **Primary Navigation** (desktop):
+
 ```css
 .nav-primary {
   display: flex;
@@ -829,7 +906,9 @@ This document defines the complete design system for the Kansas City Meshtastic 
   font-weight: var(--font-medium);
   padding: var(--space-2) var(--space-3);
   border-radius: 0.375rem;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .nav-link:hover {
@@ -844,6 +923,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Mobile Navigation** (hamburger):
+
 ```css
 .nav-mobile {
   position: fixed;
@@ -877,6 +957,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Hamburger Icon**:
+
 ```css
 .hamburger {
   display: none; /* Hidden on desktop */
@@ -954,6 +1035,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 7.1 Page Layout
 
 **Standard Page**:
+
 ```html
 <div class="page">
   <header class="header">
@@ -1002,10 +1084,16 @@ This document defines the complete design system for the Kansas City Meshtastic 
 <section class="hero">
   <div class="hero-content">
     <h1 class="hero-title">Kansas City Metropolitan Meshtastic Network</h1>
-    <p class="hero-subtitle">Independent Emergency Communications Infrastructure for the KC Metro Area</p>
+    <p class="hero-subtitle">
+      Independent Emergency Communications Infrastructure for the KC Metro Area
+    </p>
     <div class="hero-ctas">
-      <a href="/get-started/join" class="btn-primary btn-lg">Join the Network</a>
-      <a href="/network/coverage" class="btn-outline btn-lg">View Coverage Map</a>
+      <a href="/get-started/join" class="btn-primary btn-lg"
+        >Join the Network</a
+      >
+      <a href="/network/coverage" class="btn-outline btn-lg"
+        >View Coverage Map</a
+      >
     </div>
   </div>
 </section>
@@ -1013,7 +1101,11 @@ This document defines the complete design system for the Kansas City Meshtastic 
 
 ```css
 .hero {
-  background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--bg-primary) 0%,
+    var(--bg-secondary) 100%
+  );
   padding: var(--space-16) var(--space-6);
   text-align: center;
 }
@@ -1066,6 +1158,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 7.3 Grid Layouts
 
 **Card Grid** (homepage value propositions, quick links):
+
 ```css
 .card-grid {
   display: grid;
@@ -1082,6 +1175,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ```
 
 **Two-Column Layout** (content + sidebar):
+
 ```css
 .two-column {
   display: grid;
@@ -1099,11 +1193,15 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 7.4 Community Coordination Banner
 
 **Special Homepage Component**:
+
 ```html
 <section class="coordination-banner">
   <div class="coordination-content">
     <h2>Looking for kansascitymesh.net Operator</h2>
-    <p>We want to collaborate, not compete. If you operate kansascitymesh.net or know existing KC mesh community, please contact us to combine resources.</p>
+    <p>
+      We want to collaborate, not compete. If you operate kansascitymesh.net or
+      know existing KC mesh community, please contact us to combine resources.
+    </p>
     <a href="/about/coordination" class="btn-tertiary">Let's Coordinate</a>
   </div>
 </section>
@@ -1142,20 +1240,23 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 8.1 Icon Strategy
 
 **Recommendation: Heroicons** (or similar open-source set)
+
 - Consistent style
 - Outline and solid variants
 - SVG format (scalable, accessible)
 - Free, no attribution required
 
 **Icon Sizes**:
+
 ```css
---icon-sm: 1rem;    /* 16px - Inline with text */
---icon-md: 1.5rem;  /* 24px - Standard UI */
---icon-lg: 2rem;    /* 32px - Featured icons */
---icon-xl: 3rem;    /* 48px - Hero/landing sections */
+--icon-sm: 1rem; /* 16px - Inline with text */
+--icon-md: 1.5rem; /* 24px - Standard UI */
+--icon-lg: 2rem; /* 32px - Featured icons */
+--icon-xl: 3rem; /* 48px - Hero/landing sections */
 ```
 
 **Icon Colors**:
+
 - Default: Match text color (`currentColor`)
 - Semantic: Use brand/semantic colors
   - Success: `--success-light`
@@ -1164,6 +1265,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
   - Info: `--info-light`
 
 **Accessibility**:
+
 ```html
 <!-- Decorative icon (no meaning) -->
 <svg aria-hidden="true" class="icon">...</svg>
@@ -1175,11 +1277,13 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 8.2 Logo
 
 **Placeholder** (until designed):
+
 - Text-based: "KC Mesh" in brand font
 - Color: KC Red or KC Blue
 - Simple, recognizable at small sizes
 
 **Future Logo Considerations**:
+
 - Works in dark and light mode
 - Scalable (SVG)
 - Recognizable at favicon size (16×16px)
@@ -1189,6 +1293,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 8.3 Photography
 
 **Style Guidelines**:
+
 - Real hardware (not stock photos)
 - Kansas City locations (skyline, recognizable landmarks)
 - Diverse people (inclusive community)
@@ -1196,6 +1301,7 @@ This document defines the complete design system for the Kansas City Meshtastic 
 - In-context shots (hardware in use, installations)
 
 **Image Treatment**:
+
 - Subtle border radius (0.5rem)
 - Optional: Subtle shadow on hover
 - Lazy loading below fold
@@ -1208,12 +1314,13 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 9.1 Transition Timing
 
 ```css
---transition-fast: 150ms;    /* Hover states, small changes */
---transition-base: 200ms;    /* Standard transitions */
---transition-slow: 300ms;    /* Larger movements, fades */
+--transition-fast: 150ms; /* Hover states, small changes */
+--transition-base: 200ms; /* Standard transitions */
+--transition-slow: 300ms; /* Larger movements, fades */
 ```
 
 **Easing Functions**:
+
 ```css
 --ease-in: cubic-bezier(0.4, 0, 1, 1);
 --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -1225,19 +1332,23 @@ This document defines the complete design system for the Kansas City Meshtastic 
 ### 9.2 Common Transitions
 
 **Hover States** (buttons, links, cards):
+
 ```css
-transition: background-color var(--transition-base) ease-out,
-            color var(--transition-base) ease-out,
-            transform var(--transition-base) ease-out,
-            box-shadow var(--transition-base) ease-out;
+transition:
+  background-color var(--transition-base) ease-out,
+  color var(--transition-base) ease-out,
+  transform var(--transition-base) ease-out,
+  box-shadow var(--transition-base) ease-out;
 ```
 
 **Focus States** (immediate, no transition):
+
 ```css
 /* No transition on focus - should be instant for accessibility */
 ```
 
 **Page Transitions** (optional, subtle):
+
 ```css
 .page-enter {
   opacity: 0;
@@ -1247,19 +1358,22 @@ transition: background-color var(--transition-base) ease-out,
 .page-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity var(--transition-slow) ease-out,
-              transform var(--transition-slow) ease-out;
+  transition:
+    opacity var(--transition-slow) ease-out,
+    transform var(--transition-slow) ease-out;
 }
 ```
 
 ### 9.3 Animation Principles
 
 **Subtle and Purposeful**:
+
 - No animation for decoration only
 - Support user goals (provide feedback, guide attention)
 - Respect `prefers-reduced-motion`
 
 **Reduced Motion**:
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -1277,6 +1391,7 @@ transition: background-color var(--transition-base) ease-out,
 ### 10.1 Theme Toggle
 
 **HTML Structure**:
+
 ```html
 <button id="theme-toggle" aria-label="Toggle dark mode">
   <svg class="sun-icon" aria-hidden="true"><!-- Sun icon --></svg>
@@ -1285,46 +1400,52 @@ transition: background-color var(--transition-base) ease-out,
 ```
 
 **JavaScript**:
+
 ```javascript
-const toggle = document.getElementById('theme-toggle');
+const toggle = document.getElementById("theme-toggle");
 const html = document.documentElement;
 
 // Check localStorage or system preference
-const currentTheme = localStorage.getItem('theme') ||
-  (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+const currentTheme =
+  localStorage.getItem("theme") ||
+  (window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light");
 
 html.classList.add(currentTheme);
 
-toggle.addEventListener('click', () => {
-  const newTheme = html.classList.contains('dark') ? 'light' : 'dark';
-  html.classList.remove('dark', 'light');
+toggle.addEventListener("click", () => {
+  const newTheme = html.classList.contains("dark") ? "light" : "dark";
+  html.classList.remove("dark", "light");
   html.classList.add(newTheme);
-  localStorage.setItem('theme', newTheme);
+  localStorage.setItem("theme", newTheme);
 });
 ```
 
 ### 10.2 CSS Variables Approach
 
 **Define colors for both themes**:
+
 ```css
 :root {
   /* Light mode (default) */
-  --bg-primary: #FDFBF7;
-  --bg-secondary: #F5EFE6;
-  --text-primary: #2B2420;
+  --bg-primary: #fdfbf7;
+  --bg-secondary: #f5efe6;
+  --text-primary: #2b2420;
   /* ... all other light mode colors */
 }
 
 .dark {
   /* Dark mode */
-  --bg-primary: #1A1512;
-  --bg-secondary: #2B2420;
-  --text-primary: #F4E8D8;
+  --bg-primary: #1a1512;
+  --bg-secondary: #2b2420;
+  --text-primary: #f4e8d8;
   /* ... all other dark mode colors */
 }
 ```
 
 **Components use variables** (automatically adapt):
+
 ```css
 .card {
   background-color: var(--bg-secondary);
@@ -1336,11 +1457,14 @@ toggle.addEventListener('click', () => {
 ### 10.3 Images in Dark Mode
 
 **Logo**:
+
 - SVG with `currentColor` (adapts to text color)
 - Or: Separate light/dark logos, swap with CSS
 
 **Photos**:
+
 - Optional: Slight opacity reduction in dark mode (reduce glare)
+
 ```css
 .dark img {
   opacity: 0.9;
@@ -1354,6 +1478,7 @@ toggle.addEventListener('click', () => {
 ### 11.1 Focus Indicators
 
 **Visible Focus**:
+
 ```css
 :focus-visible {
   outline: 2px solid var(--kc-blue);
@@ -1384,7 +1509,7 @@ toggle.addEventListener('click', () => {
   top: -100px;
   left: 0;
   background-color: var(--kc-blue);
-  color: #FFFFFF;
+  color: #ffffff;
   padding: var(--space-3) var(--space-4);
   text-decoration: none;
   z-index: 9999;
@@ -1398,11 +1523,13 @@ toggle.addEventListener('click', () => {
 ### 11.3 Text Alternatives
 
 **Image Alt Text**:
+
 - Decorative images: `alt=""` (empty, screen reader skips)
 - Meaningful images: Descriptive alt text
 - Complex diagrams: Alt text + long description below
 
 **Icon Buttons**:
+
 ```html
 <button aria-label="Open navigation menu" class="hamburger">
   <svg aria-hidden="true"><!-- Icon --></svg>
@@ -1414,6 +1541,7 @@ toggle.addEventListener('click', () => {
 **Tool**: Use WebAIM Contrast Checker
 
 **Verify All Combinations**:
+
 - Text on backgrounds (4.5:1 minimum)
 - Button text on button backgrounds
 - Link colors on page background
@@ -1430,10 +1558,12 @@ toggle.addEventListener('click', () => {
 ```html
 <img
   src="/images/hero-800.jpg"
-  srcset="/images/hero-400.jpg 400w,
-          /images/hero-800.jpg 800w,
-          /images/hero-1200.jpg 1200w,
-          /images/hero-1600.jpg 1600w"
+  srcset="
+    /images/hero-400.jpg   400w,
+    /images/hero-800.jpg   800w,
+    /images/hero-1200.jpg 1200w,
+    /images/hero-1600.jpg 1600w
+  "
   sizes="(max-width: 768px) 100vw,
          (max-width: 1024px) 80vw,
          1200px"
@@ -1458,26 +1588,26 @@ toggle.addEventListener('click', () => {
 
 ```css
 .hero {
-  background-image: url('/images/hero-mobile.jpg');
+  background-image: url("/images/hero-mobile.jpg");
 }
 
 @media (min-width: 768px) {
   .hero {
-    background-image: url('/images/hero-tablet.jpg');
+    background-image: url("/images/hero-tablet.jpg");
   }
 }
 
 @media (min-width: 1024px) {
   .hero {
-    background-image: url('/images/hero-desktop.jpg');
+    background-image: url("/images/hero-desktop.jpg");
   }
 }
 
 /* Or use image-set for WebP support */
 .hero {
   background-image: image-set(
-    url('/images/hero.webp') type('image/webp'),
-    url('/images/hero.jpg') type('image/jpeg')
+    url("/images/hero.webp") type("image/webp"),
+    url("/images/hero.jpg") type("image/jpeg")
   );
 }
 ```
@@ -1487,10 +1617,14 @@ toggle.addEventListener('click', () => {
 ## 13. Print Styles (Optional)
 
 **Basic Print Optimization**:
+
 ```css
 @media print {
   /* Hide navigation, footer */
-  .header, .footer, .nav-primary, .nav-mobile {
+  .header,
+  .footer,
+  .nav-primary,
+  .nav-mobile {
     display: none;
   }
 
@@ -1507,7 +1641,8 @@ toggle.addEventListener('click', () => {
   }
 
   /* Avoid page breaks inside elements */
-  .card, .section {
+  .card,
+  .section {
     page-break-inside: avoid;
   }
 
@@ -1522,55 +1657,62 @@ toggle.addEventListener('click', () => {
 
 ## 14. Component Library Quick Reference
 
-| Component | Class | Variants |
-|-----------|-------|----------|
-| **Button** | `.btn-primary` | `.btn-secondary`, `.btn-tertiary`, `.btn-outline` |
-| **Button Size** | `.btn-md` | `.btn-sm`, `.btn-lg` |
-| **Card** | `.card` | `.card-interactive` |
-| **Badge** | `.badge` | `.badge-success`, `.badge-warning`, `.badge-error`, `.badge-info` |
-| **Alert** | `.alert` | `.alert-success`, `.alert-warning`, `.alert-error`, `.alert-info` |
-| **Input** | `.input` | - |
-| **Textarea** | `.textarea` | - |
-| **Select** | `.select` | - |
-| **Label** | `.label` | `.label-required` |
-| **Heading** | `.h1`, `.h2`, `.h3`, `.h4` | - |
-| **Navigation** | `.nav-primary` | `.nav-mobile` |
-| **Footer** | `.footer` | - |
-| **Container** | `.container` | - |
+| Component       | Class                      | Variants                                                          |
+| --------------- | -------------------------- | ----------------------------------------------------------------- |
+| **Button**      | `.btn-primary`             | `.btn-secondary`, `.btn-tertiary`, `.btn-outline`                 |
+| **Button Size** | `.btn-md`                  | `.btn-sm`, `.btn-lg`                                              |
+| **Card**        | `.card`                    | `.card-interactive`                                               |
+| **Badge**       | `.badge`                   | `.badge-success`, `.badge-warning`, `.badge-error`, `.badge-info` |
+| **Alert**       | `.alert`                   | `.alert-success`, `.alert-warning`, `.alert-error`, `.alert-info` |
+| **Input**       | `.input`                   | -                                                                 |
+| **Textarea**    | `.textarea`                | -                                                                 |
+| **Select**      | `.select`                  | -                                                                 |
+| **Label**       | `.label`                   | `.label-required`                                                 |
+| **Heading**     | `.h1`, `.h2`, `.h3`, `.h4` | -                                                                 |
+| **Navigation**  | `.nav-primary`             | `.nav-mobile`                                                     |
+| **Footer**      | `.footer`                  | -                                                                 |
+| **Container**   | `.container`               | -                                                                 |
 
 ---
 
 ## 15. Design Tokens Summary
 
 **Export for Tailwind Config**:
+
 ```javascript
 // tailwind.config.js
 module.exports = {
   theme: {
     extend: {
       colors: {
-        'kc-red': '#E31837',
-        'kc-blue': '#004687',
-        'kc-sky': '#5DADE2',
-        'mesh-green': '#67C98F',
-        'sunset-amber': '#F59E42',
-        'kc-clay': '#D4825C',
-        'prairie-gold': '#E8B547',
+        "kc-red": "#E31837",
+        "kc-blue": "#004687",
+        "kc-sky": "#5DADE2",
+        "mesh-green": "#67C98F",
+        "sunset-amber": "#F59E42",
+        "kc-clay": "#D4825C",
+        "prairie-gold": "#E8B547",
       },
       spacing: {
         // Uses default Tailwind spacing (4px base unit)
       },
       maxWidth: {
-        'content': '1024px',
-        'wide': '1280px',
+        content: "1024px",
+        wide: "1280px",
       },
       fontFamily: {
-        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        sans: [
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
       },
     },
   },
-  darkMode: 'class',
-}
+  darkMode: "class",
+};
 ```
 
 ---

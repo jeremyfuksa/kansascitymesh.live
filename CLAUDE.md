@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. For general project guidelines, conventions, and technical details, please refer to [GUIDELINES.md](GUIDELINES.md).
 
 **Important**: All planning is complete. Decisions have been made. Implementation phase has begun. Do not suggest alternatives to established decisions.
 
@@ -15,18 +15,21 @@ Kansas City Meshtastic Network website - **one person's mesh infrastructure proj
 ## Core Project Philosophy
 
 **Anti-Dogma Approach**: Combat mesh networking perfectionism that prevents deployment:
+
 - Refute "must be perfect or don't do it" mentality
 - Emphasize "deployed imperfect beats theoretical perfect"
 - Provide practical prosumer solutions ($25-200 hardware range)
 - Focus on hobbyist-achievable deployments (weekend projects, not professional-grade)
 
 **Prosumer/Hobbyist Scope Throughout**:
+
 - Equipment: $25-200 range (consumer-grade)
 - Installations: DIY backyard-achievable
 - Performance: "Good enough for mission" not commercial-grade
 - Tone: Enthusiast community, not telecommunications company
 
 **Critical Anti-Dogma Content to Incorporate**:
+
 - Elevation: 15 feet functional vs "need 40-foot tower" dogma
 - Indoor deployment: "Test your building" vs "indoor doesn't work"
 - Antenna polarization: Horizontal works with trade-offs vs "must be vertical"
@@ -38,27 +41,32 @@ Kansas City Meshtastic Network website - **one person's mesh infrastructure proj
 **Color Palette** (warm-balanced to counter blue/green dominance):
 
 Primary:
+
 - Kansas City Red: #E31837 (primary CTAs, alerts)
 - Kansas City Blue: #004687 (secondary elements, links)
 - Kansas City Sky Blue: #5DADE2 (accents, info callouts)
 - Meshtastic Green: #67C98F (success states, network status)
 
 Warm Accents:
+
 - Sunset Amber: #F59E42 (warm highlights, secondary CTAs)
 - Kansas Clay: #D4825C (tertiary accents, borders)
 - Prairie Gold: #E8B547 (attention elements, badges)
 
 Dark Mode:
+
 - Background: #1A1512 (warm dark brown)
 - Cards: #2B2420 (warm charcoal)
 - Text: #F4E8D8 (warm off-white)
 
 Light Mode:
+
 - Background: #FDFBF7 (warm off-white)
 - Cards: #F5EFE6 (cream/warm gray)
 - Text: #2B2420 (warm dark)
 
 **Design Principles**:
+
 - Mobile-first responsive (field use on phones priority)
 - High-end professional aesthetic with local KC identity
 - Dual theme (dark/light) with warm undertones
@@ -109,6 +117,7 @@ COMMUNITY
 ## Network Architecture Context
 
 **Four-Router Backbone Strategy**:
+
 - Router 1: East side (seeking host) - planned anchor; MQTT currently runs on standalone Pi gateway
 - Router 2: West side (PRIORITY - seeking host) - critical gap
 - Router 3: North metro (planned) - river crossing, northland coverage
@@ -119,6 +128,7 @@ Client nodes fill density around backbone infrastructure.
 ## Key Content Requirements
 
 **Community Coordination Banner** (prominent on homepage):
+
 - Welcome existing kansascitymesh.net operator
 - "We want to collaborate, not compete" messaging
 - Multiple contact methods prominently displayed
@@ -127,18 +137,21 @@ Client nodes fill density around backbone infrastructure.
 **Deployment Guides Must Include**:
 
 Ham Operators:
+
 - Translation to ham terminology
 - Repeater site integration opportunity
 - Emergency communications value prop
 - Technical depth for licensed operators
 
 Repeater Owners:
+
 - "You already have what we need" framing
 - Minimal investment ($60-120)
 - Leveraging existing infrastructure
 - Strategic value of repeater-sited nodes
 
 Residential Solar:
+
 - Flagpole integration (stealth, HOA-acceptable)
 - Fence post extension (decorative element)
 - Attic installation (test building attenuation)
@@ -148,6 +161,7 @@ Residential Solar:
 ## Content Guidelines
 
 **Tone and Voice**:
+
 - Welcoming and inclusive (all experience levels)
 - Enthusiast/hobbyist community feel
 - Professional but not corporate
@@ -155,6 +169,7 @@ Residential Solar:
 - Anti-perfectionism, pro-deployment
 
 **Scope Discipline**:
+
 - ALWAYS maintain prosumer/hobbyist expectations
 - Equipment recommendations: $25-200 range
 - Timeframes: Weekend projects, not professional deployments
@@ -162,6 +177,7 @@ Residential Solar:
 - Avoid feature creep into commercial/professional territory
 
 **SEO Strategy**:
+
 - Primary: "Kansas City mesh network", "Meshtastic Kansas City"
 - Audience-specific: "Meshtastic for ham radio", "HOA-friendly mesh deployment"
 - Geographic: "Johnson County Meshtastic", "west Kansas City mesh coverage"
@@ -169,6 +185,7 @@ Residential Solar:
 ## Development Notes (when implementation begins)
 
 **Future Technical Stack** (to be determined):
+
 - Static site generator recommended (fast, cheap hosting, security)
 - Mobile-first framework essential
 - Dark/light theme switching
@@ -176,12 +193,14 @@ Residential Solar:
 - Live dashboard for network stats
 
 **Content Management**:
+
 - README.md contains complete content specifications
 - 25,000-35,000 word comprehensive site plan
 - All copy provided in detail (headlines, body, CTAs)
 - Reference README.md sections 4.1-4.10 for exact content
 
 **Critical Implementation Priorities**:
+
 1. Community Coordination page (coordination mechanism for kansascitymesh.net)
 2. Join the Network page (primary conversion path)
 3. Deployment guides (differentiated by audience)

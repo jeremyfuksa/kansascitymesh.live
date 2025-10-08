@@ -1,4 +1,5 @@
 # Technical Requirements Document
+
 ## Kansas City Meshtastic Network Website
 
 **Version**: 2.0
@@ -31,24 +32,25 @@ This document defines the technical requirements, technology stack, performance 
 **Tailwind CSS**
 
 Configuration:
+
 ```javascript
 // tailwind.config.js
 module.exports = {
-  darkMode: 'class',
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        'kc-red': '#E31837',
-        'kc-blue': '#004687',
-        'kc-sky': '#5DADE2',
-        'mesh-green': '#67C98F',
-        'sunset-amber': '#F59E42',
-        'kc-clay': '#D4825C',
-        'prairie-gold': '#E8B547',
-      }
-    }
-  }
-}
+        "kc-red": "#E31837",
+        "kc-blue": "#004687",
+        "kc-sky": "#5DADE2",
+        "mesh-green": "#67C98F",
+        "sunset-amber": "#F59E42",
+        "kc-clay": "#D4825C",
+        "prairie-gold": "#E8B547",
+      },
+    },
+  },
+};
 ```
 
 ### 2.3 Interactive Map
@@ -65,6 +67,7 @@ module.exports = {
 **Static JSON for Network Stats**
 
 Option: GitHub Actions updates JSON every 15 minutes
+
 - Fetches data from source (MQTT, database)
 - Generates `network-stats.json`
 - Commits to repo, triggers rebuild
@@ -85,6 +88,7 @@ Simple contact form handler with email delivery and validation. See deployment d
 - Cost: $9/month
 
 **Key Metrics**:
+
 - Page views, sessions, sources
 - Conversion events (form submissions, hardware clicks, chat joins)
 - Time on page, bounce rate
@@ -105,6 +109,7 @@ Simple contact form handler with email delivery and validation. See deployment d
 ### 3.2 Performance Budget
 
 **Page Weight Limits**:
+
 - HTML: < 50KB (gzipped)
 - CSS: < 30KB total (after purging)
 - JavaScript: < 100KB total
@@ -112,32 +117,39 @@ Simple contact form handler with email delivery and validation. See deployment d
 - Total page weight: < 1MB initial load
 
 **Resource Limits**:
+
 - HTTP requests: < 50 per page
 - Web fonts: Maximum 2 font families
 
 ### 3.3 Image Optimization
 
 **Formats**:
+
 - Primary: WebP
 - Fallback: JPEG/PNG
 
 **Responsive Images**:
+
 - Multiple sizes: 400w, 800w, 1200w, 1600w
 - `srcset` and `sizes` attributes
 
 **Lazy Loading**:
+
 - Below-fold images: `loading="lazy"`
 - Above-fold: Eager load
 
 **Dimensions**:
+
 - Always specify width/height (prevent CLS)
 
 ### 3.4 Font Strategy
 
 **System Font Stack** (zero load time):
+
 ```css
-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-             "Helvetica Neue", Arial, sans-serif;
+font-family:
+  -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+  Arial, sans-serif;
 ```
 
 ---
@@ -147,12 +159,14 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 ### 4.1 WCAG 2.1 Level AA Compliance
 
 **Perceivable**:
+
 - Text alternatives (alt text) for all images
 - Color contrast minimum 4.5:1 for normal text
 - Content doesn't rely solely on color
 - Text can be resized 200% without loss of functionality
 
 **Operable**:
+
 - All functionality available via keyboard
 - Skip to main content link
 - Page titles descriptive
@@ -161,12 +175,14 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 - Focus visible
 
 **Understandable**:
+
 - Language declared (`lang="en"`)
 - Navigation consistent across pages
 - Form inputs have labels
 - Error messages helpful
 
 **Robust**:
+
 - Valid HTML
 - Name, role, value available for UI components
 
@@ -225,18 +241,22 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 ### 5.2 Mobile Requirements
 
 **Touch Targets**:
+
 - Minimum 44×44px for all interactive elements
 - Adequate spacing between targets (8px minimum)
 
 **Navigation**:
+
 - Hamburger menu < 768px
 - Full horizontal menu ≥ 768px
 
 **Typography**:
+
 - Minimum 16px body text (prevents zoom on iOS)
 - Line height 1.5-1.6
 
 **Forms**:
+
 - Full-width inputs on mobile
 - Appropriate input types (`type="email"`, `type="tel"`)
 - Submit button fixed at bottom (if form long)
@@ -268,6 +288,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 ### 6.2 Structured Data
 
 **Organization**:
+
 ```json
 {
   "@context": "https://schema.org",
@@ -279,6 +300,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 ```
 
 **HowTo** (for guides):
+
 ```json
 {
   "@context": "https://schema.org",
@@ -289,6 +311,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 ```
 
 **FAQPage**:
+
 ```json
 {
   "@context": "https://schema.org",
@@ -300,6 +323,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 ### 6.3 Sitemap and Robots
 
 **Sitemap.xml** (auto-generated):
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
@@ -313,6 +337,7 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 ```
 
 **Robots.txt**:
+
 ```
 User-agent: *
 Allow: /
@@ -352,6 +377,7 @@ add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" alway
 ## 8. Browser Support
 
 **Modern Browsers** (full support):
+
 - Chrome/Edge (last 2 versions)
 - Firefox (last 2 versions)
 - Safari (last 2 versions)
@@ -359,6 +385,7 @@ add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" alway
 - Mobile Chrome (Android 8+)
 
 **Progressive Enhancement**:
+
 - Core content accessible without JavaScript
 - JavaScript enhances experience (map, live stats)
 - Graceful degradation for older browsers
@@ -370,6 +397,7 @@ add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" alway
 ### 9.1 Markdown Structure
 
 **Frontmatter**:
+
 ```yaml
 ---
 title: "Join the Network"
@@ -380,6 +408,7 @@ updated: 2025-10-04
 ```
 
 **Directory Structure**:
+
 ```
 /content
   /pages
@@ -392,6 +421,7 @@ updated: 2025-10-04
 ### 9.2 Image Management
 
 **Directory Structure**:
+
 ```
 /public
   /images
@@ -402,6 +432,7 @@ updated: 2025-10-04
 ```
 
 **Naming Convention**:
+
 - Descriptive: `heltec-v3-antenna.jpg`
 - Resolution indicator: `@2x` for retina
 - Format: `.webp` with `.jpg` fallback
@@ -409,6 +440,7 @@ updated: 2025-10-04
 ### 9.3 Dynamic Data
 
 **Network Stats JSON** (`/public/api/network-stats.json`):
+
 ```json
 {
   "lastUpdated": "2025-10-04T14:30:00Z",
@@ -433,6 +465,7 @@ updated: 2025-10-04
 ### 10.1 Platform
 
 **Oracle Cloud Infrastructure (OCI)**
+
 - OS: Ubuntu 22.04 LTS
 - Web Server: Nginx
 - Instance: VM.Standard.E2.1.Micro (OCI Free Tier)
@@ -461,11 +494,13 @@ See deployment documentation for details.
 ### 11.1 Local Development
 
 **Requirements**:
+
 - Node.js 18+ (LTS)
 - npm or yarn
 - Git
 
 **Setup**:
+
 ```bash
 git clone https://github.com/kc-mesh/website.git
 cd website
@@ -497,15 +532,19 @@ Pre-commit hooks ensure code quality before commits.
 ### 12.1 Plausible Analytics
 
 ```html
-<script defer data-domain="kansascitymesh.live"
-        src="https://plausible.io/js/script.js"></script>
+<script
+  defer
+  data-domain="kansascitymesh.live"
+  src="https://plausible.io/js/script.js"
+></script>
 ```
 
 **Custom Events**:
+
 ```javascript
-plausible('HardwarePurchase', {props: {device: 'Heltec V3'}});
-plausible('ContactForm');
-plausible('JoinChat');
+plausible("HardwarePurchase", { props: { device: "Heltec V3" } });
+plausible("ContactForm");
+plausible("JoinChat");
 ```
 
 ### 12.2 Leaflet Map
@@ -513,14 +552,17 @@ plausible('JoinChat');
 Load conditionally on Coverage Map page:
 
 ```html
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
 <div id="map" style="height: 600px;"></div>
 
 <script>
-  const map = L.map('map').setView([39.0997, -94.5786], 10);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+  const map = L.map("map").setView([39.0997, -94.5786], 10);
+  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
   // Add markers from /api/nodes.geojson
 </script>
 ```

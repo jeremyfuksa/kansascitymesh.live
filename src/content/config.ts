@@ -51,7 +51,7 @@ const discordSchema = z.object({
   description: z
     .string()
     .default(
-      "Hop into the KC Meshtastic Discord to coordinate installs, swap coverage notes, and chat with other builders."
+      "Hop into the KC Meshtastic Discord to coordinate installs, swap coverage notes, and chat with other builders.",
     ),
   link: z.string().default("https://discord.gg/eP5VSPKU"),
   linkText: z.string().default("Open Discord"),

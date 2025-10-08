@@ -1,4 +1,5 @@
 # OCI/Nginx Deployment Guide
+
 ## Kansas City Meshtastic Network Website
 
 **Version**: 1.0
@@ -12,6 +13,7 @@
 This document provides deployment instructions for hosting the Kansas City Meshtastic Network website on your existing Oracle Cloud Infrastructure (OCI) instance running Nginx on Ubuntu.
 
 **Infrastructure**:
+
 - Platform: Oracle Cloud Infrastructure (OCI)
 - OS: Ubuntu
 - Web Server: Nginx
@@ -24,6 +26,7 @@ This document provides deployment instructions for hosting the Kansas City Mesht
 ### vs Netlify
 
 **Pros**:
+
 - ✅ **Full Control**: Complete server access
 - ✅ **No Bandwidth Limits**: OCI free tier includes 10 TB egress/month
 - ✅ **Cost**: Potentially $0 if within OCI free tier
@@ -31,6 +34,7 @@ This document provides deployment instructions for hosting the Kansas City Mesht
 - ✅ **Flexibility**: Can run additional services (API, database if needed)
 
 **Cons**:
+
 - ❌ **Manual SSL Management**: Need to set up Let's Encrypt, configure renewals
 - ❌ **No Built-in Forms**: Need to implement form handling separately
 - ❌ **Manual Deployment Pipeline**: Need to set up Git hooks or CI/CD
@@ -46,17 +50,20 @@ This document provides deployment instructions for hosting the Kansas City Mesht
 ### OCI Instance Specs (Minimum)
 
 **Free Tier Eligible**:
+
 - Shape: VM.Standard.E2.1.Micro (1 OCPU, 1 GB RAM)
 - Storage: 50 GB boot volume
 - OS: Ubuntu 22.04 LTS
 - Network: 480 Mbps bandwidth
 
 **Sufficient For**:
+
 - Static site hosting (Astro build outputs ~50-100 MB)
 - Expected traffic: 1,000+ sessions/month easily handled
 - Nginx serves static files efficiently (thousands of requests/second)
 
 **If Traffic Grows**:
+
 - Upgrade to larger shape
 - Add load balancer (OCI Load Balancer service)
 - Implement caching proxy (Cloudflare in front)
@@ -64,6 +71,7 @@ This document provides deployment instructions for hosting the Kansas City Mesht
 ### Software Requirements
 
 **Installed on Server**:
+
 - ✅ Nginx (web server)
 - [ ] Node.js 18+ (for building Astro site)
 - [ ] Git (for pulling code)
@@ -298,6 +306,7 @@ curl -I http://kansascitymesh.live
 **Before running Certbot**, ensure OCI allows HTTPS:
 
 **In OCI Console**:
+
 1. Navigate to: Networking → Virtual Cloud Networks
 2. Select your VCN
 3. Click Security Lists
@@ -309,6 +318,7 @@ curl -I http://kansascitymesh.live
    - Description: "HTTPS"
 
 **Ubuntu Firewall** (if using ufw):
+
 ```bash
 sudo ufw allow 443/tcp
 sudo ufw reload
@@ -327,6 +337,7 @@ sudo certbot --nginx -d kansascitymesh.live -d www.kansascitymesh.live
 ```
 
 **Certbot Will**:
+
 - Verify domain ownership (HTTP-01 challenge)
 - Obtain certificate from Let's Encrypt
 - Modify Nginx config to enable SSL
@@ -410,11 +421,13 @@ echo "========================================="
 ```
 
 **Make Executable**:
+
 ```bash
 chmod +x /var/www/kansascitymesh.live/deploy.sh
 ```
 
 **Run Deploy**:
+
 ```bash
 /var/www/kansascitymesh.live/deploy.sh
 ```
@@ -458,11 +471,13 @@ jobs:
 ```
 
 **GitHub Secrets** (configure in GitHub repo settings):
+
 - `OCI_HOST`: Your OCI instance public IP or domain
 - `OCI_USERNAME`: SSH username (e.g., `ubuntu`)
 - `OCI_SSH_KEY`: Private SSH key (paste entire key)
 
 **How it Works**:
+
 1. Push to `main` branch on GitHub
 2. GitHub Actions triggers
 3. Connects to OCI server via SSH
@@ -483,11 +498,13 @@ fi
 ```
 
 **Install mail** (if not installed):
+
 ```bash
 sudo apt install -y mailutils
 ```
 
 Or use **webhook** to notify Discord/Slack:
+
 ```bash
 # At end of deploy.sh
 curl -X POST -H 'Content-type: application/json' \
@@ -504,11 +521,13 @@ Since you can't use Netlify Forms, implement form handling on server.
 ### Option A: Simple PHP Form Handler
 
 **Install PHP**:
+
 ```bash
 sudo apt install -y php-fpm php-cli
 ```
 
 **Configure Nginx** (add to server block):
+
 ```nginx
 location ~ \.php$ {
     include snippets/fastcgi-php.conf;
@@ -556,6 +575,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ```
 
 **HTML Form** (in your Astro page):
+
 ```html
 <form id="contact-form" action="/contact.php" method="POST">
   <label for="name">Name</label>
@@ -571,23 +591,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <script>
-document.getElementById('contact-form').addEventListener('submit', async (e) => {
-  e.preventDefault();
-  const formData = new FormData(e.target);
-  const response = await fetch('/contact.php', {
-    method: 'POST',
-    body: formData
-  });
-  const result = await response.json();
-  alert(result.message);
-  if (result.success) e.target.reset();
-});
+  document
+    .getElementById("contact-form")
+    .addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const response = await fetch("/contact.php", {
+        method: "POST",
+        body: formData,
+      });
+      const result = await response.json();
+      alert(result.message);
+      if (result.success) e.target.reset();
+    });
 </script>
 ```
 
 ### Option B: Use External Form Service
 
 **Formspree** (free tier: 50 submissions/month):
+
 - Sign up at formspree.io
 - Get form endpoint
 - Point HTML form to Formspree endpoint
@@ -630,6 +653,7 @@ location ~* \.html$ {
 ### 11.2 Cloudflare as CDN (Optional)
 
 **Add Cloudflare** in front of OCI:
+
 - Sign up at cloudflare.com
 - Add domain
 - Point DNS to Cloudflare nameservers
@@ -637,6 +661,7 @@ location ~* \.html$ {
 - Free tier includes CDN and SSL
 
 **Benefits**:
+
 - Global CDN (faster worldwide delivery)
 - DDoS protection
 - Free SSL (in addition to Let's Encrypt)
@@ -644,6 +669,7 @@ location ~* \.html$ {
 - Analytics
 
 **Nginx Config** (if using Cloudflare):
+
 ```nginx
 # Trust Cloudflare IPs (for real client IP)
 set_real_ip_from 173.245.48.0/20;
@@ -657,6 +683,7 @@ real_ip_header CF-Connecting-IP;
 **Already enabled** in Nginx config above (Gzip).
 
 **For Brotli** (better compression):
+
 ```bash
 # Install Brotli module
 sudo apt install -y libnginx-mod-http-brotli
@@ -676,6 +703,7 @@ brotli_types text/plain text/css application/json application/javascript text/xm
 **Error Log**: `/var/log/nginx/kansascitymesh.error.log`
 
 **View Logs**:
+
 ```bash
 # Tail access log (real-time)
 sudo tail -f /var/log/nginx/kansascitymesh.access.log
@@ -701,23 +729,27 @@ cat /etc/logrotate.d/nginx
 ### 12.3 Server Monitoring
 
 **UptimeRobot** (external, free):
+
 - Monitor https://kansascitymesh.live
 - Alerts via email if site down
 
 **On Server** (optional):
 
 **Install htop** (system monitor):
+
 ```bash
 sudo apt install -y htop
 htop  # View CPU, RAM, processes
 ```
 
 **Check Disk Space**:
+
 ```bash
 df -h
 ```
 
 **Check Nginx Status**:
+
 ```bash
 sudo systemctl status nginx
 ```
@@ -729,6 +761,7 @@ sudo systemctl status nginx
 ### 13.1 Firewall (UFW)
 
 **Enable UFW** (if not already):
+
 ```bash
 sudo ufw enable
 
@@ -746,6 +779,7 @@ sudo ufw status
 ### 13.2 Fail2Ban (Brute Force Protection)
 
 **Install Fail2Ban**:
+
 ```bash
 sudo apt install -y fail2ban
 
@@ -775,6 +809,7 @@ sudo dpkg-reconfigure --priority=low unattended-upgrades
 ### 13.4 SSH Hardening (If Not Already)
 
 **Disable Root Login**:
+
 ```bash
 sudo nano /etc/ssh/sshd_config
 
@@ -797,10 +832,12 @@ sudo systemctl reload sshd
 ### 14.2 Server Backup
 
 **OCI Boot Volume Backup**:
+
 - In OCI Console: Create manual backup of boot volume
 - Or set up automatic backups (OCI policy-based)
 
 **File-Level Backup** (optional):
+
 ```bash
 # Backup entire www directory
 tar -czf /tmp/kansascitymesh-backup-$(date +%F).tar.gz /var/www/kansascitymesh.live
@@ -812,6 +849,7 @@ scp /tmp/kansascitymesh-backup-*.tar.gz user@local-machine:/backups/
 ### 14.3 Database Backup (If Using)
 
 If you add database later (PostgreSQL, MySQL):
+
 ```bash
 # Example: PostgreSQL dump
 pg_dump kansascitymesh > /tmp/kansascitymesh-db-$(date +%F).sql
@@ -824,6 +862,7 @@ pg_dump kansascitymesh > /tmp/kansascitymesh-db-$(date +%F).sql
 ### Site Not Loading
 
 **Check Nginx Running**:
+
 ```bash
 sudo systemctl status nginx
 
@@ -832,6 +871,7 @@ sudo systemctl start nginx
 ```
 
 **Check Nginx Config**:
+
 ```bash
 sudo nginx -t
 
@@ -840,6 +880,7 @@ sudo systemctl reload nginx
 ```
 
 **Check Logs**:
+
 ```bash
 sudo tail -50 /var/log/nginx/kansascitymesh.error.log
 ```
@@ -849,6 +890,7 @@ sudo tail -50 /var/log/nginx/kansascitymesh.error.log
 ### SSL Certificate Issues
 
 **Certificate Expired**:
+
 ```bash
 # Renew manually
 sudo certbot renew
@@ -858,6 +900,7 @@ sudo systemctl reload nginx
 ```
 
 **Check Certificate**:
+
 ```bash
 sudo certbot certificates
 ```
@@ -867,6 +910,7 @@ sudo certbot certificates
 ### Deployment Script Fails
 
 **Check Git**:
+
 ```bash
 cd /var/www/kansascitymesh.live/repo
 git status
@@ -874,12 +918,14 @@ git pull origin main  # Manual pull to see errors
 ```
 
 **Check Node**:
+
 ```bash
 node --version
 npm --version
 ```
 
 **Check Build**:
+
 ```bash
 cd /var/www/kansascitymesh.live/repo
 npm run build  # See build errors
@@ -890,16 +936,19 @@ npm run build  # See build errors
 ### Form Not Submitting
 
 **Check PHP Running** (if using PHP):
+
 ```bash
 sudo systemctl status php8.1-fpm
 ```
 
 **Check Nginx PHP Config**:
+
 ```bash
 sudo nginx -t
 ```
 
 **Check Logs**:
+
 ```bash
 sudo tail -50 /var/log/nginx/kansascitymesh.error.log
 ```
@@ -909,12 +958,14 @@ sudo tail -50 /var/log/nginx/kansascitymesh.error.log
 ## 16. Cost Summary (OCI)
 
 **Oracle Cloud Free Tier** (if eligible):
+
 - VM.Standard.E2.1.Micro: Free forever
 - 50 GB boot volume: Free
 - 10 TB outbound data/month: Free
 - Public IP: Free
 
 **Additional Costs**:
+
 - Domain: ~$1/month ($12/year)
 - Email forwarding (Cloudflare): Free
 - Plausible Analytics: $9/month (optional)
@@ -1004,41 +1055,49 @@ sudo tail -50 /var/log/nginx/kansascitymesh.error.log
 ## 18. Quick Command Reference
 
 **Deploy Site**:
+
 ```bash
 /var/www/kansascitymesh.live/deploy.sh
 ```
 
 **Check Nginx Status**:
+
 ```bash
 sudo systemctl status nginx
 ```
 
 **Reload Nginx** (after config change):
+
 ```bash
 sudo nginx -t && sudo systemctl reload nginx
 ```
 
 **View Access Log**:
+
 ```bash
 sudo tail -f /var/log/nginx/kansascitymesh.access.log
 ```
 
 **View Error Log**:
+
 ```bash
 sudo tail -f /var/log/nginx/kansascitymesh.error.log
 ```
 
 **Renew SSL**:
+
 ```bash
 sudo certbot renew
 ```
 
 **Check Disk Space**:
+
 ```bash
 df -h
 ```
 
 **Update System**:
+
 ```bash
 sudo apt update && sudo apt upgrade -y
 ```
