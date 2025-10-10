@@ -191,9 +191,7 @@ a:hover {
 /* External link indicators for accessibility */
 .content-body a[href^="http"]:not([href*="kansascitymesh.live"])::after,
 .content-body a[target="_blank"]::after {
-  content: " \f08e";
-  font-family: "Font Awesome 6 Free";
-  font-weight: 900;
+  content: " ↗";
   font-size: 0.75em;
   margin-left: 0.25em;
   opacity: 0.6;
