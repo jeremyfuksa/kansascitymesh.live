@@ -21,7 +21,9 @@ Two months ago I didn't know what [LoRa](https://en.wikipedia.org/wiki/LoRa) was
 
 I'm getting 10+ miles from 15 feet off the ground indoors next to a window. Would 40 feet be better? You bet. But as the mesh grows, height for the majority of us matters less.
 
-The online consensus says "indoor is a last resort" and "you need a tower or a roof." My node runs on the top floor of my house and reaches nodes across the metro. Not perfect, but certainly functional.
+**Kansas City's topography helps:** Our metro's relatively modest elevation range (about 200 feet total) means even small height advantages matter. You don't need a mountaintop—you need to be higher than your immediate surroundings with a clear view toward the horizon.
+
+The online consensus says "indoor is a last resort" and "you need a tower or a roof." My node runs on the top floor of my house and reaches nodes across the metro. Not perfect, but certainly functional. Indoor works when your building sits on locally elevated ground with window-facing horizons. The top floor of a house on a hill performs better than the top of a tower in a valley. *Relative* elevation matters more than absolute elevation.
 
 ### "Indoor deployment is pointless"
 
@@ -33,11 +35,11 @@ Conventional wisdom says everyone orients their antennas vertically, so you shou
 
 ### "Solar systems need 50W panels and massive batteries"
 
-Meshtastic nodes sip power—under 100mA. A 10W panel and small battery runs through multiple cloudy days. Small, cheap setups work fine for these low-power radios.
+Meshtastic router nodes sip power—typically 20-50mA for basic router configurations without displays. Client nodes with screens active draw more (100-150mA), but properly configured solar routers can run indefinitely on small panels. A 5W solar panel with an 18650 battery bank runs through multiple cloudy days. Larger 10W panels provide additional margin for harsh weather or power-hungry configurations.
 
 ### "HOAs make mesh networking impossible"
 
-I have HOA restrictions. Solar setups are small enough that nobody notices. A 10W panel with a small enclosure on a fence post doesn't trigger enforcement the way a 30-foot mast does.
+I have HOA restrictions. Solar setups are small enough that nobody notices. A 5W panel with a small enclosure on a fence post doesn't trigger enforcement the way a 30-foot mast does.
 
 ## What Meshtastic actually is
 

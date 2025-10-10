@@ -19,6 +19,19 @@ The draft backbone calls for always-on sites that form the cardinal spine of the
 
 Client nodes already dot the map across KC, but backbone sites increase coverage and reliability.
 
+### Why topography drives backbone placement
+
+Kansas City's ~200-foot elevation range (794-997 feet above sea level) creates strategic opportunities. The Missouri River valley sits 200+ feet below surrounding bluffs—that differential matters enormously for propagation. Areas like Blue Ridge and Union Hill host broadcast infrastructure precisely because elevation provides coverage advantage.
+
+For mesh networking, the same principles apply: 100 feet of elevation gain extends range significantly and provides Fresnel zone clearance over obstacles. The backbone strategy prioritizes locations that combine:
+
+1. **Relative elevation advantage** (highest locally available ground)
+2. **Clear horizons** (minimal nearby obstructions)
+3. **Sustainable access** (locations that can host reliable 24/7 operation)
+4. **Coverage gap-filling** (areas with few or no existing nodes)
+
+Not all backbone sites need to be on the metro's absolute highest points—they need to be highest *within their coverage zone* with clear line-of-sight toward adjacent backbone sites and client node clusters.
+
 ### Device roles
 
 Meshtastic refreshed its [role guidance](https://meshtastic.org/docs/configuration/radio/device/#role) in late 2024. KC sticks closely to it:
@@ -28,7 +41,7 @@ Meshtastic refreshed its [role guidance](https://meshtastic.org/docs/configurati
 - **Router:** Reserved for elevated, 24/7 infrastructure. Always coordinate before promoting a node to router status.
 - **Repeater:** Router with telemetry silenced. Only for special, high-noise cases.
 
-**Routers are reserved for partners who can combine significant elevation with reliable power and weatherized installs.** Misapplying router-style roles creates collisions and slows the network. Spend some time as a client first; think thrice before randomly assigning roles beyond Client.
+**Routers are reserved for partners who can combine significant elevation with reliable power and weatherized installs.** The ROUTER_CLIENT role was deprecated in firmware 2.3.15 due to widespread misuse that degraded network performance. Router and repeater roles should only be used for truly strategic locations (towers, skyscrapers, mountaintops)—not mobile nodes, car nodes, or typical residential installations. Spend some time as a client first; think thrice before randomly assigning roles beyond Client.
 
 ### Routing and hop limits
 

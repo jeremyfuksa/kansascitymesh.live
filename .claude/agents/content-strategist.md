@@ -35,6 +35,7 @@ You excel at:
 4. Test clarity - can the target audience understand this without prior knowledge?
 5. Verify action clarity - is it obvious what the reader should do next?
 6. Identify opportunities to strengthen emotional connection
+7. Strip out all "tells" that this content is AI generated.
 
 ## Quality Standards You Uphold
 
