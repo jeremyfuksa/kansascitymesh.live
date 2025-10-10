@@ -32,6 +32,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family:
     "Inter",
@@ -67,10 +71,17 @@ body {
 
 a {
   text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 a:hover {
   text-decoration: underline;
+}
+
+a:focus-visible {
+  outline: 2px solid #004687;
+  outline-offset: 2px;
+  border-radius: 0.25rem;
 }
 
 .section-eyebrow {
@@ -80,10 +91,14 @@ a:hover {
   color: #6c757d;
 }
 
+/* Constrain main content area for better readability */
+main .container {
+  max-width: 80ch;
+}
+
 .content-body {
   font-size: 1.05rem;
   line-height: 1.7;
-  max-width: 80ch;
 }
 
 .content-body a {
@@ -173,11 +188,90 @@ a:hover {
   padding-left: 1.5rem;
 }
 
+.content-body ul li,
+.content-body ol li {
+  margin-bottom: 0.5rem;
+}
+
+.content-body ul li:last-child,
+.content-body ol li:last-child {
+  margin-bottom: 0;
+}
+
 .content-body blockquote {
   border-left: 4px solid rgba(0, 0, 0, 0.1);
   padding-left: 1rem;
   font-style: italic;
   color: #6c757d;
+}
+
+/* Horizontal rules */
+.content-body hr {
+  border: 0;
+  border-top: 2px solid rgba(212, 130, 92, 0.2);
+  margin: 2rem 0;
+}
+
+/* Images in content */
+.content-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1.5rem 0;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* Tables */
+.content-body table {
+  width: 100%;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.content-body table th,
+.content-body table td {
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(212, 130, 92, 0.15);
+}
+
+.content-body table th {
+  background-color: rgba(212, 130, 92, 0.05);
+  font-weight: 600;
+  color: #2b2420;
+}
+
+.content-body table tbody tr:hover {
+  background-color: rgba(212, 130, 92, 0.03);
+}
+
+/* Inline code styling */
+.content-body code {
+  background-color: rgba(212, 130, 92, 0.1);
+  color: #d4825c;
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+  font-family: "SFMono-Regular", "Consolas", "Liberation Mono", "Menlo", monospace;
+}
+
+/* Code blocks */
+.content-body pre {
+  background-color: #2b2420;
+  color: #f4e8d8;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.content-body pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: 0.875rem;
 }
 
 .discord-card {
