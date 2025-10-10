@@ -1,5 +1,37 @@
 @import "./bootstrap.scss";
 
+/* Kansas City Meshtastic color palette - CSS custom properties */
+:root {
+  /* Brand colors */
+  --kc-red: #E31837;
+  --kc-blue: #004687;
+  --kc-sky-blue: #5DADE2;
+  --meshtastic-green: #67C98F;
+  --sunset-amber: #F59E42;
+  --kansas-clay: #D4825C;
+  --prairie-gold: #E8B547;
+
+  /* Light mode (default) */
+  --bg-primary: #FDFBF7;
+  --bg-secondary: #F5EFE6;
+  --text-primary: #2B2420;
+  --text-secondary: #6c757d;
+  --card-bg: #ffffff;
+  --border-color: rgba(212, 130, 92, 0.15);
+}
+
+/* Dark mode support (future implementation) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-primary: #1A1512;
+    --bg-secondary: #2B2420;
+    --text-primary: #F4E8D8;
+    --text-secondary: #a8a29e;
+    --card-bg: #2B2420;
+    --border-color: rgba(212, 130, 92, 0.25);
+  }
+}
+
 body {
   font-family:
     "Inter",
@@ -42,7 +74,7 @@ a:hover {
 }
 
 .section-eyebrow {
-  letter-spacing: 0.3em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   font-size: 0.75rem;
   color: #6c757d;
@@ -51,6 +83,12 @@ a:hover {
 .content-body {
   font-size: 1.05rem;
   line-height: 1.7;
+  max-width: 65ch;
+}
+
+.content-body a {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .content-body > :first-child {
@@ -70,14 +108,57 @@ a:hover {
 
 .content-body h1 {
   font-size: 2.5rem;
+  font-weight: 700;
 }
 
 .content-body h2 {
   font-size: 2rem;
+  font-weight: 700;
 }
 
 .content-body h3 {
   font-size: 1.65rem;
+}
+
+/* Mobile typography adjustments */
+@media (max-width: 767px) {
+  .content-body h1 {
+    font-size: 2rem;
+  }
+
+  .content-body h2 {
+    font-size: 1.65rem;
+  }
+
+  .content-body h3 {
+    font-size: 1.35rem;
+  }
+
+  .content-body {
+    font-size: 1rem;
+  }
+
+  /* Lead text sizing for mobile */
+  .lead {
+    font-size: 1.125rem;
+  }
+
+  /* Improved touch targets */
+  .btn {
+    min-height: 44px;
+    padding: 0.625rem 1.25rem;
+  }
+
+  /* Better spacing for mobile */
+  .py-5 {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+
+  .py-4 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
 }
 
 .content-body p,
@@ -105,6 +186,18 @@ a:hover {
 
 .callout-card {
   border-left: 4px solid #f59e42;
+}
+
+/* External link indicators for accessibility */
+.content-body a[href^="http"]:not([href*="kansascitymesh.live"])::after,
+.content-body a[target="_blank"]::after {
+  content: " \f08e";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  font-size: 0.75em;
+  margin-left: 0.25em;
+  opacity: 0.6;
+  vertical-align: super;
 }
 
 /* Details/Summary styling */
