@@ -167,6 +167,28 @@ const spacingClass = heroVariant === "compact" ? "py-4" : "py-5";
       </div>
     </footer>
 
+    <script is:inline>
+      // Add Font Awesome external link icons after page load
+      document.addEventListener('DOMContentLoaded', function() {
+        const contentBody = document.querySelector('.content-body');
+        if (!contentBody) return;
+
+        const links = contentBody.querySelectorAll('a[href^="http"]:not([href*="kansascitymesh.live"]), a[target="_blank"]');
+
+        links.forEach(link => {
+          // Skip if icon already added
+          if (link.querySelector('.external-link-icon')) return;
+
+          // Create Font Awesome icon element
+          const icon = document.createElement('i');
+          icon.className = 'fa-solid fa-arrow-up-right-from-square external-link-icon';
+          icon.setAttribute('aria-hidden', 'true');
+
+          // Append icon to link
+          link.appendChild(icon);
+        });
+      });
+    </script>
 
   </body>
 </html>
