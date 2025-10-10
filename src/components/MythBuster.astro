@@ -1,0 +1,127 @@
+---
+/**
+ * Always-visible myth/reality card for anti-dogma content.
+ * Displays common misconceptions with clear visual rebuttal.
+ */
+interface Props {
+  myth: string;
+  reality: string;
+  details?: string;
+}
+
+const { myth, reality, details } = Astro.props;
+---
+
+<div class="myth-card">
+  <div class="myth-header">
+    <span class="myth-label">Myth</span>
+    <h3 class="myth-text">{myth}</h3>
+  </div>
+  <div class="reality-section">
+    <span class="reality-label">Reality</span>
+    <div class="reality-content">
+      <p class="reality-lead">{reality}</p>
+      {details && <div class="reality-details" set:html={details} />}
+      <slot />
+    </div>
+  </div>
+</div>
+
+<style>
+  .myth-card {
+    border-left: 4px solid var(--kc-red);
+    background: var(--card-bg);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+  }
+
+  .myth-header {
+    margin-bottom: 1rem;
+  }
+
+  .myth-label {
+    display: inline-block;
+    background: var(--kc-red);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .myth-text {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0.5rem 0 0 0;
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .reality-section {
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+  }
+
+  .reality-label {
+    display: inline-block;
+    background: var(--meshtastic-green);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .reality-lead {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.5;
+    margin: 0 0 0.75rem 0;
+  }
+
+  .reality-details {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+
+  .reality-details :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .reality-details :global(strong) {
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .reality-details :global(a) {
+    color: var(--kc-blue);
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+
+  /* Mobile optimization */
+  @media (max-width: 640px) {
+    .myth-card {
+      padding: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .myth-text {
+      font-size: 1.125rem;
+    }
+
+    .reality-lead {
+      font-size: 1rem;
+    }
+  }
+</style>

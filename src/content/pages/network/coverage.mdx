@@ -11,6 +11,7 @@ discordInvite:
 ---
 
 import Figure from '../../../components/Figure.astro';
+import TopoContext from '../../../components/TopoContext.astro';
 
 This page will probably change often. Just a few days ago, I had a screenshot of the map in my phone app on here, and it was out-of-date in two days.
 
@@ -31,7 +32,7 @@ The metro only needs routers where we can combine serious elevation with clean R
 The priorities below focus on **coverage deserts**—areas with few or no nodes that need fill-in. This is different from pure topographic optimization. For example, the Blue Ridge/Union Hill area east of downtown is topographically ideal (highest urban terrain, proven by broadcast infrastructure), but it already has decent node density. The west side has almost nothing despite being the metro's second-largest population center. That's why west comes first.
 
 <details>
-<summary>Understanding KC's topographic zones</summary>
+<summary data-label-collapsed="Click to expand" data-label-expanded="Click to collapse">Understanding KC's topographic zones</summary>
 
 Kansas City's terrain divides into three distinct zones that shape network strategy:
 
@@ -55,12 +56,11 @@ If you live in Johnson County, just get a node up. Even a 15-20 ft mast on a sec
 
 Ideal backbone sites: Kill Creek Park observation tower (would need county permission), water towers in Olathe/Overland Park, elevated commercial sites near I-35. If you've got access to any of these, [Discord is where we coordinate](https://discord.gg/eP5VSPKU).
 
-<details>
-<summary>Why southern JoCo works well for this</summary>
+<TopoContext title="Why Southern JoCo Works" icon="⛰️">
 
 Southern Johnson County has the metro's highest accessible terrain—hilltops around southern Olathe and Overland Park reach 990+ feet elevation. Kill Creek Park includes an observation tower that could anchor western coverage if we can work with the county. The elevation advantage here extends range significantly compared to valley-floor deployments.
 
-</details>
+</TopoContext>
 
 ### 2. North KC reinforcement
 
@@ -68,12 +68,11 @@ Bridging the river and extending north into Gladstone, Smithville, and Parkville
 
 Best backbone opportunities: Parkville bluffs, elevated ground in Gladstone, water towers (with permission). Locations with views toward downtown are what we need. Talk to me in [Discord](https://discord.gg/eP5VSPKU).
 
-<details>
-<summary>River valley topography</summary>
+<TopoContext title="River Valley Crossing Strategy" icon="🌊">
 
 This is about crossing the Missouri River valley—the river sits 200+ feet below surrounding bluffs. Parkville bluffs, Gladstone elevated areas (including the Kansas City Museum at 3218 Gladstone Blvd, reportedly KC's highest urban point), and Smithville vicinity provide strategic vantage points overlooking the valley.
 
-</details>
+</TopoContext>
 
 ### 3. South metro coverage
 
@@ -81,12 +80,11 @@ Sparse coverage along I-49 toward Belton, Grandview, and Lee's Summit. The terra
 
 Lee's Summit residential areas on high ground, Grandview locations with views north toward midtown, commercial sites in Belton/Raymore would make good backbone sites. [Coordinate in Discord](https://discord.gg/eP5VSPKU).
 
-<details>
-<summary>Local topography notes</summary>
+<TopoContext title="South Metro Elevation Advantages" icon="🏔️">
 
 Belton, Grandview, and Lee's Summit sit on rolling limestone hills—some of the metro's highest accessible points. Lee's Summit hilltops and Grandview's elevated areas have 150-250 feet of local relief, which extends range compared to flatter areas.
 
-</details>
+</TopoContext>
 
 ### 4. East corridor fill-in
 
@@ -94,12 +92,11 @@ Independence, Blue Springs, and Grain Valley already have light coverage. Just n
 
 Blue Ridge/Union Hill area has ideal topography (which is why broadcast towers cluster there), but node density is decent already. Long-term, commercial rooftops or tower sharing in that area would anchor metro-wide backbone.
 
-<details>
-<summary>Blue Ridge/Union Hill elevation advantage</summary>
+<TopoContext title="Blue Ridge Tower Infrastructure" icon="📡">
 
 The Blue Ridge/Union Hill area (east/southeast of downtown) is the metro's highest urban terrain at 880-920 feet elevation. KCTV Tower sits on Union Hill, multiple towers at 2100 Stark Ave in Blue Ridge. A backbone router here would provide 360-degree metro coverage, but existing node density makes it less urgent than coverage deserts.
 
-</details>
+</TopoContext>
 
 ## How to evaluate placements
 
@@ -121,7 +118,7 @@ I use USGS elevation data and drive tests to validate what's possible. You can d
 ## GeoJSON target area
 
 <details>
-<summary>View target area coordinates (GeoJSON)</summary>
+<summary data-label-collapsed="Click to expand" data-label-expanded="Click to collapse">View target area coordinates (GeoJSON)</summary>
 
 Here's a feasible target area for the KC mesh. It's a rough box around the metro area.
 
