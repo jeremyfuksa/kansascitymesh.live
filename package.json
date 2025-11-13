@@ -16,7 +16,7 @@
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
     "@fullhuman/postcss-purgecss": "^7.0.2",
-    "astro": "^5.14.1",
+    "astro": "^5.15.6",
     "autoprefixer": "^10.4.21",
     "bootstrap": "^5.3.8",
     "postcss": "^8.5.6",
