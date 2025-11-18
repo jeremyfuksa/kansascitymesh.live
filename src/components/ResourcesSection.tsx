@@ -1,4 +1,5 @@
 import { ExternalLink, Book, Users, Map } from 'lucide-react';
+import { trackEvent } from '../utils/analytics';
 
 const resources = [
   {
@@ -45,6 +46,7 @@ export default function ResourcesSection() {
               target="_blank"
               rel="noopener noreferrer"
               className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl shadow-black/50 hover:scale-105 transition-transform duration-300 ease-in-out group"
+              onClick={() => trackEvent('resource_click', resource.href)}
             >
               <div className="flex items-start gap-4 mb-4">
                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-gradient-to-br ${resource.color}`}>
