@@ -1,6 +1,7 @@
 import { ExternalLink } from 'lucide-react';
 import { DISCORD_INVITE } from '../constants/discord';
 import { trackEvent } from '../utils/analytics';
+import { version } from '../../package.json';
 
 interface FooterProps {
   onNavigate: (target: 'home' | 'get-started') => void;
@@ -38,6 +39,7 @@ export default function Footer({ onNavigate }: FooterProps) {
         </nav>
         <p className="text-center text-white/40 text-sm">© 2025 Kansas City Meshtastic Network</p>
         <p className="text-center text-white/40 text-sm">Not affiliated with <a href="https://meshtastic.org">meshtastic.org</a>.</p>
+        <p className="text-center text-white/30 text-xs mt-4">v{version}</p>
       </div>
     </footer>
   );
