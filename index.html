@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kansas City Meshtastic Network</title>
+  <meta name="description" content="Community-built Meshtastic mesh network for the Kansas City metro. 135+ nodes and growing.">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/02023a5bb5.js" crossorigin="anonymous" async></script>
+</head>
+<body>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>KC Meshtastic is already on the air</h1>
+      <p class="hero-description">Real nodes, real coverage, and daily observations from builders spread across the metro. This is a playbook for joining, not a pitch deck.</p>
+      <div class="cta-group">
+        <a href="https://map.kansascitymesh.live" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+          Watch the coverage map
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+        <a href="https://discord.gg/eP5VSPKU" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          Join Discord
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Field Log -->
+  <section class="content-section">
+    <div class="container">
+      <h2>Field log — 29 November</h2>
+      <p>Every dot on the live map represents gear that is sending or forwarding packets. Midtown and North KC are stable, but the southern suburbs and Johnson County still look empty when you zoom in. That is not a software bug; it's a call for hardware.</p>
+
+      <h3>Recent observations</h3>
+      <ul>
+        <li>Router-grade installs on the Missouri side easily cross the river valley when they have even 15–20 feet of elevation.</li>
+        <li>Indoor Heltec and SenseCAP clients in apartment windows routinely reach four to six miles so long as they are pointed toward higher ground.</li>
+        <li>MQTT backhaul logging remains on a single Liberty gateway. We need a redundant feed closer to downtown.</li>
+      </ul>
+
+      <h3>How to add value fast</h3>
+      <ol>
+        <li>Place a client where you live or work, even if it begins indoors. Document RSSI and SNR so others know what to expect from that neighborhood.</li>
+        <li>Walk or drive with a handheld so we can continue shading the coverage map with real data.</li>
+        <li>Offer high-site access if you manage a building, tower, or farm infrastructure that sees above the treeline.</li>
+      </ol>
+
+      <h3>Why this site exists</h3>
+      <p>I am freezing the messy bits of experimentation into something repeatable. When we write down what hardware, settings, and placement worked, the next builder can skip weeks of guessing. When we make our wish list public, the right person eventually recognizes that they already control the perfect rooftop. Everything here should feel like a logbook—today's reality, not a dreamy roadmap.</p>
+    </div>
+  </section>
+
+  <!-- Getting Started -->
+  <section class="getting-started">
+    <div class="container">
+      <h2>How to plug in fast</h2>
+      <ol class="steps">
+        <li>Buy a radio (see hardware below) and flash it with Meshtastic firmware</li>
+        <li>Announce your install plan in <a href="https://discord.gg/eP5VSPKU" target="_blank" rel="noopener noreferrer">Discord</a> so neighboring nodes know to look for you</li>
+        <li>Check elevation and line-of-sight with the <a href="https://site.meshtastic.org" target="_blank" rel="noopener noreferrer">Meshtastic site tool</a> before you move antennas outside</li>
+      </ol>
+
+      <h3>Hardware to buy</h3>
+      <p class="hardware-intro">Start cheap, learn your neighborhood, then invest in the sites that deserve it.</p>
+
+      <div class="hardware-grid">
+        <div class="hardware-card">
+          <h4>Budget starter: Heltec LoRa32 V3</h4>
+          <p class="price">$25–$35</p>
+          <p>Bright OLED, easy to flash, tiny enough for stealth installs. Needs a companion phone or laptop for messaging.</p>
+          <a href="https://www.amazon.com/s?k=Heltec+LoRa32+V3" target="_blank" rel="noopener noreferrer" class="btn btn-small">
+            Search on Amazon
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <div class="hardware-card">
+          <h4>Mobile/GPS option: LILYGO T-Beam</h4>
+          <p class="price">$40–$55</p>
+          <p>Includes GPS and an 18650 tray. Great for mobile clients and vehicle experiments.</p>
+          <a href="https://www.amazon.com/s?k=LILYGO+T-Beam+Meshtastic" target="_blank" rel="noopener noreferrer" class="btn btn-small">
+            Search on Amazon
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <div class="hardware-card">
+          <h4>Portable with keyboard: LILYGO T-Deck</h4>
+          <p class="price">$65–$75</p>
+          <p>Built-in keyboard, display, and battery. Perfect for testing coverage from rooftops or balconies without a phone.</p>
+          <a href="https://www.amazon.com/s?k=LILYGO+T-Deck+Meshtastic" target="_blank" rel="noopener noreferrer" class="btn btn-small">
+            Search on Amazon
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+
+        <div class="hardware-card">
+          <h4>Infrastructure ready: RAK WisBlock</h4>
+          <p class="price">$70–$90</p>
+          <p>Modular boards designed for rugged outdoor enclosures. Pair with a waterproof box and power system for semi-permanent routers.</p>
+          <a href="https://www.amazon.com/s?k=RAK+WisBlock+Meshtastic" target="_blank" rel="noopener noreferrer" class="btn btn-small">
+            Search on Amazon
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Discord CTA -->
+  <section class="discord-cta">
+    <div class="container">
+      <h2>Get unstuck with the crew</h2>
+      <p>There's almost always someone awake in the server to sanity-check an install or read RSSI logs.</p>
+      <a href="https://discord.gg/eP5VSPKU" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Join the server
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="final-cta">
+    <div class="container">
+      <h2>Deploy a node this weekend</h2>
+      <p>A $40 indoor client with a window view still helps. Once it's running, we'll figure out the next upgrade together.</p>
+      <a href="https://discord.gg/eP5VSPKU" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+        Join Discord to get started
+        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Kansas City Meshtastic Network</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
