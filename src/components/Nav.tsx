@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react';
 import PulsingDot from './PulsingDot';
-import logo from '../assets/kc-mesh-logo.png';
+import logo from '../assets/kc-mesh-logo-green.png';
 import { DISCORD_INVITE } from '../constants/discord';
 import { trackEvent } from '../utils/analytics';
 
