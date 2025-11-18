@@ -1,71 +1,88 @@
 ---
 title: Why Meshtastic
-description: I want to save you from all the dead ends I hit while playing with this technology.
+description: KC’s mesh is a hobby project with practical side effects—here’s the honest case for caring.
 pageHeading: Why Meshtastic?
 heroVariant: compact
+breadcrumbs:
+  - label: Home
+    href: /
+  - label: Why Meshtastic
+    href: /about/why-meshtastic
+tableOfContents:
+  - id: the-real-reasons-people-stick-around
+    label: The real reasons people stick around
+    level: 1
+  - id: myths-that-slow-new-builders
+    label: Myths that slow new builders
+    level: 1
+  - id: what-youre-signing-up-for
+    label: What you’re signing up for
+    level: 1
+  - id: how-this-fits-with-kc
+    label: How this fits with KC
+    level: 1
+meta:
+  author: KC Meshtastic Contributors
+  lastUpdated: Nov 30, 2024
+  readTime: 7 min read
+  category: About
+relatedLinks:
+  - title: Operator notes
+    description: Who is documenting the network day to day.
+    href: /about/operator
+  - title: Network architecture
+    description: How the metro-wide plan hangs together.
+    href: /network/architecture
+  - title: Join the network
+    description: Ready to flash firmware and go live.
+    href: /get-started/join
 ---
+
+## The real reasons people stick around
+
+The emergency-prep elevator pitch is technically true: Meshtastic moves messages when the commercial grid falls apart. But the daily motivation looks different. Builders stay because it is strangely satisfying to watch packets hop across rooftops you helped light up. Neighborhood chats pop up without anyone flipping a switch. Coverage reports feel like a team sport.
+
+People here fall into three overlapping buckets:
+
+- **Tinkerers** who love radios, microcontrollers, and weatherproofing experiments.
+- **Neighborhood connectors** who simply want to know their block can still pass notes when the cell system hiccups.
+- **Infrastructure nerds** who enjoy orchestrating high sites, backhauls, and experimental automations.
+
+All three perspectives keep the network balanced. We document everything so each new contribution builds on the previous one instead of restarting from scratch.
+
+## Myths that slow new builders
 
 import MythBuster from '../../../components/MythBuster.astro';
 
-## The standard answer (and why it might not be your answer)
-
-**Emergency backup communications.** When cell towers go down—severe weather, power outages, infrastructure failure, Mad Max wastelands... [Meshtastic](https://meshtastic.org/) keeps working. Text messaging and GPS position sharing without depending on commercial infrastructure.
-
-That's the boilerplate answer. But, I noticed most people on [r/meshtastic](https://reddit.com/r/meshtastic) aren't there for emergency prep. They're building infrastructure because it's fun. Watching messages hop across nodes you deployed yourself is just plain cool.
-
-Deploy it for fun. Emergency capability comes along for the ride. (I wrote about [the challenge of explaining infrastructure-as-hobby](https://www.jeremyfuksa.com/im-building-a-network-i-cant-explain/) if that tension resonates.)
-
-Two months ago I didn't know what [LoRa](https://en.wikipedia.org/wiki/LoRa) was. What I've learned contradicts some of the perfectionist advice online... the kind that almost stopped me from trying.
-
-## The myths that almost stopped me
-
 <MythBuster
-  myth="You need serious elevation or don't bother"
-  reality="I'm getting 10+ miles from 15 feet off the ground indoors next to a window. Would 40 feet be better? You bet. But as the mesh grows, height for the majority of us matters less."
-  details="<p><strong>Kansas City's topography helps:</strong> Our metro's relatively modest elevation range (about 200 feet total) means even small height advantages matter. You don't need a mountaintop—you need to be higher than your immediate surroundings with a clear view toward the horizon.</p><p>The online consensus says 'indoor is a last resort' and 'you need a tower or a roof.' My node runs on the top floor of my house and reaches nodes across the metro. Not perfect, but certainly functional. Indoor works when your building sits on locally elevated ground with window-facing horizons. The top floor of a house on a hill performs better than the top of a tower in a valley. Being higher than your neighbors matters more than being on the highest point in KC.</p>"
+  myth="You need commercial-grade towers."
+  reality="Kansas City’s rolling terrain means even a modest second-story install can see miles of coverage if it has a clear horizon."
+  details="<p>Put something on top of a garage or dormer before you start budgeting for masts. The metro’s total elevation swing is roughly 200 feet, so relative height beats absolute altitude.</p>"
 />
 
 <MythBuster
-  myth="Indoor deployment is pointless"
-  reality="I started indoors to test before committing to outdoor installation. My house isn't full of materials that attenuate radio signals. The node sits near an outward-facing wall on the highest floor."
-  details="<p>If your building kills RF signals, you'll know fast. Test first, then decide on outdoor installation. <a href='https://en.wikipedia.org/wiki/Attenuation#Radio'>Learn about radio attenuation</a>.</p>"
+  myth="Indoor nodes are useless."
+  reality="Plenty of our drive logs come from radios that never left a window sill." 
+  details="<p>Wood construction plus a halfway decent 915 MHz whip still reaches four to six miles. Use the indoor phase to validate placement, then harden it outside when you’re ready.</p>"
 />
 
 <MythBuster
-  myth="You must use vertical polarization"
-  reality="Conventional wisdom says everyone orients their antennas vertically, so you should too for signal matching. That's absolutely true, but if you've got installation constraints, horizontal antenna placement won't brick your setup."
+  myth="Routers are the default."
+  reality="Client mode is the default. Routers are reserved for curated high sites with 24/7 power and maintenance plans." 
 />
 
 <MythBuster
-  myth="Solar systems need 50W panels and massive batteries"
-  reality="Meshtastic router nodes sip power—typically 20-50mA for basic router configurations without displays."
-  details="<p>Client nodes with screens active draw more (100-150mA), but properly configured solar routers can run indefinitely on small panels. A 5W solar panel with an 18650 battery bank runs through multiple cloudy days. Larger 10W panels provide additional margin for harsh weather or power-hungry configurations.</p>"
+  myth="MQTT magically extends coverage."
+  reality="If RF never hears the packet, MQTT never forwards it. Treat the broker like a logbook, not a backdoor chat." 
 />
 
-<MythBuster
-  myth="HOAs make mesh networking impossible"
-  reality="I have HOA restrictions. Solar setups are small enough that nobody notices."
-  details="<p>A 5W panel with a small enclosure on a fence post doesn't trigger enforcement the way a 30-foot mast does.</p>"
-/>
+## What you’re signing up for
 
-## What Meshtastic actually is
+- **DIY deployments.** Nobody is handing out gear. You purchase the hardware, flash it, and keep it online.
+- **Public progress.** Share range tests, RSSI values, and antenna experiments in Discord so we can all learn.
+- **Iterative upgrades.** Start with the easy win—an indoor Heltec, a SenseCAP tracker, a LilyGO handheld. Move outside or up a tower when it makes sense.
+- **Community accountability.** When your router goes dark, someone will ping you because it matters.
 
-[LoRa radio](https://en.wikipedia.org/wiki/LoRa) (915 MHz, unlicensed [ISM band](https://en.wikipedia.org/wiki/ISM_radio_band)) running [open-source firmware](https://github.com/meshtastic/firmware). Text messages, GPS sharing, basic telemetry. No voice, no internet access, no instant delivery.
+## How this fits with KC
 
-**Why Meshtastic and not [MeshCore](https://meshcore.net/)?** Ecosystem maturity. Meshtastic has deployed nodes, [documentation](https://meshtastic.org/docs/introduction), hardware support. The whole stack is open source. No vendor lock-in, no monthly fees, no license requirement for 915 MHz.
-
-## What you're getting into
-
-**Cost:** $35 radio to start. [Hardware recommendations](/get-started/join).
-
-**Range:** I'm seeing 10+ miles from my mediocre indoor setup. People with good outdoor installs report 20–40 miles. It's heavily dependent on elevation and terrain—you won't know until you test.
-
-**Limitations:** Text only. Delivery takes seconds to minutes depending on hops. No guaranteed reach if node density is low in your area. [Technical details in the Meshtastic docs](https://meshtastic.org/docs/overview/mesh-algo).
-
-**Why do it?** Browse [r/meshtastic](https://reddit.com/r/meshtastic)—people optimizing antenna placement, troubleshooting range, celebrating multi-hop connections. The emergency communications angle gets mentioned, but the actual motivation is "I'm building something and want it to work better." That's what keeps me engaged too.
-
-## Where KC stands now
-
-There are 40+ nodes scattered across the metro. More come online every day.
-
-I've thought of how we can create reliable coverage across the metro. [Full architecture details](/network/architecture) are here.
+Kansas City is ideal mesh territory. The Missouri River carves a valley that routers must leap, but it also provides dramatic high spots. Downtown rooftops shoot north into the bluffs. South metro neighborhoods have 150–250 feet of relief built into everyday subdivisions. The west side is hungry for nodes and already has water towers begging for antennas. We do not have to imagine how a future network might operate; we have logs, screenshots, and routes showing how it behaves today. That’s why we bother documenting it so obsessively.

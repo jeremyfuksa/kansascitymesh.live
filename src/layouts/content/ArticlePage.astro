@@ -1,8 +1,11 @@
 ---
-import Layout from "../Layout.astro";
-import ButtonRow from "../../components/ButtonRow.astro";
-import ButtonLink from "../../components/ButtonLink.astro";
-import DiscordInviteCard from "../../components/DiscordInviteCard.astro";
+/**
+ * Campfire Design System - Article Page Layout
+ * Clean content-focused layout with optional CTAs
+ */
+import CampfireInnerPage from "./CampfireInnerPage.astro";
+import CampfireButton from "../../components/campfire/CampfireButton.astro";
+import CampfireDiscordCTA from "../../components/campfire/CampfireDiscordCTA.astro";
 
 const { entry } = Astro.props as { entry: any };
 const { Content } = await entry.render();
@@ -11,44 +14,51 @@ const {
   title = "",
   description = "",
   pageHeading,
-  heroVariant,
   actions = [],
   discordInvite,
+  breadcrumbs = [],
+  tableOfContents = [],
+  meta,
 } = data as Record<string, any>;
 ---
 
-<Layout
-  title={title}
+<CampfireInnerPage
+  title={pageHeading ?? title}
   description={description}
-  pageHeading={pageHeading}
-  heroVariant={heroVariant}
+  breadcrumbs={breadcrumbs}
+  tableOfContents={tableOfContents}
+  meta={meta}
+  seoTitle={title}
+  seoDescription={description}
 >
-  <div class="d-flex flex-column gap-4">
-    <article class="content-body">
-      <Content />
-    </article>
+  {/* Main Content */}
+  <article class="content-body prose prose-neutral dark:prose-invert max-w-none">
+    <Content />
+  </article>
 
-    {actions.length > 0 && (
-      <ButtonRow>
-        {actions.map((action: any, index: number) => (
-          <ButtonLink
-            key={`action-${index}`}
-            href={action.href}
-            variant={action.variant}
-          >
-            {action.label}
-          </ButtonLink>
-        ))}
-      </ButtonRow>
-    )}
+  {/* Action Buttons */}
+  {actions.length > 0 && (
+    <div class="flex flex-wrap gap-4 mt-8">
+      {actions.map((action: any) => (
+        <CampfireButton
+          href={action.href}
+          variant={action.variant || 'primary'}
+        >
+          {action.label}
+        </CampfireButton>
+      ))}
+    </div>
+  )}
 
-    {discordInvite && (
-      <DiscordInviteCard
+  {/* Discord CTA */}
+  {discordInvite && (
+    <div class="mt-8">
+      <CampfireDiscordCTA
         title={discordInvite.title}
         description={discordInvite.description}
         link={discordInvite.link}
         linkText={discordInvite.linkText}
       />
-    )}
-  </div>
-</Layout>
+    </div>
+  )}
+</CampfireInnerPage>

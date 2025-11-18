@@ -1,8 +1,12 @@
 import { defineConfig } from "astro/config";
 import mdx from "@astrojs/mdx";
+import tailwind from "@astrojs/tailwind";
 
 export default defineConfig({
-  integrations: [mdx()],
+  integrations: [
+    mdx(),
+    tailwind()
+  ],
   style: {
     scss: {
       quietDeps: true,
@@ -11,6 +15,12 @@ export default defineConfig({
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp',
+    },
+  },
+  vite: {
+    server: {
+      host: true,
+      allowedHosts: ['ai.local', 'localhost'],
     },
   },
 });

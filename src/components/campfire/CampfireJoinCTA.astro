@@ -1,0 +1,53 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  link?: string;
+  linkText?: string;
+}
+
+const {
+  title = 'Ready to join the mesh?',
+  description = 'Get your first node, pair it with your phone, and start messaging. Takes about 15 minutes.',
+  link = '/get-started/join',
+  linkText = 'Get your first node',
+} = Astro.props as Props;
+---
+
+<section class="py-12 lg:py-20">
+  <div class="max-w-[1320px] mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="bg-gradient-to-br from-primary-600 via-primary-500 to-[#67ea94] dark:from-primary-700 dark:via-primary-600 dark:to-[#52d67f] rounded-[28px] p-12 lg:p-16 text-center text-white shadow-2xl relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+          <div
+            class="absolute inset-0"
+            style={`background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 32px 32px;`}
+          />
+        </div>
+
+        <div class="relative z-10">
+          <div class="flex justify-center mb-6">
+            <div class="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-[10px] flex items-center justify-center">
+              <i class="fa-solid fa-tower-broadcast text-3xl" aria-hidden="true"></i>
+            </div>
+          </div>
+
+          <h2 class="text-[32px] lg:text-[40px] font-bold mb-4">
+            {title}
+          </h2>
+
+          <p class="text-[17px] lg:text-[18px] text-white/95 leading-[1.7] mb-8 max-w-2xl mx-auto">
+            {description}
+          </p>
+
+          <a
+            href={link}
+            class="inline-flex items-center justify-center h-12 px-8 rounded-[10px] font-semibold text-primary-700 dark:text-primary-600 bg-white hover:shadow-2xl hover:scale-105 transition-all uppercase tracking-wide"
+          >
+            {linkText.toUpperCase()}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

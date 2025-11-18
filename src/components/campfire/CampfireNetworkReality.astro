@@ -1,0 +1,132 @@
+---
+/**
+ * Campfire Design System Network Reality Component
+ * Based on mt/components/NetworkReality.tsx
+ */
+import CampfireBadge from './CampfireBadge.astro';
+
+interface Card {
+  title: string;
+  description?: string;
+  status?: 'operational' | 'gap' | 'needed' | 'suggested';
+  link?: string;
+  linkText?: string;
+}
+
+interface Props {
+  cards?: Card[];
+  heading?: string;
+  description?: string;
+}
+
+const statusMeta = {
+  operational: {
+    badgeVariant: 'success',
+    badgeLabel: 'Operational',
+    iconClass: 'fa-solid fa-circle-check',
+    iconWrapper: 'bg-success-50 dark:bg-success-700/20',
+    iconColor: 'text-success-700 dark:text-success-500',
+  },
+  gap: {
+    badgeVariant: 'warning',
+    badgeLabel: 'Gap',
+    iconClass: 'fa-solid fa-triangle-exclamation',
+    iconWrapper: 'bg-warning-50 dark:bg-warning-700/20',
+    iconColor: 'text-warning-600 dark:text-warning-500',
+  },
+  needed: {
+    badgeVariant: 'danger',
+    badgeLabel: 'Needed',
+    iconClass: 'fa-solid fa-satellite-dish',
+    iconWrapper: 'bg-danger-500/10 dark:bg-danger-600/20',
+    iconColor: 'text-danger-600 dark:text-danger-500',
+  },
+  suggested: {
+    badgeVariant: 'info',
+    badgeLabel: 'Opportunity',
+    iconClass: 'fa-solid fa-chart-line',
+    iconWrapper: 'bg-primary-100 dark:bg-primary-700/20',
+    iconColor: 'text-primary-600 dark:text-primary-400',
+  },
+} as const;
+
+const defaultCards: Card[] = [
+  {
+    title: '135+ Active Nodes',
+    description: 'Live map shows real coverage across the metro. Not theoretical—actual nodes, actual messages, actual network.',
+    status: 'operational',
+  },
+  {
+    title: 'West Side Coverage Gap',
+    description: "Drive tests show almost no signal west of State Line—the metro's second-largest population center is mostly quiet.",
+    status: 'gap',
+  },
+  {
+    title: 'Where High Sites Would Help',
+    description: 'Observations from drive testing and topography analysis. If you have tower or rooftop access, folks in Discord would want to hear about it.',
+    status: 'suggested',
+    link: '/network/coverage',
+    linkText: 'Network patterns',
+  },
+];
+
+const {
+  cards = defaultCards,
+  heading,
+  description,
+} = Astro.props as Props;
+---
+
+<section class="py-12 lg:py-20 bg-white dark:bg-neutral-950">
+  <div class="max-w-[1320px] mx-auto px-6">
+    {(heading || description) && (
+      <div class="max-w-[80ch] mb-10">
+        {heading && (
+          <h2 class="text-[32px] lg:text-[40px] font-bold text-neutral-900 dark:text-neutral-50 mb-4">
+            {heading}
+          </h2>
+        )}
+        {description && (
+          <p class="text-[16px] lg:text-[18px] text-neutral-600 dark:text-neutral-400">
+            {description}
+          </p>
+        )}
+      </div>
+    )}
+    <div class={`grid gap-6 ${cards.length === 2 ? 'md:grid-cols-2' : 'md:grid-cols-3'}`}>
+      {cards.map((card) => {
+        const meta = card.status ? statusMeta[card.status] : undefined;
+        return (
+          <div class="bg-white dark:bg-neutral-900 rounded-[28px] border border-neutral-200 dark:border-neutral-800 p-6 hover:shadow-lg hover:-translate-y-1 transition-all">
+            <div class="flex items-center gap-2 mb-4">
+              <div class={`w-10 h-10 rounded-[10px] flex items-center justify-center ${meta ? meta.iconWrapper : 'bg-neutral-100 dark:bg-neutral-800'}`}>
+                <i class={`${meta ? meta.iconClass : 'fa-solid fa-circle'} w-5 h-5 ${meta ? meta.iconColor : 'text-neutral-600 dark:text-neutral-300'}`} aria-hidden="true"></i>
+              </div>
+              {meta && (
+                <CampfireBadge variant={meta.badgeVariant}>
+                  {meta.badgeLabel}
+                </CampfireBadge>
+              )}
+            </div>
+            <h3 class="text-[26px] lg:text-[32px] font-bold text-neutral-900 dark:text-neutral-50 mb-3">
+              {card.title}
+            </h3>
+            {card.description && (
+              <p class={`text-[16px] lg:text-[17px] text-neutral-600 dark:text-neutral-400 leading-[1.7] ${card.link ? 'mb-4' : ''}`}>
+                {card.description}
+              </p>
+            )}
+            {card.link && (
+              <a
+                href={card.link}
+                class="inline-flex items-center text-[14px] font-semibold text-primary-600 dark:text-primary-400 hover:text-[#67ea94] transition-colors"
+              >
+                {card.linkText ?? 'Learn more'} →
+              </a>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

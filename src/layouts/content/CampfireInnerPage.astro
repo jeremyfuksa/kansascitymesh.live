@@ -1,0 +1,164 @@
+---
+/**
+ * Campfire Design System - Inner Page Template
+ * Based on mt/components/InnerPageTemplate.tsx
+ * Full-featured page layout with breadcrumbs, TOC, and sidebar
+ */
+import Layout from "../Layout.astro";
+import CampfireBadge from "../../components/campfire/CampfireBadge.astro";
+
+interface Breadcrumb {
+  label: string;
+  href: string;
+}
+
+interface TableOfContentsItem {
+  id: string;
+  label: string;
+  level: 1 | 2 | 3;
+}
+
+interface PageMeta {
+  author?: string;
+  lastUpdated?: string;
+  readTime?: string;
+  category?: string;
+}
+
+interface Props {
+  title: string;
+  description?: string;
+  breadcrumbs: Breadcrumb[];
+  tableOfContents?: TableOfContentsItem[];
+  meta?: PageMeta;
+  seoTitle?: string;
+  seoDescription?: string;
+}
+
+const {
+  title,
+  description,
+  breadcrumbs,
+  tableOfContents,
+  meta,
+  seoTitle,
+  seoDescription,
+} = Astro.props;
+---
+
+<Layout title={seoTitle || title} description={seoDescription || description}>
+  {/* Page Header */}
+  <section class="pt-24 lg:pt-32 pb-8 lg:pb-12 border-b border-neutral-200 dark:border-neutral-800">
+    <div class="max-w-[1320px] mx-auto px-6">
+      {/* Breadcrumbs */}
+      <nav class="mb-6" aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-2 text-[14px]">
+          {breadcrumbs.map((crumb, index) => (
+            <li class="flex items-center gap-2">
+              {index > 0 && (
+                <i class="fa-solid fa-chevron-right w-4 h-4 text-neutral-400 dark:text-neutral-600" aria-hidden="true"></i>
+              )}
+              {index === breadcrumbs.length - 1 ? (
+                <span class="font-medium text-neutral-900 dark:text-neutral-50">
+                  {crumb.label}
+                </span>
+              ) : (
+                <a
+                  href={crumb.href}
+                  class="text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"
+                >
+                  {crumb.label}
+                </a>
+              )}
+            </li>
+          ))}
+        </ol>
+      </nav>
+
+      {/* Page Title & Meta */}
+      <div class="max-w-[80ch]">
+        {meta?.category && (
+          <div class="mb-4">
+            <CampfireBadge variant="primary">{meta.category}</CampfireBadge>
+          </div>
+        )}
+
+        <h1 class="text-[40px] lg:text-[56px] font-bold text-neutral-900 dark:text-neutral-50 mb-4 leading-tight">
+          {title}
+        </h1>
+
+        {description && (
+          <p class="text-[18px] lg:text-[20px] text-neutral-600 dark:text-neutral-400 leading-[1.7] mb-6">
+            {description}
+          </p>
+        )}
+
+        {/* Meta Info */}
+        {meta && (
+          <div class="flex flex-wrap items-center gap-4 text-[14px] text-neutral-500 dark:text-neutral-500">
+            {meta.author && (
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-user w-4 h-4" aria-hidden="true"></i>
+                <span>{meta.author}</span>
+              </div>
+            )}
+            {meta.lastUpdated && (
+              <div class="flex items-center gap-2">
+                <i class="fa-solid fa-clock w-4 h-4" aria-hidden="true"></i>
+                <span>Updated {meta.lastUpdated}</span>
+              </div>
+            )}
+            {meta.readTime && (
+              <div class="flex items-center gap-2">
+                <span>📖 {meta.readTime}</span>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {/* Main Content Area */}
+  <section class="py-12 lg:py-16">
+    <div class="max-w-[1320px] mx-auto px-6">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-12">
+        {/* Table of Contents (Left Sidebar) */}
+        {tableOfContents && tableOfContents.length > 0 && (
+          <aside class="lg:col-span-3 order-2 lg:order-1">
+            <div class="lg:sticky lg:top-24">
+              <div class="bg-white dark:bg-neutral-900 rounded-[28px] border border-neutral-200 dark:border-neutral-800 p-6">
+                <h2 class="text-[16px] font-bold text-neutral-900 dark:text-neutral-50 mb-4 uppercase tracking-wide">
+                  On This Page
+                </h2>
+                <nav>
+                  <ul class="space-y-2">
+                    {tableOfContents.map((item) => (
+                      <li
+                        class={item.level === 2 ? 'pl-4' : item.level === 3 ? 'pl-8' : ''}
+                      >
+                        <a
+                          href={`#${item.id}`}
+                          class="block text-[14px] text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400 transition-colors py-1"
+                        >
+                          {item.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </aside>
+        )}
+
+        {/* Main Content */}
+        <main class={tableOfContents ? 'lg:col-span-9' : 'lg:col-span-12'} class="order-1 lg:order-2">
+          <div class="content-body prose prose-neutral dark:prose-invert max-w-none">
+            <slot />
+          </div>
+        </main>
+      </div>
+    </div>
+  </section>
+</Layout>

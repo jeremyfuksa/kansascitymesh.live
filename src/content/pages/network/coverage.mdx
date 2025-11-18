@@ -1,11 +1,55 @@
 ---
 title: Coverage Priorities
-description: Understand the current footprint of the KC mesh and where additional routers will make the biggest impact.
+description: The shared backlog of gaps, high-site targets, and criteria for new routers.
 pageHeading: Coverage Priorities
 heroVariant: compact
+breadcrumbs:
+  - label: Home
+    href: /
+  - label: Network
+    href: /network/coverage
+  - label: Coverage
+    href: /network/coverage
+tableOfContents:
+  - id: current-coverage-snapshot
+    label: Current coverage snapshot
+    level: 1
+  - id: router-approach
+    label: Router approach
+    level: 1
+  - id: priority-logic
+    label: Priority logic
+    level: 1
+  - id: priority-zones
+    label: Priority zones
+    level: 1
+  - id: how-to-evaluate-placements
+    label: How to evaluate placements
+    level: 1
+  - id: diy-coverage-mapping
+    label: DIY coverage mapping
+    level: 1
+  - id: geojson-target-area
+    label: GeoJSON target area
+    level: 1
+meta:
+  author: KC Meshtastic Contributors
+  lastUpdated: Nov 30, 2024
+  readTime: 10 min read
+  category: Network
+relatedLinks:
+  - title: Network overview
+    href: /network/overview
+    description: Observations that feed these priorities.
+  - title: Join the network
+    href: /get-started/join
+    description: New clients still help even outside priority zones.
+  - title: MQTT checklist
+    href: /get-started/mqtt
+    description: Prep before standing up backhaul nodes.
 discordInvite:
   title: Have a high site or want to help fill coverage gaps?
-  description: Let's coordinate in Discord. Share your location, elevation, or tower access and we'll figure out how to make the most of it.
+  description: Coordinate in Discord so we can pair you with hardware, power, and monitoring support.
   link: https://discord.gg/eP5VSPKU
   linkText: Coordinate in Discord
 ---
@@ -13,114 +57,68 @@ discordInvite:
 import Figure from '../../../components/Figure.astro';
 import TopoContext from '../../../components/TopoContext.astro';
 
-This page will probably change often. Just a few days ago, I had a screenshot of the map in my phone app on here, and it was out-of-date in two days.
-
-I see 1-2 new nodes popping up every day, so blank spots I identify now may fill in quickly. 
-
 ## Current coverage snapshot
 
-Right now the mesh is primarily all clients, which is expected. Once a rooftop or tower host comes online, that node will be a prime candidate for a router.
-
-Drive testing from North Kansas City down to Midtown shows consistent reception. Moving southeast or west, coverage falls off quickly.
+Clients cluster along a north–south spine through Midtown and Waldo, plus pockets in Independence and Lee’s Summit. Everything west of State Line is thin. The Liberty MQTT gateway keeps the data feed alive, but we need redundant uploads and more routers in strategic locations.
 
 ## Router approach
 
-The metro only needs routers where we can combine serious elevation with clean RF environments. If you have access to a repeater tower, commercial rooftop, or other tall structure, consider taking on one of those backbone deployments. Everyone else should keep their nodes in client or client base roles so the channel stays efficient.
+We only designate ROUTER on installs that meet these criteria:
 
-## Priority logic: Gap-filling over pure topographic optimization
+1. Significant elevation (natural bluff, rooftop, or tower).
+2. 24/7 power plus some form of backup.
+3. Weatherproof antennas and enclosures.
+4. Someone committed to maintaining it when storms or firmware updates happen.
 
-The priorities below focus on **coverage deserts**—areas with few or no nodes that need fill-in. This is different from pure topographic optimization. For example, the Blue Ridge/Union Hill area east of downtown is topographically ideal (highest urban terrain, proven by broadcast infrastructure), but it already has decent node density. The west side has almost nothing despite being the metro's second-largest population center. That's why west comes first.
+Everyone else should stay Client or Client Base so the public channel doesn’t drown in redundant rebroadcasts.
 
-<details>
-<summary data-label-collapsed="Click to expand" data-label-expanded="Click to collapse">Understanding KC's topographic zones</summary>
+## Priority logic
 
-Kansas City's terrain divides into three distinct zones that shape network strategy:
+We favor **coverage deserts** over perfect topology. Filling a county-sized gap matters more than squeezing a few extra miles out of an already busy area. Elevation still matters, but we balance it with population density and the ability to bridge existing clusters.
 
-- **Northern Metro (Clay/Platte Counties):** Gentler glaciated terrain with bluffs overlooking the Missouri River valley. Smithville, Gladstone, and Parkville sit on elevated ground above the river, but overall relief is modest compared to the south metro.
+## Priority zones
 
-- **Central River Corridor:** The Missouri River valley floor (around 720 feet elevation at Kaw Point) sits 200+ feet below surrounding bluffs. This elevation differential creates both propagation corridors (along the valley) and challenges (crossing perpendicular). Downtown and midtown occupy elevated ground south of the river.
+### 1. West side backbone (Johnson County)
 
-- **Southern Metro:** Rolling hills with the metro's highest accessible points. Johnson County geology shows 150-250 feet of local relief along north-flowing streams, with hilltops reaching 990+ feet elevation. Lee's Summit and Grandview contain strategic high points.
+Silence from Lenexa to Olathe is the biggest hole on the map. Even indoor Heltecs pointed east would help, but we are especially interested in water towers, library rooftops, or office parks near 69 Hwy and I-435.
 
-**For backbone planning:** Elevation differences of 100-200 feet significantly affect coverage radius. Sites that combine elevation with clear horizons toward multiple zones provide the highest strategic value.
-
-</details>
-
-## Priority zones (will change as more nodes go up)
-
-### 1. West-side backbone (Johnson County)
-
-We need coverage west of State Line. Badly. The metro's second-largest population center has almost no nodes.
-
-If you live in Johnson County, just get a node up. Even a 15-20 ft mast on a second-story in southern JoCo could close the gap.
-
-Ideal backbone sites: Kill Creek Park observation tower (would need county permission), water towers in Olathe/Overland Park, elevated commercial sites near I-35. If you've got access to any of these, [Discord is where we coordinate](https://discord.gg/eP5VSPKU).
-
-<TopoContext title="Why Southern JoCo Works" icon="⛰️">
-
-Southern Johnson County has the metro's highest accessible terrain—hilltops around southern Olathe and Overland Park reach 990+ feet elevation. Kill Creek Park includes an observation tower that could anchor western coverage if we can work with the county. The elevation advantage here extends range significantly compared to valley-floor deployments.
-
+<TopoContext title="Why southern JoCo?" icon="🏙️">
+Rolling hills down there reach 980–1,000 feet, which rivals many Missouri-side rooftops. Put a router there and it can easily see downtown on clear days.
 </TopoContext>
 
 ### 2. North KC reinforcement
 
-Bridging the river and extending north into Gladstone, Smithville, and Parkville. If you're in the Northland, deploy a node. Higher floors work better. Even a portable node on a third-floor apartment balcony helps us figure out what's possible.
+We need more nodes that can see both sides of the Missouri River. Parkville bluffs, Clay County water towers, and Gladstone rooftops are prime candidates.
 
-Best backbone opportunities: Parkville bluffs, elevated ground in Gladstone, water towers (with permission). Locations with views toward downtown are what we need. Talk to me in [Discord](https://discord.gg/eP5VSPKU).
-
-<TopoContext title="River Valley Crossing Strategy" icon="🌊">
-
-This is about crossing the Missouri River valley—the river sits 200+ feet below surrounding bluffs. Parkville bluffs, Gladstone elevated areas (including the Kansas City Museum at 3218 Gladstone Blvd, reportedly KC's highest urban point), and Smithville vicinity provide strategic vantage points overlooking the valley.
-
+<TopoContext title="River crossing strategy" icon="🌉">
+The river valley sits ~200 feet below surrounding neighborhoods. Routers must sit above the bluff line or have direct line-of-sight to an anchor on the opposite side.
 </TopoContext>
 
 ### 3. South metro coverage
 
-Sparse coverage along I-49 toward Belton, Grandview, and Lee's Summit. The terrain down here has natural advantages—rolling hills give you range even with modest installations. Neighborhood masts, eaves, barn roofs all work.
-
-Lee's Summit residential areas on high ground, Grandview locations with views north toward midtown, commercial sites in Belton/Raymore would make good backbone sites. [Coordinate in Discord](https://discord.gg/eP5VSPKU).
-
-<TopoContext title="South Metro Elevation Advantages" icon="🏔️">
-
-Belton, Grandview, and Lee's Summit sit on rolling limestone hills—some of the metro's highest accessible points. Lee's Summit hilltops and Grandview's elevated areas have 150-250 feet of local relief, which extends range compared to flatter areas.
-
-</TopoContext>
+Belton, Raymore, and Harrisonville have almost no nodes, yet their ridgelines are perfect for long-haul clients. We are looking for HOA-friendly installs—attic antennas, barn roofs, church steeples.
 
 ### 4. East corridor fill-in
 
-Independence, Blue Springs, and Grain Valley already have light coverage. Just needs more nodes for density and reliability. If you're out there, deploy. Rooftops on high points work best. Portable nodes on commuter routes help map the remaining gaps.
-
-Blue Ridge/Union Hill area has ideal topography (which is why broadcast towers cluster there), but node density is decent already. Long-term, commercial rooftops or tower sharing in that area would anchor metro-wide backbone.
-
-<TopoContext title="Blue Ridge Tower Infrastructure" icon="📡">
-
-The Blue Ridge/Union Hill area (east/southeast of downtown) is the metro's highest urban terrain at 880-920 feet elevation. KCTV Tower sits on Union Hill, multiple towers at 2100 Stark Ave in Blue Ridge. A backbone router here would provide 360-degree metro coverage, but existing node density makes it less urgent than coverage deserts.
-
-</TopoContext>
+Independence and Blue Springs need density more than altitude. Plenty of clients exist, but they drop offline as people experiment. We need a few semi-permanent base stations pointed west toward downtown and east toward Grain Valley.
 
 ## How to evaluate placements
 
-1. **Elevation:** Natural high ground beats adding metal towers unless you've got access to an antenna mast.
-2. **Line-of-sight:** Can you see (or almost see) the Northland/Downtown cluster or a candidate rooftop host? If not, can you bridge to someone who can?
-3. **Power and maintenance:** Indoor power should have battery backup. Outdoor setups should have weatherproof enclosures and charge protection.
-4. **Community impact:** Will this help an established area or connect two existing pockets?
-
-Do you have an idea for an experiment? Pitch it in the [KC Meshtastic Discord](https://discord.gg/eP5VSPKU).
+1. **Elevation:** Are you above nearby rooftops or treelines?
+2. **Line-of-sight:** Can you draw a straight line to another cluster on the live map?
+3. **Noise:** Avoid sites crowded with competing RF gear unless you have to.
+4. **Sustainability:** Weatherproofed, fused, and logged so others know what it’s doing.
 
 ## DIY coverage mapping
 
-I use USGS elevation data and drive tests to validate what's possible. You can do the same:
-
-1. Deploy a node on your roof or balcony. Leave it running for a week.
-2. Toss a mobile node in your car and capture GPS traces while driving around your neighborhood.
-4. Drop your findings in the Discord and see what we figure out.
+1. Run a client or tracker in your car and log RSSI/SNR.
+2. Mark dead spots and post the GPX or screenshots.
+3. Repeat after moving your node or upgrading antennas to quantify the improvement.
 
 ## GeoJSON target area
 
 <details>
 <summary data-label-collapsed="Click to expand" data-label-expanded="Click to collapse">View target area coordinates (GeoJSON)</summary>
-
-Here's a feasible target area for the KC mesh. It's a rough box around the metro area.
 
 ```json
 {
@@ -154,6 +152,4 @@ Here's a feasible target area for the KC mesh. It's a rough box around the metro
 
 </details>
 
-Deployments inside that box strengthen the core metro mesh. Once we have solid coverage there, Who knows? I think it's not that far-fetched to link the mesh between Manhattan, KS and St. Louis. There are enough college towns in between that probably have meshes going already. The trick is to find the right high points to bridge the gaps.
-
-**Want to help?** [Get started with your own node](/get-started/join) and log your progress in the [KC Meshtastic Discord](https://discord.gg/eP5VSPKU).
+Anything inside that box helps the core metro. Once we stabilize it, we can start linking Lawrence, Topeka, Manhattan, Columbia, and St. Louis.

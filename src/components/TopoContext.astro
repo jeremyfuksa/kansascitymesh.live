@@ -11,86 +11,12 @@ interface Props {
 const { title = "Topographic Context", icon = "🗺️" } = Astro.props;
 ---
 
-<aside class="topo-context">
-  <div class="topo-header">
-    <span class="topo-icon" aria-hidden="true">{icon}</span>
-    <span class="topo-label">{title}</span>
+<aside class="bg-primary-600/5 border-l-4 border-primary-600 rounded-r-lg p-4 mb-6">
+  <div class="flex items-center gap-2 mb-3">
+    <span class="text-2xl" aria-hidden="true">{icon}</span>
+    <span class="text-sm font-bold uppercase tracking-wide text-primary-700">{title}</span>
   </div>
-  <div class="topo-content">
+  <div class="text-sm text-neutral-700 leading-relaxed">
     <slot />
   </div>
 </aside>
-
-<style>
-  .topo-context {
-    background: color-mix(in srgb, var(--kc-sky-blue) 10%, transparent);
-    border-left: 3px solid var(--kc-sky-blue);
-    padding: 1.25rem;
-    margin: 1.5rem 0;
-    border-radius: 0.5rem;
-  }
-
-  .topo-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
-
-  .topo-icon {
-    font-size: 1.25rem;
-    line-height: 1;
-  }
-
-  .topo-label {
-    font-size: 0.875rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: var(--kc-sky-blue);
-  }
-
-  .topo-content {
-    font-size: 0.9375rem;
-    line-height: 1.6;
-    color: var(--text-secondary);
-  }
-
-  .topo-content :global(p:last-child) {
-    margin-bottom: 0;
-  }
-
-  .topo-content :global(strong) {
-    font-weight: 600;
-    color: var(--text-primary);
-  }
-
-  .topo-content :global(a) {
-    color: var(--kc-blue);
-    text-decoration: underline;
-    text-underline-offset: 0.2em;
-  }
-
-  /* Dark mode adjustment */
-  @media (prefers-color-scheme: dark) {
-    .topo-context {
-      background: color-mix(in srgb, var(--kc-sky-blue) 15%, transparent);
-    }
-  }
-
-  /* Mobile optimization */
-  @media (max-width: 640px) {
-    .topo-context {
-      padding: 1rem;
-      margin: 1.25rem 0;
-    }
-
-    .topo-label {
-      font-size: 0.8125rem;
-    }
-
-    .topo-content {
-      font-size: 0.875rem;
-    }
-  }
-</style>

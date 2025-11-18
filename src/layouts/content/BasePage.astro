@@ -1,12 +1,16 @@
 ---
-import Layout from "../Layout.astro";
-import AlertBanner from "../../components/AlertBanner.astro";
-import CalloutBanner from "../../components/CalloutBanner.astro";
+/**
+ * Campfire Design System - Base Page Layout
+ * Uses CampfireInnerPage template with CalloutBox components
+ */
+import CampfireInnerPage from "./CampfireInnerPage.astro";
+import CalloutBox from "../../components/campfire/CalloutBox.astro";
+import ContentSection from "../../components/campfire/ContentSection.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import CardGrid from "../../components/CardGrid.astro";
 import Card from "../../components/Card.astro";
-import CtaBlock from "../../components/CtaBlock.astro";
-import DiscordInviteCard from "../../components/DiscordInviteCard.astro";
+import CampfireJoinCTA from "../../components/campfire/CampfireJoinCTA.astro";
+import CampfireDiscordCTA from "../../components/campfire/CampfireDiscordCTA.astro";
 
 const { entry } = Astro.props as { entry: any };
 const { Content } = await entry.render();
@@ -15,83 +19,102 @@ const {
   title = "",
   description = "",
   pageHeading,
-  heroVariant,
   alerts = [],
   callouts = [],
   cardsSections = [],
   cta,
   discordInvite,
+  breadcrumbs = [],
+  tableOfContents = [],
+  meta,
 } = data as Record<string, any>;
 ---
 
-<Layout
-  title={title}
+<CampfireInnerPage
+  title={pageHeading ?? title}
   description={description}
-  pageHeading={pageHeading}
-  heroVariant={heroVariant}
+  breadcrumbs={breadcrumbs}
+  tableOfContents={tableOfContents}
+  meta={meta}
+  seoTitle={title}
+  seoDescription={description}
 >
-  <div class="d-flex flex-column gap-4">
-    {alerts.map((alert: any, index: number) => (
-      <AlertBanner
-        key={`alert-${index}`}
-        variant={alert.variant}
-        message={alert.message}
-        link={alert.link}
-        linkText={alert.linkText}
-      />
+  <div class="flex flex-col gap-6">
+    {/* Alerts using Campfire CalloutBox */}
+    {alerts.map((alert: any) => (
+      <CalloutBox type={alert.variant || 'info'} title={alert.title}>
+        <p>{alert.message}</p>
+        {alert.link && alert.linkText && (
+          <a href={alert.link} class="inline-flex items-center gap-2 font-semibold hover:underline mt-2" target={alert.link.startsWith("/") ? undefined : "_blank"} rel={alert.link.startsWith("/") ? undefined : "noopener noreferrer"}>
+            {alert.linkText}
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        )}
+      </CalloutBox>
     ))}
 
-    {callouts.map((callout: any, index: number) => (
-      <CalloutBanner
-        key={`callout-${index}`}
-        title={callout.title}
-        message={callout.message}
-        link={callout.link}
-        linkText={callout.linkText}
-      />
+    {/* Callouts using info variant */}
+    {callouts.map((callout: any) => (
+      <CalloutBox type="info" title={callout.title}>
+        <p>{callout.message}</p>
+        {callout.link && callout.linkText && (
+          <a href={callout.link} class="inline-flex items-center gap-2 font-semibold hover:underline mt-2" target={callout.link.startsWith("/") ? undefined : "_blank"} rel={callout.link.startsWith("/") ? undefined : "noopener noreferrer"}>
+            {callout.linkText}
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+        )}
+      </CalloutBox>
     ))}
 
+    {/* Discord CTA */}
     {discordInvite && (
-      <DiscordInviteCard
-        title={discordInvite.title}
-        description={discordInvite.description}
-        link={discordInvite.link}
-        linkText={discordInvite.linkText}
-      />
+      <div class="my-6">
+        <CampfireDiscordCTA
+          title={discordInvite.title}
+          description={discordInvite.description}
+          link={discordInvite.link}
+          linkText={discordInvite.linkText}
+        />
+      </div>
     )}
 
-    <article class="content-body">
+    {/* Main Content */}
+    <article class="content-body prose prose-neutral dark:prose-invert max-w-none">
       <Content />
     </article>
+  </div>
 
-    {cardsSections.map((section: any, sectionIndex: number) => (
-      <SectionHeader
-        key={`cards-${sectionIndex}`}
-        title={section.heading}
-        description={section.description}
-      >
-        <CardGrid>
-          {(section.cards ?? []).map((card: any, cardIndex: number) => (
-            <Card
-              key={`card-${sectionIndex}-${cardIndex}`}
-              title={card.title}
-              description={card.description}
-              link={card.link}
-              linkText={card.linkText}
-              status={card.status}
-            />
-          ))}
-        </CardGrid>
-      </SectionHeader>
-    ))}
+  {/* Card Sections */}
+  {cardsSections.length > 0 && (
+    <div class="mt-12 flex flex-col gap-10">
+      {cardsSections.map((section: any) => (
+        <ContentSection title={section.heading} level={2}>
+          {section.description && <p class="mb-6">{section.description}</p>}
+          <CardGrid>
+            {(section.cards ?? []).map((card: any) => (
+              <Card
+                title={card.title}
+                description={card.description}
+                link={card.link}
+                linkText={card.linkText}
+                status={card.status}
+              />
+            ))}
+          </CardGrid>
+        </ContentSection>
+      ))}
+    </div>
+  )}
 
-    {cta && (
-      <CtaBlock
+  {/* CTA Block */}
+  {cta && (
+    <div class="mt-12">
+      <CampfireJoinCTA
         title={cta.title}
         description={cta.description}
         link={cta.link}
         linkText={cta.linkText}
       />
-    )}
-  </div>
-</Layout>
+    </div>
+  )}
+</CampfireInnerPage>

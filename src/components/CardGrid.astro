@@ -7,8 +7,8 @@ interface Props {
 }
 
 const { columnsMd = 3 } = Astro.props;
+const gridClass = columnsMd === 2 ? 'md:grid-cols-2 lg:grid-cols-3' : 'md:grid-cols-3 lg:grid-cols-3';
 ---
-
-<div class={`row row-cols-1 row-cols-md-${columnsMd} g-4`}>
+<div class={`grid grid-cols-1 ${gridClass} gap-6 lg:gap-8`}>
   <slot />
 </div>

@@ -1,0 +1,52 @@
+---
+/**
+ * Campfire Design System Footer Component
+ * Based on mt/components/Footer.tsx
+ */
+import packageInfo from '../../../package.json';
+---
+
+<footer class="bg-white dark:bg-neutral-900 border-t border-neutral-200 dark:border-neutral-800 mt-16 lg:mt-20">
+  <div class="max-w-[1320px] mx-auto px-6 py-12 lg:py-16">
+    <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-8 mb-8">
+      <div class="text-[14px] lg:text-[16px] text-neutral-600 dark:text-neutral-400">
+        <p class="mb-2 font-medium text-neutral-900 dark:text-neutral-50">Kansas City Meshtastic Network</p>
+        <p class="text-sm text-neutral-500 dark:text-neutral-500">
+          Not affiliated with meshtastic.org or the Meshtastic Foundation.
+        </p>
+      </div>
+
+      <div class="flex items-center gap-6">
+        <a
+          href="https://discord.gg/eP5VSPKU"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-[14px] lg:text-[16px] text-[#5865f2] hover:text-[#4752c4] transition-colors font-medium"
+        >
+          <i class="fa-brands fa-discord w-4 h-4" aria-hidden="true"></i>
+          Discord
+        </a>
+        <a
+          href="https://github.com/jeremyfuksa/kansascitymesh.live"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-[14px] lg:text-[16px] text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors font-medium"
+        >
+          <i class="fa-brands fa-github w-4 h-4" aria-hidden="true"></i>
+          GitHub
+        </a>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-neutral-200 dark:border-neutral-800">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <p class="text-xs text-neutral-500 dark:text-neutral-500">
+          © {new Date().getFullYear()} Kansas City Meshtastic · Documentarian project · v{packageInfo.version}
+        </p>
+        <p class="text-xs text-neutral-500 dark:text-neutral-500">
+          Design: <span class="text-secondary-600 dark:text-secondary-400 font-medium">Campfire</span> Design System · <span class="font-mono">Manrope + JetBrains Mono</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

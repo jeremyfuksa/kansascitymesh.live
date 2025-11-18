@@ -1,97 +1,82 @@
 ---
 title: MQTT & The KC Mesh
-description: Understand what MQTT does (and doesn't do) for Meshtastic nodes before flipping the switch.
+description: Treat the broker like a recorder, not a magic tunnel. Here’s how we use it locally.
 pageHeading: MQTT & The KC Mesh
 heroVariant: compact
+breadcrumbs:
+  - label: Home
+    href: /
+  - label: Get Started
+    href: /get-started
+  - label: MQTT
+    href: /get-started/mqtt
+tableOfContents:
+  - id: why-we-care-about-mqtt
+    label: Why we care about MQTT
+    level: 1
+  - id: what-mqtt-does-for-kc
+    label: What MQTT does for KC
+    level: 1
+  - id: what-it-doesnt-do
+    label: What it doesn’t do
+    level: 1
+  - id: checklist-before-enabling
+    label: Checklist before enabling
+    level: 1
+  - id: settings-to-avoid
+    label: Settings to avoid
+    level: 1
+  - id: current-broker-status
+    label: Current broker status
+    level: 1
+meta:
+  author: KC Meshtastic Contributors
+  lastUpdated: Nov 30, 2024
+  readTime: 7 min read
+  category: Get Started
+relatedLinks:
+  - title: Network architecture
+    href: /network/architecture
+    description: See how routers, MQTT, and clients interact.
+  - title: Coverage priorities
+    href: /network/coverage
+    description: Decide where an MQTT-enabled router would help.
+  - title: Quick start checklist
+    href: /get-started/quick-start
+    description: Confirm your RF config is solid first.
 ---
 
-## Why I treat MQTT carefully
+## Why we care about MQTT
 
-MQTT is basically a replay service for the mesh. It mirrors whatever your node
-already heard over the air and republishes it through an internet broker. It does
-**not** give you a separate chat room or a way to beam packets straight to
-another city. Every message still has to exit your radio over RF first before
-MQTT ever sees it.
+MQTT mirrors whatever traffic your node already heard over RF. It gives us a server-side log for coverage maps, outage forensics, and future dashboards. It does not replace radio coverage.
 
-## Why we're using it in KC
+## What MQTT does for KC
 
-I run the broker so we can eventually power a live coverage map and historical
-telemetry. MQTT gives us an off-mesh log of packets that we can analyze to see
-where routers connect, how often they fall offline, and which parts of the metro
-are still quiet. We do **not** need every node uploading to make that happen—too
-many uplinks just create duplicate traffic. What helps most is a handful of
-24/7, well-placed routers with stable internet doing the uploads. Until those hosts come online, the Liberty Pi gateway handles the baseline logging. Long term the broker would ideally ride on a downtown high-rise or other central backbone site so the uplink lives at the heart of the mesh.
+- **Historical context:** We can rewind a day to see which routers were awake when a packet flowed.
+- **Drive the live map:** The Leaflet coverage view uses MQTT as its data source.
+- **Automation hooks:** People tie the broker into Home Assistant, Grafana, and scratch-built alerting systems.
 
-If you have a high, reliable site that already reaches several neighborhoods,
-share the details in the
-[Discord server](https://discord.gg/eP5VSPKU) (`#kc-coordination`). A small
-number of strategically placed MQTT feeds (north, south, and future west-side
-coverage) will give the map good data without overwhelming the broker. Curious
-what areas matter most? Check the [coverage priorities](/network/coverage) page
-for the current deployment wishlist.
+## What it doesn’t do
 
-## What MQTT actually is
+- It will not resurrect packets your node never heard in the first place.
+- It is not a private channel—treat uploads as public information.
+- It does not give you an internet-only chat. RF always happens first.
+- It has limited capacity. Flooding telemetry just wastes airtime and broker storage.
 
-MQTT (Message Queuing Telemetry Transport) is a lightweight
-publish/subscribe protocol. A broker collects packets from clients and
-republishes them to anyone subscribed to the same topics. In our case, the
-"client" is a node paired to a phone, laptop, or single-board computer that has
-both RF access to the mesh **and** an internet connection.
+## Checklist before enabling
 
-- Official reference: [mqtt.org](https://mqtt.org/)
-- Meshtastic docs:
-  [meshtastic.org/docs/software/integrations/mqtt](https://meshtastic.org/docs/software/integrations/mqtt)
-
-## What it actually does for KC
-
-- **Extends reach when RF already delivered the packet.** If your node hears a
-  message and uploads it to the broker, someone on the other side of the metro
-  (or country) can download that same packet if they're also subscribed. Nothing
-  shows up unless an RF path existed first.
-- **Captures history for debugging and mapping.** The broker gives us a log of
-  recent traffic so we can map coverage, build that live dashboard, and diagnose
-  outages after the fact. Expect it to drive a future map on the
-  [network architecture](/network/architecture) and coverage pages.
-- **Feeds dashboards and automations.** Platforms like
-  [Home Assistant](https://www.home-assistant.io/),
-  [Grafana](https://grafana.com/), and
-  [Node-RED](https://nodered.org/) speak MQTT, so it is handy when you want
-  alerts, analytics, or custom automations tied to the mesh.
-
-## What it does _not_ do
-
-- **It will not rescue nodes that can't reach anyone over RF.** If a packet never
-  makes it to an MQTT-enabled node, the broker never sees it.
-- **It is not a private backchannel.** Anyone with the topic key can read what
-  you upload. Treat it like the public mesh unless you control every hop.
-- **It is not an internet-only chat room.** You cannot send packets _only_
-  through MQTT. The message still starts (and usually ends) on the air.
-- **It is not unlimited bandwidth.** Spamming MQTT still spams RF first because
-  every packet has to be transmitted locally before the broker relays it.
-
-## Checklist before enabling MQTT
-
-1. Confirm you have reliable, always-on internet and power.
-2. Pick a broker you trust (KC's, Meshtastic public, or your own) and understand
-   its retention policy.
-3. Keep MQTT to stationary infrastructure nodes. Mobile gear should leave it
-   off.
-4. Coordinate in Discord before uploading lots of telemetry or sensor data. If
-   you're experimenting with something odd, double-check it with the crew first
-   so we can make sure it helps instead of flooding the mesh.
+1. **Stable power + internet** at the site.
+2. **24/7 intent.** MQTT works best on routers or client bases left on indefinitely.
+3. **Clear purpose.** You’re feeding the coverage map, not just moving cat pictures.
+4. **Discord coordination.** Announce your plan in `#kc-coordination` so we don’t duplicate uplinks.
 
 ## Settings to avoid
 
-- Don't broadcast debug logs or continuous telemetry unless you've cleared it
-  with the network maintainers.
-- Don't enable uplink/downlink for every channel if you only need one.
-- Don't leave the default public topic key in place—set something specific to
-  the KC mesh or your project.
+- Leave debug logs off.
+- Only enable uplink/downlink for the channels you truly need.
+- Change the topic key from the global default.
+- Disable continuous sensor spam unless someone explicitly requested it.
 
-## KC broker status
+## Current broker status
 
-A Raspberry Pi paired with a Meshtastic node in Liberty currently feeds the KC MQTT broker. It mirrors packets for monitoring, coverage notes, and post-event analysis. If you're brand new to
-Meshtastic, finish [Join the Network](/get-started/join) first so your node is
-stable before you add MQTT, then review the
-[quick start checklist](/get-started/quick-start) for the full radio config.
-When you're ready to upload, drop a note in Discord so we can keep the broker balanced. The Pi setup is a temporary bridge—once a downtown backbone router is live, we'll migrate the gateway there for better reach and redundancy.
+A Raspberry Pi gateway in Liberty currently mirrors packets into the KC MQTT broker. We are recruiting a second feed downtown for redundancy. Until that happens, keep MQTT usage lean and let us know before adding heavy uploads so the log stays healthy.

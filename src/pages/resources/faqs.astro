@@ -1,9 +1,0 @@
----
-import { getEntry } from "astro:content";
-import FaqPage from "../../layouts/content/FaqPage.astro";
-
-const entry = await getEntry({ collection: "pages", slug: "resources/faqs" });
-if (!entry) throw new Error("Missing content entry: pages/resources/faqs");
----
-
-<FaqPage entry={entry} />

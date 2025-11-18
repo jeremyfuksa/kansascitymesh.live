@@ -1,51 +1,92 @@
 ---
 title: Network Architecture
-description: A technical deep dive into the Kansas City Meshtastic network's design, topology, and strategic backbone.
+description: How clients, routers, MQTT gateways, and high sites interlock across the metro.
 pageHeading: Network Architecture
 heroVariant: compact
+breadcrumbs:
+  - label: Home
+    href: /
+  - label: Network
+    href: /network/coverage
+  - label: Architecture
+    href: /network/architecture
+tableOfContents:
+  - id: how-the-network-is-built
+    label: How the network is built
+    level: 1
+  - id: mesh-topology-in-plain-language
+    label: Mesh topology in plain language
+    level: 2
+  - id: backbone-roadmap
+    label: Backbone roadmap
+    level: 2
+  - id: why-elevation-matters
+    label: Why elevation matters
+    level: 2
+  - id: device-roles
+    label: Device roles
+    level: 2
+  - id: routing-and-hop-limits
+    label: Routing and hop limits
+    level: 2
+  - id: how-you-can-help
+    label: How you can help
+    level: 2
+meta:
+  author: KC Meshtastic Contributors
+  lastUpdated: Nov 30, 2024
+  readTime: 6 min read
+  category: Network
+relatedLinks:
+  - title: Coverage priorities
+    description: The to-do list this architecture feeds.
+    href: /network/coverage
+  - title: MQTT checklist
+    description: Prep for backhaul participation.
+    href: /get-started/mqtt
+  - title: Join the network
+    description: Roll out a new node with the approved config.
+    href: /get-started/join
 ---
 
-## How the Kansas City mesh is built
+## How the network is built
 
-The KC Meshtastic network today runs on everyday client nodes spread across the metro. To really strengthen the network, we need to architect a strategic backbone of high-elevation routers, but those installs stay theoretical until partners with serious elevation raise their hands.
+KC’s mesh is a hybrid of everyday client nodes and a slowly growing backbone of curated routers. The clients give us density; the routers keep distant neighborhoods stitched together. MQTT gateways record what actually happened so we can tune the plan.
 
 ### Mesh topology in plain language
 
-[Meshtastic](https://meshtastic.org/) is a peer-to-peer, self-healing [mesh network](https://en.wikipedia.org/wiki/Mesh_networking). There is no central server or single point of failure. Each node repeats messages from its neighbors until the packet reaches its destination. When a node goes offline, the network routes around it. When a new node comes online, it joins automatically.
+Meshtastic uses controlled flooding. Each node rebroadcasts a packet a limited number of times, then stops. That’s why we care about hop limits and router placement—every rebroadcast is valuable airtime.
 
-### Backbone roadmap (seeking hosts)
+### Backbone roadmap
 
-The draft backbone calls for always-on sites that form the cardinal spine of the metro. Each deployment needs reliable power, quality antennas, weatherproof gear, and minimal RF noise. Coverage priorities on the [deployment page](/network/coverage) feed this roadmap while we recruit hosts.
+We’re hunting for four anchor types:
 
-Client nodes already dot the map across KC, but backbone sites increase coverage and reliability.
+1. **North bluffs** overlooking the river.
+2. **Downtown rooftops** tall enough to see north and south.
+3. **Southern ridgelines** in Lee’s Summit/Raymore.
+4. **Western high sites** in Johnson County.
 
-### Why elevation matters (but doesn't require perfection)
+Once those exist, we can strategically link college towns and highway corridors outside the metro.
 
-Kansas City has about 200 feet of elevation change across the metro—enough to create strategic high points without requiring extreme deployments. The Missouri River valley sits lower than surrounding areas, which creates both opportunities and challenges for coverage.
+### Why elevation matters
 
-If you're on a hill, your node reaches farther. If you're in a valley, you might need to connect through someone on elevated ground. Look around and see if your house sits higher or lower than your neighbors.
-
-For backbone router sites, I'm prioritizing locations that combine local elevation advantage, clear horizons, sustainable 24/7 access, and filling coverage gaps. Full topographic details are on the [coverage priorities page](/network/coverage).
+A router on an 800-foot hill with a clear horizon can hear dozens of clients that would otherwise stay isolated. We trade perfection for practicality—15 feet above the roofline is worth more than chasing a 200-foot tower you can’t maintain.
 
 ### Device roles
 
-Meshtastic refreshed its [role guidance](https://meshtastic.org/docs/configuration/radio/device/#role) in late 2024. KC sticks closely to it:
-
-- **Client:** The default for handheld and vehicle nodes. Sends, receives, and repeats traffic.
-- **Client Base:** A boosted client for your best-placed home node. Prioritizes rebroadcasting favorited neighbors.
-- **Router:** Reserved for elevated, 24/7 infrastructure. Always coordinate before promoting a node to router status.
-- **Repeater:** Router with telemetry silenced. Only for special, high-noise cases.
-
-**Routers are reserved for partners who can combine significant elevation with reliable power and weatherized installs.** The ROUTER_CLIENT role was deprecated in firmware 2.3.15 due to widespread misuse that degraded network performance. Router and repeater roles should only be used for truly strategic locations (towers, skyscrapers, mountaintops)—not mobile nodes, car nodes, or typical residential installations. Spend some time as a client first; think thrice before randomly assigning roles beyond Client.
+- **Client:** Default for handhelds, home nodes, and experiments.
+- **Client Base:** Semi-permanent indoor installs that rebroadcast for a known neighborhood.
+- **Router:** Reserved for vetted high sites with maintenance plans.
+- **Repeater:** Special-case router with telemetry silenced; rarely needed.
 
 ### Routing and hop limits
 
-Meshtastic uses [controlled flooding](https://meshtastic.org/docs/overview/mesh-algo/) with hop limits. KC keeps the default hop limit of 3, which balances reach with airtime. Nodes favor the routers they communicate with most, so elevating your node and favoriting the right backbone sites matters more than chasing raw transmit power.
+Hop limit stays at three across the metro. That balances reach with airtime. Routers favor neighbors they see most consistently, so uptime and clean horizons matter more than raw transmit power.
 
 ### How you can help
 
-- **Stand up a backbone router:** If you manage a repeater tower, commercial rooftop, or other high-elevation site, see [coverage priorities](/network/coverage) and let's coordinate the deployment.
-- **Run propagation tests from your location:** Share results in [Discord](https://discord.gg/eP5VSPKU).
-- **Deploy your own node:** [Get started here](/get-started/join).
+- Deploy a client in whatever part of the metro you call home and share the results.
+- Offer high-site access if you manage a building, tower, or farm infrastructure with elevation.
+- Volunteer to babysit MQTT gateways or routers if you have the technical appetite.
 
-The architecture evolves as new data arrives, but the principles stay the same: high-quality backbone sites, lots of everyday client nodes, and coordination so we grow in the smartest places first.
+Every documented install makes the next one easier.

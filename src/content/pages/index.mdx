@@ -1,44 +1,116 @@
 ---
 title: Kansas City Meshtastic Network
-description: Documenting Meshtastic mesh network experiments for KC. Trying stuff, writing down what works, geeking out.
-discordInvite:
-  title: Join the Discord
-  description: Hop into the KC Meshtastic Discord to coordinate installs, swap coverage notes, and chat with other builders.
-  link: https://discord.gg/eP5VSPKU
-  linkText: Open Discord
+description: Field notes for the 135+ node mesh taking shape across the Kansas City metro.
+hero:
+  heading: KC Meshtastic is already on the air
+  description: Real nodes, real coverage, and daily observations from builders spread across the metro. This is a playbook for joining, not a pitch deck.
+  badge: Live data stream
+  primaryCta:
+    label: Watch the coverage map
+    href: https://map.kansascitymesh.live
+    variant: primary
+    size: large
+    external: true
+    icon: map
+  secondaryCta:
+    label: Start building
+    href: /get-started/join
+    variant: outline
+    size: large
 cardsSections:
-  - heading: Where things stand right now
+  - heading: What matters right now
+    description: Active workstreams that need help this week.
     cards:
-      - title: 40+ Nodes across Kansas City
-        description: Every day, I see 1-2 new nodes pop up on my app. But there's room for more! Let's keep expanding the network.
+      - title: Live coverage feed
+        description: Tap into the real-time map and see every KC node that has checked in within the last few hours.
+        link: https://map.kansascitymesh.live
+        linkText: Open the live map
         status: operational
-      - title: Growth Opportunities
-        description: Drive tests show that west of State Line/Hwy 169 is pretty silent. An elevated site west of State Line would bring the mesh westward and is the next logical move.
+      - title: West side expansion
+        description: Johnson County still has massive dead zones. Even a single indoor client brings neighbors online.
         status: gap
-      - title: What Makes Sense Next
-        description: Eventually, a backbone network would help. See what deployments might make the biggest impact.
+      - title: High-site wishlist
+        description: Rooftops, water towers, or grain elevators with line-of-sight back toward downtown.
         link: /network/coverage
-        linkText: Coverage priorities
+        linkText: View the priority list
+        status: suggested
+gettingStarted:
+  heading: How to plug in fast
+  items:
+    - segments:
+        - type: text
+          text: "Skim the "
+        - type: link
+          label: get-started guide
+          href: /get-started/join
+        - type: text
+          text: " for the exact firmware and radio settings we use in KC."
+    - segments:
+        - type: text
+          text: "Announce your install plan in "
+        - type: link
+          label: Discord
+          href: https://discord.gg/eP5VSPKU
+          external: true
+        - type: text
+          text: " so neighboring nodes know to look for you."
+    - segments:
+        - type: text
+          text: "Check elevation and line-of-sight with the "
+        - type: link
+          label: Meshtastic site tool
+          href: https://site.meshtastic.org
+          external: true
+        - type: text
+          text: " before you move antennas outside."
+coordination:
+  title: Keep the work public
+  body:
+    - type: text
+      text: "Coverage experiments, router proposals, and MQTT discussions all happen in the "
+    - type: link
+      label: KC Meshtastic Discord
+      href: https://discord.gg/eP5VSPKU
+      external: true
+    - type: text
+      text: ". Share screenshots, not secrets."
+  tagline: Documentation beats DMs.
+discordInvite:
+  title: Get unstuck with the crew
+  description: There’s almost always someone awake in the server to sanity-check an install or read RSSI logs.
+  link: https://discord.gg/eP5VSPKU
+  linkText: Join the server
 cta:
-  title: Ready to join the mesh?
-  description: Get your first node, pair it with your phone, and start messaging. Takes about 15 minutes.
+  title: Deploy a node this weekend
+  description: A $40 indoor client with a window view still helps. Once it’s running, we’ll figure out the next upgrade together.
   link: /get-started/join
-  linkText: Join the network
+  linkText: Show me the steps
 ---
 
-# Mesh network experiments for Kansas City
+## Field log — 29 November
 
-Text messaging without cell towers. $35 radios running [LoRa](https://en.wikipedia.org/wiki/LoRa) on unlicensed spectrum ([915 MHz ISM band](https://en.wikipedia.org/wiki/ISM_radio_band)). No monthly fees, no license, no infrastructure dependency. The standard pitch is emergency backup—when severe weather or infrastructure failure takes out cell service, the mesh keeps working. That's true. But I'm just doing this for fun.
+Every dot on the live map represents gear that is sending or forwarding packets. Midtown and North KC are stable, but the southern suburbs and Johnson County still look empty when you zoom in. That is not a software bug; it’s a call for hardware.
 
-This isn't a company or formal organization. It's [one person's experiment](/about/operator), documented publicly. There are already 40+ nodes scattered across KC—this site is an attempt to coordinate instead of everyone working isolated.
+### Recent observations
 
-## Getting started
+- Router-grade installs on the Missouri side easily cross the river valley when they have even 15–20 feet of elevation.
+- Indoor Heltec and SenseCAP clients in apartment windows routinely reach four to six miles so long as they are pointed toward higher ground.
+- MQTT backhaul logging remains on a single Liberty gateway. We need a redundant feed closer to downtown.
 
-- [Get a $35 node](/get-started/join), pair it with your phone, deploy it indoors.
-- Questions? [Discord](https://discord.gg/eP5VSPKU) for real-time help, or read [what Meshtastic is](/about/why-meshtastic) first.
+### How to add value fast
 
-## Coordination with kansascitymesh.org
+1. Place a client where you live or work, even if it begins indoors. Document RSSI and SNR so others know what to expect from that neighborhood.
+2. Walk or drive with a handheld so we can continue shading the coverage map with real data.
+3. Offer high-site access if you manage a building, tower, or farm infrastructure that sees above the treeline.
 
-If you run kansascitymesh.org (or any other KC mesh effort), jump into the
-[KC Meshtastic Discord](https://discord.gg/eP5VSPKU) and say hi. Collaboration
-beats parallel, quiet projects. Let's share notes in the open.
+## Why this site exists
+
+I am freezing the messy bits of experimentation into something repeatable. When we write down what hardware, settings, and placement worked, the next builder can skip weeks of guessing. When we make our wish list public, the right person eventually recognizes that they already control the perfect rooftop. Everything here should feel like a logbook—today’s reality, not a dreamy roadmap.
+
+## What you can expect next
+
+- Weekly coverage snapshots so we know whether new neighbors are putting a dent in the gaps.
+- Short write-ups on antennas, power systems, and enclosures that actually survived our weather.
+- Progress on the Leaflet coverage dashboard once the data pipeline stabilizes.
+
+There is no committee. If you can contribute a node, a host site, or a set of measurements, jump in.

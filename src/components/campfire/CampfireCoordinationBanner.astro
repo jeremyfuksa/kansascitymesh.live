@@ -1,0 +1,71 @@
+---
+interface SegmentText {
+  type: 'text';
+  text: string;
+}
+
+interface SegmentLink {
+  type: 'link';
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+type Segment = SegmentText | SegmentLink;
+
+interface Props {
+  title?: string;
+  body?: Segment[];
+  tagline?: string;
+}
+
+const {
+  title = 'Coordination with other KC mesh efforts',
+  body = [],
+  tagline = "Let's share notes in the open.",
+} = Astro.props as Props;
+---
+
+<section class="py-12 lg:py-20">
+  <div class="max-w-[1320px] mx-auto px-6">
+    <div class="bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-secondary-900/40 dark:to-secondary-800/40 rounded-[28px] border border-secondary-200 dark:border-secondary-800 p-8 lg:p-12">
+      <div class="flex flex-col md:flex-row gap-6 items-start">
+        <div class="flex-shrink-0">
+          <div class="w-12 h-12 lg:w-16 lg:h-16 bg-secondary-600 dark:bg-secondary-500 rounded-[10px] flex items-center justify-center shadow-md">
+            <i class="fa-solid fa-users text-white text-xl" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="flex-1">
+          <h3 class="text-[26px] lg:text-[32px] font-bold text-neutral-900 dark:text-neutral-50 mb-4">
+            {title}
+          </h3>
+          <p class="text-[16px] lg:text-[17px] text-neutral-600 dark:text-neutral-300 leading-[1.7] mb-4">
+            {body.map((segment) => {
+              if (segment.type === 'text') {
+                return segment.text;
+              }
+              return (
+                <a
+                  href={segment.href}
+                  target={segment.external ? '_blank' : undefined}
+                  rel={segment.external ? 'noopener noreferrer' : undefined}
+                  class="inline-flex items-baseline gap-1 text-secondary-700 dark:text-secondary-400 hover:text-[#67ea94] font-semibold underline decoration-2 underline-offset-2 transition-colors"
+                >
+                  {segment.label}
+                  {segment.external && (
+                    <i class="fa-solid fa-arrow-up-right-from-square w-3.5 h-3.5" aria-hidden="true"></i>
+                  )}
+                </a>
+              );
+            })}
+          </p>
+          {tagline && (
+            <p class="text-[14px] lg:text-[16px] text-secondary-700 dark:text-secondary-400 font-medium">
+              {tagline}
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

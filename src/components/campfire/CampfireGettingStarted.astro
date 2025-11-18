@@ -1,0 +1,65 @@
+---
+interface SegmentText {
+  type: 'text';
+  text: string;
+}
+
+interface SegmentLink {
+  type: 'link';
+  label: string;
+  href: string;
+  external?: boolean;
+}
+
+type Segment = SegmentText | SegmentLink;
+
+interface Item {
+  segments: Segment[];
+}
+
+interface Props {
+  heading?: string;
+  items?: Item[];
+  id?: string;
+}
+
+const {
+  heading = 'Getting started',
+  items = [],
+  id = 'get-started',
+} = Astro.props as Props;
+---
+
+<section id={id} class="py-12 lg:py-20">
+  <div class="max-w-[1320px] mx-auto px-6">
+    <div class="max-w-[80ch]">
+      <h2 class="text-[32px] lg:text-[40px] font-bold text-neutral-900 dark:text-neutral-50 mb-8">
+        {heading}
+      </h2>
+      <div class="space-y-6 text-[16px] lg:text-[17px] text-neutral-600 dark:text-neutral-400 leading-[1.7]">
+        {items.map((item) => (
+          <p>
+            {item.segments.map((segment) => {
+              if (segment.type === 'text') {
+                return segment.text;
+              }
+              return (
+                <a
+                  href={segment.href}
+                  target={segment.external ? '_blank' : undefined}
+                  rel={segment.external ? 'noopener noreferrer' : undefined}
+                  class="inline-flex items-baseline gap-1 text-primary-600 dark:text-primary-400 hover:text-[#67ea94] font-semibold underline decoration-2 underline-offset-2 transition-colors"
+                >
+                  {segment.label}
+                  {segment.external && (
+                    <i class="fa-solid fa-arrow-up-right-from-square w-3.5 h-3.5" aria-hidden="true"></i>
+                  )}
+                </a>
+              );
+            })}
+          </p>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

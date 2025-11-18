@@ -1,0 +1,134 @@
+---
+/**
+ * Campfire Design System Hero Component
+ * Based on mt/components/Hero.tsx
+ */
+import CampfireButton from './CampfireButton.astro';
+import { Image } from 'astro:assets';
+import meshMonitorPlaceholder from '../../assets/kc-mesh.png';
+
+interface Cta {
+  label: string;
+  href: string;
+  variant?: 'primary' | 'secondary' | 'outline';
+  size?: 'small' | 'default' | 'large';
+  external?: boolean;
+  icon?: 'map' | 'radio' | 'discord' | 'message';
+}
+
+interface Props {
+  heading?: string;
+  description?: string;
+  badge?: string;
+  primaryCta?: Cta;
+  secondaryCta?: Cta;
+  image?: any;
+  imageAlt?: string;
+}
+
+const iconClassMap: Record<string, string> = {
+  map: 'fa-solid fa-map',
+  radio: 'fa-solid fa-tower-broadcast',
+  discord: 'fa-brands fa-discord',
+  message: 'fa-solid fa-message',
+};
+
+const {
+  heading = '135+ active nodes across Kansas City metro',
+  description = 'Real mesh, real coverage, real conversations happening right now. Not planned—observable.',
+  badge = '135+ Active',
+  primaryCta = {
+    label: 'View live map',
+    href: 'https://map.kansascitymesh.live',
+    variant: 'primary',
+    size: 'large',
+    external: true,
+    icon: 'map',
+  },
+  secondaryCta = {
+    label: 'Get your first node',
+    href: '/get-started/join',
+    variant: 'outline',
+    size: 'large',
+  },
+  image = meshMonitorPlaceholder,
+  imageAlt = 'MeshMonitor showing active nodes across Kansas City',
+} = Astro.props as Props;
+
+const primaryIconClass = primaryCta?.icon ? iconClassMap[primaryCta.icon] : undefined;
+const secondaryIconClass = secondaryCta?.icon ? iconClassMap[secondaryCta.icon] : undefined;
+const isAsset = typeof image !== 'string';
+---
+
+<section class="relative pt-24 lg:pt-32 pb-12 lg:pb-20">
+  <div class="max-w-[1320px] mx-auto px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      {/* Content */}
+      <div>
+        <h1 class="text-[40px] lg:text-[64px] font-bold leading-tight text-neutral-900 dark:text-neutral-50 mb-6">
+          {heading}
+        </h1>
+        <p class="text-[16px] lg:text-[17px] text-neutral-600 dark:text-neutral-400 leading-[1.7] mb-8 max-w-[80ch]">
+          {description}
+        </p>
+
+        {/* CTAs */}
+        <div class="flex flex-col sm:flex-row gap-4">
+          {primaryCta && (
+            <CampfireButton
+              href={primaryCta.href}
+              size={primaryCta.size ?? 'large'}
+              variant={primaryCta.variant ?? 'primary'}
+              class={primaryCta.variant === 'primary' ? 'bg-[#67ea94] hover:bg-[#52d67f] text-white shadow-lg' : ''}
+            >
+              {primaryIconClass && (
+                <i class={`${primaryIconClass} w-5 h-5`} aria-hidden="true"></i>
+              )}
+              {primaryCta.label.toUpperCase()}
+              {primaryCta.external && (
+                <i class="fa-solid fa-arrow-up-right-from-square w-4 h-4" aria-hidden="true"></i>
+              )}
+            </CampfireButton>
+          )}
+          {secondaryCta && (
+            <CampfireButton
+              href={secondaryCta.href}
+              variant={secondaryCta.variant ?? 'outline'}
+              size={secondaryCta.size ?? 'large'}
+            >
+              {secondaryIconClass && (
+                <i class={`${secondaryIconClass} w-5 h-5`} aria-hidden="true"></i>
+              )}
+              {secondaryCta.label.toUpperCase()}
+            </CampfireButton>
+          )}
+        </div>
+      </div>
+
+      {/* MeshMonitor Screenshot */}
+      <div class="relative">
+        <div class="relative rounded-[28px] overflow-hidden shadow-2xl border border-neutral-200 dark:border-neutral-800">
+          {isAsset ? (
+            <Image
+              src={image}
+              alt={imageAlt}
+              class="w-full h-auto"
+              loading="eager"
+            />
+          ) : (
+            <img src={image} alt={imageAlt} class="w-full h-auto" loading="eager" />
+          )}
+          {/* Overlay badge */}
+          {badge && (
+            <div class="absolute top-4 right-4 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-sm px-4 py-2 rounded-[10px] shadow-lg border border-neutral-200 dark:border-neutral-800">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-[#67ea94] rounded-full animate-pulse"></div>
+                <span class="text-sm font-semibold text-neutral-900 dark:text-neutral-50">{badge}</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

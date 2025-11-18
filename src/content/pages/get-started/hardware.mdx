@@ -1,55 +1,71 @@
 ---
 title: Hardware Selection
-description: You don't need expensive equipment. Here's what actually works for KC mesh, organized by budget and use case.
+description: Radios and accessories locals keep deploying without regret.
 pageHeading: Hardware Selection
 heroVariant: compact
+breadcrumbs:
+  - label: Home
+    href: /
+  - label: Get Started
+    href: /get-started
+  - label: Hardware
+    href: /get-started/hardware
+tableOfContents:
+  - id: selection-philosophy
+    label: Selection philosophy
+    level: 1
+  - id: budget-radios
+    label: Budget radios
+    level: 2
+  - id: portable-plus-keyboard
+    label: Portable plus keyboard
+    level: 2
+  - id: infrastructure-ready-nodes
+    label: Infrastructure-ready nodes
+    level: 2
+  - id: antennas-that-actually-help
+    label: Antennas that actually help
+    level: 2
+meta:
+  author: KC Meshtastic Contributors
+  lastUpdated: Nov 30, 2024
+  readTime: 7 min read
+  category: Get Started
+relatedLinks:
+  - title: Join the network
+    href: /get-started/join
+    description: Apply these picks immediately.
+  - title: Quick start checklist
+    href: /get-started/quick-start
+    description: Translate existing gear to the KC profile.
+  - title: Network architecture
+    href: /network/architecture
+    description: Understand where infra nodes fit.
 ---
 
-## How I evaluate hardware
+## Selection philosophy
 
-The quick win is getting any 915 MHz node online fast, then upgrading once the
-spot proves useful. What follows is gear that keeps showing up in the KC mesh
-and broader Meshtastic chatter. Most of it comes from comparing Reddit threads,
-public node inventories, and what locals have actually deployed.
+Start cheap, learn your neighborhood, then invest in the sites that deserve it. Most of our builders begin indoors with a Heltec or SenseCAP and only graduate to weatherproof routers after they’ve proven the spot matters.
 
-Whenever I list a part, assume the 915 MHz version unless I call it out. The 868
-MHz and 433 MHz variants will not reach the KC mesh.
+### Budget radios
 
-### Budget radios (try it first)
-
-- **Heltec LoRa32 V3 ($25–$35):** Common entry node thanks to the OLED screen
-  and low cost. Needs a phone or laptop for messaging. [Buy on Amazon](https://www.amazon.com/dp/B0DG5F1YNX?tag=jeremyfuksa00-20).
-- **LILYGO T-Beam ($40–$55):** Popular for mobile nodes because it includes GPS
-  and an 18650 tray. [Buy on Amazon](https://a.co/d/1Wo3rXa).
-- **SenseCAP T1000-E ($50–$60):** A compact, card-sized tracker with GPS and
-  Bluetooth, ideal for personal tracking and mobile Meshtastic nodes. [Buy on Amazon](https://www.amazon.com/SenseCAP-T1000-Tracker-Meshtastic-Bluetooth/dp/B0C7Q359Y).
+- **Heltec LoRa32 V3 ($25–$35):** Bright OLED, easy to flash, and tiny enough for stealth installs. Needs a companion phone or laptop for messaging.
+- **LILYGO T-Beam ($40–$55):** Includes GPS and an 18650 tray. Great for mobile clients and vehicle experiments.
+- **SenseCAP T1000-E ($55):** Credit-card-sized tracker with GPS and Bluetooth. Ideal for hikes or mapping drives.
 
 ### Portable plus keyboard
 
-- **LILYGO T-Deck ($65–$75):** Favored by folks who want a standalone keyboard
-  and screen without carrying a phone. [Buy on Amazon](https://www.amazon.com/dp/B0FBGTYQH3?tag=jeremyfuksa00-20).
+- **LILYGO T-Deck ($65–$75):** Built-in keyboard, display, and battery. Perfect for testing coverage from rooftops or balconies without a phone.
 
 ### Infrastructure-ready nodes
 
-- **RAK WisBlock Meshtastic ($70–$90):** Modular boards designed for outdoor
-  enclosures; frequent choice for KC backbone candidates.
-  [Buy on Amazon](https://a.co/d/5Zitq0n).
-- **DIY Raspberry Pi gateway:** A Meshtastic radio paired with a Pi (often using
-  the Waveshare HAT) powers automation and MQTT scripts. [Get the LoRaWAN HAT](https://www.waveshare.com/sx1262-lorawan-hat.htm).
+- **RAK WisBlock Meshtastic kit ($70–$90):** Modular boards designed for rugged outdoor enclosures. Pair with a waterproof box and a beefy power system for semi-permanent routers.
+- **DIY Pi gateway:** A Meshtastic radio connected to a Raspberry Pi (often via the Waveshare SX1262 HAT) gives you MQTT logging, automation hooks, and remote management.
 
 ### Antennas that actually help
 
-- **Stock / rubber duck (2–3 dBi):** This will be your first upgrade. The stock antennas are rarely ideal.
-- **Indoor 915 MHz replacement (claimed 5.8 dBi):** Cheap way to beat the
-  factory rubber duck while keeping everything inside. This
-  [915 MHz whip](https://www.amazon.com/dp/B0D3KPFVH3?tag=jeremyfuksa00-20) has
-  become a staple for antenna upgrading.
-- **Outdoor omni (5–8 dBi) for 902–928 MHz:** Look for fiberglass or ABS
-  housings with N-female connectors. Pair them with low-loss coax and a proper ground block and you get a
-  metro-friendly gain bump without going overboard.
+- **Indoor whips (claimed 5–6 dBi):** Cheap replacements for the stock rubber duck. Point them toward open sky.
+- **Outdoor omni (5–8 dBi):** Fiberglass units with N-female connectors plus low-loss coax dramatically improve router reach.
+- **Directional panels (8+ dBi):** Use sparingly to cross the river valley or connect known high sites—coordination required so we don’t starve nearby nodes.
 
-Ready to build? Follow the [join walkthrough](/get-started/join) for firmware and
-app setup, or jump to the [quick start checklist](/get-started/quick-start) if
-you already run Meshtastic nodes elsewhere. Planning something elaborate (solar
-arrays, custom gateways, automation)? Drop the idea in the
-[Discord server](https://discord.gg/eP5VSPKU).
+Once your hardware is online, keep detailed notes: location, elevation, antenna height, RSSI/SNR logs, and uptime quirks. Feed that back to the community so we know what equipment thrives in which parts of the metro.

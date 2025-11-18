@@ -1,5 +1,6 @@
 ---
 /**
+ * Campfire Design System - Card Component
  * Standardized card used across grids, supporting status badges and optional imagery.
  */
 interface Props {
@@ -10,51 +11,69 @@ interface Props {
   status?: "operational" | "gap" | "needed" | "suggested";
   image?: string;
   imageAlt?: string;
+  class?: string;
 }
 
-const { title, description, link, linkText, status, image, imageAlt } = Astro.props;
+const { title, description, link, linkText, status, image, imageAlt, class: className = '' } = Astro.props;
 
-const statusMap: Record<string, { label: string; variant: string }> = {
-  operational: { label: "LIVE", variant: "success" },
-  gap: { label: "GAP", variant: "warning" },
-  needed: { label: "NEEDED", variant: "secondary" },
-  suggested: { label: "SUGGESTED", variant: "info" },
+const statusMap: Record<string, { label: string; badgeClass: string; dotClass: string }> = {
+  operational: {
+    label: "Operational",
+    badgeClass: "bg-success-50 text-success-700 dark:bg-success-700/20 dark:text-success-500",
+    dotClass: "bg-success-500",
+  },
+  gap: {
+    label: "Gap",
+    badgeClass: "bg-warning-50 text-warning-700 dark:bg-warning-700/20 dark:text-warning-500",
+    dotClass: "bg-warning-500",
+  },
+  needed: {
+    label: "Needed",
+    badgeClass: "bg-secondary-50 text-secondary-700 dark:bg-secondary-700/20 dark:text-secondary-500",
+    dotClass: "bg-secondary-500",
+  },
+  suggested: {
+    label: "Opportunity",
+    badgeClass: "bg-info-500/20 text-info-700 dark:text-info-500",
+    dotClass: "bg-info-600",
+  },
 };
 
 const badge = status ? statusMap[status] ?? null : null;
 ---
-
-<div class="col">
-  <div class="card h-100 shadow" style="border: 1px solid rgba(212, 130, 92, 0.15); transition: transform 0.2s ease, box-shadow 0.2s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 0.5rem 1rem rgba(0,0,0,0.15)';" onmouseout="this.style.transform=''; this.style.boxShadow=''">
-    <div class="card-body d-flex flex-column gap-3">
-      {image && (
-        <img
-          src={image}
-          alt={imageAlt ?? ""}
-          class="img-fluid rounded mb-2"
-          loading="lazy"
-          decoding="async"
-        />
-      )}
-      <div class="d-flex justify-content-between align-items-start gap-3">
-        <h3 class="h5 fw-semibold mb-0">{title}</h3>
-        {badge && (
-          <span class={`badge text-bg-${badge.variant}`}>{badge.label}</span>
-        )}
-      </div>
-      {description && <p class="card-text text-body-secondary mb-0">{description}</p>}
-      {link && linkText && (
-        <div class="mt-auto">
-          <a
-            href={link}
-            class="link-primary fw-semibold"
-            target={link.startsWith("/") ? undefined : "_blank"}
-            rel={link.startsWith("/") ? undefined : "noopener noreferrer"}
-          >
-            {linkText}
-          </a>
-        </div>
-      )}
-    </div>
-  </div>
+<div class={`bg-white dark:bg-neutral-900 rounded-[28px] border border-neutral-200 dark:border-neutral-800 p-6 h-full flex flex-col gap-4 hover:-translate-y-1 hover:shadow-lg transition-all shadow-[0px_1px_3px_0px_rgba(76,98,125,0.12),0px_1px_2px_0px_rgba(76,98,125,0.08)] ${className}`}>
+  {image && (
+    <img
+      src={image}
+      alt={imageAlt ?? ""}
+      class="w-full rounded-[20px] object-cover"
+      loading="lazy"
+      decoding="async"
+    />
+  )}
+  {badge && (
+    <span class={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[12px] font-bold uppercase tracking-wide ${badge.badgeClass}`}>
+      <span class={`w-2 h-2 rounded-full ${badge.dotClass}`} aria-hidden="true"></span>
+      {badge.label}
+    </span>
+  )}
+  <h3 class="text-[20px] lg:text-[22px] font-bold text-neutral-900 dark:text-neutral-50">
+    {title}
+  </h3>
+  {description && (
+    <p class="text-[15px] lg:text-[16px] leading-[1.7] text-neutral-600 dark:text-neutral-400 flex-grow">
+      {description}
+    </p>
+  )}
+  {link && linkText && (
+    <a
+      href={link}
+      class="mt-auto inline-flex items-center gap-2 text-[14px] font-semibold text-primary-600 dark:text-primary-400 hover:text-meshtastic dark:hover:text-meshtastic transition-colors"
+      target={link.startsWith("/") ? undefined : "_blank"}
+      rel={link.startsWith("/") ? undefined : "noopener noreferrer"}
+    >
+      {linkText}
+      <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+    </a>
+  )}
 </div>

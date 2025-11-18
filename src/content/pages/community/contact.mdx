@@ -1,41 +1,60 @@
 ---
 title: Coordination & Support
-description: Deploy gear, share results, and use Discord for questions.
+description: There’s no help desk—just a small group of neighbors keeping notes in the open.
 pageHeading: Coordination & Support
 heroVariant: compact
+breadcrumbs:
+  - label: Home
+    href: /
+  - label: Community
+    href: /community/contact
+  - label: Coordination & Support
+    href: /community/contact
+tableOfContents:
+  - id: how-to-ask-for-help
+    label: How to ask for help
+    level: 1
+  - id: when-to-dm-vs-post
+    label: When to DM vs. post
+    level: 1
+  - id: already-running-infrastructure
+    label: Already running infrastructure?
+    level: 1
+  - id: keep-the-repo-current
+    label: Keep the repo current
+    level: 1
+meta:
+  author: KC Meshtastic Contributors
+  lastUpdated: Nov 30, 2024
+  readTime: 3 min read
+  category: Community
+relatedLinks:
+  - title: Coverage priorities
+    href: /network/coverage
+    description: Tell us which gap you’re aiming at.
+  - title: Join the network
+    href: /get-started/join
+    description: Share your progress as you work through the guide.
+  - title: GitHub repository
+    href: https://github.com/jeremyfuksa/kansascitymesh.live
+    external: true
+    description: File issues or contribute edits.
 ---
 
-## You don't need permission or approval
+## How to ask for help
 
-Just buy hardware and deploy. No membership, no approval process, no checking in with anyone.
+Hop into the [KC Meshtastic Discord](https://discord.gg/eP5VSPKU) and head to `#kc-coordination`. Include your rough location, hardware model, antenna situation, and any screenshots. Someone will usually respond within a few hours because they are running similar gear nearby.
 
-**That said:** If you have questions before you start, Discord has a growing number of people running nodes who are happy to help.
+## When to DM vs. post
 
-## Primary coordination channel
-
-All real-time coordination lives in the
-[KC Meshtastic Discord](https://discord.gg/eP5VSPKU). That's where we should swap
-coverage reports, plan router installs, and work through troubleshooting. Join
-the server, say hi in `#kc-coordination`, and share what you're building.
-
-## Send a direct message to one of my nodes
-
-All of my nodes start with `KF0NUI` in the name. If you can see one of them, you can
-send a direct message over the mesh. It's a good way to test connectivity and
-reach me without waiting for Discord replies.
+Default to public channels. Direct messages are fine for sharing gate codes or personal contact info, but everything else should live in the open so it becomes searchable for the next person.
 
 ## Already running infrastructure?
 
-- Document your deployment in the Discord so others know what routes through
-  your node.
-- Post signal reports, GPS traces, and range tests in `#coverage-notes`.
-- Planning a permanent router? Compare your site with the
-  [coverage priorities](/network/coverage) and let us know which gap you're
-  filling.
+- Drop a quick note in `#coverage-notes` describing where the node lives, what role it’s running, and what its uptime looks like.
+- If you need help babysitting the site, be explicit about what maintenance support you expect.
+- Coordinate MQTT uploads before turning on sensors or telemetry so we keep the broker healthy.
 
-## Update the site or docs
+## Keep the repo current
 
-Found an issue with this site or the documentation? Open an issue or pull
-request on the [GitHub repo](https://github.com/jeremyfuksa/kansascitymesh.live). Keeping it in GitHub makes the history transparent and easy to track.
-
-Deploy radios, share what you learn in Discord, and keep building.
+This site is a GitHub project. If you notice outdated copy, missing sections, or incorrect data, open an issue or submit a pull request. The history stays visible, and everyone benefits from the fix.
