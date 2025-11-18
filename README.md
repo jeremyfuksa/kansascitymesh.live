@@ -1,133 +1,42 @@
 # Kansas City Meshtastic Network
 
-Astro + Bootstrap site documenting the Kansas City Meshtastic build-out and coordinating regional deployments. Content lives in MDX with YAML front matter so writers can focus on copy while layouts and shared components handle presentation.
+The vetted Figma design now lives as a compact React/Vite SPA inside `src/`, and the top-level `index.html` + shared styles/behavior are what ship to production. The UI mirrors the original hero/hardware/final CTA layout and the dedicated get-started guide so the experience plays out exactly as the design mandates.
 
-## Tech Stack
+## Tech stack
 
-- [Astro](https://astro.build/) for static generation
-- [Bootstrap 5](https://getbootstrap.com/) via CDN for UI components
-- Minimal client-side JavaScript (Bootstrap bundle for nav/collapses)
+- **Vite + React (TypeScript)** — entry point in `src/main.tsx`, minimal render tree, two logical pages (`HomePage`, `GetStartedPage`) swapped through component state.
+- **Tailwind CSS** — `src/styles/globals.css` defines the color palette, gradients, and shared utilities; the build runs through `tailwindcss` + `postcss`.
+- **Simple assets** — `figma:asset/*` imports are aliased to `src/assets/figma/` so the components keep their original references, and a handful of placeholder PNGs match the approved layout until the real Figma exports are swapped in.
 
-## Content Authoring
+## Project structure
 
-All page content lives under `src/content/pages/`. Each MDX file describes a route and is rendered by one of the content layouts.
+- `src/` – React source from the Figma export, organized by sections; `styles/globals.css` holds the shared theming, and `assets/figma/` stores the image stand-ins.
+- `public/` – Static files served directly (favicon, future downloads, etc.).
+- `index.html` + `getting-started.html` – Vite entry shells for the home and onboarding screens. Each loads the same React bundle but the `/getting-started` route loads the vetted Flow page on load.
+- `package.json` – Scripts for `dev`, `build`, `preview`, and `check`, plus the dependencies needed to run the React + Tailwind toolchain.
+- `vite.config.ts` – React plugin plus an alias so `figma:asset` resolves to the local placeholders.
+- `tsconfig.json` / `tsconfig.node.json` – TypeScript settings; `src/components/ui` is excluded because those helpers are unused in the current build.
+- `tailwind.config.cjs` + `postcss.config.cjs` – Tailwind/PostCSS pipeline configured for the `src/**/*.{ts,tsx}` files.
 
-### Layout matrix
-
-| Layout          | File                                    | When to use                                                                                    | YAML fields consumed                                                                                                |
-| --------------- | --------------------------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **BasePage**    | `src/layouts/content/BasePage.astro`    | Landing pages with alerts/callouts/cards/CTAs (e.g., Home, Get Started index, Community index) | `title`, `description`, `pageHeading`, `heroVariant`, `alerts`, `callouts`, `cardsSections`, `cta`, `discordInvite` |
-| **ArticlePage** | `src/layouts/content/ArticlePage.astro` | Narrative pages or guides that may include CTA buttons                                         | `title`, `description`, `pageHeading`, `heroVariant`, `actions`, `discordInvite`                                    |
-| **FaqPage**     | `src/layouts/content/FaqPage.astro`     | FAQ lists rendered as accordions                                                               | `title`, `description`, `pageHeading`, `heroVariant`, `faqs`, `discordInvite`                                       |
-
-Routes simply select the layout, e.g.:
-
-```astro
----
-import { getEntry } from "astro:content";
-import BasePage from "../../layouts/content/BasePage.astro";
-
-const entry = await getEntry("pages", "get-started/index");
----
-
-<BasePage entry={entry} />
-```
-
-### Front matter quick reference
-
-```yaml
----
-title: Page title (defaults to empty string)
-description: Meta description / hero paragraph
-pageHeading: Optional hero heading override
-heroVariant: default | compact
-  alerts: # array of alert banners
-  - message: Text
-    link: Optional URL
-    linkText: Optional label
-    variant: info | warning | success
-callouts: # array of amber callout banners
-  - title: Heading
-    message: Body text
-    link: Optional URL
-    linkText: Optional label
-cardsSections: # array of card grids
-  - heading: Section title
-    description: Optional text shown under heading
-    cards:
-      - title: Card heading
-        description: Body copy
-        link: Optional URL
-        linkText: Optional label
-        status: operational | gap | needed | suggested
-cta: # optional closing CTA pill
-  title: Heading
-  description: Supporting copy
-  link: URL
-  linkText: Button label
-actions: # for ArticlePage – renders button row
-  - href: URL
-    label: Button label
-    variant: primary | outline (default primary)
-  faqs: # for FaqPage – question/answer pairs
-  - question: Prompt
-    answer: Plain text (newline separated) shown inside accordion
-discordInvite: # renders reusable Discord CTA card
-  title: Optional override (defaults provided)
-  description: Custom copy
-  link: Override invite URL (defaults to https://discord.gg/eP5VSPKU)
-  linkText: Button label
----
-```
-
-Any field you omit simply collapses in the layout.
-
-## Development Conventions
-
-- **Asset strategy:** Use `src/assets/` only for files imported through Astro's image pipeline (e.g., the site logo). Serve everything else from `public/`—images belong in `public/images/` and should be referenced with an absolute path such as `/images/example.jpg`.
-- **Authoring with MDX:** Rich pages live in `.mdx` files so you can import shared UI components directly in the markup. Stick to Markdown when you only need prose; switch to MDX the moment you embed components like `<Card />` or `<Figure />`.
-- **Composable UI:** Prefer the shared components in `src/components/` (`Card`, `CardGrid`, `CtaBlock`, `Figure`, etc.) instead of raw Bootstrap markup. They keep styling consistent and simplify later redesigns.
-- **Content collections:** Front matter is validated by `src/content/config.ts`. Adding new fields? Update the schema first so builds fail fast when data drifts.
-- **Quality gates:** Run `npm run lint` and `npm run format:check` before committing. Husky ties the same checks to `pre-commit` once you run `npm run prepare` locally.
-- **Analytics:** Google Tag Manager (`GTM-NV5FCM83`) currently loads via the global layout. Plausible Analytics remains in planning—add its script only once the account is provisioned and privacy copy is updated.
-
-## Documentation Map
-
-- `README.md` – High-level project overview, contributor checklist, and development conventions.
-- `GUIDELINES.md` – Canonical practices for structure, tooling, and coding style.
-- `IMPLEMENTATION.md` – Astro implementation notes and outstanding feature work.
-- `docs/00–07` – Strategy dossiers (architecture, content, design, analytics, deployment, voice) that inform future phases.
-- `docs/ARCHITECTURAL_PLAN.md` – Completed remediation roadmap documenting how the scaffold matured into the current MDX/component model.
-
-## Geofence Focus
-
-The immediate build objective is a robust mesh within this bounding box:
-
-1. 39.561616° N, -93.948472° W
-2. 39.561616° N, -95.148729° W
-3. 38.649439° N, -95.148729° W
-4. 38.649439° N, -93.948472° W
-
-Copy on home, network, and community pages references that geofence so we stay focused before expanding outward.
-
-## Development
+## Getting started
 
 ```bash
-npm install
-npm run dev   # local development
-npm run build # production build
-npm run lint  # static analysis
-npm run format:check # confirm formatting
+npm install        # installs React/Vite/Tailwind with the versions listed in package.json
+npm run dev        # run the dev server (Vite) and open http://localhost:5173
+npm run build      # create the production bundle with Vite
+npm run preview    # preview the production build locally
+npm run check      # run tsc --noEmit against tsconfig.json
 ```
 
-> Note: `npm` is not available in the hosted CLI environment, so run commands locally. Run `npm run prepare` once after installing dependencies to activate the Husky git hooks.
+Tailwind/JIT will process the `globals.css` file and the component classes automatically, so there is no additional build step beyond `npm run build`.
 
-## Navigation & Performance Notes
+## Notes
 
-- Header menu is the only interactive script; keep additional JS lean.
-- Font Awesome loads via kit script; `preconnect` & `dns-prefetch` hints are in place to reduce first render cost.
-- Main column width is capped at `max-w-3xl` for readability across breakpoints.
+- The `App` component toggles between `HomePage` and `GetStartedPage` to keep the two vetted screens accessible without introducing routing.
+- `src/assets/figma/` contains placeholder PNGs that are resolved via the alias defined in `vite.config.ts`. Swap them for the true Figma exports (or a CDN link) and keep the file names intact to avoid touching the component imports.
+- Add new UI patterns directly in `HomePage`, `GetStartedPage`, or their child sections; avoid rearranging the copy unless the strategy docs explicitly call for it.
+- The `public/favicon.svg` is a simple KC-branded circle used for the site icon; replace it only if the new design requires a different asset.
 
-## Discord Coordination
+## Deployment
 
-The shared server lives at `https://discord.gg/eP5VSPKU`. Layouts expose a reusable CTA card so you can surface the invite by dropping a `discordInvite` block into front matter.
+The output from `npm run build` lives under `dist/`. Deploy those static files directly to the host of your choice. No additional server or bundler setup is required beyond the above dependencies.
