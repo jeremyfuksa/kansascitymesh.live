@@ -1,0 +1,121 @@
+---
+import { ArrowRight } from '@lucide/astro';
+import InfoCard from './InfoCard.astro';
+import PulsingDot from './PulsingDot.astro';
+import {
+  NETWORK_STATS,
+  NETWORK_ACTIVITY,
+  statusColor,
+} from '../data/networkStatus';
+---
+
+<section
+  class="relative px-4 py-16 bg-black border-t border-white/10 overflow-hidden"
+>
+  <div class="max-w-6xl mx-auto">
+    {/* Section header */}
+    <div
+      class="flex items-end justify-between flex-wrap gap-4 mb-8"
+    >
+      <div>
+        <div class="inline-flex items-center gap-2 mb-3">
+          <PulsingDot />
+          <span
+            class="font-mono text-[13px] text-white/60 tracking-[0.02em]"
+          >
+            LIVE · refreshed 30s ago
+          </span>
+        </div>
+        <h2
+          class="text-[clamp(28px,4vw,40px)] text-white tracking-tight leading-[1.1] mb-2"
+        >
+          The mesh, right now.
+        </h2>
+        <p class="text-white/70 text-base leading-relaxed max-w-[480px]">
+          Not a marketing screenshot. The actual state of the KC backbone, updated every 30
+          seconds.
+        </p>
+      </div>
+      <a
+        href="/status"
+        class="inline-flex items-center gap-1.5 text-sm text-white/70 hover:text-white transition-colors"
+      >
+        Full network status
+        <ArrowRight class="w-3.5 h-3.5" />
+      </a>
+    </div>
+
+    {/* 3 stat tiles */}
+    <div
+      class="grid gap-3 mb-6"
+      style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));"
+    >
+      {
+        NETWORK_STATS.map((s) => (
+          <InfoCard>
+            <div class="text-white/50 text-[11px] uppercase tracking-[0.08em] mb-2 font-medium">
+              {s.label}
+            </div>
+            <div class="flex items-baseline gap-2.5">
+              <span
+                class="font-mono text-[48px] font-semibold leading-none tracking-[-0.03em]"
+                style={`color: ${s.color};`}
+              >
+                {s.value}
+              </span>
+              <span class="font-mono text-[13px] text-white/50">{s.unit}</span>
+            </div>
+          </InfoCard>
+        ))
+      }
+    </div>
+
+    {/* Activity strip */}
+    <div
+      class="bg-[var(--neutral-900)] border border-white/10 rounded-md overflow-hidden"
+    >
+      <div
+        class="flex items-center justify-between px-4 py-2.5 bg-white/[0.03] border-b border-white/5 text-white/50 text-[11px] uppercase tracking-[0.08em] font-medium"
+      >
+        <span>Recent activity</span>
+        <span class="font-mono normal-case tracking-normal">backbone + outliers</span>
+      </div>
+
+      <div
+        class="grid"
+        style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));"
+      >
+        {
+          NETWORK_ACTIVITY.map((row, i) => {
+            const color = statusColor[row.status];
+            const ringShadow =
+              row.status === 'up' ? `0 0 0 3px ${color}26` : 'none';
+            const borderTop = i >= 3 ? '1px solid rgba(255,255,255,0.05)' : 'none';
+            const borderRight =
+              i % 3 !== 2 ? '1px solid rgba(255,255,255,0.05)' : 'none';
+            return (
+              <div
+                class="flex items-center gap-3 px-4 py-3.5"
+                style={`border-top: ${borderTop}; border-right: ${borderRight};`}
+              >
+                <span
+                  class="inline-block w-2 h-2 rounded-full flex-shrink-0"
+                  style={`background: ${color}; box-shadow: ${ringShadow};`}
+                />
+                <span class="flex-1 text-white font-mono text-sm font-medium tracking-[0.01em]">
+                  {row.node}
+                </span>
+                <span class="text-white/[0.55] text-[13px] flex-1 min-w-0">
+                  {row.area}
+                </span>
+                <span class="text-white/50 font-mono text-xs min-w-[64px] text-right">
+                  {row.when}
+                </span>
+              </div>
+            );
+          })
+        }
+      </div>
+    </div>
+  </div>
+</section>
