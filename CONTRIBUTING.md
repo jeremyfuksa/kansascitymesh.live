@@ -119,7 +119,18 @@ Not enforced by tooling, just convention.
 4. **CI runs typecheck + build** on every PR. Both have to pass before merge.
 5. **A maintainer reviews.** Small fixes typically merge same-day; larger changes might come with feedback.
 
-`main` is protected — PRs are required, and the CI check has to pass. You can't push directly.
+### Branch protection
+
+`main` is protected. Specifically:
+
+- **Direct pushes are blocked.** All changes land via PR.
+- **CI must pass.** The `Typecheck + build` check (from `.github/workflows/ci.yml`) is a required status check. Format + typecheck + build all have to be green.
+- **Force-pushes are disabled.** History on `main` can't be rewritten.
+- **Branch deletion is disabled.** Nobody can accidentally `git push --delete origin main`.
+- **Reviews are not required.** Solo-maintainer project; the maintainer can self-merge their own PRs once CI is green. If multiple maintainers come on board, this is worth revisiting.
+- **Admins aren't separately enforced.** The maintainer can bypass these rules in a genuine emergency (e.g. CI broken by an upstream change and the site needs a fix shipped). Not used for routine work.
+
+If something here ever seems wrong — for example a "Typecheck + build" required check that doesn't exist on the actual workflow — open an issue. These settings are checked in via this section, not via a `branch-protection.yml` config file, so they can drift if changed via the web UI without updating this doc.
 
 ## Issue templates
 
