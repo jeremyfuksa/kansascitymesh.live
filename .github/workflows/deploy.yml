@@ -1,0 +1,80 @@
+name: Deploy
+
+# Builds the static Astro site on every push to main and ships the
+# artifact to the production droplet. CI runs the build; the droplet
+# receives a tarball over SSH and atomically swaps it into place
+# behind the mesh-web nginx container.
+#
+# The deploy script (/home/admin/deploy-kcmesh.sh on the droplet) is
+# pinned as the forced command on the deploy key's authorized_keys
+# entry, so the key cannot do anything else.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Don't let two pushes deploy on top of each other — second one waits.
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Build + ship to droplet
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Format check
+        run: npm run format:check
+
+      - name: Type-check
+        run: npm run check
+
+      - name: Build
+        run: npm run build
+
+      - name: Package dist as tarball
+        run: tar -czf dist.tar.gz -C dist .
+
+      - name: Ship to droplet
+        env:
+          DEPLOY_KEY: ${{ secrets.KCMESH_DEPLOY_KEY }}
+          DROPLET_HOST: 161.35.226.162
+          DROPLET_USER: admin
+        run: |
+          install -m 0600 /dev/stdin ~/deploy_key <<<"$DEPLOY_KEY"
+          mkdir -p ~/.ssh
+          # Scan the host key at run time and pin it for this session.
+          # Drops a separately-managed secret; relies on TOFU for the
+          # initial connection, which is fine for a fixed-IP droplet
+          # that doesn't rotate keys.
+          ssh-keyscan -t ed25519,rsa "$DROPLET_HOST" > ~/.ssh/known_hosts 2>/dev/null
+          chmod 600 ~/.ssh/known_hosts
+          # The authorized_keys entry on the droplet pins deploy-kcmesh.sh
+          # as the forced command, so any args here are ignored. Tarball
+          # streams in on stdin.
+          ssh -i ~/deploy_key \
+              -o BatchMode=yes \
+              -o UserKnownHostsFile=~/.ssh/known_hosts \
+              -o StrictHostKeyChecking=yes \
+              "$DROPLET_USER@$DROPLET_HOST" < dist.tar.gz
+
+      - name: Smoke test public endpoints
+        run: |
+          # Give nginx a beat to settle after rsync.
+          sleep 3
+          curl --fail --silent --show-error -o /dev/null -w 'HTTP %{http_code} /\n' https://kansascitymesh.live/
+          curl --fail --silent --show-error -o /dev/null -w 'HTTP %{http_code} /faq\n' https://kansascitymesh.live/faq/
+          curl --fail --silent --show-error -o /dev/null -w 'HTTP %{http_code} /api/stats.json\n' https://kansascitymesh.live/api/stats.json
