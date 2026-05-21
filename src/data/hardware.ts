@@ -1,10 +1,11 @@
+import type { ImageMetadata } from 'astro';
 import heltecV4 from '../assets/heltec-v4.png';
 import lilygoTDeck from '../assets/lilygo-t-deck.png';
 import rakMini from '../assets/rak-mini.png';
 import t1000e from '../assets/t1000e.png';
 
 export interface HardwareItem {
-  /** Stable key for React. */
+  /** Stable key. */
   id: string;
   /** Display name. */
   name: string;
@@ -21,7 +22,7 @@ export interface HardwareItem {
   /** Longer description with specific use case, for the Get Started step-by-step. */
   detailDescription: string;
   /** Product image for the showcase grid. */
-  image: string;
+  image: ImageMetadata;
 }
 
 /**

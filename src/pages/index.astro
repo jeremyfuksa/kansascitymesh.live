@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import HeroSection from '../components/HeroSection.astro';
+import HardwareSection from '../components/HardwareSection.astro';
+import ResourcesSection from '../components/ResourcesSection.astro';
+import HostInfrastructureCTA from '../components/HostInfrastructureCTA.astro';
+import DroneFlyCTA from '../components/DroneFlyCTA.astro';
+import FinalCTASection from '../components/FinalCTASection.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout
+  title="Kansas City Meshtastic Network"
+  description="Community-run Meshtastic mesh network in the KC metro. 60+ active nodes, growing coverage, and a welcoming Discord. Come say hi."
+  path="/"
+>
+  <div class="min-h-screen">
+    <Nav currentPage="home" />
+    <HeroSection />
+    <HardwareSection />
+    <ResourcesSection />
+    <HostInfrastructureCTA />
+    <DroneFlyCTA />
+    <FinalCTASection />
+    <Footer />
+  </div>
+</Layout>

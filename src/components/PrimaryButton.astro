@@ -1,0 +1,37 @@
+---
+interface Props {
+  href?: string;
+  external?: boolean;
+  /** Analytics event action; becomes data-track-event on the rendered element. */
+  trackEvent?: string;
+  /** Analytics event label; becomes data-track-label. */
+  trackLabel?: string;
+}
+
+const { href, external = false, trackEvent, trackLabel } = Astro.props;
+const className =
+  'inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[var(--success-500)] text-black rounded-xl font-medium text-[15px] transition-all hover:bg-[var(--success-600)] hover:text-white hover:scale-105 hover:shadow-2xl active:scale-100';
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={className}
+      target={external ? '_blank' : undefined}
+      rel={external ? 'noopener noreferrer' : undefined}
+      data-track-event={trackEvent}
+      data-track-label={trackLabel}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      class={className}
+      data-track-event={trackEvent}
+      data-track-label={trackLabel}
+    >
+      <slot />
+    </button>
+  )
+}

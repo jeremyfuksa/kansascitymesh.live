@@ -1,0 +1,27 @@
+---
+type PaddingSize = 'default' | 'large';
+
+interface Props {
+  class?: string;
+  interactive?: boolean;
+  /**
+   * Padding preset:
+   * - 'default' = p-6 (most cards)
+   * - 'large'   = p-8 (multi-step lists, generous breathing room)
+   */
+  padding?: PaddingSize;
+}
+
+const PADDING_CLASSES: Record<PaddingSize, string> = {
+  default: 'p-6',
+  large: 'p-8',
+};
+
+const { class: className = '', interactive = false, padding = 'default' } = Astro.props;
+const base = `bg-[var(--neutral-900)] border border-white/10 rounded-xl ${PADDING_CLASSES[padding]}`;
+const hover = interactive ? ' hover:border-white/20 transition-colors' : '';
+---
+
+<div class={`${base}${hover}${className ? ` ${className}` : ''}`}>
+  <slot />
+</div>

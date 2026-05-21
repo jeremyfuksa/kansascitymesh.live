@@ -1,0 +1,121 @@
+---
+import { ExternalLink } from '@lucide/astro';
+import { DISCORD_INVITE } from '../constants/discord';
+import pkg from '../../package.json';
+
+const version = pkg.version;
+const startYear = 2025;
+const currentYear = new Date().getFullYear();
+const yearRange = currentYear > startYear ? `${startYear}–${currentYear}` : `${startYear}`;
+---
+
+<footer class="px-4 py-12 bg-[var(--neutral-900)] border-t border-white/10">
+  <div class="max-w-6xl mx-auto">
+    <nav class="flex flex-wrap justify-center gap-8 mb-8">
+      <a
+        href="https://map.kansascitymesh.live"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="flex items-center gap-1 text-white/70 hover:text-white transition-colors text-sm"
+      >
+        <span>Coverage Map</span>
+        <ExternalLink class="w-3.5 h-3.5" />
+      </a>
+      <a
+        href="/getting-started"
+        class="text-white/70 hover:text-white transition-colors text-sm"
+      >
+        Get Started
+      </a>
+      <a href="/host-a-node" class="text-white/70 hover:text-white transition-colors text-sm">
+        Host a Node
+      </a>
+      <a
+        href="/steal-this-network"
+        class="text-white/70 hover:text-white transition-colors text-sm"
+      >
+        Steal This Network
+      </a>
+      <a
+        href={DISCORD_INVITE}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/70 hover:text-white transition-colors text-sm"
+        data-track-event="discord_invite_click"
+        data-track-label="footer-link"
+      >
+        Join Discord
+      </a>
+    </nav>
+    <p class="text-center text-white/50 text-sm">
+      © {yearRange} Kansas City Meshtastic Network
+    </p>
+    <p class="text-center text-white/50 text-sm">
+      Not affiliated with{' '}
+      <a
+        href="https://meshtastic.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:text-white transition-colors"
+      >
+        meshtastic.org
+      </a>
+      .
+    </p>
+
+    <p class="text-center text-white/50 text-sm mt-6 max-w-xl mx-auto leading-relaxed">
+      Site content licensed under{' '}
+      <a
+        href="https://creativecommons.org/licenses/by-sa/4.0/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/70 hover:text-white underline underline-offset-2"
+      >
+        CC&#8209;BY&#8209;SA&nbsp;4.0
+      </a>{' '}— take whatever helps. Source on{' '}
+      <a
+        href="https://github.com/jeremyfuksa/kansascitymesh.live"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/70 hover:text-white underline underline-offset-2"
+        data-track-event="footer_github_click"
+        data-track-label="footer"
+      >
+        GitHub
+      </a>
+      .
+    </p>
+    <p class="text-center text-white/50 text-sm mt-2 max-w-xl mx-auto leading-relaxed">
+      Built on what{' '}
+      <a
+        href="https://www.austinmesh.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/70 hover:text-white transition-colors underline underline-offset-2"
+        data-track-event="footer_lineage_click"
+        data-track-label="austinmesh"
+      >
+        Austin Mesh
+      </a>{' '}and{' '}
+      <a
+        href="https://cascadiamesh.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-white/70 hover:text-white transition-colors underline underline-offset-2"
+        data-track-event="footer_lineage_click"
+        data-track-label="cascadiamesh"
+      >
+        Cascadia Mesh
+      </a>{' '}did first. If we've inspired you, please{' '}
+      <a
+        href="/steal-this-network"
+        class="text-white/70 hover:text-white transition-colors underline underline-offset-2"
+      >
+        steal this network
+      </a>
+      .
+    </p>
+
+    <p class="text-center text-white/30 text-xs mt-6">v{version}</p>
+  </div>
+</footer>
