@@ -57,7 +57,14 @@ import { DISCORD_INVITE } from '../constants/discord';
           </div>
           <div>
             <h3 class="text-lg mb-1 text-white">
-              60+ active nodes. 130+ total nodes. 200+ in Discord.
+              <span class="font-mono" data-live-stat="active_30d">—</span> nodes active this month.{
+                ' '
+              }
+              <span class="font-mono" data-live-stat="total_nodes">—</span> registered ever.{' '}
+              <span class="font-mono" data-live-stat="discord_total_members">—</span> in Discord (<span
+                class="font-mono"
+                data-live-stat="discord_online">—</span
+              > online now).
             </h3>
             <p class="text-white/70 leading-relaxed">
               Power up a Meshtastic node and say hello. Someone in the mesh will hear you.

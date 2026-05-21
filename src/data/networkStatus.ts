@@ -1,23 +1,9 @@
-export interface NetworkStat {
-  label: string;
-  value: string;
-  unit: string;
-  /** CSS color value (var(...) or hex). */
-  color: string;
-}
-
 export interface ActivityRow {
   node: string;
   area: string;
   when: string;
   status: 'up' | 'degraded' | 'down';
 }
-
-export const NETWORK_STATS: NetworkStat[] = [
-  { label: 'Nodes online', value: '61', unit: '↑ 3 / wk', color: 'var(--success-500)' },
-  { label: 'Routers up', value: '4', unit: '/ 6', color: 'var(--warning-500)' },
-  { label: 'Msgs · 24 h', value: '1,247', unit: 'Long Fast', color: '#fff' },
-];
 
 export const NETWORK_ACTIVITY: ActivityRow[] = [
   { node: 'KCML', area: 'Downtown', when: 'just now', status: 'up' },
@@ -34,13 +20,6 @@ export const statusColor: Record<ActivityRow['status'], string> = {
   down: 'var(--danger-500)',
 };
 
-export interface StatusStat {
-  label: string;
-  value: string;
-  delta: string;
-  color: string;
-}
-
 export interface NodeRow {
   name: string;
   area: string;
@@ -49,13 +28,6 @@ export interface NodeRow {
   type: 'router' | 'client';
   hops: number | '—';
 }
-
-export const STATUS_STATS: StatusStat[] = [
-  { label: 'Active nodes', value: '61', delta: '+3 this week', color: 'var(--success-500)' },
-  { label: 'Registered', value: '134', delta: '+8 this week', color: 'var(--info-500)' },
-  { label: 'Routers up', value: '4 / 6', delta: 'Independence down', color: 'var(--warning-500)' },
-  { label: 'Messages / 24h', value: '1,247', delta: 'Long Fast channel', color: '#fff' },
-];
 
 export const STATUS_NODES: NodeRow[] = [
   {
