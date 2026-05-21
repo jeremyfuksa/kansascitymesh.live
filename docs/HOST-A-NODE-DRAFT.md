@@ -14,11 +14,15 @@ Hosted infrastructure is the single biggest thing standing between KC Mesh today
 
 ## Why hosted infrastructure matters
 
-KC Mesh has 60+ active nodes today. Most of them are client nodes — handhelds, indoor home setups, T-Decks in backpacks. They're great for local conversations, but client-only density doesn't carry a message from Liberty to Olathe.
+KC Mesh has 60+ active nodes today, and we've built a strong spine running up and down the I-35 corridor — messages move cleanly between downtown, Westport, Overland Park, and the southern suburbs. That spine is real progress, and it's the foundation everything else builds on.
 
-What does carry that message is a small number of router nodes mounted high, with clear sky, running 24/7. The plan is four of them: East, West, North, and South. Together they form what we're calling the **KC Backbone Initiative** — the spine that turns a bunch of friendly hobbyist nodes into a metro-wide network.
+What we don't yet have is a mesh that reaches the metro's east and west edges, much less the cities just outside it. Most of our 60+ nodes are client nodes — handhelds, indoor home setups, T-Decks in backpacks — and client-only density doesn't carry a message from Westport to Blue Springs.
 
-> **The West side is the current critical gap.** If you own or manage a building, billboard, tower, or rooftop anywhere from Lenexa west to the state line, you might be exactly the host we've been looking for.
+The fix is a small number of router nodes mounted high, with clear sky, running 24/7. We're calling the rollout the **KC Backbone Initiative**, and it has two parallel asks:
+
+> **1. Round out the metro.** Bonner Springs on the west side. Independence and Blue Springs to the east. These are the gaps where messages from downtown die before they reach you. If you own or manage a building, billboard, tower, or rooftop in or near those cities, you might be exactly the host we've been looking for.
+>
+> **2. Close the chain to the outliers.** There are already nodes on the map as far out as Manhattan, KS and Columbia, MO — but they can't reliably reach the KC mesh because the hop chain between them and downtown doesn't exist yet. Lawrence, Topeka, Lee's Summit, Warrensburg — every host along I-70 in either direction is a link that makes those far-out nodes part of the network.
 
 ---
 
@@ -45,7 +49,7 @@ We're talking about a $60–$200 device the size of a paperback, plus a small an
 If you see yourself in any of these, you're exactly who we're trying to reach.
 
 **Businesses with rooftops**
-Warehouses, retail strip centers, offices. If you have a flat roof and a 120V outlet on it, you have what we need. We're especially looking on the West side of the metro.
+Warehouses, retail strip centers, offices. If you have a flat roof and a 120V outlet on it, you have what we need. We're especially looking in Bonner Springs, Independence, and Blue Springs — plus any spot along I-70 (east or west) where a hop helps connect existing outlier nodes in Manhattan and Columbia back to the KC mesh.
 
 **Ham operators & repeater owners**
 You already have what we need — elevation, line of sight, and the inclination to mess with radios. A Meshtastic router at your repeater site is a $60 add to infrastructure you've already built.
@@ -85,7 +89,7 @@ Right now the proof-of-concept is my own router. It's a Heltec V3 in a weatherpr
 
 It's been online for months. It hands off traffic between client nodes that can't hear each other directly. It made the difference between "a few people messing around" and "a network."
 
-We need three more. East, West, North, South. That's the whole ask.
+We need more like it — out at the edges, and along I-70 in both directions to close the chain to the existing outliers. That's the whole ask.
 
 ---
 

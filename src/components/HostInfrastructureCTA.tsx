@@ -30,7 +30,7 @@ export default function HostInfrastructureCTA({ onNavigate }: HostInfrastructure
                 Got a rooftop, a tower, or a high spot in the metro?
               </h2>
               <p className="text-white/70 leading-relaxed">
-                We're recruiting hosts for the KC Backbone Initiative — the four-router spine that turns a bunch of friendly nodes into a metro-wide network. The West side is the current critical gap.
+                We're recruiting hosts for the KC Backbone Initiative — hosted nodes that fill the metro's east and west edges (Bonner Springs, Independence, Blue Springs) and close the I-70 hop chain out to existing outlier nodes in Manhattan and Columbia.
               </p>
             </div>
 

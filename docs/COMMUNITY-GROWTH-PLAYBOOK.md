@@ -44,13 +44,15 @@ These are the changes shipping in the same PR as this doc:
 
 ### KC Backbone Initiative — our version of "the I-5 Project"
 
-The four-router cardinal-coverage plan (East / West / North / South) that already exists in [`CLAUDE.md`](../CLAUDE.md) is being elevated from "Jeremy's planning doc" to a public-facing flagship project name. It gives us a story to tell hosts and a specific ask: help close the West-side gap (current critical priority).
+The hosted-infrastructure rollout from [`CLAUDE.md`](../CLAUDE.md) is being elevated from "Jeremy's planning doc" to a public-facing flagship project name — and re-scoped to match what's actually on the map. The I-35 spine (downtown through Overland Park and the southern suburbs) is strong. The current gaps are two parallel ones: **(1)** the metro's east and west edges — Bonner Springs, Independence, Blue Springs — and **(2)** the I-70 corridor in both directions, where existing outlier nodes in Manhattan, KS and Columbia, MO can't reliably reach the KC mesh because the intermediate hop chain doesn't exist yet. The Backbone Initiative is the named ask for both.
+
+*(Note: `CLAUDE.md` still describes the older four-router cardinal framing — worth updating that doc to match this scoping when convenient. They're now out of sync.)*
 
 ### `/host-a-node` page
 
 A dedicated recruitment funnel built on Cascadia's template:
 
-- A specific "we need help here right now" hook (the West-side gap)
+- Specific "we need help here right now" hooks: metro-edge cities (Bonner Springs, Independence, Blue Springs) and the I-70 hop chain out to existing outliers in Manhattan and Columbia
 - Concrete site requirements anyone can self-qualify against
 - Audience cards naming every kind of host we want to reach
 - A "what KC Mesh provides in return" section so we don't just sound like we're asking for free real estate

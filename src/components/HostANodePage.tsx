@@ -15,7 +15,7 @@ const HOST_EMAIL = 'hello@orangefla.me';
 const hostTypes = [
   {
     name: 'Businesses with rooftops',
-    description: "Warehouses, retail strip centers, offices. If you have a flat roof and a 120V outlet on it, you have what we need. We're especially looking on the West side of the metro.",
+    description: "Warehouses, retail strip centers, offices. If you have a flat roof and a 120V outlet on it, you have what we need. We're especially looking in Bonner Springs, Independence, and Blue Springs — plus any spot along I-70 (east or west) where a hop helps connect existing outlier nodes in Manhattan and Columbia back to the KC mesh.",
     icon: <Building2 className="w-6 h-6 text-white" />,
     color: 'from-[var(--primary-600)] to-[var(--primary-800)]',
   },
@@ -103,18 +103,27 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
           <h2 className="text-white mb-6">Why hosted infrastructure matters</h2>
 
           <p className="text-white/70 mb-6 leading-relaxed">
-            KC Mesh has 60+ active nodes today. Most of them are client nodes — handhelds, indoor home setups, T-Decks in backpacks. They're great for local conversations, but client-only density doesn't carry a message from Liberty to Olathe.
+            KC Mesh has 60+ active nodes today, and we've built a strong spine running up and down the I-35 corridor — messages move cleanly between downtown, Westport, Overland Park, and the southern suburbs. That spine is real progress, and it's the foundation everything else builds on.
           </p>
 
           <p className="text-white/70 mb-6 leading-relaxed">
-            What does carry that message is a small number of router nodes mounted high, with clear sky, running 24/7. The plan is four of them: East, West, North, and South. Together they form what we're calling the <strong>KC Backbone Initiative</strong> — the spine that turns a bunch of friendly hobbyist nodes into a metro-wide network.
+            What we don't yet have is a mesh that reaches the metro's east and west edges, much less the cities just outside it. Most of our 60+ nodes are client nodes — handhelds, indoor home setups, T-Decks in backpacks — and client-only density doesn't carry a message from Westport to Blue Springs.
+          </p>
+
+          <p className="text-white/70 mb-6 leading-relaxed">
+            The fix is a small number of router nodes mounted high, with clear sky, running 24/7. We're calling the rollout the <strong>KC Backbone Initiative</strong>, and it has two parallel asks:
           </p>
 
           <div className="tip-banner flex gap-3 p-4">
             <Info className="w-5 h-5 text-[var(--success-500)] flex-shrink-0 mt-0.5" />
-            <p className="text-white/80 leading-relaxed">
-              <strong>The West side is the current critical gap.</strong> If you own or manage a building, billboard, tower, or rooftop anywhere from Lenexa west to the state line, you might be exactly the host we've been looking for.
-            </p>
+            <div className="space-y-4 text-white/80 leading-relaxed">
+              <p>
+                <strong>1. Round out the metro.</strong> Bonner Springs on the west side. Independence and Blue Springs to the east. These are the gaps where messages from downtown die before they reach you.
+              </p>
+              <p>
+                <strong>2. Close the chain to the outliers.</strong> There are already nodes on the map as far out as Manhattan, KS and Columbia, MO — but they can't reliably reach the KC mesh because the hop chain between them and downtown doesn't exist yet. Lawrence, Topeka, Lee's Summit, Warrensburg — every host along I-70 in either direction is a link that makes those far-out nodes part of the network.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -246,7 +255,7 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
             </p>
 
             <p className="text-white/70 leading-relaxed">
-              We need three more. East, West, North, South. That's the whole ask.
+              We need more like it — out at the edges, and along I-70 in both directions to close the chain to the existing outliers. That's the whole ask.
             </p>
           </div>
         </section>
