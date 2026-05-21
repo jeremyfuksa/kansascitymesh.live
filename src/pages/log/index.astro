@@ -1,0 +1,84 @@
+---
+import { ChevronLeft, ArrowRight } from '@lucide/astro';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+
+interface LogEntry {
+  slug: string;
+  tag: string;
+  date: string;
+  readMinutes: number;
+  title: string;
+  excerpt: string;
+}
+
+const entries: LogEntry[] = [
+  {
+    slug: 'bonner-tower',
+    tag: 'Deployment',
+    date: 'May 12, 2026',
+    readMinutes: 5,
+    title: 'We finally got a node onto a Bonner Springs water tower',
+    excerpt:
+      'Three weeks of cold emails, one tour, one weekend, and the I-70 hop chain is officially closed on the west side. Here\'s how it went.',
+  },
+];
+---
+
+<Layout
+  title="Field log — Kansas City Meshtastic"
+  description="Deployment stories, lessons learned, and what we wish we'd known. Written by the people doing the work."
+  path="/log"
+>
+  <div class="min-h-screen bg-[var(--neutral-950)]">
+    <Nav currentPage="home" />
+
+    <div
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-gradient-to-b from-[var(--neutral-900)] to-[var(--neutral-950)]"
+    >
+      <div class="max-w-3xl mx-auto">
+        <a
+          href="/"
+          class="flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 text-sm w-fit"
+        >
+          <ChevronLeft class="w-4 h-4" />
+          Back to home
+        </a>
+        <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">Field log</h1>
+        <p class="text-xl text-white/70 leading-relaxed">
+          Deployment stories, lessons learned, and what we wish we'd known. Written by the
+          people doing the work.
+        </p>
+      </div>
+    </div>
+
+    <article class="px-4 py-12 max-w-3xl mx-auto">
+      <div class="flex flex-col gap-4">
+        {
+          entries.map((entry) => (
+            <FeatureCard href={`/log/${entry.slug}`} interactive padding="default">
+              <div class="flex items-center gap-3 mb-3 text-white/50 text-[13px]">
+                <span class="inline-block px-2.5 py-0.5 bg-[var(--success-500)]/15 text-[var(--success-500)] rounded-sm text-xs font-medium uppercase tracking-[0.04em]">
+                  {entry.tag}
+                </span>
+                <span>{entry.date}</span>
+                <span>·</span>
+                <span>{entry.readMinutes} min read</span>
+              </div>
+              <h2 class="text-2xl text-white mb-2 leading-tight">{entry.title}</h2>
+              <p class="text-white/70 leading-relaxed mb-4">{entry.excerpt}</p>
+              <div class="flex items-center text-sm text-white/50 group-hover:text-white">
+                <span>Read more</span>
+                <ArrowRight class="w-4 h-4 ml-1.5" />
+              </div>
+            </FeatureCard>
+          ))
+        }
+      </div>
+    </article>
+
+    <Footer />
+  </div>
+</Layout>
