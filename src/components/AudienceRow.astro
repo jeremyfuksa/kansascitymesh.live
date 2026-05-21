@@ -10,12 +10,12 @@ const { accent, name, description } = Astro.props;
 ---
 
 <div
-  class="relative bg-[var(--neutral-900)] border border-white/10 rounded-md overflow-hidden hover:border-white/20 transition-colors"
+  class="relative bg-(--neutral-900) border border-white/10 rounded-md overflow-hidden hover:border-white/20 transition-colors"
 >
-  <div class={`absolute top-0 bottom-0 left-0 w-1 bg-gradient-to-b ${accent}`}></div>
+  <div class={`absolute top-0 bottom-0 left-0 w-1 bg-linear-to-b ${accent}`}></div>
   <div class="flex gap-4 p-6 pl-7">
     <div
-      class="flex-shrink-0 w-10 h-10 rounded-sm bg-white/5 flex items-center justify-center"
+      class="shrink-0 w-10 h-10 rounded-sm bg-white/5 flex items-center justify-center"
     >
       <slot name="icon" />
     </div>

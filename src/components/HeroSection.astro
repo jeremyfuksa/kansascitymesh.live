@@ -37,7 +37,7 @@ import { DISCORD_INVITE } from '../constants/discord';
       <h1 class="text-5xl md:text-6xl lg:text-6xl mb-6 tracking-tight text-white">
         Kansas City has a{' '}
         <span
-          class="bg-gradient-to-r from-[var(--success-500)] to-[var(--info-600)] bg-clip-text text-transparent"
+          class="bg-linear-to-r from-(--success-500) to-(--info-600) bg-clip-text text-transparent"
         >
           Mesh Network
         </span>
@@ -51,9 +51,9 @@ import { DISCORD_INVITE } from '../constants/discord';
       <FeatureCard padding="wide" class="flex flex-col">
         <div class="flex items-start gap-4 mb-6 pb-6 border-b border-white/10">
           <div
-            class="w-10 h-10 bg-[var(--success-500)]/20 rounded-md flex items-center justify-center flex-shrink-0"
+            class="w-10 h-10 bg-(--success-500)/20 rounded-md flex items-center justify-center shrink-0"
           >
-            <Radio class="w-5 h-5 text-[var(--success-500)]" />
+            <Radio class="w-5 h-5 text-(--success-500)" />
           </div>
           <div>
             <h3 class="text-lg mb-1 text-white">
@@ -88,7 +88,7 @@ import { DISCORD_INVITE } from '../constants/discord';
 
       {/* Right: Coverage map */}
       <FeatureCard padding="none" class="overflow-hidden">
-        <div class="relative aspect-[4/3] overflow-hidden">
+        <div class="relative aspect-4/3 overflow-hidden">
           <Image
             src={mapScreenshot}
             alt="Kansas City mesh network coverage map"
@@ -96,7 +96,7 @@ import { DISCORD_INVITE } from '../constants/discord';
           />
         </div>
         <div
-          class="p-6 bg-gradient-to-br from-[var(--primary-600)] to-[var(--info-600)]"
+          class="p-6 bg-linear-to-br from-(--primary-600) to-(--info-600)"
         >
           <h3 class="text-xl mb-2 text-white">Live Mesh Map of KC</h3>
           <p class="text-white mb-4 text-sm leading-relaxed">

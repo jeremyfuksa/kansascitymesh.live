@@ -16,12 +16,12 @@ import { hardware } from '../data/hardware';
   description="From zero to your first transmission in about 30 minutes. Hardware, flashing, configuration, and how to say hello on the KC mesh."
   path="/getting-started"
 >
-  <div class="min-h-screen bg-[var(--neutral-950)]">
+  <div class="min-h-screen bg-(--neutral-950)">
     <Nav currentPage="get-started" />
 
     {/* Simple header */}
     <div
-      class="px-4 py-12 mt-16 border-b border-white/10 bg-gradient-to-b from-[var(--neutral-900)] to-[var(--neutral-950)]"
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-linear-to-b from-(--neutral-900) to-(--neutral-950)"
     >
       <div class="max-w-3xl mx-auto">
         <a
@@ -116,7 +116,7 @@ import { hardware } from '../data/hardware';
           <ol class="space-y-6">
             <li class="flex gap-4">
               <span
-                class="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--primary-700)] text-white flex items-center justify-center"
+                class="shrink-0 w-8 h-8 rounded-full bg-(--primary-700) text-white flex items-center justify-center"
                 >1</span
               >
               <div>
@@ -126,7 +126,7 @@ import { hardware } from '../data/hardware';
                     href="https://flasher.meshtastic.org"
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="text-[var(--info-400)] hover:text-[var(--info-300)] underline"
+                    class="text-(--info-400) hover:text-(--info-300) underline"
                     >flasher.meshtastic.org</a
                   >
                 </p>
@@ -138,7 +138,7 @@ import { hardware } from '../data/hardware';
 
             <li class="flex gap-4">
               <span
-                class="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--primary-700)] text-white flex items-center justify-center"
+                class="shrink-0 w-8 h-8 rounded-full bg-(--primary-700) text-white flex items-center justify-center"
                 >2</span
               >
               <div>
@@ -149,7 +149,7 @@ import { hardware } from '../data/hardware';
 
             <li class="flex gap-4">
               <span
-                class="flex-shrink-0 w-8 h-8 rounded-full bg-[var(--primary-700)] text-white flex items-center justify-center"
+                class="shrink-0 w-8 h-8 rounded-full bg-(--primary-700) text-white flex items-center justify-center"
                 >3</span
               >
               <div>
@@ -171,20 +171,20 @@ import { hardware } from '../data/hardware';
             href="https://apps.apple.com/us/app/meshtastic/id1586432531"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-[var(--info-400)] hover:text-[var(--info-300)] underline">iOS</a
+            class="text-(--info-400) hover:text-(--info-300) underline">iOS</a
           >,{' '}
           <a
             href="https://play.google.com/store/apps/details?id=com.geeksville.mesh"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-[var(--info-400)] hover:text-[var(--info-300)] underline"
+            class="text-(--info-400) hover:text-(--info-300) underline"
             >Android</a
           >, or use the{' '}
           <a
             href="https://client.meshtastic.org"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-[var(--info-400)] hover:text-[var(--info-300)] underline"
+            class="text-(--info-400) hover:text-(--info-300) underline"
             >web client</a
           >. Connect via Bluetooth and configure these settings:
         </p>
@@ -242,7 +242,7 @@ import { hardware } from '../data/hardware';
               href="https://map.kansascitymesh.live"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-[var(--info-400)] hover:text-[var(--info-300)] underline"
+              class="text-(--info-400) hover:text-(--info-300) underline"
               >coverage map</a
             >{' '}to see if you're in range. The network is growing but still has gaps.
           </p>
