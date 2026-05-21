@@ -1,0 +1,50 @@
+---
+type Size = 'small' | 'default' | 'large';
+
+interface Props {
+  href?: string;
+  size?: Size;
+  /** Analytics event label; the action is always 'discord_invite_click'. */
+  trackLabel?: string;
+}
+
+const { href, size = 'default', trackLabel = 'discord-invite' } = Astro.props;
+
+const sizeClasses =
+  size === 'large'
+    ? 'px-8 py-5 text-[17px] rounded-xl'
+    : size === 'small'
+      ? 'px-3 md:px-4 py-2 text-sm rounded-lg'
+      : 'px-6 py-3.5 text-[15px] rounded-xl';
+
+// Small size uses a quieter hover (color only, no scale) since it lives in nav contexts.
+const hoverClasses =
+  size === 'small'
+    ? 'hover:bg-[#4752C4] transition-colors'
+    : 'hover:bg-[#4752C4] hover:scale-105 hover:shadow-2xl hover:shadow-[#5865F2]/25 active:scale-100 transition-all';
+
+const baseClasses = `inline-flex items-center justify-center gap-2 bg-[#5865F2] text-white font-medium ${hoverClasses} ${sizeClasses}`;
+---
+
+{
+  href ? (
+    <a
+      href={href}
+      class={baseClasses}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-track-event="discord_invite_click"
+      data-track-label={trackLabel}
+    >
+      <slot />
+    </a>
+  ) : (
+    <button
+      class={baseClasses}
+      data-track-event="discord_invite_click"
+      data-track-label={trackLabel}
+    >
+      <slot />
+    </button>
+  )
+}

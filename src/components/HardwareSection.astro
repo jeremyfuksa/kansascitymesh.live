@@ -1,0 +1,32 @@
+---
+import HardwareCard from './HardwareCard.astro';
+import { hardware } from '../data/hardware';
+---
+
+<section class="px-4 py-10 bg-black border-t border-white/10">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-16 max-w-2xl mx-auto">
+      <h2 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">
+        What people are running
+      </h2>
+      <p class="text-xl text-white/70">
+        Start with one. Most of us end up with three or four (it's weirdly fun).
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
+      {
+        hardware.map((item) => (
+          <HardwareCard
+            name={item.name}
+            price={item.price}
+            badge={item.badge}
+            description={item.shortDescription}
+            color={item.color}
+            image={item.image}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>

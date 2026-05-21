@@ -1,0 +1,112 @@
+---
+import { ExternalLink } from '@lucide/astro';
+import PulsingDot from './PulsingDot.astro';
+import DiscordButton from './DiscordButton.astro';
+import logo from '../assets/kc-mesh-logo-green.png';
+import { DISCORD_INVITE } from '../constants/discord';
+
+type Page = 'home' | 'get-started' | 'host' | 'steal';
+
+interface Props {
+  currentPage: Page;
+}
+
+const { currentPage } = Astro.props;
+
+// Force dark background on subpages, transparent on home (scroll script will
+// toggle the dark variant on home once scrolled past the threshold).
+const startTransparent = currentPage === 'home';
+const initialNavClass = startTransparent
+  ? 'bg-transparent'
+  : 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20';
+
+const linkClass = (active: boolean) =>
+  active ? 'text-white' : 'text-white/70 hover:text-white';
+---
+
+<nav
+  id="site-nav"
+  class:list={[
+    'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+    initialNavClass,
+  ]}
+  data-start-transparent={startTransparent ? 'true' : 'false'}
+>
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    <div class="flex items-center justify-between gap-4">
+      {/* Left: Brand/Status */}
+      <div class="flex items-center gap-2 md:gap-3">
+        <img src={logo.src} alt="KC Mesh" class="w-8 h-8 rounded-lg" />
+        <div
+          class="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20"
+        >
+          <span class="flex items-center">
+            <PulsingDot />
+          </span>
+          <span class="text-sm text-white font-medium hidden sm:inline">KC Mesh</span>
+        </div>
+      </div>
+
+      {/* Right: Navigation */}
+      <div class="flex items-center gap-3 md:gap-6">
+        <a
+          href="https://map.kansascitymesh.live"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors hidden md:flex"
+        >
+          <span>Coverage Map</span>
+          <ExternalLink class="w-3.5 h-3.5" />
+        </a>
+        <a
+          href="/host-a-node"
+          class:list={[
+            'text-sm transition-colors hidden md:block',
+            linkClass(currentPage === 'host'),
+          ]}
+        >
+          Host a Node
+        </a>
+        <a
+          href={currentPage === 'get-started' ? '/' : '/getting-started'}
+          class:list={[
+            'text-sm transition-colors hidden sm:block',
+            linkClass(currentPage === 'get-started'),
+          ]}
+        >
+          {currentPage === 'get-started' ? 'Home' : 'Get Started'}
+        </a>
+        <DiscordButton href={DISCORD_INVITE} size="small" trackLabel="nav-link">
+          <span class="hidden sm:inline">Join Discord</span>
+          <span class="sm:hidden">Discord</span>
+        </DiscordButton>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Toggle the nav background when scrolled past 20px on the home page only.
+  // Subpages render with the dark background baked in from the start.
+  const nav = document.getElementById('site-nav');
+  if (nav && nav.dataset.startTransparent === 'true') {
+    const TRANSPARENT_CLASSES = ['bg-transparent'];
+    const SCROLLED_CLASSES = [
+      'bg-black/80',
+      'backdrop-blur-xl',
+      'border-b',
+      'border-white/10',
+      'shadow-lg',
+      'shadow-black/20',
+    ];
+    const applyScrolled = (scrolled: boolean) => {
+      const toAdd = scrolled ? SCROLLED_CLASSES : TRANSPARENT_CLASSES;
+      const toRemove = scrolled ? TRANSPARENT_CLASSES : SCROLLED_CLASSES;
+      nav.classList.remove(...toRemove);
+      nav.classList.add(...toAdd);
+    };
+    const handleScroll = () => applyScrolled(window.scrollY > 20);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+  }
+</script>

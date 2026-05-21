@@ -1,0 +1,81 @@
+---
+import '../styles/globals.css';
+import { GA_MEASUREMENT_ID } from '../constants/analytics';
+
+interface Props {
+  /** Browser tab title; also og:title and twitter:title. */
+  title: string;
+  /** Meta description; also og:description and twitter:description. */
+  description: string;
+  /** Path-only canonical (e.g. "/host-a-node"). The full URL is computed. */
+  path: string;
+}
+
+const { title, description, path } = Astro.props;
+const canonicalUrl = new URL(path, Astro.site ?? 'https://kansascitymesh.live').toString();
+const ogImage = new URL('/og-image.png', Astro.site ?? 'https://kansascitymesh.live').toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" href="/favicon-v2.png" />
+
+    {/* Open Graph */}
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Kansas City Meshtastic Network" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1000" />
+    <meta property="og:image:height" content="1000" />
+
+    {/* Twitter */}
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    {/* Google Analytics */}
+    <script
+      is:inline
+      async
+      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+    ></script>
+    <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        window.dataLayer.push(arguments);
+      }
+      window.gtag = gtag;
+      gtag('js', new Date());
+      // send_page_view: true here, since each page is its own HTML document.
+      gtag('config', GA_MEASUREMENT_ID);
+    </script>
+  </head>
+  <body class="bg-black text-white">
+    <slot />
+
+    {/* Delegated analytics for elements marked with data-track-event. */}
+    <script>
+      import { trackEvent } from '../utils/analytics';
+
+      document.addEventListener('click', (event) => {
+        const el = (event.target as HTMLElement | null)?.closest<HTMLElement>(
+          '[data-track-event]',
+        );
+        if (!el) return;
+        const action = el.dataset.trackEvent;
+        const label = el.dataset.trackLabel;
+        if (!action) return;
+        trackEvent(action, label);
+      });
+    </script>
+  </body>
+</html>
