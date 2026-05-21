@@ -2,21 +2,24 @@ import { useEffect, useMemo, useState } from 'react';
 import HomePage from './components/HomePage';
 import GetStartedPage from './components/GetStartedPage';
 import HostANodePage from './components/HostANodePage';
+import StealThisNetworkPage from './components/StealThisNetworkPage';
 import { trackPageView } from './utils/analytics';
 
-type Page = 'home' | 'get-started' | 'host';
+type Page = 'home' | 'get-started' | 'host' | 'steal';
 
 const getPageFromPath = (): Page => {
   if (typeof window === 'undefined') return 'home';
   const path = window.location.pathname;
   if (path === '/getting-started') return 'get-started';
   if (path === '/host-a-node') return 'host';
+  if (path === '/steal-this-network') return 'steal';
   return 'home';
 };
 
 const getPathForPage = (page: Page) => {
   if (page === 'get-started') return '/getting-started';
   if (page === 'host') return '/host-a-node';
+  if (page === 'steal') return '/steal-this-network';
   return '/';
 };
 
@@ -55,6 +58,7 @@ export default function App() {
       {currentPage === 'home' && <HomePage onNavigate={navigate} />}
       {currentPage === 'get-started' && <GetStartedPage onNavigate={navigate} />}
       {currentPage === 'host' && <HostANodePage onNavigate={navigate} />}
+      {currentPage === 'steal' && <StealThisNetworkPage onNavigate={navigate} />}
     </div>
   );
 }
