@@ -36,7 +36,7 @@ Before page-by-page, a few patterns that appear across multiple files:
 
 **6. Bold-for-scaffolding (AP-SC-1) is used in two places** to label list items inside paragraphs. Both should become real prose. ✅
 
-**7. Closing exhortations end multiple sections.** Several sections end with sentences like "That's the whole ask." / "That's the whole thing." / "There's nothing in there worth gatekeeping." This *can* work as understatement (AP-CL-3 closer principle) but it's overused. Three of these in a single page reads formulaic. ✅
+**7. Closing exhortations end multiple sections.** Several sections end with sentences like "That's the whole ask." / "That's the whole thing." / "There's nothing in there worth gatekeeping." This _can_ work as understatement (AP-CL-3 closer principle) but it's overused. Three of these in a single page reads formulaic. ✅
 
 ---
 
@@ -65,9 +65,10 @@ Kansas City has a Mesh Network
 Power up a Meshtastic node and say hello. We're always welcoming newcomers.
 ```
 
-**TIGHTEN.** The first sentence is fine. The second is filler — every community claims to welcome newcomers. Verdict is suspect on AP-CO-3 (vapid abstract): "we're welcoming" passes the swap test for *"we're friendly,"* *"we're inclusive,"* *"we're open."* All equally true, all equally hollow.
+**TIGHTEN.** The first sentence is fine. The second is filler — every community claims to welcome newcomers. Verdict is suspect on AP-CO-3 (vapid abstract): "we're welcoming" passes the swap test for _"we're friendly,"_ _"we're inclusive,"_ _"we're open."_ All equally true, all equally hollow.
 
 **Proposed:**
+
 > Power up a Meshtastic node and say hello. Someone in the mesh will hear you.
 
 (More specific. Names what actually happens when you power up — the mesh hears you. Drops the welcome-mat platitude.) ✅
@@ -81,6 +82,7 @@ Did you just activate your first node and wonder, "What's next?" Or, did you jus
 **KEEP** with a small tighten. The pattern of two questions targeting two distinct readers (current owner vs. curious researcher) is good audience work. But "wondered" vs. "wonder" tense mismatch and the "Or," comma is awkward.
 
 **Proposed:**
+
 > Just activated your first node and wondering what's next? Or you've heard about Meshtastic and wondering if anyone in Kansas City is on it?
 
 (Drops "Did you just" → mid-thought entry, more conversational. Parallels the two questions cleanly.) ✅
@@ -102,6 +104,7 @@ We'll chat on air, but Meshtastic is best for short messages, so we have a Disco
 **TIGHTEN.** First sentence is good. "No pressure to join. Just a group chat..." is the AP-CL-2 cousin — capping the prior sentence by restating "it's chill." The reader got that from "longer chats and questions."
 
 **Proposed:**
+
 > We'll chat on air, but Meshtastic is best for short messages. The Discord is where the longer conversations happen.
 
 (Drops the reassurance coda. The sentence describes the role of Discord; the reader infers "low pressure" from "longer conversations" without being told.) ✅
@@ -138,15 +141,17 @@ Lilygo T-Deck — "Perfect all-in-one unit for everywhere you go."
 ```
 
 **Verdict mixed:**
+
 - RAK, Heltec, T-1000 E: **KEEP.** Compact, specific, each sentence does real work.
 - Lilygo T-Deck: **TIGHTEN.** "Perfect all-in-one unit for everywhere you go" is AP-CO-3 territory — "perfect," "for everywhere you go" are vague intensifiers. The other three cards name specific features. This one doesn't.
 
 **Proposed Lilygo description:**
+
 > Full keyboard and screen. Send messages without your phone.
 
 (Names the two features that actually differentiate it from the others. Drops "perfect.") ✅
 
-**Cross-card note:** the descriptions across these four hardware cards and the four cards on GetStartedPage Step 1 are *almost identical but not quite*. The Heltec card here says "Most popular starter node" while the GetStartedPage card says "Most popular starter unit. Small screen, built-in LoRa antenna." The duplication is a structural issue — hardware descriptions are scattered across two pages with slight inconsistencies. Worth a structural call: should hardware data live in one place and get rendered in both? YES  ✅
+**Cross-card note:** the descriptions across these four hardware cards and the four cards on GetStartedPage Step 1 are _almost identical but not quite_. The Heltec card here says "Most popular starter node" while the GetStartedPage card says "Most popular starter unit. Small screen, built-in LoRa antenna." The duplication is a structural issue — hardware descriptions are scattered across two pages with slight inconsistencies. Worth a structural call: should hardware data live in one place and get rendered in both? YES ✅
 
 ---
 
@@ -160,11 +165,14 @@ A few essential links to get you started and keep you going.
 ```
 
 **TIGHTEN.**
-- Heading: "Resources & Links" is generic. AP-SC-7 — it labels a topic instead of naming something. Compare to "What people are running" earlier. The heading should name the *kind* of resource or report something specific.
+
+- Heading: "Resources & Links" is generic. AP-SC-7 — it labels a topic instead of naming something. Compare to "What people are running" earlier. The heading should name the _kind_ of resource or report something specific.
 - Lede: "to get you started and keep you going" is AP-CL-2 / AP-CO-3 — feel-good filler that any site could say.
 
 **Proposed:**
+
 > ## When you need something deeper than Discord
+>
 > Three places we send people often.
 
 (Reports the actual function: these are the off-site references the community defers to. "Three places we send people" reports observed behavior.) ✅
@@ -178,6 +186,7 @@ Meshtastic Site Planner — "A tool for planning your mesh network. See how your
 ```
 
 **Verdict mixed:**
+
 - Meshtastic Official Site: **KEEP.** "Source of all truth" is voice — slightly weird, confident, accurate.
 - Subreddit: **REWRITE.** "Hub for all things X. Ask questions, share projects, and connect with other users" is AP-SC-4 / AP-CO-3 — a corporate website description of a community forum. Three vague verbs in series. Reader-direction failure.
 - Site Planner: **TIGHTEN.** "A tool for planning your mesh network" is filler — the name already says "site planner." Use the description to say what it actually does.
@@ -185,9 +194,11 @@ Meshtastic Site Planner — "A tool for planning your mesh network. See how your
 **Proposed:**
 
 Subreddit:
+
 > Bigger and rougher than the Discord. Worth a scroll when you want a question answered by 50 people instead of 5.
 
 Site Planner:
+
 > Drop a pin, set an antenna height, get a propagation map. The right tool for "would a node here actually reach downtown?"
 
 ## "Visit site" link text
@@ -251,6 +262,7 @@ Why bother? Because a lot of people in KC bought a node, didn't see traffic on d
 **TIGHTEN.** First three sentences are excellent — reporting an observed problem and a tactical solution. The closer ("That's how dormant nodes come back to the network") is AP-CL-2 — a capping sentence that restates what the previous sentence already showed.
 
 **Proposed:**
+
 > Why bother? Because a lot of people in KC bought a node, didn't see traffic on day one, and stuck it in a drawer. An altitude burst hits dozens of those silent nodes at once. Most won't see the message live — but they'll see it next time they power back up.
 
 (Drops the final sentence. The reader gets the point from "they'll see it next time they power back up.") ✅
@@ -289,9 +301,10 @@ See you out there
 Whether you're saying hello on the mesh or asking questions in Discord, we're glad you're here. Pick up a node, check the coverage map, and join the conversation wherever feels right.
 ```
 
-**TIGHTEN.** First clause is fine. "We're glad you're here" is AP-CO-3 — swap test: "we're glad you came," "we're glad you stopped by," all equally hollow. Second sentence is a list of three things to do, but it ends on the "wherever feels right" reassurance coda (AP-CL-2 cousin — the *closing-the-closer* reassurance).
+**TIGHTEN.** First clause is fine. "We're glad you're here" is AP-CO-3 — swap test: "we're glad you came," "we're glad you stopped by," all equally hollow. Second sentence is a list of three things to do, but it ends on the "wherever feels right" reassurance coda (AP-CL-2 cousin — the _closing-the-closer_ reassurance).
 
 **Proposed:**
+
 > Whether you're saying hello on the mesh or asking questions in Discord — pick up a node, check the coverage map, find the channel where you fit.
 
 (Combines the two sentences. Drops the "glad you're here" platitude. "Find the channel where you fit" is more specific than "join the conversation wherever feels right.") ✅
@@ -317,6 +330,7 @@ Coverage Map | Get Started | Host a Node | Steal This Network | Join Discord
 **FACTUAL ISSUE.** Today is 2026-05-21 per the project context. Year should be `© 2025-2026` or `© 2026`.
 
 **Proposed:**
+
 > © 2026 Kansas City Meshtastic Network ✅
 
 ## Disclaimer
@@ -363,10 +377,12 @@ From zero to your first transmission in about 30 minutes. Here's how folks in KC
 ```
 
 **TIGHTEN.**
+
 - Heading is fine.
 - Lede has a structural issue: "Here's how folks in KC get started, but this should work for anyone in the United States" buries two distinct claims. First is "this is the KC path." Second is "this generalizes." Plus "but this should work" softens the claim unnecessarily.
 
 **Proposed:**
+
 > From zero to your first transmission in about 30 minutes. This is the path we use in KC — most of it works anywhere in the US. ✅
 
 ## Step 1 heading + lede
@@ -379,7 +395,9 @@ Start with one device. You can always add more later. There are a few community 
 **TIGHTEN.** "You can always add more later" is reassurance filler (AP-CL-2 cousin). The first sentence already implies it.
 
 **Proposed:**
+
 > ## Step 1: Choose Your Hardware
+>
 > Start with one device. A few favorites: ✅
 
 ## Step 1 hardware cards
@@ -403,6 +421,7 @@ Lilygo T-Deck — "Full keyboard and screen. Send messages without your phone. B
 **TIGHTEN.** "Keyboard" appears twice. "Higher price but people love these for portable use" — the "but people love these" is AP-CO-3 (swap test: "but people swear by these," "but people are obsessed with these"). Drop it; just report the use case.
 
 **Proposed:**
+
 > Full keyboard and screen. Send messages without your phone. Built-in GPS and trackball. Pricier than the others, but the only one that works fully standalone. ✅
 
 ```
@@ -437,11 +456,13 @@ Rokland.net — "US-based, supports the Meshtastic community, good customer serv
 ```
 
 **Verdict mixed:**
+
 - AliExpress: **KEEP.**
 - Amazon: **KEEP.** Specific search terms are useful.
 - Rokland.net: **TIGHTEN.** "good customer service" + "provide support" is redundant. Also "supports the Meshtastic community" is AP-CO-3 (swap test: "supports the open-source community," "supports the hobby"). Doesn't carry meaning.
 
 **Proposed Rokland.net:**
+
 > US-based, slightly higher than AliExpress. They test each board before shipping, and they answer email. ✅
 
 ## Step 3 heading + lede
@@ -491,6 +512,7 @@ Leave the default "Long Fast" channel preset. Until we hit a critial mass and ha
 **TYPO + TIGHTEN.** "critial" → "critical." Otherwise the prose is fine.
 
 **Proposed:**
+
 > Leave the default "Long Fast" channel preset. Until KC hits the density where we'd need to switch presets, that's what every node here runs. ✅
 
 ## Step 5 heading + body
@@ -508,6 +530,7 @@ That's it. You're on the mesh.
 ```
 
 **Verdict mixed:**
+
 - Paragraph 1: **KEEP.** Specific, honest about timing dependencies.
 - Paragraph 2: **KEEP.** Names KCML — a concrete community node.
 - Paragraph 3: **KEEP.** The "still has gaps" admission is in voice.
@@ -524,7 +547,8 @@ If you want to optimize your antenna, add more nodes, or troubleshoot anything, 
 ```
 
 **KEEP.** Tight, specific use cases, points at the right resource.
- ✅
+✅
+
 ---
 
 # HostANodePage.tsx
@@ -548,6 +572,7 @@ KC Mesh has 60+ active nodes today, and we've built a strong spine running up an
 **TIGHTEN.** First sentence is excellent — concrete, names specific places, reports the working corridor. Second sentence ("That spine is real progress, and it's the foundation everything else builds on") is AP-CL-2 — capping sentence that restates "the spine is good."
 
 **Proposed:**
+
 > KC Mesh has 60+ active nodes today, with a strong spine running up and down the I-35 corridor — messages move cleanly between downtown, Westport, Overland Park, and the southern suburbs. ✅
 
 ## "Why hosted infrastructure matters" — paragraph 2
@@ -579,6 +604,7 @@ Honest list. If your site checks most of these, please get in touch — we can w
 **TIGHTEN.** "Honest list" as a section opener is a tic — it appears on this page and arguably implies the other lists weren't honest. AP-VO-3 cousin (intensifier-as-tic).
 
 **Proposed:**
+
 > If your site checks most of these, please get in touch. We can work around the rest. ✅
 
 (Cuts the "Honest list" eyebrow. The list is just the list.)
@@ -654,9 +680,10 @@ Steeples, water tanks, rooftop HVAC platforms — anywhere with elevation and a 
 **TIGHTEN.** First sentence is excellent — "friendly facilities person" is a perfect voice detail (the actual gatekeeper at these sites is usually a person, not a process). Second sentence is AP-CL-2 — a wrap-up that explains why this matters to the reader.
 
 **Proposed:**
+
 > Steeples, water tanks, rooftop HVAC platforms — anywhere with elevation and a friendly facilities person. Emergency comms is the right talking point if you're pitching this to a board.
 
-(Names *how* to use the angle, not just that the angle exists. More useful.) ✅
+(Names _how_ to use the angle, not just that the angle exists. More useful.) ✅
 
 ### Card 4: Billboard, water tower, cell tower owners
 
@@ -675,6 +702,7 @@ Apartment buildings, condos, HOA-restricted neighborhoods with a flagpole or att
 **TIGHTEN.** "Absolutely a thing" is AP-VO-4 territory ("actually" superiority cousin). "Genuinely useful" is similar — the "genuinely" is reaching to convince the skeptical reader.
 
 **Proposed:**
+
 > Apartment buildings, condos, HOA-restricted neighborhoods with a flagpole or attic. Stealth deployments work. 15 feet of elevation is enough to be useful.
 
 (Drops "absolutely" and "genuinely" — the prose is stronger without the intensifiers. "Enough to be useful" is more precise than "genuinely useful.")
@@ -686,10 +714,12 @@ This is a hobbyist project, not a vendor relationship. But here's what we bring 
 ```
 
 **REWRITE.** Two issues:
+
 1. "Not a vendor relationship" — true but defensive. The reader didn't ask if you're a vendor.
 2. "Here's what we bring to the table" is AP-VO-2 (corporate-adjacent vocabulary).
 
 **Proposed:**
+
 > Hosting a node is a favor. Here's what we do in return.
 
 (States the relationship plainly. "Favor" is honest and accurate — hosts aren't being paid. "What we do in return" reports the exchange.)
@@ -755,6 +785,7 @@ Not sure yet? No problem. The Discord is open — lurk for a while, see what peo
 **TIGHTEN.** "Not sure yet? No problem." is two reassurance sentences before the actual content. The second one is AP-CL-2.
 
 **Proposed:**
+
 > Not sure yet? The Discord is open — lurk for a while, see what people are doing, and circle back whenever it makes sense.
 
 (Drops "No problem.")
@@ -831,6 +862,7 @@ Credit where it's due — this is a chain, not an original.
 **TIGHTEN.** "X — not Y" rhythm is AP-RH-1. Once is fine, but this is paired with "aren't a product. They're a posture" earlier in the same page and "isn't ego — it's that..." later. The pattern appears at least three times on this page. Pick one to keep; rewrite the others.
 
 **Proposed:**
+
 > Credit where it's due. This site is a link in a chain.
 
 ## Lineage card: austinmesh.org
@@ -862,6 +894,7 @@ Austin Mesh maintains the best-kept running list of partner meshes in the US (Ba
 **TIGHTEN.** "Two cities don't need two meshes" is voice. "Best-kept" before "running list" is AP-CL-1 — reaching for pith ("best-kept" implies it's a hidden gem, which it isn't; it's just public).
 
 **Proposed:**
+
 > Austin Mesh maintains the running list of partner meshes in the US (Bay Area, SoCal, Chicago, Colorado, Nashville, Birmingham, Asheville, Charlotte, North Texas, South Texas, Hawaii, Ohio, Wisconsin, Northwest Arkansas, OkMesh, Philadelphia, and more). Start there.
 
 ## "Beyond the website" — section lede
@@ -873,6 +906,7 @@ The site is the easy part. The community is the hard part — and most of what's
 **TIGHTEN.** "Easy part / hard part" is the X-not-Y rhythm again (AP-RH-1). Already used twice on this page.
 
 **Proposed:**
+
 > The site is the easy part. Growing the community is harder, and Austin Mesh has already said most of what's worth saying. The condensed version:
 
 (Drops "in the same spirit" — implies derivation that the closer-link already makes explicit.)
@@ -920,6 +954,7 @@ Solar node up? Post it. New router on a billboard? Post it. The point isn't ego 
 **TIGHTEN.** "The point isn't X — it's Y" is AP-RH-1 again. Same pattern as elsewhere on this page. The mechanism the sentence describes is real, but the rhythm is overused.
 
 **Proposed:**
+
 > Solar node up? Post it. New router on a billboard? Post it. Somewhere two suburbs over, someone has a node sitting on their desk — they didn't see traffic, so they stopped checking. Your post is what gets them to turn it back on.
 
 (Drops the X-not-Y. Reports the mechanism flat.)
@@ -933,6 +968,7 @@ Borrowed straight from Austin Mesh and worth its own line. Anyone in the communi
 **TIGHTEN.** "Borrowed straight from Austin Mesh and worth its own line" is meta-commentary (AP-RD-4 cousin — telling the reader why this entry exists instead of just having it exist).
 
 **Proposed:**
+
 > Anyone in the community with a drone coordinates a weekly time, lifts a node to altitude for a few minutes, and a separate node on the ground (set to `client_mute` so it doesn't clog routing) blasts a few messages inviting people to the Discord. Most of the people you reach this way are folks who bought a node, didn't see traffic, and left it on a shelf. They may not see your message right then — but they'll see it in the coming days or weeks. In larger meshes (200+ online nodes) the airborne node can be configured as ROUTER. (Borrowed straight from Austin Mesh — they wrote it first.)
 
 (Moves the attribution to the end, in a parenthetical aside, where it belongs.)
@@ -960,10 +996,12 @@ Tell the truth about what doesn't work. Every mesh has dead zones, dropped messa
 ```
 
 **Mixed verdict:**
+
 - Section heading: **TIGHTEN.** "A few honest tips" is the second use of "honest" as a section eyebrow on this page (also "Honest list" on HostANodePage). Pick one or rewrite.
 - Bullets 1-4: **KEEP all four.** They're the strongest piece of voice writing on the site.
 
 **Proposed heading:**
+
 > ## If you're just starting
 
 (Drops "A few honest tips," which is wearing thin. The bullets speak for themselves.)
@@ -981,6 +1019,7 @@ If anything on this site inspired you, drop us a line. That's the line Austin Me
 **TIGHTEN.** "That's the line Austin Mesh closes their site with, and it's the right one" is meta-commentary about why the line exists (AP-RD-4 cousin — same issue as the drone-tactic intro). The reader gets the credit from the lineage section earlier; the sentence here is doing the explanatory work that the rest of the page already did.
 
 **Proposed:**
+
 > If anything on this site inspired you, drop us a line. No agenda — just curious where the next one is going to be, and happy to share whatever's been useful here.
 
 (Drops the meta-sentence. "Genuinely" → cut, AP-VO-4 cousin. Reads tighter.)
@@ -1012,6 +1051,7 @@ Critical Voice Direction: First-person narrative. "I'm building..." not "The net
 **REWRITE.** This is now stale and contradicts the new collective-voice direction. Any future Claude session that reads CLAUDE.md will be told to write first-person-singular, which is exactly what's being undone.
 
 **Proposed:**
+
 > **Critical Voice Direction**: Collective first person — the site speaks as the KC Mesh community of 200+. "We're building..." not "I'm building..." and not "The network provides...". The community is the implied speaker; specific people get named only when accuracy requires it. Honest about gaps and the learning curve. Welcoming to everyday people. Combat perfectionism that prevents deployment.
 
 ---
@@ -1019,6 +1059,7 @@ Critical Voice Direction: First-person narrative. "I'm building..." not "The net
 # Summary
 
 ## Verdict distribution
+
 - **KEEP:** ~70% of passages
 - **TIGHTEN:** ~25% of passages (most are AP-CL-2 capping sentences, a few AP-RH-1 rhythm tics, scattered AP-CO-3 vapid-abstract)
 - **REWRITE:** ~5% of passages (corporate-adjacent vocabulary, dated CLAUDE.md, two cards that don't earn their place)

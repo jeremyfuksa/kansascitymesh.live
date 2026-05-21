@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: KC Mesh Discord
+    url: https://discord.gg/yr2QTFSvzN
+    about: Faster than an issue for questions, suggestions, or general chat.
+  - name: Meshtastic official docs
+    url: https://meshtastic.org
+    about: General Meshtastic questions (not specific to this site).

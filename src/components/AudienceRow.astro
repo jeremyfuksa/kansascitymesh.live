@@ -14,9 +14,7 @@ const { accent, name, description } = Astro.props;
 >
   <div class={`absolute top-0 bottom-0 left-0 w-1 bg-linear-to-b ${accent}`}></div>
   <div class="flex gap-4 p-6 pl-7">
-    <div
-      class="shrink-0 w-10 h-10 rounded-sm bg-white/5 flex items-center justify-center"
-    >
+    <div class="shrink-0 w-10 h-10 rounded-sm bg-white/5 flex items-center justify-center">
       <slot name="icon" />
     </div>
     <div class="flex-1 min-w-0">

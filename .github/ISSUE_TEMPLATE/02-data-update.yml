@@ -1,0 +1,37 @@
+name: Update a hardware item, stat, or data point
+description: A price, a node count, a hardware spec, an FAQ answer, or a status data point is out of date.
+title: '[data] '
+labels: ['data']
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of data?
+      options:
+        - Hardware (price, spec, link, photo)
+        - Network stats (node count, msgs/24h, routers up)
+        - FAQ answer
+        - Status page nodes / outages
+        - Field log
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What it currently says
+      description: Paste the current value, or describe the row/entry.
+    validations:
+      required: true
+  - type: textarea
+    id: correct
+    attributes:
+      label: What it should say
+      description: The correct/updated value. Include a source if you have one (AliExpress link, Discord message, MeshMonitor screenshot).
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source (optional)
+      placeholder: e.g. Discord message link, retailer page, MeshMonitor URL

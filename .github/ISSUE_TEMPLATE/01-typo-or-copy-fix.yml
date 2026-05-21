@@ -1,0 +1,30 @@
+name: Typo or copy fix
+description: A word, phrase, or sentence on the live site is wrong, awkward, or out of date.
+title: '[copy] '
+labels: ['copy', 'good-first-issue']
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      description: URL or page name. e.g. `/host-a-node`, `/faq`, the homepage.
+      placeholder: /faq
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: What it currently says
+      description: Paste the exact text (or a screenshot is fine).
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: What it should say
+      description: Optional, but the faster path to a fix is suggesting the replacement.
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this is wrong
+      description: Optional — typo, factual error, awkward phrasing, voice drift, etc.

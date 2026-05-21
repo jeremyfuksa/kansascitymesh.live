@@ -1,0 +1,39 @@
+name: Bug report
+description: Something on the live site is broken, rendering wrong, or behaving unexpectedly.
+title: '[bug] '
+labels: ['bug']
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      placeholder: /hardware/heltec-v3-v4
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What's broken?
+      description: What did you see vs. what you expected. Screenshots help.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: How can we trigger this?
+      placeholder: |
+        1. Load /hardware
+        2. Click the Heltec V4 card
+        3. The image renders as a broken link
+  - type: input
+    id: browser
+    attributes:
+      label: Browser / device
+      placeholder: Safari iOS 18, Chrome desktop, Firefox 130, etc.
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors (optional)
+      description: Open DevTools → Console. Any red errors? Paste them here.
+      render: shell

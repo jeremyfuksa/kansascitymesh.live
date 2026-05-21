@@ -7,11 +7,7 @@ import InfoCard from '../components/InfoCard.astro';
 import FeatureCard from '../components/FeatureCard.astro';
 import MessageBanner from '../components/MessageBanner.astro';
 import PulsingDot from '../components/PulsingDot.astro';
-import {
-  STATUS_STATS,
-  STATUS_NODES,
-  statusColor,
-} from '../data/networkStatus';
+import { STATUS_STATS, STATUS_NODES, statusColor } from '../data/networkStatus';
 ---
 
 <Layout
@@ -37,9 +33,7 @@ import {
           <PulsingDot />
           <span class="text-sm text-white/70 font-mono">Refreshed 30s ago</span>
         </div>
-        <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">
-          Network status
-        </h1>
+        <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">Network status</h1>
         <p class="text-xl text-white/70 leading-relaxed">
           What's up, what's down, what hopped through whom in the last 24 hours.
         </p>
@@ -55,9 +49,7 @@ import {
         {
           STATUS_STATS.map((s) => (
             <InfoCard>
-              <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">
-                {s.label}
-              </div>
+              <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">{s.label}</div>
               <div
                 class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em]"
                 style={`color: ${s.color};`}
@@ -90,22 +82,14 @@ import {
               <tbody>
                 {
                   STATUS_NODES.map((n, i) => (
-                    <tr
-                      class={
-                        i < STATUS_NODES.length - 1
-                          ? 'border-b border-white/5'
-                          : ''
-                      }
-                    >
+                    <tr class={i < STATUS_NODES.length - 1 ? 'border-b border-white/5' : ''}>
                       <td class="px-4 py-3.5 w-6">
                         <span
                           class="inline-block w-2 h-2 rounded-full"
                           style={`background: ${statusColor[n.status]};`}
                         />
                       </td>
-                      <td class="px-4 py-3.5 text-white font-medium font-mono text-sm">
-                        {n.name}
-                      </td>
+                      <td class="px-4 py-3.5 text-white font-medium font-mono text-sm">{n.name}</td>
                       <td class="px-4 py-3.5 text-white/70 text-sm">{n.area}</td>
                       <td class="px-4 py-3.5 text-sm">
                         <span
@@ -118,9 +102,7 @@ import {
                           {n.type}
                         </span>
                       </td>
-                      <td class="px-4 py-3.5 text-white/70 text-sm font-mono">
-                        {n.hops}
-                      </td>
+                      <td class="px-4 py-3.5 text-white/70 text-sm font-mono">{n.hops}</td>
                       <td class="px-4 py-3.5 text-white/70 text-sm">{n.lastSeen}</td>
                     </tr>
                   ))
@@ -135,13 +117,13 @@ import {
         <h2 class="text-2xl text-white mb-4">Right now</h2>
         <MessageBanner>
           <p class="text-white/70 leading-relaxed mb-4">
-            <strong class="text-white">Independence (INDEP-FX)</strong> dropped off the
-            mesh two days ago — we're coordinating with the host to power-cycle. If you're
-            east of I-435 and noticed your hop count climbing, that's why.
+            <strong class="text-white">Independence (INDEP-FX)</strong> dropped off the mesh two days
+            ago — we're coordinating with the host to power-cycle. If you're east of I-435 and noticed
+            your hop count climbing, that's why.
           </p>
           <p class="text-white/70 leading-relaxed mb-0">
-            <strong class="text-white">COL-FRINGE</strong> has been quiet for a week.
-            Probably a power issue — investigating.
+            <strong class="text-white">COL-FRINGE</strong> has been quiet for a week. Probably a power
+            issue — investigating.
           </p>
         </MessageBanner>
       </section>

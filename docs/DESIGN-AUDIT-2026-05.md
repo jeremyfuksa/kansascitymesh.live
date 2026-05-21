@@ -18,38 +18,46 @@ This is the second pass following the voice/content audit. Phase A normalized th
 There are **three distinct card surface treatments** in active use, plus the two banner styles defined in CSS:
 
 **Pattern A — "Solid card"** (used in most card-grid contexts)
+
 ```
 bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6
 ```
+
 Where it appears: GetStartedPage (Step 1 hardware cards, Step 2 source cards, Step 4 setting cards, Step 3 flash steps wrapper); HostANodePage ("What makes a great host site" cards, "What KC Mesh provides in return" cards); StealThisNetworkPage ("What you can use" cards, lineage cards, operationalTips cards).
 Count: ~25 instances.
 
 **Pattern B — "Glass card"** (used in feature/showcase contexts)
+
 ```
 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl shadow-black/50
 ```
+
 Where it appears: HeroSection (left card, right card); ResourcesSection (link cards); HostInfrastructureCTA (single card); DroneFlyCTA (single card, but without the shadow); HostANodePage hostTypes grid cards.
 Count: ~9 instances.
 
 **Pattern C — "Hover-lift glass card"** (a variant of Pattern B with hover behavior)
+
 ```
 bg-white/5 border border-white/10 rounded-2xl p-6 transition-all
   hover:bg-white/10 hover:border-white/20 hover:-translate-y-1
 ```
+
 Where it appears: HardwareCard, HostANodePage hostTypes cards. (Note: hostTypes cards exist in both B and C variants depending on file — actually it's just C in HostANodePage, but B-shaped in ResourcesSection.)
 Count: ~6 instances.
 
 **Banner D — "Tip banner"** (defined in `globals.css` as `.tip-banner`)
+
 - Sage-green gradient, sage border, large padding (`p-8`), large radius (`rounded-[1.25rem]`)
 - Used 3x: HostANodePage (in "Why hosted infrastructure matters"), GetStartedPage (Step 1 lede tip, Step 4 channel preset tip).
 
 **Banner E — "Message banner"** (also in `globals.css` as `.message-banner`)
+
 - Slate gradient, neutral border, same large padding/radius
 - Used 2x: HostANodePage ("What this looks like in practice" callout), GetStartedPage (Step 5 hello block).
 
 ### The actual divergence
 
-The inconsistency isn't *that* there are multiple card styles — it's that **the same semantic content uses different visual styles in different places**:
+The inconsistency isn't _that_ there are multiple card styles — it's that **the same semantic content uses different visual styles in different places**:
 
 - **HostANodePage hostTypes cards use Pattern C** (hover-lift glass), but **StealThisNetworkPage "What you can use" cards use Pattern A** (solid). Both are "list of clickable-feeling card descriptions" with the same semantic role. They should look the same.
 - **HardwareCard uses Pattern C** with a gradient accent bar on top. The hardware-related cards on GetStartedPage Step 1 use **Pattern A** (no image, no accent). Two different presentations for the same data.
@@ -59,49 +67,61 @@ The inconsistency isn't *that* there are multiple card styles — it's that **th
 ### Button patterns
 
 **Button 1 — "Primary green CTA"** (lime green, black text)
+
 ```
 inline-flex items-center justify-center gap-2 px-6 py-3.5
   bg-[var(--success-500)] text-black rounded-xl font-medium text-[15px]
   transition-all hover:bg-[var(--success-600)] hover:text-white
   hover:scale-105 hover:shadow-2xl active:scale-100
 ```
+
 Used: HostInfrastructureCTA ("Become a host"), HostANodePage ("Email about a host site"), StealThisNetworkPage ("Email us about your city").
 
 **Button 2 — DiscordButton component** (Discord brand color)
+
 ```
 inline-flex items-center justify-center gap-2 bg-[#5865F2] text-white rounded-xl
   font-medium transition-all hover:bg-[#4752C4] hover:scale-105 hover:shadow-2xl
   hover:shadow-[#5865F2]/25 active:scale-100
   // + size variants px-6 py-3.5 text-[15px] OR px-8 py-5 text-[17px]
 ```
+
 Used: everywhere a Discord invite is offered.
 
 **Button 3 — "White on dark map button"** (one-off on hero)
+
 ```
 inline-flex items-center gap-2 px-5 py-3 bg-white text-black rounded-xl
   transition-all hover:scale-105 hover:shadow-2xl active:scale-100 group/btn
   text-sm font-medium
 ```
+
 Used: HeroSection right card ("View Live Map") — one place.
 
 **Button 4 — "Outline pill"** (StealThisNetworkPage partner-list link)
+
 ```
 inline-flex items-center gap-2 px-5 py-3 bg-white/5 border border-white/10
   text-white rounded-xl hover:bg-white/10 hover:border-white/20 transition-all
 ```
+
 Used: StealThisNetworkPage (one place).
 
 **Button 5 — "Nav-style Discord link"** (Discord button in Nav, smaller)
+
 ```
 px-3 md:px-4 py-2 bg-[#5865F2] text-white rounded-lg text-sm font-medium
   hover:bg-[#4752C4] transition-colors
 ```
+
 Used: Nav only.
 
 **Button 6 — "Text link / nav button"** (e.g. footer nav, page nav)
+
 ```
 text-white/60 hover:text-white transition-colors text-sm
 ```
+
 Used: Footer nav, Nav text links, "Back to home" buttons.
 
 ### The button divergence
@@ -128,13 +148,14 @@ The `white/60` vs `white/70` divergence is the most consequential — it's used 
 ### Section-wrapper patterns
 
 Homepage sections use slightly different wrappers:
+
 - HardwareSection: `px-4 py-10 bg-black border-t border-white/10`
 - ResourcesSection: `px-4 py-10 bg-black border-t border-white/10` ✓
 - HostInfrastructureCTA: `px-4 py-16 bg-black border-t border-white/10 relative overflow-hidden`
 - DroneFlyCTA: `px-4 py-16 bg-[var(--neutral-950)] border-t border-white/10 relative overflow-hidden`
 - FinalCTASection: `px-4 py-24 md:py-16 relative overflow-hidden border-t border-white/10` (no bg!)
 
-Note: HardwareSection and ResourcesSection use `py-10`. The CTAs use `py-16`. FinalCTA uses `py-24 md:py-16`. There's a real reason for the variation (CTAs need more breathing room), but DroneFlyCTA's `bg-[var(--neutral-950)]` vs the others' `bg-black` is arbitrary — it makes the drone CTA *slightly* lighter than the host CTA above it, which looks unintentional.
+Note: HardwareSection and ResourcesSection use `py-10`. The CTAs use `py-16`. FinalCTA uses `py-24 md:py-16`. There's a real reason for the variation (CTAs need more breathing room), but DroneFlyCTA's `bg-[var(--neutral-950)]` vs the others' `bg-black` is arbitrary — it makes the drone CTA _slightly_ lighter than the host CTA above it, which looks unintentional.
 
 ### Misc inconsistencies
 
@@ -152,17 +173,21 @@ Note: HardwareSection and ResourcesSection use `py-10`. The CTAs use `py-16`. Fi
 Reduce three patterns to two. Rule: **what** the card is for determines the style.
 
 **`InfoCard` — for dense reference content (the most-used card)**
+
 ```
 bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6
 + hover:border-white/20 transition-colors  // when card is clickable/grouped
 ```
+
 Replaces Pattern A. Used for all in-content lists: hardware specs, step instructions, FAQs, host-type descriptions, operational tips, lineage cards. The "solid" treatment signals "read this; it's information."
 
 **`FeatureCard` — for showcase/CTA content**
+
 ```
 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-xl shadow-black/50
 + hover:bg-white/10 hover:border-white/20 hover:-translate-y-1 transition-all  // when interactive
 ```
+
 Replaces Patterns B and C. Used for hero cards, the home-page CTAs (HostInfrastructureCTA, DroneFlyCTA), the resource link cards, the HardwareCard. The "glass" treatment signals "this is a focal element."
 
 The `hover:-translate-y-1` is only added when the card is itself a link or button (HardwareCard, Resource cards). Static feature cards (Hero stat card, the CTA section cards) get hover-color-only or no hover at all.
@@ -170,36 +195,41 @@ The `hover:-translate-y-1` is only added when the card is itself a link or butto
 ### Canonical button hierarchy
 
 **`PrimaryButton` — single most-important action on a page**
+
 - Uses `bg-[var(--success-500)] text-black` + the existing hover-state recipe.
 - Used: "Become a host" CTA, "Email about a host site," "Email us about your city."
 - Same visual everywhere it appears.
 
 **`SecondaryButton` — secondary or supporting actions**
+
 - Replaces Buttons 3 and 4 with one style.
 - `bg-white/5 border border-white/10 text-white px-5 py-3 rounded-xl hover:bg-white/10 hover:border-white/20 transition-all`
 - Used: "View Live Map" on HeroSection, "Austin Mesh: Similar Networks" partner-list link.
 
 **`DiscordButton` (existing component)** — keep as-is, but standardize on it.
+
 - Remove the manual Discord button in Nav.tsx; replace with `<DiscordButton size="small">`.
 - Add a `size="small"` variant: `px-3 md:px-4 py-2 rounded-lg text-sm`.
 
 **`TextButton`** — for nav links, footer links, "back to home" buttons.
+
 - `text-white/70 hover:text-white transition-colors text-sm`
 - Note: this also resolves the text-opacity question for the nav/footer text style.
 
 ### Canonical text-opacity scale
 
-| Use | Class | Hex equivalent (over neutral-950 #1c1f26) |
-|-----|-------|---|
-| Heading text on dark | `text-white` | full white |
-| Body prose | `text-white/70` | (one canonical body color, drop white/60) |
-| Muted/secondary prose | `text-white/50` | (drop white/40 and white/30 in favor of this) |
-| Card-internal body | `text-white/70` (matches body) | |
-| Hover/active state for muted | `hover:text-white` | |
+| Use                          | Class                          | Hex equivalent (over neutral-950 #1c1f26)     |
+| ---------------------------- | ------------------------------ | --------------------------------------------- |
+| Heading text on dark         | `text-white`                   | full white                                    |
+| Body prose                   | `text-white/70`                | (one canonical body color, drop white/60)     |
+| Muted/secondary prose        | `text-white/50`                | (drop white/40 and white/30 in favor of this) |
+| Card-internal body           | `text-white/70` (matches body) |                                               |
+| Hover/active state for muted | `hover:text-white`             |                                               |
 
 **Migration:**
+
 - All `text-white/60` → `text-white/70` (44 instances merge into 41+44 = canonical body).
-- All `text-white/80` (used in tip-banner body) → can stay if you want tip-banner content slightly brighter than card content, or merge to `/70`. I'd argue tip-banner is meant to *stand out* so `/80` is correct. Keep as the exception.
+- All `text-white/80` (used in tip-banner body) → can stay if you want tip-banner content slightly brighter than card content, or merge to `/70`. I'd argue tip-banner is meant to _stand out_ so `/80` is correct. Keep as the exception.
 - `text-white/40` (copyright) → `text-white/50` (matches footer license line).
 - `text-white/30` (version) → `text-white/50` or keep as the smallest type signal. Probably keep `/30` if you want version to literally fade into the background.
 - `text-white/90` (price label on map button) → just `text-white` if it's a label; reconsider what it's doing.
@@ -209,6 +239,7 @@ The simplified scale: **white / white/70 / white/50 / white/30** (4 values), wit
 ### Canonical section wrappers
 
 Homepage sections:
+
 - **Content sections** (Hardware, Resources): `px-4 py-10 bg-black border-t border-white/10`
 - **CTA sections** (HostInfrastructureCTA, DroneFlyCTA): `px-4 py-16 bg-black border-t border-white/10 relative overflow-hidden`
 - **Final hero-style section** (FinalCTASection): `px-4 py-24 md:py-16 bg-black border-t border-white/10 relative overflow-hidden`
@@ -216,11 +247,13 @@ Homepage sections:
 The fix: DroneFlyCTA changes `bg-[var(--neutral-950)]` → `bg-black` so the two homepage CTAs share the same background tone.
 
 Subpages:
+
 - Standard `min-h-screen bg-[var(--neutral-950)]` shell. Already consistent.
 
 ### Canonical hover/transition
 
 Decide once:
+
 - **Cards**: when clickable, `hover:border-white/20 hover:-translate-y-1 transition-all`. When static, no hover or `hover:border-white/20` only.
 - **Buttons**: `hover:scale-105 hover:shadow-2xl active:scale-100 transition-all` for primary buttons. `hover:bg-white/10` (no scale) for secondary/text buttons.
 - **Text links**: `hover:text-white transition-colors` only. No scale, no shadow.
@@ -270,6 +303,7 @@ Side effect: the four devices are no longer drifting. Adding/removing/renaming a
 ### 3B. Email constant consolidation
 
 Currently:
+
 - `HostANodePage.tsx` line 13: `const HOST_EMAIL = 'hello@orangefla.me';`
 - `StealThisNetworkPage.tsx` line 12: `const STEAL_EMAIL = 'hello@orangefla.me';`
 
@@ -284,6 +318,7 @@ Both identical. Proposal:
 Currently hardcoded `© 2026` in Footer.tsx. Will be wrong on Jan 1.
 
 Two options:
+
 - **Dynamic year**: `{new Date().getFullYear()}`. Simple, always correct.
 - **Year range**: `© 2025–{new Date().getFullYear()}` — also valid. The project started in 2025.
 
@@ -300,13 +335,14 @@ If everything in Sections 2 and 3 ships:
 **Lines changed:** maybe 200 lines total. Most are className swaps (Pattern A → InfoCard, text-white/60 → text-white/70). The hardware dedup is the largest single change — maybe 60 lines of restructuring.
 
 **Visual change:** noticeable but not disorienting.
+
 - HostANodePage hostTypes grid loses the glass treatment, gains the solid treatment (or vice versa — see decision question below).
 - Card body prose color uniformly shifts to `text-white/70` (some text gets very slightly brighter).
 - DroneFlyCTA gains the shadow that HostInfrastructureCTA already has.
 - PulsingDot becomes sage-green instead of emerald — visible color shift on the live-status indicators.
 - View Live Map and Austin Mesh partner-list buttons unify visually.
 
-**Bundle size:** should slightly *decrease* because there's less inline JSX repetition.
+**Bundle size:** should slightly _decrease_ because there's less inline JSX repetition.
 
 **Risk:** low. No behavioral changes. All edits are presentational.
 
@@ -325,7 +361,7 @@ The "Who should consider hosting" section currently uses Pattern C (hover-lift g
 
 ### Q2: PulsingDot — sage or emerald?
 
-The current emerald is brighter than sage. Live-status indicators have a tradition of being *vivid* green (#10b981-ish). The sage `#8fb14b` is more olive than mint.
+The current emerald is brighter than sage. Live-status indicators have a tradition of being _vivid_ green (#10b981-ish). The sage `#8fb14b` is more olive than mint.
 
 - **Option 1**: Convert to `var(--success-500)` for system consistency. Slightly more olive look.
 - **Option 2**: Keep emerald, document it as an intentional "alive" indicator that deliberately pops brighter than the rest of the system.

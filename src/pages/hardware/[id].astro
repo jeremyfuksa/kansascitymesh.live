@@ -55,11 +55,7 @@ const { device } = Astro.props;
           <div
             class="aspect-4/3 bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg overflow-hidden p-8 flex items-center justify-center"
           >
-            <Image
-              src={device.image}
-              alt={device.name}
-              class="w-full h-full object-contain"
-            />
+            <Image src={device.image} alt={device.name} class="w-full h-full object-contain" />
           </div>
 
           {/* Meta */}
@@ -69,14 +65,10 @@ const { device } = Astro.props;
             >
               {device.badge}
             </div>
-            <h1
-              class="text-[clamp(36px,5vw,56px)] mb-4 tracking-tight text-white leading-[1.05]"
-            >
+            <h1 class="text-[clamp(36px,5vw,56px)] mb-4 tracking-tight text-white leading-[1.05]">
               {device.name}
             </h1>
-            <div
-              class="font-mono text-3xl text-(--success-500) font-medium mb-4"
-            >
+            <div class="font-mono text-3xl text-(--success-500) font-medium mb-4">
               {device.detailPrice}
             </div>
             <p class="text-lg text-white/70 leading-relaxed mb-8">
@@ -117,9 +109,7 @@ const { device } = Astro.props;
                   <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-1">
                     {spec.label}
                   </div>
-                  <div class="text-white text-base font-medium font-mono">
-                    {spec.value}
-                  </div>
+                  <div class="text-white text-base font-medium font-mono">{spec.value}</div>
                 </InfoCard>
               ))}
             </div>
@@ -157,8 +147,8 @@ const { device } = Astro.props;
           <section class="mb-16">
             <InfoCard>
               <p class="text-white/70 leading-relaxed">
-                We haven't written the deep-dive for this one yet. Hop in the Discord —
-                someone running one will answer faster than this page ever could.
+                We haven't written the deep-dive for this one yet. Hop in the Discord — someone
+                running one will answer faster than this page ever could.
               </p>
             </InfoCard>
           </section>

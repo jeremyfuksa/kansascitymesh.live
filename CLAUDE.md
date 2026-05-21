@@ -93,6 +93,7 @@ Four pages, file-based routing under `src/pages/`:
 - **`/steal-this-network` (`src/pages/steal-this-network.astro`)** — Open invitation to other cities. CC-BY-SA framing, lineage credit to Austin Mesh and Cascadia Mesh, partner-mesh list, operational tips for starting a new community mesh.
 
 External destinations linked throughout:
+
 - **`map.kansascitymesh.live`** — Live coverage map (MeshMonitor). External app, not part of this repo.
 - **Discord** — Real-time community. Invite link in `src/constants/discord.ts`.
 - **GitHub repo** — `github.com/jeremyfuksa/kansascitymesh.live`. Public, CC-BY-SA 4.0.
