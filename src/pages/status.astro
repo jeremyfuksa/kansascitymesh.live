@@ -5,14 +5,14 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import InfoCard from '../components/InfoCard.astro';
 import FeatureCard from '../components/FeatureCard.astro';
-import MessageBanner from '../components/MessageBanner.astro';
+import TipBanner from '../components/TipBanner.astro';
 import PulsingDot from '../components/PulsingDot.astro';
-import { STATUS_STATS, STATUS_NODES, statusColor } from '../data/networkStatus';
+import { STATUS_NODES, statusColor } from '../data/networkStatus';
 ---
 
 <Layout
   title="Network status — Kansas City Meshtastic"
-  description="Live view of the KC backbone. What's up, what's down, what hopped through whom in the last 24 hours."
+  description="Live view of the KC mesh — active node counts, total registered, message volume. Pulled from the KC MeshMonitor instance."
   path="/status"
 >
   <div class="min-h-screen bg-(--neutral-950)">
@@ -31,41 +31,191 @@ import { STATUS_STATS, STATUS_NODES, statusColor } from '../data/networkStatus';
         </a>
         <div class="flex items-center gap-3 mb-4">
           <PulsingDot />
-          <span class="text-sm text-white/70 font-mono">Refreshed 30s ago</span>
+          <span class="text-sm text-white/70 font-mono">
+            Updated <span data-live-stat="generated_at_relative">just now</span>
+          </span>
         </div>
         <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">Network status</h1>
         <p class="text-xl text-white/70 leading-relaxed">
-          What's up, what's down, what hopped through whom in the last 24 hours.
+          Live counts from the KC MeshMonitor instance at{' '}
+          <a
+            href="https://map.kansascitymesh.live"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-white hover:text-(--info-500) underline underline-offset-4"
+          >
+            map.kansascitymesh.live
+          </a>.
         </p>
       </div>
     </div>
 
     <article class="px-4 py-12 max-w-6xl mx-auto">
-      {/* Stat grid */}
-      <div
-        class="grid gap-4 mb-12"
-        style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));"
-      >
-        {
-          STATUS_STATS.map((s) => (
-            <InfoCard>
-              <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">{s.label}</div>
-              <div
-                class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em]"
-                style={`color: ${s.color};`}
-              >
-                {s.value}
-              </div>
-              <div class="text-white/50 text-[13px]">{s.delta}</div>
-            </InfoCard>
-          ))
-        }
-      </div>
-
-      {/* Node table */}
+      {/* Activity-window stat grid */}
       <section class="mb-12">
-        <h2 class="text-2xl text-white mb-4">Backbone &amp; outliers</h2>
-        <FeatureCard padding="none" class="overflow-hidden">
+        <h2 class="text-2xl text-white mb-4">Active nodes</h2>
+        <div
+          class="grid gap-4"
+          style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));"
+        >
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Last hour</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--success-500)"
+              data-live-stat="active_1h"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">on the air now</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Last 24h</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--success-500)"
+              data-live-stat="active_24h"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">heard from yesterday</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Last 7 days</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--success-500)"
+              data-live-stat="active_7d"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">this week</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Last 30 days</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--success-500)"
+              data-live-stat="active_30d"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">this month</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Last 90 days</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--success-500)"
+              data-live-stat="active_90d"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">this quarter</div>
+          </InfoCard>
+        </div>
+      </section>
+
+      {/* Totals + message volume */}
+      <section class="mb-12">
+        <h2 class="text-2xl text-white mb-4">Totals</h2>
+        <div
+          class="grid gap-4"
+          style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));"
+        >
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">
+              Nodes ever registered
+            </div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--info-500)"
+              data-live-stat="total_nodes"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">since MeshMonitor started counting</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">
+              Hardware identified
+            </div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--info-500)"
+              data-live-stat="nodes_with_hwmodel"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">model reported via telemetry</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">
+              Messages tracked
+            </div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-white"
+              data-live-stat="message_count"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">Long Fast channel</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Channels seen</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-white"
+              data-live-stat="channel_count"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">primary + custom</div>
+          </InfoCard>
+        </div>
+      </section>
+
+      {/* Discord */}
+      <section class="mb-12">
+        <h2 class="text-2xl text-white mb-4">Discord</h2>
+        <div
+          class="grid gap-4"
+          style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));"
+        >
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Total members</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--info-500)"
+              data-live-stat="discord_total_members"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">people in the server</div>
+          </InfoCard>
+          <InfoCard>
+            <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Online now</div>
+            <div
+              class="font-mono text-4xl font-semibold mb-1 tracking-[-0.02em] text-(--success-500)"
+              data-live-stat="discord_online"
+            >
+              —
+            </div>
+            <div class="text-white/50 text-[13px]">presence right now</div>
+          </InfoCard>
+        </div>
+      </section>
+
+      {/* Node table — labeled as sample until we have a per-node API */}
+      <section class="mb-12">
+        <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
+          <h2 class="text-2xl text-white">Backbone &amp; outliers</h2>
+          <span
+            class="inline-block px-2 py-0.5 rounded-sm text-[11px] uppercase tracking-[0.04em] font-medium bg-(--warning-500)/15 text-(--warning-500)"
+          >
+            Sample data
+          </span>
+        </div>
+        <TipBanner>
+          The aggregate counts above are live from{' '}
+          <a
+            href="/api/stats.json"
+            class="text-white underline underline-offset-4 hover:text-(--success-500)">stats.json</a
+          >. The table below is illustrative — MeshMonitor doesn't expose per-node detail on the
+          public endpoint yet. When it does, this table will go live too.
+        </TipBanner>
+        <FeatureCard padding="none" class="overflow-hidden mt-4">
           <div class="overflow-x-auto">
             <table class="w-full border-collapse min-w-[600px]">
               <thead>
@@ -111,21 +261,6 @@ import { STATUS_STATS, STATUS_NODES, statusColor } from '../data/networkStatus';
             </table>
           </div>
         </FeatureCard>
-      </section>
-
-      <section>
-        <h2 class="text-2xl text-white mb-4">Right now</h2>
-        <MessageBanner>
-          <p class="text-white/70 leading-relaxed mb-4">
-            <strong class="text-white">Independence (INDEP-FX)</strong> dropped off the mesh two days
-            ago — we're coordinating with the host to power-cycle. If you're east of I-435 and noticed
-            your hop count climbing, that's why.
-          </p>
-          <p class="text-white/70 leading-relaxed mb-0">
-            <strong class="text-white">COL-FRINGE</strong> has been quiet for a week. Probably a power
-            issue — investigating.
-          </p>
-        </MessageBanner>
       </section>
     </article>
 

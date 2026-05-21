@@ -2,7 +2,7 @@
 import { ArrowRight } from '@lucide/astro';
 import InfoCard from './InfoCard.astro';
 import PulsingDot from './PulsingDot.astro';
-import { NETWORK_STATS, NETWORK_ACTIVITY, statusColor } from '../data/networkStatus';
+import { NETWORK_ACTIVITY, statusColor } from '../data/networkStatus';
 ---
 
 <section class="relative px-4 py-16 bg-black border-t border-white/10 overflow-hidden">
@@ -13,14 +13,14 @@ import { NETWORK_STATS, NETWORK_ACTIVITY, statusColor } from '../data/networkSta
         <div class="inline-flex items-center gap-2 mb-3">
           <PulsingDot />
           <span class="font-mono text-[13px] text-white/60 tracking-[0.02em]">
-            LIVE · refreshed 30s ago
+            LIVE · updated <span data-live-stat="generated_at_relative">just now</span>
           </span>
         </div>
         <h2 class="text-[clamp(28px,4vw,40px)] text-white tracking-tight leading-[1.1] mb-2">
           The mesh, right now.
         </h2>
         <p class="text-white/70 text-base leading-relaxed max-w-[480px]">
-          Not a marketing screenshot. The actual state of the KC backbone, updated every 30 seconds.
+          Not a marketing screenshot. Live counts from the KC MeshMonitor instance.
         </p>
       </div>
       <a
@@ -37,24 +37,50 @@ import { NETWORK_STATS, NETWORK_ACTIVITY, statusColor } from '../data/networkSta
       class="grid gap-3 mb-6"
       style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));"
     >
-      {
-        NETWORK_STATS.map((s) => (
-          <InfoCard>
-            <div class="text-white/50 text-[11px] uppercase tracking-[0.08em] mb-2 font-medium">
-              {s.label}
-            </div>
-            <div class="flex items-baseline gap-2.5">
-              <span
-                class="font-mono text-[48px] font-semibold leading-none tracking-[-0.03em]"
-                style={`color: ${s.color};`}
-              >
-                {s.value}
-              </span>
-              <span class="font-mono text-[13px] text-white/50">{s.unit}</span>
-            </div>
-          </InfoCard>
-        ))
-      }
+      <InfoCard>
+        <div class="text-white/50 text-[11px] uppercase tracking-[0.08em] mb-2 font-medium">
+          Active · 30 days
+        </div>
+        <div class="flex items-baseline gap-2.5">
+          <span
+            class="font-mono text-[48px] font-semibold leading-none tracking-[-0.03em] text-(--success-500)"
+            data-live-stat="active_30d"
+          >
+            —
+          </span>
+          <span class="font-mono text-[13px] text-white/50">nodes</span>
+        </div>
+      </InfoCard>
+
+      <InfoCard>
+        <div class="text-white/50 text-[11px] uppercase tracking-[0.08em] mb-2 font-medium">
+          Total registered
+        </div>
+        <div class="flex items-baseline gap-2.5">
+          <span
+            class="font-mono text-[48px] font-semibold leading-none tracking-[-0.03em] text-(--info-500)"
+            data-live-stat="total_nodes"
+          >
+            —
+          </span>
+          <span class="font-mono text-[13px] text-white/50">ever</span>
+        </div>
+      </InfoCard>
+
+      <InfoCard>
+        <div class="text-white/50 text-[11px] uppercase tracking-[0.08em] mb-2 font-medium">
+          Messages tracked
+        </div>
+        <div class="flex items-baseline gap-2.5">
+          <span
+            class="font-mono text-[48px] font-semibold leading-none tracking-[-0.03em] text-white"
+            data-live-stat="message_count"
+          >
+            —
+          </span>
+          <span class="font-mono text-[13px] text-white/50">Long Fast</span>
+        </div>
+      </InfoCard>
     </div>
 
     {/* Activity strip */}
@@ -62,8 +88,8 @@ import { NETWORK_STATS, NETWORK_ACTIVITY, statusColor } from '../data/networkSta
       <div
         class="flex items-center justify-between px-4 py-2.5 bg-white/3 border-b border-white/5 text-white/50 text-[11px] uppercase tracking-[0.08em] font-medium"
       >
-        <span>Recent activity</span>
-        <span class="font-mono normal-case tracking-normal">backbone + outliers</span>
+        <span>Recent activity · sample</span>
+        <span class="font-mono normal-case tracking-normal">per-node feed coming soon</span>
       </div>
 
       <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">

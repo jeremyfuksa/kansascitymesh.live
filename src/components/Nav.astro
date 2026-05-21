@@ -30,18 +30,22 @@ const linkClass = (active: boolean) => (active ? 'text-white' : 'text-white/70 h
 >
   <div class="max-w-6xl mx-auto px-4 py-4">
     <div class="flex items-center justify-between gap-4">
-      {/* Left: Brand/Status */}
-      <div class="flex items-center gap-2 md:gap-3">
-        <img src={logo.src} alt="KC Mesh" class="w-8 h-8 rounded-sm" />
+      {/* Left: Brand/Status — links to home from every page. */}
+      <a
+        href="/"
+        aria-label="Kansas City Meshtastic Network — home"
+        class="flex items-center gap-2 md:gap-3 group"
+      >
+        <img src={logo.src} alt="" class="w-8 h-8 rounded-sm" />
         <div
-          class="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-xs rounded-full border border-white/20"
+          class="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-xs rounded-full border border-white/20 group-hover:bg-white/15 group-hover:border-white/30 transition-colors"
         >
           <span class="flex items-center">
             <PulsingDot />
           </span>
           <span class="text-sm text-white font-medium hidden sm:inline">KC Mesh</span>
         </div>
-      </div>
+      </a>
 
       {/* Right: Navigation */}
       <div class="flex items-center gap-3 md:gap-6">

@@ -72,5 +72,11 @@ const ogImage = new URL('/og-image.png', Astro.site ?? 'https://kansascitymesh.l
         trackEvent(action, label);
       });
     </script>
+
+    {/* Hydrate live stats for elements marked with data-live-stat. */}
+    <script>
+      import { hydrateLiveStats } from '../utils/liveStats';
+      hydrateLiveStats();
+    </script>
   </body>
 </html>
