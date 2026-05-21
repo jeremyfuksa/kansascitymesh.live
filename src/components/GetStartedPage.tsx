@@ -5,7 +5,7 @@ import Footer from './Footer';
 import { DISCORD_INVITE } from '../constants/discord';
 
 interface GetStartedPageProps {
-  onNavigate: (target: 'home' | 'get-started') => void;
+  onNavigate: (target: 'home' | 'get-started' | 'host') => void;
 }
 
 export default function GetStartedPage({ onNavigate }: GetStartedPageProps) {

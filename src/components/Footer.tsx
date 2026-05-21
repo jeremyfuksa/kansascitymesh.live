@@ -4,7 +4,7 @@ import { trackEvent } from '../utils/analytics';
 import { version } from '../../package.json';
 
 interface FooterProps {
-  onNavigate: (target: 'home' | 'get-started') => void;
+  onNavigate: (target: 'home' | 'get-started' | 'host') => void;
 }
 
 export default function Footer({ onNavigate }: FooterProps) {
@@ -12,9 +12,9 @@ export default function Footer({ onNavigate }: FooterProps) {
     <footer className="px-4 py-12 bg-[var(--neutral-900)] border-t border-white/10">
       <div className="max-w-6xl mx-auto">
         <nav className="flex flex-wrap justify-center gap-8 mb-8">
-          <a 
-            href="https://map.kansascitymesh.live" 
-            target="_blank" 
+          <a
+            href="https://map.kansascitymesh.live"
+            target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 text-white/60 hover:text-white transition-colors text-sm"
           >
@@ -26,6 +26,12 @@ export default function Footer({ onNavigate }: FooterProps) {
             className="text-white/60 hover:text-white transition-colors text-sm"
           >
             Get Started
+          </button>
+          <button
+            onClick={() => onNavigate('host')}
+            className="text-white/60 hover:text-white transition-colors text-sm"
+          >
+            Host a Node
           </button>
           <a
             href={DISCORD_INVITE}

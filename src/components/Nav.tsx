@@ -6,8 +6,8 @@ import { DISCORD_INVITE } from '../constants/discord';
 import { trackEvent } from '../utils/analytics';
 
 interface NavProps {
-  onNavigate: (target: 'home' | 'get-started') => void;
-  currentPage?: 'home' | 'get-started';
+  onNavigate: (target: 'home' | 'get-started' | 'host') => void;
+  currentPage?: 'home' | 'get-started' | 'host';
 }
 
 export default function Nav({ onNavigate, currentPage = 'home' }: NavProps) {
@@ -22,8 +22,8 @@ export default function Nav({ onNavigate, currentPage = 'home' }: NavProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Force dark background on Get Started page, transparent on home
-    const navBackground = currentPage === 'get-started' || isScrolled
+  // Force dark background on Get Started / Host pages, transparent on home
+    const navBackground = currentPage !== 'home' || isScrolled
       ? 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20'
       : 'bg-transparent';
 
@@ -44,21 +44,31 @@ export default function Nav({ onNavigate, currentPage = 'home' }: NavProps) {
 
           {/* Right: Navigation */}
           <div className="flex items-center gap-3 md:gap-6">
-            <a 
-              href="https://map.kansascitymesh.live" 
-              target="_blank" 
+            <a
+              href="https://map.kansascitymesh.live"
+              target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors hidden md:flex"
             >
               <span>Coverage Map</span>
               <ExternalLink className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
             </a>
-              <button 
-                onClick={() => onNavigate(currentPage === 'home' ? 'get-started' : 'home')}
-                className="text-sm text-white/70 hover:text-white transition-colors hidden sm:block"
-              >
-                {currentPage === 'get-started' ? 'Home' : 'Get Started'}
-              </button>
+            <button
+              onClick={() => onNavigate('host')}
+              className={`text-sm transition-colors hidden md:block ${
+                currentPage === 'host' ? 'text-white' : 'text-white/70 hover:text-white'
+              }`}
+            >
+              Host a Node
+            </button>
+            <button
+              onClick={() => onNavigate(currentPage === 'get-started' ? 'home' : 'get-started')}
+              className={`text-sm transition-colors hidden sm:block ${
+                currentPage === 'get-started' ? 'text-white' : 'text-white/70 hover:text-white'
+              }`}
+            >
+              {currentPage === 'get-started' ? 'Home' : 'Get Started'}
+            </button>
             <a
               href={DISCORD_INVITE}
               target="_blank"
