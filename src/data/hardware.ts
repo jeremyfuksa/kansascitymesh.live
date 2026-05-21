@@ -4,6 +4,16 @@ import lilygoTDeck from '../assets/lilygo-t-deck.png';
 import rakMini from '../assets/rak-mini.png';
 import t1000e from '../assets/t1000e.png';
 
+export interface HardwareSpec {
+  label: string;
+  value: string;
+}
+
+export interface HardwareHighlight {
+  title: string;
+  body: string;
+}
+
 export interface HardwareItem {
   /** Stable key. */
   id: string;
@@ -23,6 +33,14 @@ export interface HardwareItem {
   detailDescription: string;
   /** Product image for the showcase grid. */
   image: ImageMetadata;
+  /** Optional "where to buy" link for the detail page. */
+  buyUrl?: string;
+  /** Specs grid for the detail page; omitted devices fall back to a TODO note. */
+  specs?: HardwareSpec[];
+  /** "What we like about it" highlights for the detail page. */
+  whatWeLike?: HardwareHighlight[];
+  /** "Known caveats" note for the detail-page TipBanner. */
+  caveats?: string;
 }
 
 /**
@@ -41,6 +59,33 @@ export const hardware: HardwareItem[] = [
     detailDescription:
       'Most popular starter unit. Small screen, built-in LoRa antenna. Works with your phone via Bluetooth. Perfect for testing coverage while you drive around.',
     image: heltecV4,
+    buyUrl: 'https://heltec.org',
+    specs: [
+      { label: 'LoRa chip', value: 'SX1262' },
+      { label: 'Frequency', value: '915 MHz (US)' },
+      { label: 'Transmit power', value: 'up to 22 dBm' },
+      { label: 'Antenna', value: 'SMA, included' },
+      { label: 'Battery', value: 'JST 2-pin' },
+      { label: 'Display', value: '0.96" OLED' },
+      { label: 'Connectivity', value: 'BLE + Wi-Fi' },
+      { label: 'USB', value: 'Type-C' },
+    ],
+    whatWeLike: [
+      {
+        title: 'Cheap enough to lose',
+        body: "$40 means you'll actually take it places. Drop it in a backpack, mount it on a fence, lend one to a friend without flinching.",
+      },
+      {
+        title: 'The screen earns its keep',
+        body: "Built-in OLED shows signal, battery, and recent messages without needing a phone. Useful when you're field-testing coverage.",
+      },
+      {
+        title: 'The community runs them',
+        body: 'About half of the active KC nodes are Heltecs. If you have a question, somebody in the Discord has the same hardware in front of them right now.',
+      },
+    ],
+    caveats:
+      "The Heltec's stock antenna is functional but quiet. A $15 swap to a proper 915 MHz whip will roughly double your usable range. Worth it the moment you commit to keeping the node powered up.",
   },
   {
     id: 'rak-wisblock',

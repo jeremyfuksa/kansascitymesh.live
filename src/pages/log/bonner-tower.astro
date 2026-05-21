@@ -1,0 +1,136 @@
+---
+import { ChevronLeft, ArrowRight } from '@lucide/astro';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import TipBanner from '../../components/TipBanner.astro';
+import MessageBanner from '../../components/MessageBanner.astro';
+import PrimaryButton from '../../components/PrimaryButton.astro';
+import DiscordButton from '../../components/DiscordButton.astro';
+import { DISCORD_INVITE } from '../../constants/discord';
+---
+
+<Layout
+  title="Bonner Springs water tower — Kansas City Meshtastic field log"
+  description="Three weeks of cold emails, one tour, one weekend, and the I-70 hop chain is officially closed on the west side."
+  path="/log/bonner-tower"
+>
+  <div class="min-h-screen bg-[var(--neutral-950)]">
+    <Nav currentPage="home" />
+
+    <div
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-gradient-to-b from-[var(--neutral-900)] to-[var(--neutral-950)]"
+    >
+      <div class="max-w-[720px] mx-auto">
+        <a
+          href="/log"
+          class="flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 text-sm w-fit"
+        >
+          <ChevronLeft class="w-4 h-4" />
+          All field logs
+        </a>
+        <div class="flex items-center gap-3 mb-6 text-white/50 text-sm">
+          <span
+            class="inline-block px-2.5 py-0.5 bg-[var(--success-500)]/15 text-[var(--success-500)] rounded-sm text-xs font-medium uppercase tracking-[0.04em]"
+          >
+            Deployment
+          </span>
+          <span>May 12, 2026</span>
+          <span>·</span>
+          <span>5 min read</span>
+        </div>
+        <h1
+          class="text-[clamp(36px,5vw,52px)] mb-4 tracking-tight text-white leading-[1.1]"
+        >
+          We finally got a node onto a Bonner Springs water tower
+        </h1>
+        <p class="text-lg text-white/70 leading-relaxed">
+          Three weeks of cold emails, one tour, one weekend, and the I-70 hop chain is
+          officially closed on the west side. Here's how it went.
+        </p>
+      </div>
+    </div>
+
+    {/* Hero photo placeholder — drop the real image into public/photos/log/ */}
+    <div class="px-4 pt-6 max-w-[960px] mx-auto">
+      <div
+        class="aspect-video w-full bg-white/5 border border-white/10 rounded-lg flex items-center justify-center text-white/40 text-sm"
+      >
+        Photo coming — bonner-tower-2026-05-12.jpg
+      </div>
+    </div>
+
+    <article class="px-4 py-16 max-w-[720px] mx-auto">
+      <div
+        class="flex flex-col gap-6 text-white/75 leading-[1.7] text-[17px]"
+      >
+        <p>
+          The first cold email went out March 20. By April we had a phone call with the
+          city's utilities supervisor, a guy named Ron who used to be a ham operator and
+          immediately understood what we were asking for. Ron's exact words:{' '}
+          <em>"Yeah, that's basically nothing. Bring it over."</em>
+        </p>
+        <p>
+          We brought it over on a Saturday. Heltec V4 in a weatherproof box, 915 MHz whip,
+          12 V power tap off the tower's existing service. Total parts: $137. Total time
+          on the platform: 40 minutes, including the safety briefing.
+        </p>
+
+        <h2 class="text-2xl text-white mt-4 mb-0">What we learned</h2>
+
+        <p>
+          <strong class="text-white">The pitch matters more than the spec.</strong> Ron
+          didn't care about LoRa or hop counts. He cared that we'd done this before, that
+          the box weighed less than a brick, and that if it broke we'd come back and take
+          it down. Treat every host conversation like a favor someone is doing you,
+          because it is.
+        </p>
+
+        <TipBanner>
+          If you're approaching a municipal site cold, lead with{' '}
+          <strong>"we're a community group doing emergency comms,"</strong> not{' '}
+          <strong>"we're hobbyists building a mesh network."</strong> Both true. One opens
+          the door.
+        </TipBanner>
+
+        <p>
+          <strong class="text-white">The first ping is the best feeling in this hobby.</strong>{' '}
+          Five minutes after we powered it up, the node showed up on the map, and a hop
+          from Topeka came through that previously couldn't reach the metro. That's the
+          whole game.
+        </p>
+
+        <h2 class="text-2xl text-white mt-4 mb-0">What's next</h2>
+
+        <p>
+          With Bonner online, the I-70 west chain is closed: Topeka → Lawrence → Bonner →
+          downtown reaches in 4 hops, reliably. The east side is the next ask — we need a
+          host in Independence or Blue Springs to do the same thing on the other side of
+          the metro.
+        </p>
+
+        <MessageBanner>
+          <p class="text-white/70 leading-relaxed m-0">
+            Massive thanks to Ron, to the Bonner Springs Public Works department, and to
+            everyone in the Discord who answered hardware questions at 9 PM on a Tuesday.
+            This one really did take a community.
+          </p>
+        </MessageBanner>
+      </div>
+
+      <div
+        class="mt-16 pt-8 border-t border-white/10 flex flex-wrap gap-4"
+      >
+        <PrimaryButton href="/host-a-node">
+          <span>Got a similar spot?</span>
+          <ArrowRight class="w-4 h-4" />
+        </PrimaryButton>
+        <DiscordButton href={DISCORD_INVITE} trackLabel="log-bonner-discord">
+          Discuss in Discord
+        </DiscordButton>
+      </div>
+    </article>
+
+    <Footer />
+  </div>
+</Layout>

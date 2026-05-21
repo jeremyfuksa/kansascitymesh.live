@@ -1,0 +1,81 @@
+---
+import { ChevronLeft } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import FeatureCard from '../../components/FeatureCard.astro';
+import { hardware } from '../../data/hardware';
+---
+
+<Layout
+  title="Hardware — Kansas City Meshtastic"
+  description="Four Meshtastic devices the KC community actually runs. $35–$90, all field-tested."
+  path="/hardware"
+>
+  <div class="min-h-screen bg-[var(--neutral-950)]">
+    <Nav currentPage="get-started" />
+
+    <div
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-gradient-to-b from-[var(--neutral-900)] to-[var(--neutral-950)]"
+    >
+      <div class="max-w-6xl mx-auto">
+        <a
+          href="/getting-started"
+          class="flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 text-sm w-fit"
+        >
+          <ChevronLeft class="w-4 h-4" />
+          Back to Getting Started
+        </a>
+        <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">Hardware</h1>
+        <p class="text-xl text-white/70 max-w-2xl">
+          The four devices the KC community runs most. Each one has been mounted on
+          something, dropped in a backpack, or left on a windowsill long enough to know
+          what it's good for.
+        </p>
+      </div>
+    </div>
+
+    <article class="px-4 py-16 max-w-6xl mx-auto">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-2 gap-6">
+        {
+          hardware.map((item) => (
+            <FeatureCard
+              href={`/hardware/${item.id}`}
+              interactive
+              padding="default"
+              trackEvent="hardware_detail_click"
+              trackLabel={item.id}
+            >
+              <div class="flex gap-6 items-center">
+                <div class="flex-shrink-0 w-32 h-32 rounded-md bg-gradient-to-br from-neutral-800 to-neutral-900 overflow-hidden flex items-center justify-center p-3">
+                  <Image
+                    src={item.image}
+                    alt={item.name}
+                    class="w-full h-full object-contain"
+                  />
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div
+                    class={`inline-block px-3 py-1 bg-gradient-to-r ${item.color} text-white rounded-md text-xs font-medium mb-2`}
+                  >
+                    {item.badge}
+                  </div>
+                  <h3 class="text-xl text-white mb-1">{item.name}</h3>
+                  <div class="font-mono text-[var(--success-500)] text-lg mb-2">
+                    {item.detailPrice}
+                  </div>
+                  <p class="text-white/70 text-[15px] leading-relaxed">
+                    {item.shortDescription}
+                  </p>
+                </div>
+              </div>
+            </FeatureCard>
+          ))
+        }
+      </div>
+    </article>
+
+    <Footer />
+  </div>
+</Layout>

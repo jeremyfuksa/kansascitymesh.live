@@ -1,0 +1,102 @@
+---
+import { ChevronLeft, ChevronDown } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import DiscordButton from '../components/DiscordButton.astro';
+import { DISCORD_INVITE } from '../constants/discord';
+
+const faqs = [
+  {
+    q: 'Do I need a ham license to use Meshtastic?',
+    a: "No. Meshtastic uses the unlicensed 915 MHz ISM band in the US. Anyone can put a node on the air. Hams can use it just like anyone else — but the license isn't required.",
+  },
+  {
+    q: 'Will I be able to text my friends across town on day one?',
+    a: 'Probably not directly, but probably yes via the mesh. Your node will reach the closest router or repeater, hop through any nodes in between, and reach the recipient. Coverage gets better every month as more people put nodes up.',
+  },
+  {
+    q: 'How private are messages?',
+    a: 'Direct messages are encrypted between sender and recipient. Channel messages (Primary, etc.) are encrypted to anyone with the channel key — which on the default Long Fast channel is everyone. Treat channel messages like Twitter, not like Signal.',
+  },
+  {
+    q: 'What if my node falls off the network?',
+    a: "Somebody in the Discord usually notices within an hour, and we'll ping you. Common fixes: power cycle, re-flash firmware, check the antenna seating. Nothing requires soldering.",
+  },
+  {
+    q: "Can I host a node if I don't live in KC?",
+    a: "Yes — see the Host a Node page. We're especially interested in the I-70 corridor (Lawrence, Topeka, Columbia, Manhattan) where a single host closes a chain to an existing outlier node. Email us.",
+  },
+  {
+    q: 'Is this affiliated with meshtastic.org?',
+    a: 'No. We use their open-source firmware and we love them, but KC Mesh is a local community thing. They focus on the protocol; we focus on getting actual nodes up in the metro.',
+  },
+  {
+    q: "What's the catch?",
+    a: "No catch. The site's under CC-BY-SA, the Discord is free, the hardware costs $25–$200, and the community is happy to help. The thing that stops most people is buying a node and never powering it up. Don't be that person.",
+  },
+];
+---
+
+<Layout
+  title="FAQ — Kansas City Meshtastic"
+  description="The questions we actually get in Discord, answered. Licensing, privacy, hosting, hardware."
+  path="/faq"
+>
+  <div class="min-h-screen bg-[var(--neutral-950)]">
+    <Nav currentPage="get-started" />
+
+    <div
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-gradient-to-b from-[var(--neutral-900)] to-[var(--neutral-950)]"
+    >
+      <div class="max-w-3xl mx-auto">
+        <a
+          href="/"
+          class="flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 text-sm w-fit"
+        >
+          <ChevronLeft class="w-4 h-4" />
+          Back to home
+        </a>
+        <h1 class="text-5xl md:text-6xl mb-6 tracking-tight text-white">
+          Frequently asked
+        </h1>
+        <p class="text-xl text-white/70 leading-relaxed">
+          The questions we get most often. If yours isn't here, ask in Discord — the answer
+          might end up here.
+        </p>
+      </div>
+    </div>
+
+    <article class="px-4 py-16 max-w-3xl mx-auto">
+      <div class="flex flex-col gap-3">
+        {
+          faqs.map((f) => (
+            <details
+              class="group bg-[var(--neutral-900)] border border-white/10 rounded-md p-6 hover:border-white/20 transition-colors open:border-white/20"
+            >
+              <summary class="flex items-center justify-between gap-4 cursor-pointer list-none [&::-webkit-details-marker]:hidden">
+                <span class="text-lg text-white font-medium">{f.q}</span>
+                <ChevronDown
+                  class="w-5 h-5 text-[var(--success-500)] flex-shrink-0 transition-transform duration-200 group-open:rotate-180"
+                />
+              </summary>
+              <p class="text-white/70 leading-relaxed mt-4">{f.a}</p>
+            </details>
+          ))
+        }
+      </div>
+
+      <section class="mt-12 pt-8 border-t border-white/10">
+        <p class="text-white/70 leading-relaxed mb-6">
+          Still stuck? The Discord has 200+ people who've solved most of this stuff
+          already.
+        </p>
+        <DiscordButton href={DISCORD_INVITE} trackLabel="faq-cta">
+          Ask in Discord
+        </DiscordButton>
+      </section>
+    </article>
+
+    <Footer />
+  </div>
+</Layout>

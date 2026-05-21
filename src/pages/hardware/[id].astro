@@ -1,0 +1,171 @@
+---
+import { ChevronLeft, ExternalLink } from '@lucide/astro';
+import { Image } from 'astro:assets';
+import Layout from '../../layouts/Layout.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import InfoCard from '../../components/InfoCard.astro';
+import TipBanner from '../../components/TipBanner.astro';
+import PrimaryButton from '../../components/PrimaryButton.astro';
+import SecondaryButton from '../../components/SecondaryButton.astro';
+import { hardware } from '../../data/hardware';
+
+export async function getStaticPaths() {
+  return hardware.map((device) => ({
+    params: { id: device.id },
+    props: { device },
+  }));
+}
+
+const { device } = Astro.props;
+---
+
+<Layout
+  title={`${device.name} — Kansas City Meshtastic`}
+  description={device.detailDescription}
+  path={`/hardware/${device.id}`}
+>
+  <div class="min-h-screen bg-[var(--neutral-950)]">
+    <Nav currentPage="get-started" />
+
+    {/* Hero */}
+    <div
+      class="relative overflow-hidden px-4 py-16 mt-16 border-b border-white/10"
+      style="background: linear-gradient(180deg, var(--primary-800) 0%, var(--neutral-950) 90%, #000 100%);"
+    >
+      <div class="absolute inset-0 -z-10">
+        <div
+          class="absolute top-0 right-1/4 w-96 h-96 rounded-full blur-3xl"
+          style="background-color: var(--info-600); opacity: 0.25;"
+        >
+        </div>
+      </div>
+
+      <div class="max-w-6xl mx-auto">
+        <a
+          href="/hardware"
+          class="flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 text-sm w-fit"
+        >
+          <ChevronLeft class="w-4 h-4" />
+          All hardware
+        </a>
+
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          {/* Image */}
+          <div
+            class="aspect-[4/3] bg-white/5 backdrop-blur-xl border border-white/10 rounded-lg overflow-hidden p-8 flex items-center justify-center"
+          >
+            <Image
+              src={device.image}
+              alt={device.name}
+              class="w-full h-full object-contain"
+            />
+          </div>
+
+          {/* Meta */}
+          <div>
+            <div
+              class={`inline-block px-3 py-1 bg-gradient-to-r ${device.color} text-white rounded-md text-[13px] font-medium mb-4`}
+            >
+              {device.badge}
+            </div>
+            <h1
+              class="text-[clamp(36px,5vw,56px)] mb-4 tracking-tight text-white leading-[1.05]"
+            >
+              {device.name}
+            </h1>
+            <div
+              class="font-mono text-3xl text-[var(--success-500)] font-medium mb-4"
+            >
+              {device.detailPrice}
+            </div>
+            <p class="text-lg text-white/70 leading-relaxed mb-8">
+              {device.detailDescription}
+            </p>
+            <div class="flex flex-wrap gap-3">
+              {
+                device.buyUrl && (
+                  <PrimaryButton
+                    href={device.buyUrl}
+                    external
+                    trackEvent="hardware_buy_click"
+                    trackLabel={device.id}
+                  >
+                    <span>Where to buy</span>
+                    <ExternalLink class="w-4 h-4" />
+                  </PrimaryButton>
+                )
+              }
+              <SecondaryButton href="/getting-started">Flashing guide</SecondaryButton>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <article class="px-4 py-16 max-w-4xl mx-auto">
+      {
+        device.specs && device.specs.length > 0 && (
+          <section class="mb-16">
+            <h2 class="text-2xl text-white mb-6">Specs at a glance</h2>
+            <div
+              class="grid gap-3"
+              style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));"
+            >
+              {device.specs.map((spec) => (
+                <InfoCard>
+                  <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-1">
+                    {spec.label}
+                  </div>
+                  <div class="text-white text-base font-medium font-mono">
+                    {spec.value}
+                  </div>
+                </InfoCard>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        device.whatWeLike && device.whatWeLike.length > 0 && (
+          <section class="mb-16">
+            <h2 class="text-2xl text-white mb-6">What we like about it</h2>
+            <div class="flex flex-col gap-4">
+              {device.whatWeLike.map((highlight) => (
+                <InfoCard>
+                  <h3 class="text-white mb-2">{highlight.title}</h3>
+                  <p class="text-white/70 leading-relaxed">{highlight.body}</p>
+                </InfoCard>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      {
+        device.caveats && (
+          <section class="mb-16">
+            <h2 class="text-2xl text-white mb-6">Known caveats</h2>
+            <TipBanner>{device.caveats}</TipBanner>
+          </section>
+        )
+      }
+
+      {
+        !device.specs && !device.whatWeLike && !device.caveats && (
+          <section class="mb-16">
+            <InfoCard>
+              <p class="text-white/70 leading-relaxed">
+                We haven't written the deep-dive for this one yet. Hop in the Discord —
+                someone running one will answer faster than this page ever could.
+              </p>
+            </InfoCard>
+          </section>
+        )
+      }
+    </article>
+
+    <Footer />
+  </div>
+</Layout>
