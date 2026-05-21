@@ -54,7 +54,7 @@ export const hardware: HardwareItem[] = [
     price: '$40',
     detailPrice: '$35–40',
     badge: 'Beginner',
-    color: 'from-[var(--primary-500)] to-[var(--primary-700)]',
+    color: 'from-(--primary-500) to-(--primary-700)',
     shortDescription: 'Most popular starter node. Compact and easy to set up.',
     detailDescription:
       'Most popular starter unit. Small screen, built-in LoRa antenna. Works with your phone via Bluetooth. Perfect for testing coverage while you drive around.',
@@ -93,7 +93,7 @@ export const hardware: HardwareItem[] = [
     price: '$35',
     detailPrice: '$35–50',
     badge: 'Solar',
-    color: 'from-[var(--success-600)] to-[var(--success-700)]',
+    color: 'from-(--success-600) to-(--success-700)',
     shortDescription: 'Popular for solar nodes. No screen means lower power draw.',
     detailDescription:
       'Popular for outdoor nodes. No screen means lower power draw. Great for 24/7 home nodes or solar deployments. Several KC rooftop nodes use these.',
@@ -105,7 +105,7 @@ export const hardware: HardwareItem[] = [
     price: '$50',
     detailPrice: '$50–80',
     badge: 'Portable',
-    color: 'from-[var(--warning-600)] to-[var(--warning-700)]',
+    color: 'from-(--warning-600) to-(--warning-700)',
     shortDescription: 'Lightweight tracker. Built-in GPS and long battery life.',
     detailDescription:
       'Lightweight trackers. Built-in GPS and long battery life. Great for throwing in a backpack or vehicle. T-Echo has e-ink screen, T1000-E is tiny.',
@@ -117,7 +117,7 @@ export const hardware: HardwareItem[] = [
     price: '$90',
     detailPrice: '$90',
     badge: 'Premium',
-    color: 'from-[var(--secondary-600)] to-[var(--secondary-700)]',
+    color: 'from-(--secondary-600) to-(--secondary-700)',
     shortDescription: 'Full keyboard and screen. Send messages without your phone.',
     detailDescription:
       'Full keyboard and screen. Send messages without your phone. Built-in GPS and trackball. Pricier than the others, but the only one that works fully standalone.',

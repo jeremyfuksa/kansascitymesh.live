@@ -66,12 +66,12 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
   description="Building a community mesh in another city? Take whatever helps from this site — words, ideas, structure, code. CC-BY-SA 4.0. Built on what Austin Mesh and Cascadia Mesh did first."
   path="/steal-this-network"
 >
-  <div class="min-h-screen bg-[var(--neutral-950)]">
+  <div class="min-h-screen bg-(--neutral-950)">
     <Nav currentPage="steal" />
 
     {/* Header */}
     <div
-      class="px-4 py-12 mt-16 border-b border-white/10 bg-gradient-to-b from-[var(--neutral-900)] to-[var(--neutral-950)]"
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-linear-to-b from-(--neutral-900) to-(--neutral-950)"
     >
       <div class="max-w-3xl mx-auto">
         <a
@@ -85,7 +85,7 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
         <h1 class="text-5xl md:text-6xl mb-6 tracking-tight text-white">
           Steal this{' '}
           <span
-            class="bg-gradient-to-r from-[var(--success-500)] to-[var(--info-600)] bg-clip-text text-transparent"
+            class="bg-linear-to-r from-(--success-500) to-(--info-600) bg-clip-text text-transparent"
           >
             network.
           </span>
@@ -117,7 +117,7 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
             href="https://creativecommons.org/licenses/by-sa/4.0/"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-[var(--success-500)] hover:underline">CC-BY-SA 4.0</a
+            class="text-(--success-500) hover:underline">CC-BY-SA 4.0</a
           >{' '}license Austin Mesh uses — keep it open, share the next version forward.
         </p>
       </section>
@@ -152,7 +152,7 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
               The framing on our{' '}
               <a
                 href="/host-a-node"
-                class="text-[var(--success-500)] hover:underline">Host a Node</a
+                class="text-(--success-500) hover:underline">Host a Node</a
               >{' '}page — businesses with rooftops, ham operators with repeater sites,
               billboard owners along interstates — works in any metro. Swap the highways
               and city names. The pitch is the same: "you already have what we need."
@@ -167,7 +167,7 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
                 href="https://github.com/jeremyfuksa/kansascitymesh.live"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-[var(--success-500)] hover:underline"
+                class="text-(--success-500) hover:underline"
                 data-track-event="steal_github_click"
                 data-track-label="steal-page-code-card"
                 >GitHub</a
@@ -195,7 +195,7 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
                   href={entry.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="inline-flex items-center gap-1.5 text-white mb-2 hover:text-[var(--success-500)] transition-colors"
+                  class="inline-flex items-center gap-1.5 text-white mb-2 hover:text-(--success-500) transition-colors"
                   data-track-event="steal_lineage_click"
                   data-track-label={entry.name}
                 >
@@ -263,7 +263,7 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
             href="https://www.austinmesh.org/similar-networks/#start-a-similar-network"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-[var(--success-500)] hover:underline"
+            class="text-(--success-500) hover:underline"
             >Austin Mesh's "How to start a similar network" guide</a
           >. If anything here is useful, go read theirs in full — it's longer, more
           specific, and more battle-tested.
@@ -306,7 +306,7 @@ const mailtoSubject = encodeURIComponent('Mesh in [your city]');
       <section class="mb-8 pt-8 border-t border-white/10">
         <h2 class="text-white mb-6 flex items-center gap-2">
           Say hi
-          <Heart class="w-5 h-5 text-[var(--primary-600)]" />
+          <Heart class="w-5 h-5 text-(--primary-600)" />
         </h2>
 
         <p class="text-white/70 mb-8 leading-relaxed">

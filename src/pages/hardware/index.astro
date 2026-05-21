@@ -13,11 +13,11 @@ import { hardware } from '../../data/hardware';
   description="Four Meshtastic devices the KC community actually runs. $35–$90, all field-tested."
   path="/hardware"
 >
-  <div class="min-h-screen bg-[var(--neutral-950)]">
+  <div class="min-h-screen bg-(--neutral-950)">
     <Nav currentPage="get-started" />
 
     <div
-      class="px-4 py-12 mt-16 border-b border-white/10 bg-gradient-to-b from-[var(--neutral-900)] to-[var(--neutral-950)]"
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-linear-to-b from-(--neutral-900) to-(--neutral-950)"
     >
       <div class="max-w-6xl mx-auto">
         <a
@@ -48,7 +48,7 @@ import { hardware } from '../../data/hardware';
               trackLabel={item.id}
             >
               <div class="flex gap-6 items-center">
-                <div class="flex-shrink-0 w-32 h-32 rounded-md bg-gradient-to-br from-neutral-800 to-neutral-900 overflow-hidden flex items-center justify-center p-3">
+                <div class="shrink-0 w-32 h-32 rounded-md bg-linear-to-br from-neutral-800 to-neutral-900 overflow-hidden flex items-center justify-center p-3">
                   <Image
                     src={item.image}
                     alt={item.name}
@@ -57,12 +57,12 @@ import { hardware } from '../../data/hardware';
                 </div>
                 <div class="flex-1 min-w-0">
                   <div
-                    class={`inline-block px-3 py-1 bg-gradient-to-r ${item.color} text-white rounded-md text-xs font-medium mb-2`}
+                    class={`inline-block px-3 py-1 bg-linear-to-r ${item.color} text-white rounded-md text-xs font-medium mb-2`}
                   >
                     {item.badge}
                   </div>
                   <h3 class="text-xl text-white mb-1">{item.name}</h3>
-                  <div class="font-mono text-[var(--success-500)] text-lg mb-2">
+                  <div class="font-mono text-(--success-500) text-lg mb-2">
                     {item.detailPrice}
                   </div>
                   <p class="text-white/70 text-[15px] leading-relaxed">

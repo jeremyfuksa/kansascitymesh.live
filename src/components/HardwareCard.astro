@@ -18,14 +18,14 @@ const { name, price, badge, description, color, image } = Astro.props;
 >
   {/* Gradient accent */}
   <div
-    class={`absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r ${color} rounded-t-lg z-10`}
+    class={`absolute top-0 left-0 right-0 h-1.5 bg-linear-to-r ${color} rounded-t-lg z-10`}
   >
   </div>
 
   {/* Image */}
   {
     image && (
-      <div class="aspect-[4/3] bg-gradient-to-br from-neutral-800 to-neutral-900 overflow-hidden">
+      <div class="aspect-4/3 bg-linear-to-br from-neutral-800 to-neutral-900 overflow-hidden">
         <Image src={image} alt={name} class="w-full h-full object-cover" />
       </div>
     )
@@ -38,7 +38,7 @@ const { name, price, badge, description, color, image } = Astro.props;
         <span class="text-2xl text-white">{price}</span>
       </div>
       <span
-        class={`px-3 py-1 bg-gradient-to-r ${color} text-white rounded-md text-sm font-medium`}
+        class={`px-3 py-1 bg-linear-to-r ${color} text-white rounded-md text-sm font-medium`}
       >
         {badge}
       </span>
