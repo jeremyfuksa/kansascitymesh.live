@@ -1,8 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./index.html', './src/**/*.{ts,tsx,js,jsx}'],
+  content: ['./src/**/*.{astro,ts,tsx,js,jsx,html,md,mdx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ['General Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        mono: ['Inconsolata', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+      },
+    },
   },
   plugins: [],
 };

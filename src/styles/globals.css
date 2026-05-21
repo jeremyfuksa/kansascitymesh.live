@@ -1,3 +1,25 @@
+@font-face {
+  font-family: 'General Sans';
+  font-style: normal;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url('/fonts/GeneralSans-Variable.woff2') format('woff2-variations'),
+       url('/fonts/GeneralSans-Variable.woff2') format('woff2'),
+       url('/fonts/GeneralSans-Variable.ttf') format('truetype-variations'),
+       url('/fonts/GeneralSans-Variable.ttf') format('truetype');
+}
+@font-face {
+  font-family: 'General Sans';
+  font-style: italic;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url('/fonts/GeneralSans-VariableItalic.woff') format('woff'),
+       url('/fonts/GeneralSans-VariableItalic.ttf') format('truetype-variations'),
+       url('/fonts/GeneralSans-VariableItalic.ttf') format('truetype');
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +33,11 @@
   --text-2xl: 1.5rem;
   --font-weight-normal: 400;
   --font-weight-medium: 500;
+
+  --font-sans: 'General Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+               'Roboto', 'Helvetica Neue', sans-serif;
+  --font-mono: 'Inconsolata', ui-monospace, SFMono-Regular, 'SF Mono',
+               Menlo, Consolas, monospace;
 
   /* Cello (Primary) — desaturated steel blue */
   --primary-50: #f5f7f9;
@@ -92,8 +119,7 @@ body {
   margin: 0;
   background-color: var(--neutral-950);
   color: #ffffff;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
