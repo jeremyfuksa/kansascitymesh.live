@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { ExternalLink } from 'lucide-react';
 import PulsingDot from './PulsingDot';
+import DiscordButton from './DiscordButton';
 import logo from '../assets/kc-mesh-logo-green.png';
 import { DISCORD_INVITE } from '../constants/discord';
-import { trackEvent } from '../utils/analytics';
 
 interface NavProps {
-  onNavigate: (target: 'home' | 'get-started' | 'host') => void;
-  currentPage?: 'home' | 'get-started' | 'host';
+  onNavigate: (target: 'home' | 'get-started' | 'host' | 'steal') => void;
+  currentPage?: 'home' | 'get-started' | 'host' | 'steal';
 }
 
 export default function Nav({ onNavigate, currentPage = 'home' }: NavProps) {
@@ -69,16 +69,10 @@ export default function Nav({ onNavigate, currentPage = 'home' }: NavProps) {
             >
               {currentPage === 'get-started' ? 'Home' : 'Get Started'}
             </button>
-            <a
-              href={DISCORD_INVITE}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 md:px-4 py-2 bg-[#5865F2] text-white rounded-lg text-sm font-medium hover:bg-[#4752C4] transition-colors"
-              onClick={() => trackEvent('discord_invite_click', 'nav-link')}
-            >
+            <DiscordButton href={DISCORD_INVITE} size="small" trackingLabel="nav-link">
               <span className="hidden sm:inline">Join Discord</span>
               <span className="sm:hidden">Discord</span>
-            </a>
+            </DiscordButton>
           </div>
         </div>
       </div>

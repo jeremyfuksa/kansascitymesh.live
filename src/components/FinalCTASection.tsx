@@ -44,7 +44,7 @@ export default function FinalCTASection() {
         </h2>
         
         <p className="text-xl text-white/70 leading-relaxed mb-8 max-w-2xl mx-auto">
-          Whether you're saying hello on the mesh or asking questions in Discord, we're glad you're here. Pick up a node, check the coverage map, and join the conversation wherever feels right.
+          Whether you're saying hello on the mesh or asking questions in Discord — pick up a node, check the coverage map, find the channel where you fit.
         </p>
 
       </div>
