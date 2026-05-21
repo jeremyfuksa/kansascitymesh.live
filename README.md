@@ -1,5 +1,7 @@
 # Kansas City Meshtastic Network
 
+[![CI](https://github.com/jeremyfuksa/kansascitymesh.live/actions/workflows/ci.yml/badge.svg)](https://github.com/jeremyfuksa/kansascitymesh.live/actions/workflows/ci.yml)
+
 The website for the community-run Meshtastic mesh network in the Kansas City metro. Live at [kansascitymesh.live](https://kansascitymesh.live). Source under CC-BY-SA 4.0 — fork it for your own city.
 
 ## Tech stack
