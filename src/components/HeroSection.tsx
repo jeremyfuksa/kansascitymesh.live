@@ -53,7 +53,7 @@ export default function HeroSection() {
                 <Radio className="w-5 h-5 text-[var(--success-500)]" />
               </div>
               <div>
-                <h3 className="text-lg mb-1 text-white">60+ active nodes. 130+ total nodes.</h3>
+                <h3 className="text-lg mb-1 text-white">60+ active nodes. 130+ total nodes. 200+ in Discord.</h3>
                 <p className="text-white/60 leading-relaxed">
                   Power up a Meshtastic node and say hello. We're always welcoming newcomers.
                 </p>

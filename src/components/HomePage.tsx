@@ -1,12 +1,13 @@
 import HeroSection from './HeroSection';
 import HardwareSection from './HardwareSection';
 import ResourcesSection from './ResourcesSection';
+import HostInfrastructureCTA from './HostInfrastructureCTA';
 import FinalCTASection from './FinalCTASection';
 import Footer from './Footer';
 import Nav from './Nav';
 
 interface HomePageProps {
-  onNavigate: (target: 'home' | 'get-started') => void;
+  onNavigate: (target: 'home' | 'get-started' | 'host') => void;
 }
 
 export default function HomePage({ onNavigate }: HomePageProps) {
@@ -16,6 +17,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       <HeroSection />
       <HardwareSection />
       <ResourcesSection />
+      <HostInfrastructureCTA onNavigate={onNavigate} />
       <FinalCTASection />
       <Footer onNavigate={onNavigate} />
     </div>
