@@ -85,12 +85,12 @@ The implementation is **single-mode dark**, not the dual-mode warm palette origi
 
 ## Site Structure (as implemented)
 
-Four pages, routed by `src/App.tsx` based on `window.location.pathname`:
+Four pages, file-based routing under `src/pages/`:
 
-- **`/`** — HomePage. Hero (intro + live map preview) → Hardware showcase grid → Resources cards → HostInfrastructureCTA → DroneFlyCTA → FinalCTASection → Footer.
-- **`/getting-started`** — Five-step onboarding. Choose hardware → buy hardware → flash firmware → configure node → say hello on the mesh.
-- **`/host-a-node`** — The KC Backbone Initiative recruiting page. Why it matters → criteria → audience targeting (AudienceRow) → what we provide back → success story → contact.
-- **`/steal-this-network`** — Open invitation to other cities. CC-BY-SA framing, lineage credit to Austin Mesh and Cascadia Mesh, partner-mesh list, operational tips for starting a new community mesh.
+- **`/` (`src/pages/index.astro`)** — Home. Hero (intro + live map preview) → Hardware showcase grid → Resources cards → HostInfrastructureCTA → DroneFlyCTA → FinalCTASection → Footer.
+- **`/getting-started` (`src/pages/getting-started.astro`)** — Five-step onboarding. Choose hardware → buy hardware → flash firmware → configure node → say hello on the mesh.
+- **`/host-a-node` (`src/pages/host-a-node.astro`)** — The KC Backbone Initiative recruiting page. Why it matters → criteria → audience targeting (AudienceRow) → what we provide back → success story → contact.
+- **`/steal-this-network` (`src/pages/steal-this-network.astro`)** — Open invitation to other cities. CC-BY-SA framing, lineage credit to Austin Mesh and Cascadia Mesh, partner-mesh list, operational tips for starting a new community mesh.
 
 External destinations linked throughout:
 - **`map.kansascitymesh.live`** — Live coverage map (MeshMonitor). External app, not part of this repo.
@@ -144,22 +144,25 @@ The deprecated "Four-Router Backbone Strategy" (Router 1 East / Router 2 West / 
 
 ## Technical Stack (as implemented)
 
-- **Vite + React (TypeScript)** — entry in `src/main.tsx`. Routing is hand-rolled in `App.tsx` via `window.location.pathname`; each route maps to one of four top-level page components.
-- **Multi-entry HTML** — Each route has a matching HTML file at the project root (`index.html`, `getting-started.html`, `host-a-node.html`, `steal-this-network.html`). The host (deploy target) handles path rewrites; direct loads of a path serve the matching HTML which boots the same React bundle.
-- **Tailwind CSS** — `src/styles/globals.css` defines the palette as CSS custom properties; Tailwind utility classes do the rest.
-- **lucide-react** — Iconography.
+- **Astro 5 (static)** — `astro.config.mjs` at the project root. Pages live in `src/pages/`, each a `.astro` file that maps to a route. The site builds to fully static HTML with no client-side framework runtime.
+- **Layout component** — `src/layouts/Layout.astro` wraps every page. Owns the `<head>` block (per-page title/description, OG/Twitter meta, canonical URL, GA initialization) and renders the shared body shell.
+- **Tailwind CSS via `@astrojs/tailwind`** — `src/styles/globals.css` is imported by the layout and defines the palette as CSS custom properties. Astro's Tailwind integration is configured with `applyBaseStyles: false` so our globals.css remains the source of truth for base styles.
+- **`@lucide/astro`** — Iconography, native Astro components.
+- **`astro:assets`** — Image optimization for hardware photos and the meshmonitor screenshot. Static imports type as `ImageMetadata`; the `<Image>` component emits WebP automatically.
+- **Client interactivity** — Two small inline `<script>` blocks. (1) The Layout has an event-delegation listener for `[data-track-event]` attributes that forwards clicks to `trackEvent()`. (2) Nav.astro has a scroll-listener script that toggles the nav background on the home page only.
+- **No client-side framework runtime** — No React, no Vue, no Svelte. The only JS shipped is the two inline scripts above (~1 KB) plus the external Google Analytics loader (unchanged from before).
 - **No backend** — The Discord, the coverage map, and the GitHub repo are external. The site is static.
 
 **Project conventions**:
 
-- Components live in `src/components/`. The canonical design components are documented in the Design System section.
-- Shared data lives in `src/data/` (hardware list) and `src/constants/` (Discord invite, contact email).
-- Analytics events fire via `src/utils/analytics.ts` (`trackEvent`, `trackPageView`).
+- Astro components live in `src/components/`. Pages in `src/pages/`. Layout in `src/layouts/`.
+- Shared data lives in `src/data/` (hardware list) and `src/constants/` (Discord invite, contact email, GA measurement ID).
+- Analytics events fire via `src/utils/analytics.ts` (`trackEvent`, `trackPageView`). Components opt in by setting `data-track-event` and optionally `data-track-label` attributes; the Layout's delegated listener calls `trackEvent` on click. Specialized buttons (PrimaryButton, SecondaryButton, FeatureCard, DiscordButton) accept `trackEvent`/`trackLabel` props that forward to these attributes.
 - Voice and design audits are kept in `docs/`. Major changes get an audit doc.
 
 ## Working in this repo
 
-- Run `npm run check` before committing — typecheck must pass.
-- Run `npm run build` to verify Vite production build is clean.
+- Run `npm run check` before committing — `astro check` must pass.
+- Run `npm run build` to verify the production build is clean.
 - When changing copy, check the work against `docs/VOICE-AUDIT-2026-05.md` and the `jeremy-voice` skill's anti-pattern catalog.
 - When changing visual treatment, use the canonical components from the Design System section. Don't introduce a third card style or fourth button pattern without a real reason.

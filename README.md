@@ -6,34 +6,34 @@ The website for the community-run Meshtastic mesh network in the Kansas City met
 
 ## Tech stack
 
-- **Vite + React (TypeScript)** — entry in `src/main.tsx`.
-- **Tailwind CSS** — utility classes; design tokens defined as CSS custom properties in `src/styles/globals.css`.
-- **lucide-react** — icons.
+- **Astro 5 (static)** — file-based routing under `src/pages/`. The site builds to fully static HTML; no client-side framework runtime.
+- **Tailwind CSS via `@astrojs/tailwind`** — design tokens defined as CSS custom properties in `src/styles/globals.css`.
+- **`@lucide/astro`** — icons.
+- **`astro:assets`** — automatic WebP optimization for product photos and the coverage-map screenshot.
+- **Two tiny inline `<script>` blocks** for the nav scroll listener and analytics event delegation. About 1 KB total. No framework runtime ships.
 - **No backend.** The site is static. Discord, the live coverage map, and the GitHub repo are external services linked from the page.
 
 ## Project structure
 
-- `src/components/` — React components. Page-level components (`HomePage`, `GetStartedPage`, `HostANodePage`, `StealThisNetworkPage`) and the design-system primitives (`InfoCard`, `FeatureCard`, `PrimaryButton`, `SecondaryButton`, `DiscordButton`, `TipBanner`, `MessageBanner`, `AudienceRow`).
+- `src/pages/` — One `.astro` file per route. Astro maps file paths to URLs automatically.
+- `src/layouts/Layout.astro` — Shared page shell. Per-page props for title, description, and canonical path. Owns the `<head>` block (OG/Twitter meta, canonical URL, Google Analytics initialization) and a delegated click listener for `[data-track-event]` analytics.
+- `src/components/` — Astro components. Design-system primitives (`InfoCard`, `FeatureCard`, `AudienceRow`, `TipBanner`, `MessageBanner`, `PrimaryButton`, `SecondaryButton`, `DiscordButton`, `PulsingDot`) and page-specific sections (`HeroSection`, `HardwareSection`, `ResourcesSection`, `HostInfrastructureCTA`, `DroneFlyCTA`, `FinalCTASection`, `Nav`, `Footer`, `HardwareCard`).
 - `src/data/` — Shared data (`hardware.ts` is the single source for the four community-favorite Meshtastic devices).
-- `src/constants/` — Shared constants (Discord invite URL, contact email, analytics IDs).
+- `src/constants/` — Shared constants (Discord invite URL, contact email, GA measurement ID).
 - `src/styles/globals.css` — Tailwind directives plus the color palette and shared utilities as CSS custom properties.
-- `src/assets/` — Product photography and the KC Mesh logo.
+- `src/assets/` — Product photography and the KC Mesh logo. Imported by components via Astro's image pipeline.
+- `src/utils/analytics.ts` — `trackEvent` and `trackPageView` helpers. Components opt into analytics by setting `data-track-event` / `data-track-label` attributes; the Layout's delegated listener forwards clicks to `trackEvent`.
 - `docs/` — Voice and design audit documents, community growth playbook, host-a-node draft.
-- `index.html`, `getting-started.html`, `host-a-node.html`, `steal-this-network.html` — One HTML entry per route. Each boots the same React bundle; the App component reads `window.location.pathname` and renders the matching page.
 
 ## Getting started
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
+npm run dev      # http://localhost:4321
 npm run build    # production bundle to dist/
 npm run preview  # serve the production build locally
-npm run check    # tsc --noEmit
+npm run check    # astro check (TypeScript + Astro type validation)
 ```
-
-## Routing
-
-Routes are mapped by hand in `src/App.tsx` against `window.location.pathname`. There is no router library — each path maps to one top-level page component, and `pushState` handles in-app navigation. Direct loads of a path require the host to serve the matching HTML file (or fall back to `index.html` — both work because each HTML entry boots the same bundle and the path-routing happens in JS).
 
 ## License
 
