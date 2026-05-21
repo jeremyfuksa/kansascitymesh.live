@@ -43,10 +43,7 @@ const ogImage = new URL('/og-image.png', Astro.site ?? 'https://kansascitymesh.l
     <meta name="twitter:image" content={ogImage} />
 
     {/* Google Analytics */}
-    <script
-      is:inline
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+    <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
     ></script>
     <script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
       window.dataLayer = window.dataLayer || [];
@@ -67,9 +64,7 @@ const ogImage = new URL('/og-image.png', Astro.site ?? 'https://kansascitymesh.l
       import { trackEvent } from '../utils/analytics';
 
       document.addEventListener('click', (event) => {
-        const el = (event.target as HTMLElement | null)?.closest<HTMLElement>(
-          '[data-track-event]',
-        );
+        const el = (event.target as HTMLElement | null)?.closest<HTMLElement>('[data-track-event]');
         if (!el) return;
         const action = el.dataset.trackEvent;
         const label = el.dataset.trackLabel;

@@ -46,7 +46,7 @@ These are the changes shipping in the same PR as this doc:
 
 The hosted-infrastructure rollout from [`CLAUDE.md`](../CLAUDE.md) is being elevated from "Jeremy's planning doc" to a public-facing flagship project name — and re-scoped to match what's actually on the map. The I-35 spine (downtown through Overland Park and the southern suburbs) is strong. The current gaps are two parallel ones: **(1)** the metro's east and west edges — Bonner Springs, Independence, Blue Springs — and **(2)** the I-70 corridor in both directions, where existing outlier nodes in Manhattan, KS and Columbia, MO can't reliably reach the KC mesh because the intermediate hop chain doesn't exist yet. The Backbone Initiative is the named ask for both.
 
-*(Note: `CLAUDE.md` still describes the older four-router cardinal framing — worth updating that doc to match this scoping when convenient. They're now out of sync.)*
+_(Note: `CLAUDE.md` still describes the older four-router cardinal framing — worth updating that doc to match this scoping when convenient. They're now out of sync.)_
 
 ### `/host-a-node` page
 

@@ -32,12 +32,10 @@ import { hardware } from '../data/hardware';
           Back to home
         </a>
 
-        <h1 class="text-5xl md:text-6xl mb-6 tracking-tight text-white">
-          Getting Started
-        </h1>
+        <h1 class="text-5xl md:text-6xl mb-6 tracking-tight text-white">Getting Started</h1>
         <p class="text-xl text-white/70">
-          From zero to your first transmission in about 30 minutes. This is the path we
-          use in KC — most of it works anywhere in the US.
+          From zero to your first transmission in about 30 minutes. This is the path we use in KC —
+          most of it works anywhere in the US.
         </p>
       </div>
     </div>
@@ -64,8 +62,8 @@ import { hardware } from '../data/hardware';
         </div>
 
         <TipBanner>
-          Most people start with a Heltec V3 or V4. It's affordable, has a screen, and you
-          can test the mesh before committing to more expensive gear.
+          Most people start with a Heltec V3 or V4. It's affordable, has a screen, and you can test
+          the mesh before committing to more expensive gear.
         </TipBanner>
       </section>
 
@@ -81,24 +79,24 @@ import { hardware } from '../data/hardware';
           <InfoCard interactive>
             <h3 class="text-white mb-2">AliExpress</h3>
             <p class="text-white/70 leading-relaxed">
-              Cheapest prices, but 2-3 week shipping from China. Good if you're patient
-              and want to save $10-20.
+              Cheapest prices, but 2-3 week shipping from China. Good if you're patient and want to
+              save $10-20.
             </p>
           </InfoCard>
 
           <InfoCard interactive>
             <h3 class="text-white mb-2">Amazon</h3>
             <p class="text-white/70 leading-relaxed">
-              Fast shipping (1-2 days), higher prices. Search "Heltec V3 LoRa" or
-              "Meshtastic node" — watch for sellers shipping from US warehouses.
+              Fast shipping (1-2 days), higher prices. Search "Heltec V3 LoRa" or "Meshtastic node"
+              — watch for sellers shipping from US warehouses.
             </p>
           </InfoCard>
 
           <InfoCard interactive>
             <h3 class="text-white mb-2">Rokland.net</h3>
             <p class="text-white/70 leading-relaxed">
-              US-based, slightly higher than AliExpress. They test each board before
-              shipping, and they answer email.
+              US-based, slightly higher than AliExpress. They test each board before shipping, and
+              they answer email.
             </p>
           </InfoCard>
         </div>
@@ -177,15 +175,13 @@ import { hardware } from '../data/hardware';
             href="https://play.google.com/store/apps/details?id=com.geeksville.mesh"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-(--info-400) hover:text-(--info-300) underline"
-            >Android</a
+            class="text-(--info-400) hover:text-(--info-300) underline">Android</a
           >, or use the{' '}
           <a
             href="https://client.meshtastic.org"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-(--info-400) hover:text-(--info-300) underline"
-            >web client</a
+            class="text-(--info-400) hover:text-(--info-300) underline">web client</a
           >. Connect via Bluetooth and configure these settings:
         </p>
 
@@ -193,30 +189,27 @@ import { hardware } from '../data/hardware';
           <InfoCard>
             <h3 class="text-white mb-2">Set your node name</h3>
             <p class="text-white/70 leading-relaxed">
-              Something recognizable. A clever or descriptive name is better than
-              'Meshtastic abcd'.
+              Something recognizable. A clever or descriptive name is better than 'Meshtastic abcd'.
             </p>
           </InfoCard>
 
           <InfoCard>
             <h3 class="text-white mb-2">Region: United States</h3>
-            <p class="text-white/70 leading-relaxed">
-              This sets your LoRa frequency to 915 MHz.
-            </p>
+            <p class="text-white/70 leading-relaxed">This sets your LoRa frequency to 915 MHz.</p>
           </InfoCard>
 
           <InfoCard>
             <h3 class="text-white mb-2">Set position (if GPS-enabled device)</h3>
             <p class="text-white/70 leading-relaxed">
-              Helps build the coverage map. Your exact location isn't shared publicly,
-              just general area.
+              Helps build the coverage map. Your exact location isn't shared publicly, just general
+              area.
             </p>
           </InfoCard>
         </div>
 
         <TipBanner>
-          Leave the default "Long Fast" channel preset. Until KC hits the density where
-          we'd need to switch presets, that's what every node here runs.
+          Leave the default "Long Fast" channel preset. Until KC hits the density where we'd need to
+          switch presets, that's what every node here runs.
         </TipBanner>
       </section>
 
@@ -226,14 +219,14 @@ import { hardware } from '../data/hardware';
 
         <MessageBanner>
           <p class="text-white/70 mb-6 leading-relaxed">
-            Open the Meshtastic app, go to Messages, and send a hello message to the
-            Primary channel. You'll probably get responses from folks around KC within a
-            few minutes (depending on time of day and your coverage).
+            Open the Meshtastic app, go to Messages, and send a hello message to the Primary
+            channel. You'll probably get responses from folks around KC within a few minutes
+            (depending on time of day and your coverage).
           </p>
 
           <p class="text-white/70 mb-6 leading-relaxed">
-            You'll definitely get an automated welcome from the KCML node when it
-            discovers your node for the first time.
+            You'll definitely get an automated welcome from the KCML node when it discovers your
+            node for the first time.
           </p>
 
           <p class="text-white/50 mb-6 leading-relaxed">
@@ -242,8 +235,7 @@ import { hardware } from '../data/hardware';
               href="https://map.kansascitymesh.live"
               target="_blank"
               rel="noopener noreferrer"
-              class="text-(--info-400) hover:text-(--info-300) underline"
-              >coverage map</a
+              class="text-(--info-400) hover:text-(--info-300) underline">coverage map</a
             >{' '}to see if you're in range. The network is growing but still has gaps.
           </p>
 
@@ -256,8 +248,8 @@ import { hardware } from '../data/hardware';
         <h2 class="text-white mb-6">Next Steps</h2>
 
         <p class="text-white/70 mb-8 leading-relaxed">
-          If you want to optimize your antenna, add more nodes, or troubleshoot anything,
-          the Discord is full of people who've done this already.
+          If you want to optimize your antenna, add more nodes, or troubleshoot anything, the
+          Discord is full of people who've done this already.
         </p>
 
         <DiscordButton href={DISCORD_INVITE} trackLabel="get-started-discord">

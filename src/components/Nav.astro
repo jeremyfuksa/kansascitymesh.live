@@ -20,16 +20,12 @@ const initialNavClass = startTransparent
   ? 'bg-transparent'
   : 'bg-black/80 backdrop-blur-xl border-b border-white/10 shadow-lg shadow-black/20';
 
-const linkClass = (active: boolean) =>
-  active ? 'text-white' : 'text-white/70 hover:text-white';
+const linkClass = (active: boolean) => (active ? 'text-white' : 'text-white/70 hover:text-white');
 ---
 
 <nav
   id="site-nav"
-  class:list={[
-    'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
-    initialNavClass,
-  ]}
+  class:list={['fixed top-0 left-0 right-0 z-50 transition-all duration-300', initialNavClass]}
   data-start-transparent={startTransparent ? 'true' : 'false'}
 >
   <div class="max-w-6xl mx-auto px-4 py-4">

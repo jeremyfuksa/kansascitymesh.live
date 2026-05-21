@@ -24,11 +24,7 @@ const className =
       <slot />
     </a>
   ) : (
-    <button
-      class={className}
-      data-track-event={trackEvent}
-      data-track-label={trackLabel}
-    >
+    <button class={className} data-track-event={trackEvent} data-track-label={trackLabel}>
       <slot />
     </button>
   )

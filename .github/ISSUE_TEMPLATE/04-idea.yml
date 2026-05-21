@@ -1,0 +1,22 @@
+name: Feature or content idea
+description: Something we could add — a new page, a new section, a different way to organize what's already there.
+title: '[idea] '
+labels: ['idea']
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: The idea
+      description: One or two paragraphs. Don't worry about scoping it; just sketch the thing.
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why this matters
+      description: Who's the audience? What problem does it solve? What conversation in Discord prompted this?
+  - type: textarea
+    id: references
+    attributes:
+      label: References (optional)
+      description: Other mesh sites, articles, screenshots, anything that inspired the idea.
