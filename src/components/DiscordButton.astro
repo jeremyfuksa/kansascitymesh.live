@@ -12,10 +12,10 @@ const { href, size = 'default', trackLabel = 'discord-invite' } = Astro.props;
 
 const sizeClasses =
   size === 'large'
-    ? 'px-8 py-5 text-[17px] rounded-xl'
+    ? 'px-8 py-5 text-[17px] rounded-lg'
     : size === 'small'
-      ? 'px-3 md:px-4 py-2 text-sm rounded-lg'
-      : 'px-6 py-3.5 text-[15px] rounded-xl';
+      ? 'px-3 md:px-4 py-2 text-sm rounded-sm'
+      : 'px-6 py-3.5 text-[15px] rounded-md';
 
 // Small size uses a quieter hover (color only, no scale) since it lives in nav contexts.
 const hoverClasses =

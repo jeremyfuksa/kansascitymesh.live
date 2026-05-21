@@ -18,7 +18,7 @@ const PADDING_CLASSES: Record<PaddingSize, string> = {
 };
 
 const { class: className = '', interactive = false, padding = 'default' } = Astro.props;
-const base = `bg-[var(--neutral-900)] border border-white/10 rounded-xl ${PADDING_CLASSES[padding]}`;
+const base = `bg-[var(--neutral-900)] border border-white/10 rounded-md ${PADDING_CLASSES[padding]}`;
 const hover = interactive ? ' hover:border-white/20 transition-colors' : '';
 ---
 
