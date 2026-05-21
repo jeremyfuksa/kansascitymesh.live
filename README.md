@@ -1,42 +1,42 @@
 # Kansas City Meshtastic Network
 
-The vetted Figma design now lives as a compact React/Vite SPA inside `src/`, and the top-level `index.html` + shared styles/behavior are what ship to production. The UI mirrors the original hero/hardware/final CTA layout and the dedicated get-started guide so the experience plays out exactly as the design mandates.
+The website for the community-run Meshtastic mesh network in the Kansas City metro. Live at [kansascitymesh.live](https://kansascitymesh.live). Source under CC-BY-SA 4.0 — fork it for your own city.
 
 ## Tech stack
 
-- **Vite + React (TypeScript)** — entry point in `src/main.tsx`, minimal render tree, two logical pages (`HomePage`, `GetStartedPage`) swapped through component state.
-- **Tailwind CSS** — `src/styles/globals.css` defines the color palette, gradients, and shared utilities; the build runs through `tailwindcss` + `postcss`.
-- **Simple assets** — `figma:asset/*` imports are aliased to `src/assets/figma/` so the components keep their original references, and a handful of placeholder PNGs match the approved layout until the real Figma exports are swapped in.
+- **Vite + React (TypeScript)** — entry in `src/main.tsx`.
+- **Tailwind CSS** — utility classes; design tokens defined as CSS custom properties in `src/styles/globals.css`.
+- **lucide-react** — icons.
+- **No backend.** The site is static. Discord, the live coverage map, and the GitHub repo are external services linked from the page.
 
 ## Project structure
 
-- `src/` – React source from the Figma export, organized by sections; `styles/globals.css` holds the shared theming, and `assets/figma/` stores the image stand-ins.
-- `public/` – Static files served directly (favicon, future downloads, etc.).
-- `index.html` + `getting-started.html` – Vite entry shells for the home and onboarding screens. Each loads the same React bundle but the `/getting-started` route loads the vetted Flow page on load.
-- `package.json` – Scripts for `dev`, `build`, `preview`, and `check`, plus the dependencies needed to run the React + Tailwind toolchain.
-- `vite.config.ts` – React plugin plus an alias so `figma:asset` resolves to the local placeholders.
-- `tsconfig.json` / `tsconfig.node.json` – TypeScript settings; `src/components/ui` is excluded because those helpers are unused in the current build.
-- `tailwind.config.cjs` + `postcss.config.cjs` – Tailwind/PostCSS pipeline configured for the `src/**/*.{ts,tsx}` files.
+- `src/components/` — React components. Page-level components (`HomePage`, `GetStartedPage`, `HostANodePage`, `StealThisNetworkPage`) and the design-system primitives (`InfoCard`, `FeatureCard`, `PrimaryButton`, `SecondaryButton`, `DiscordButton`, `TipBanner`, `MessageBanner`, `AudienceRow`).
+- `src/data/` — Shared data (`hardware.ts` is the single source for the four community-favorite Meshtastic devices).
+- `src/constants/` — Shared constants (Discord invite URL, contact email, analytics IDs).
+- `src/styles/globals.css` — Tailwind directives plus the color palette and shared utilities as CSS custom properties.
+- `src/assets/` — Product photography and the KC Mesh logo.
+- `docs/` — Voice and design audit documents, community growth playbook, host-a-node draft.
+- `index.html`, `getting-started.html`, `host-a-node.html`, `steal-this-network.html` — One HTML entry per route. Each boots the same React bundle; the App component reads `window.location.pathname` and renders the matching page.
 
 ## Getting started
 
 ```bash
-npm install        # installs React/Vite/Tailwind with the versions listed in package.json
-npm run dev        # run the dev server (Vite) and open http://localhost:5173
-npm run build      # create the production bundle with Vite
-npm run preview    # preview the production build locally
-npm run check      # run tsc --noEmit against tsconfig.json
+npm install
+npm run dev      # http://localhost:5173
+npm run build    # production bundle to dist/
+npm run preview  # serve the production build locally
+npm run check    # tsc --noEmit
 ```
 
-Tailwind/JIT will process the `globals.css` file and the component classes automatically, so there is no additional build step beyond `npm run build`.
+## Routing
 
-## Notes
+Routes are mapped by hand in `src/App.tsx` against `window.location.pathname`. There is no router library — each path maps to one top-level page component, and `pushState` handles in-app navigation. Direct loads of a path require the host to serve the matching HTML file (or fall back to `index.html` — both work because each HTML entry boots the same bundle and the path-routing happens in JS).
 
-- The `App` component toggles between `HomePage` and `GetStartedPage` to keep the two vetted screens accessible without introducing routing.
-- `src/assets/figma/` contains placeholder PNGs that are resolved via the alias defined in `vite.config.ts`. Swap them for the true Figma exports (or a CDN link) and keep the file names intact to avoid touching the component imports.
-- Add new UI patterns directly in `HomePage`, `GetStartedPage`, or their child sections; avoid rearranging the copy unless the strategy docs explicitly call for it.
-- The `public/favicon.svg` is a simple KC-branded circle used for the site icon; replace it only if the new design requires a different asset.
+## License
 
-## Deployment
+Site content (copy and configuration) under [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) — share-alike. Take whatever helps for your city. See [`/steal-this-network`](https://kansascitymesh.live/steal-this-network) for the rationale.
 
-The output from `npm run build` lives under `dist/`. Deploy those static files directly to the host of your choice. No additional server or bundler setup is required beyond the above dependencies.
+## Lineage
+
+Built on what [Austin Mesh](https://www.austinmesh.org) and [Cascadia Mesh](https://cascadiamesh.org) did first. If we've inspired you, please [steal this network](https://kansascitymesh.live/steal-this-network).

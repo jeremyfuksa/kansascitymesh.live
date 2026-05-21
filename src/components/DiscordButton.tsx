@@ -6,7 +6,7 @@ interface DiscordButtonProps {
   children: ReactNode;
   href?: string;
   onClick?: (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => void;
-  size?: 'default' | 'large';
+  size?: 'small' | 'default' | 'large';
   trackingLabel?: string;
 }
 
@@ -17,9 +17,20 @@ export default function DiscordButton({
   size = 'default',
   trackingLabel = 'discord-invite',
 }: DiscordButtonProps) {
-  const sizeClasses = size === 'large' ? 'px-8 py-5 text-[17px]' : 'px-6 py-3.5 text-[15px]';
+  const sizeClasses =
+    size === 'large'
+      ? 'px-8 py-5 text-[17px] rounded-xl'
+      : size === 'small'
+        ? 'px-3 md:px-4 py-2 text-sm rounded-lg'
+        : 'px-6 py-3.5 text-[15px] rounded-xl';
 
-  const baseClasses = `inline-flex items-center justify-center gap-2 bg-[#5865F2] text-white rounded-xl font-medium transition-all hover:bg-[#4752C4] hover:scale-105 hover:shadow-2xl hover:shadow-[#5865F2]/25 active:scale-100 ${sizeClasses}`;
+  // Small size uses a quieter hover (color only, no scale) since it lives in nav contexts.
+  const hoverClasses =
+    size === 'small'
+      ? 'hover:bg-[#4752C4] transition-colors'
+      : 'hover:bg-[#4752C4] hover:scale-105 hover:shadow-2xl hover:shadow-[#5865F2]/25 active:scale-100 transition-all';
+
+  const baseClasses = `inline-flex items-center justify-center gap-2 bg-[#5865F2] text-white font-medium ${hoverClasses} ${sizeClasses}`;
   const shouldTrack = href === DISCORD_INVITE;
 
   const handleClick = (event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {

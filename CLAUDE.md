@@ -1,16 +1,18 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. For general project guidelines, conventions, and technical details, please refer to [GUIDELINES.md](GUIDELINES.md).
-
-**Important**: All planning is complete. Decisions have been made. Implementation phase has begun. Do not suggest alternatives to established decisions.
+This file provides guidance to Claude Code (claude.ai/code) when working in this repository.
 
 ## Project Overview
 
-Kansas City Meshtastic Network website - **one person's mesh infrastructure project** inviting others to join and help build community mesh networking in KC. This is NOT an established organization or club. It's one person (Jeremy) who deployed a router, documented the process, and is building this site to help others participate.
+Kansas City Meshtastic Network website — a community-run mesh networking project in the KC metro. About 60 active nodes today (130 total registered, 200+ in Discord), a working backbone running up and down the I-35 corridor, and an ongoing recruiting effort for hosted infrastructure to round out the metro and reach outlier nodes in Manhattan, Columbia, Lawrence, and Topeka.
 
-**Current Status**: Active development. Site scaffold exists. Content being populated with personal, conversational voice (see docs/06-CONTENT-VOICE-GUIDELINES.md).
+The project was originally seeded by one person (Jeremy Fuksa) who deployed the first router and documented the process, but the site now speaks for the broader community. The voice direction below makes this explicit.
 
-**Critical Voice Direction**: First-person narrative. "I'm building..." not "The network provides...". Honest about learning curve. Welcoming to everyday people. Combat perfectionism that prevents deployment.
+**Current Status**: Active development. Voice and design audits live in `docs/` — see `VOICE-AUDIT-2026-05.md` and `DESIGN-AUDIT-2026-05.md` for the most recent passes. The site is being prepared for a complete design system overhaul by Claude Design.
+
+**Critical Voice Direction**: Collective first person — the site speaks as the KC Mesh community of 200+. "We're building..." not "I'm building..." and not "The network provides...". The community is the implied speaker; specific people get named only when accuracy requires it. Honest about gaps and the learning curve. Welcoming to everyday people. Combat perfectionism that prevents deployment.
+
+**Voice audit reference**: Site copy is held to the same diagnostic standards as the `jeremy-voice` skill's anti-pattern catalog (no wrap-up codas, no "X, not Y" rhythm tics, no "actually/genuinely/absolutely" as superiority markers, no graduation-speech sentences, no corporate-adjacent vocabulary). Site copy is not personal-essay register, but it passes the same checks.
 
 ## Core Project Philosophy
 
@@ -38,73 +40,62 @@ Kansas City Meshtastic Network website - **one person's mesh infrastructure proj
 
 ## Design System
 
-**Color Palette** (warm-balanced to counter blue/green dominance):
+The implementation is **single-mode dark**, not the dual-mode warm palette originally specced. The colors live as CSS custom properties in `src/styles/globals.css`. Use the named tokens (e.g. `var(--primary-600)`), not raw hex values.
 
-Primary:
+**Palette tokens** (each color has 50/100/200/.../950 progression in `globals.css`):
 
-- Kansas City Red: #E31837 (primary CTAs, alerts)
-- Kansas City Blue: #004687 (secondary elements, links)
-- Kansas City Sky Blue: #5DADE2 (accents, info callouts)
-- Meshtastic Green: #67C98F (success states, network status)
+- `--primary-*` — **Cello** (desaturated steel blue, `#4c627d` at -600). Primary CTAs, brand backgrounds, link color when not on a dark surface.
+- `--secondary-*` — **Terracotta** (warm red-orange, `#a8654f` at -600). Secondary accents, warm highlights.
+- `--neutral-*` — **Black Rock** (cool dark gray, `#2b303b` at -900 for cards, `#1c1f26` at -950 for page backgrounds). Surface system.
+- `--success-*` — **Sage** (`#8fb14b` at -500, `#739038` at -600). Sage-green CTAs ("Become a host"), success/healthy states.
+- `--warning-*` — **Golden Amber** (`#f9c574` at -500). Caution, badges.
+- `--danger-*` — **Flamingo** (`#e75351` at -500). Reserved; not yet used in UI copy.
+- `--info-*` — **Blue Calx** (`#b8c5d9` at -500). Information accents, drone-fly callout color, link color on dark backgrounds (use -300 or -400 for legible text).
+- `--meshtastic-green` — `#10b981` (emerald). **Intentionally outside the sage scale** — the brighter green that says "live" on `<PulsingDot>` indicators. Aligns with Meshtastic project brand color.
 
-Warm Accents:
+**Surface treatments** (the visual hierarchy):
 
-- Sunset Amber: #F59E42 (warm highlights, secondary CTAs)
-- Kansas Clay: #D4825C (tertiary accents, borders)
-- Prairie Gold: #E8B547 (attention elements, badges)
+- **`<InfoCard>`** — solid `bg-[var(--neutral-900)]` with subtle white border. Reads as "information to absorb." Used for in-content lists.
+- **`<FeatureCard>`** — `bg-white/5 backdrop-blur-xl` glass with shadow. Reads as "focal element." Used for hero cards, homepage CTAs, hardware showcase.
+- **`<TipBanner>`** — sage-green gradient highlight, Info icon. Reads as "pay attention to this."
+- **`<MessageBanner>`** — slate-gradient narrative block. Reads as "storytelling moment."
+- **`<AudienceRow>`** — horizontal row with a left-edge gradient accent stripe. Reads as "this is for you, specifically." Used for the "Who should consider hosting" section.
 
-Dark Mode:
+**Button hierarchy**:
 
-- Background: #1A1512 (warm dark brown)
-- Cards: #2B2420 (warm charcoal)
-- Text: #F4E8D8 (warm off-white)
+- **`<PrimaryButton>`** — sage-green, black text, scale-up hover. The single most-important action on a page.
+- **`<DiscordButton>`** — Discord brand color. Sizes: `small` (nav), `default` (in-content), `large` (hero closer).
+- **`<SecondaryButton>`** — outline pill. Supporting actions ("View Live Map," external partner links).
 
-Light Mode:
+**Text-opacity scale** on dark surfaces:
 
-- Background: #FDFBF7 (warm off-white)
-- Cards: #F5EFE6 (cream/warm gray)
-- Text: #2B2420 (warm dark)
+- `text-white` — heading text
+- `text-white/70` — body prose, nav links (canonical body color)
+- `text-white/50` — muted secondary, copyright, micro-text
+- `text-white/30` — version stamps and similar "fades into background" signals
+- `text-white/80` — reserved for tip-banner body emphasis only
 
 **Design Principles**:
 
 - Mobile-first responsive (field use on phones priority)
-- High-end professional aesthetic with local KC identity
-- Dual theme (dark/light) with warm undertones
+- High-end professional aesthetic with local KC identity (rendered through the Cello/Terracotta/Sage palette, not literal KC sports colors)
+- Single-mode dark (light mode tokens exist in `globals.css` but are unused)
 - Narrative-driven content (not bullet-heavy)
 - Clear information hierarchy for scanning
 
-## Site Structure
+## Site Structure (as implemented)
 
-```
-HOME
-ABOUT
-  ├── Community & Coordination (coordination mechanism for kansascitymesh.net)
-  └── Why Meshtastic? (educational foundation)
-GET STARTED
-  ├── Join the Network (primary action path)
-  ├── Quick Start Guide (fast path for experienced)
-  └── Hardware Selection (equipment guidance)
-NETWORK INFO
-  ├── Coverage Map (interactive visualization)
-  ├── Network Architecture (technical explanation)
-  ├── Current Status (live dashboard)
-  └── Growth Strategy (vision & roadmap)
-DEPLOYMENT GUIDES
-  ├── For Ham Radio Operators (licensed amateurs)
-  ├── For Repeater Owners (infrastructure hosts)
-  ├── Residential Solar Setups (stealth/HOA-friendly)
-  ├── Router vs Gateway Guide (configuration decisions)
-  └── West Side Infrastructure (priority needs)
-RESOURCES
-  ├── Frequency Reference (business/retail frequencies)
-  ├── Equipment Guide (hardware deep-dive)
-  ├── Troubleshooting (problem solving)
-  └── FAQs (quick answers)
-COMMUNITY
-  ├── Contact & Coordination (multiple contact methods)
-  ├── Success Stories (deployment examples)
-  └── How to Contribute (participation paths)
-```
+Four pages, routed by `src/App.tsx` based on `window.location.pathname`:
+
+- **`/`** — HomePage. Hero (intro + live map preview) → Hardware showcase grid → Resources cards → HostInfrastructureCTA → DroneFlyCTA → FinalCTASection → Footer.
+- **`/getting-started`** — Five-step onboarding. Choose hardware → buy hardware → flash firmware → configure node → say hello on the mesh.
+- **`/host-a-node`** — The KC Backbone Initiative recruiting page. Why it matters → criteria → audience targeting (AudienceRow) → what we provide back → success story → contact.
+- **`/steal-this-network`** — Open invitation to other cities. CC-BY-SA framing, lineage credit to Austin Mesh and Cascadia Mesh, partner-mesh list, operational tips for starting a new community mesh.
+
+External destinations linked throughout:
+- **`map.kansascitymesh.live`** — Live coverage map (MeshMonitor). External app, not part of this repo.
+- **Discord** — Real-time community. Invite link in `src/constants/discord.ts`.
+- **GitHub repo** — `github.com/jeremyfuksa/kansascitymesh.live`. Public, CC-BY-SA 4.0.
 
 ## Target Audiences
 
@@ -113,50 +104,18 @@ COMMUNITY
 3. Repeater owners (infrastructure hosts with towers/elevated sites)
 4. HOA-restricted homeowners (need stealth deployment solutions)
 5. Emergency communications community (ARES/RACES)
+6. Other cities seeding their own community meshes (the audience for /steal-this-network)
 
 ## Network Architecture Context
 
-**Four-Router Backbone Strategy**:
+The site currently describes a real, in-progress backbone — not a planning exercise. As of May 2026:
 
-- Router 1: East side (seeking host) - planned anchor; MQTT currently runs on standalone Pi gateway
-- Router 2: West side (PRIORITY - seeking host) - critical gap
-- Router 3: North metro (planned) - river crossing, northland coverage
-- Router 4: South metro (planned) - completes cardinal coverage
+- ~60 active nodes, ~130 total registered, 200+ in Discord
+- A working I-35 spine from downtown through Westport, Overland Park, and the southern suburbs
+- Active recruiting for hosted infrastructure at the metro edges (Bonner Springs, Independence, Blue Springs)
+- Active recruiting along the I-70 hop chain east and west to reach existing outlier nodes in Manhattan, KS and Columbia, MO
 
-Client nodes fill density around backbone infrastructure.
-
-## Key Content Requirements
-
-**Community Coordination Banner** (prominent on homepage):
-
-- Welcome existing kansascitymesh.net operator
-- "We want to collaborate, not compete" messaging
-- Multiple contact methods prominently displayed
-- Transparency panel showing coordination status/timeline
-
-**Deployment Guides Must Include**:
-
-Ham Operators:
-
-- Translation to ham terminology
-- Repeater site integration opportunity
-- Emergency communications value prop
-- Technical depth for licensed operators
-
-Repeater Owners:
-
-- "You already have what we need" framing
-- Minimal investment ($60-120)
-- Leveraging existing infrastructure
-- Strategic value of repeater-sited nodes
-
-Residential Solar:
-
-- Flagpole integration (stealth, HOA-acceptable)
-- Fence post extension (decorative element)
-- Attic installation (test building attenuation)
-- Birdhouse disguise (maximum stealth)
-- Real costs ($100-200 complete systems)
+The deprecated "Four-Router Backbone Strategy" (Router 1 East / Router 2 West / Router 3 North / Router 4 South) was an early planning model. The current ask is broader: any host along the named highways helps, and the priorities are explicitly named on the Host a Node page.
 
 ## Content Guidelines
 
@@ -167,11 +126,12 @@ Residential Solar:
 - Professional but not corporate
 - Educational without condescension
 - Anti-perfectionism, pro-deployment
+- Collective first person (see Critical Voice Direction at top of file)
 
 **Scope Discipline**:
 
 - ALWAYS maintain prosumer/hobbyist expectations
-- Equipment recommendations: $25-200 range
+- Equipment recommendations: $25–200 range
 - Timeframes: Weekend projects, not professional deployments
 - Performance: Realistic expectations, not commercial-grade promises
 - Avoid feature creep into commercial/professional territory
@@ -182,26 +142,24 @@ Residential Solar:
 - Audience-specific: "Meshtastic for ham radio", "HOA-friendly mesh deployment"
 - Geographic: "Johnson County Meshtastic", "west Kansas City mesh coverage"
 
-## Development Notes (when implementation begins)
+## Technical Stack (as implemented)
 
-**Future Technical Stack** (to be determined):
+- **Vite + React (TypeScript)** — entry in `src/main.tsx`. Routing is hand-rolled in `App.tsx` via `window.location.pathname`; each route maps to one of four top-level page components.
+- **Multi-entry HTML** — Each route has a matching HTML file at the project root (`index.html`, `getting-started.html`, `host-a-node.html`, `steal-this-network.html`). The host (deploy target) handles path rewrites; direct loads of a path serve the matching HTML which boots the same React bundle.
+- **Tailwind CSS** — `src/styles/globals.css` defines the palette as CSS custom properties; Tailwind utility classes do the rest.
+- **lucide-react** — Iconography.
+- **No backend** — The Discord, the coverage map, and the GitHub repo are external. The site is static.
 
-- Static site generator recommended (fast, cheap hosting, security)
-- Mobile-first framework essential
-- Dark/light theme switching
-- Interactive map component for coverage visualization
-- Live dashboard for network stats
+**Project conventions**:
 
-**Content Management**:
+- Components live in `src/components/`. The canonical design components are documented in the Design System section.
+- Shared data lives in `src/data/` (hardware list) and `src/constants/` (Discord invite, contact email).
+- Analytics events fire via `src/utils/analytics.ts` (`trackEvent`, `trackPageView`).
+- Voice and design audits are kept in `docs/`. Major changes get an audit doc.
 
-- README.md contains complete content specifications
-- 25,000-35,000 word comprehensive site plan
-- All copy provided in detail (headlines, body, CTAs)
-- Reference README.md sections 4.1-4.10 for exact content
+## Working in this repo
 
-**Critical Implementation Priorities**:
-
-1. Community Coordination page (coordination mechanism for kansascitymesh.net)
-2. Join the Network page (primary conversion path)
-3. Deployment guides (differentiated by audience)
-4. Homepage with prominent coordination banner
+- Run `npm run check` before committing — typecheck must pass.
+- Run `npm run build` to verify Vite production build is clean.
+- When changing copy, check the work against `docs/VOICE-AUDIT-2026-05.md` and the `jeremy-voice` skill's anti-pattern catalog.
+- When changing visual treatment, use the canonical components from the Design System section. Don't introduce a third card style or fourth button pattern without a real reason.

@@ -1,7 +1,9 @@
 import { ArrowRight, Signal } from 'lucide-react';
+import FeatureCard from './FeatureCard';
+import PrimaryButton from './PrimaryButton';
 
 interface HostInfrastructureCTAProps {
-  onNavigate: (target: 'home' | 'get-started' | 'host') => void;
+  onNavigate: (target: 'home' | 'get-started' | 'host' | 'steal') => void;
 }
 
 export default function HostInfrastructureCTA({ onNavigate }: HostInfrastructureCTAProps) {
@@ -19,7 +21,7 @@ export default function HostInfrastructureCTA({ onNavigate }: HostInfrastructure
       </div>
 
       <div className="max-w-4xl mx-auto">
-        <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-8 md:p-10 shadow-xl shadow-black/50">
+        <FeatureCard padding="large">
           <div className="flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-shrink-0 w-14 h-14 bg-[var(--success-500)]/20 rounded-2xl flex items-center justify-center">
               <Signal className="w-7 h-7 text-[var(--success-500)]" />
@@ -34,15 +36,14 @@ export default function HostInfrastructureCTA({ onNavigate }: HostInfrastructure
               </p>
             </div>
 
-            <button
-              onClick={() => onNavigate('host')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[var(--success-500)] text-black rounded-xl font-medium text-[15px] transition-all hover:bg-[var(--success-600)] hover:text-white hover:scale-105 hover:shadow-2xl active:scale-100 flex-shrink-0"
-            >
-              <span>Become a host</span>
-              <ArrowRight className="w-4 h-4" />
-            </button>
+            <div className="flex-shrink-0">
+              <PrimaryButton onClick={() => onNavigate('host')}>
+                <span>Become a host</span>
+                <ArrowRight className="w-4 h-4" />
+              </PrimaryButton>
+            </div>
           </div>
-        </div>
+        </FeatureCard>
       </div>
     </section>
   );

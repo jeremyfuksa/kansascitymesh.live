@@ -1,47 +1,67 @@
-import { ChevronLeft, Info, MapPin, Radio, Building2, Signal, Church, Megaphone, Home } from 'lucide-react';
+import {
+  ChevronLeft,
+  MapPin,
+  Radio,
+  Building2,
+  Signal,
+  Church,
+  Megaphone,
+  Home,
+  Zap,
+  Wrench,
+} from 'lucide-react';
 import DiscordButton from './DiscordButton';
 import Nav from './Nav';
 import Footer from './Footer';
 import PulsingDot from './PulsingDot';
+import InfoCard from './InfoCard';
+import AudienceRow from './AudienceRow';
+import TipBanner from './TipBanner';
+import MessageBanner from './MessageBanner';
+import PrimaryButton from './PrimaryButton';
 import { DISCORD_INVITE } from '../constants/discord';
+import { CONTACT_EMAIL } from '../constants/contact';
 import { trackEvent } from '../utils/analytics';
 
 interface HostANodePageProps {
-  onNavigate: (target: 'home' | 'get-started' | 'host') => void;
+  onNavigate: (target: 'home' | 'get-started' | 'host' | 'steal') => void;
 }
-
-const HOST_EMAIL = 'hello@orangefla.me';
 
 const hostTypes = [
   {
     name: 'Businesses with rooftops',
-    description: "Warehouses, retail strip centers, offices. If you have a flat roof and a 120V outlet on it, you have what we need. We're especially looking in Bonner Springs, Independence, and Blue Springs — plus any spot along I-70 (east or west) where a hop helps connect existing outlier nodes in Manhattan and Columbia back to the KC mesh.",
-    icon: <Building2 className="w-6 h-6 text-white" />,
-    color: 'from-[var(--primary-600)] to-[var(--primary-800)]',
+    description:
+      "Warehouses, retail strip centers, offices. If you have a flat roof and a 120V outlet on it, you have what we need. We're especially looking in Bonner Springs, Independence, and Blue Springs — plus any spot along I-70 (east or west) where a hop helps connect existing outlier nodes in Manhattan and Columbia back to the KC mesh.",
+    icon: <Building2 className="w-5 h-5 text-white" />,
+    accent: 'from-[var(--primary-600)] to-[var(--primary-800)]',
   },
   {
     name: 'Ham operators & repeater owners',
-    description: "You already have what we need — elevation, line of sight, and the inclination to mess with radios. A Meshtastic router at your repeater site is a $60 add to infrastructure you've already built.",
-    icon: <Signal className="w-6 h-6 text-white" />,
-    color: 'from-[var(--success-600)] to-[var(--success-700)]',
+    description:
+      "You already have what we need — elevation, line of sight, and the inclination to mess with radios. A Meshtastic router at your repeater site is a $60 add to infrastructure you've already built.",
+    icon: <Signal className="w-5 h-5 text-white" />,
+    accent: 'from-[var(--success-600)] to-[var(--success-700)]',
   },
   {
     name: 'Churches, schools, civic buildings',
-    description: "Steeples, water tanks, rooftop HVAC platforms — anywhere with elevation and a friendly facilities person. A great emergency-comms talking point for your community.",
-    icon: <Church className="w-6 h-6 text-white" />,
-    color: 'from-[var(--secondary-600)] to-[var(--secondary-700)]',
+    description:
+      "Steeples, water tanks, rooftop HVAC platforms — anywhere with elevation and a friendly facilities person. Emergency comms is the right talking point if you're pitching this to a board.",
+    icon: <Church className="w-5 h-5 text-white" />,
+    accent: 'from-[var(--secondary-600)] to-[var(--secondary-700)]',
   },
   {
     name: 'Billboard, water tower, cell tower owners',
-    description: "Cascadia's first big host was a billboard owner outside Mayfield, WA. The model works. If you own structures along I-29, I-35, I-70, or I-435, please get in touch.",
-    icon: <Megaphone className="w-6 h-6 text-white" />,
-    color: 'from-[var(--warning-600)] to-[var(--warning-700)]',
+    description:
+      "Cascadia's first big host was a billboard owner outside Mayfield, WA. The model works. If you own structures along I-29, I-35, I-70, or I-435, please get in touch.",
+    icon: <Megaphone className="w-5 h-5 text-white" />,
+    accent: 'from-[var(--warning-600)] to-[var(--warning-700)]',
   },
   {
     name: 'Building managers & flagpole homeowners',
-    description: "Apartment buildings, condos, HOA-restricted neighborhoods with a flagpole or attic. Stealth deployments are absolutely a thing. 15 feet of elevation is genuinely useful.",
-    icon: <Home className="w-6 h-6 text-white" />,
-    color: 'from-[var(--info-600)] to-[var(--info-700)]',
+    description:
+      "Apartment buildings, condos, HOA-restricted neighborhoods with a flagpole or attic. Stealth deployments work. 15 feet of elevation is enough to be useful.",
+    icon: <Home className="w-5 h-5 text-white" />,
+    accent: 'from-[var(--info-600)] to-[var(--info-700)]',
   },
 ];
 
@@ -72,7 +92,7 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
         <div className="max-w-3xl mx-auto">
           <button
             onClick={() => onNavigate('home')}
-            className="flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8"
+            className="flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 text-sm"
           >
             <ChevronLeft className="w-4 h-4" />
             Back to home
@@ -80,7 +100,7 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
 
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
             <PulsingDot />
-            <span className="text-sm text-white/80 font-medium">KC Backbone Initiative</span>
+            <span className="text-sm text-white font-medium">KC Backbone Initiative</span>
           </div>
 
           <h1 className="text-5xl md:text-6xl mb-6 tracking-tight text-white">
@@ -103,7 +123,7 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
           <h2 className="text-white mb-6">Why hosted infrastructure matters</h2>
 
           <p className="text-white/70 mb-6 leading-relaxed">
-            KC Mesh has 60+ active nodes today, and we've built a strong spine running up and down the I-35 corridor — messages move cleanly between downtown, Westport, Overland Park, and the southern suburbs. That spine is real progress, and it's the foundation everything else builds on.
+            KC Mesh has 60+ active nodes today, with a strong spine running up and down the I-35 corridor — messages move cleanly between downtown, Westport, Overland Park, and the southern suburbs.
           </p>
 
           <p className="text-white/70 mb-6 leading-relaxed">
@@ -114,9 +134,8 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
             The fix is a small number of router nodes mounted high, with clear sky, running 24/7. We're calling the rollout the <strong>KC Backbone Initiative</strong>, and it has two parallel asks:
           </p>
 
-          <div className="tip-banner flex gap-3 p-4">
-            <Info className="w-5 h-5 text-[var(--success-500)] flex-shrink-0 mt-0.5" />
-            <div className="space-y-4 text-white/80 leading-relaxed">
+          <TipBanner>
+            <div className="space-y-4">
               <p>
                 <strong>1. Round out the metro.</strong> Bonner Springs on the west side. Independence and Blue Springs to the east. These are the gaps where messages from downtown die before they reach you.
               </p>
@@ -124,7 +143,7 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
                 <strong>2. Close the chain to the outliers.</strong> There are already nodes on the map as far out as Manhattan, KS and Columbia, MO — but they can't reliably reach the KC mesh because the hop chain between them and downtown doesn't exist yet. Lawrence, Topeka, Lee's Summit, Warrensburg — every host along I-70 in either direction is a link that makes those far-out nodes part of the network.
               </p>
             </div>
-          </div>
+          </TipBanner>
         </section>
 
         {/* What makes a great host site */}
@@ -132,49 +151,49 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
           <h2 className="text-white mb-6">What makes a great host site</h2>
 
           <p className="text-white/70 mb-8 leading-relaxed">
-            Honest list. If your site checks most of these, please get in touch — we can work around the rest.
+            If your site checks most of these, please get in touch. We can work around the rest.
           </p>
 
           <div className="space-y-4 mb-8">
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2 flex items-center gap-2">
                 <MapPin className="w-5 h-5 text-[var(--success-500)]" />
                 Elevation — 15 feet and up
               </h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 You don't need a 40-foot tower. A two-story roof works. A flagpole works. An attic with a clear southern exposure can work. The dogma about needing massive elevation is just dogma — get above the immediate clutter and you're already useful.
               </p>
-            </div>
+            </InfoCard>
 
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2 flex items-center gap-2">
                 <Radio className="w-5 h-5 text-[var(--success-500)]" />
                 Sky that's not blocked by another building
               </h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 LoRa at 915 MHz mostly cares about line of sight. If you can see other rooftops and the horizon in at least one direction, signals will travel. We'll help you pick the antenna and aim.
               </p>
-            </div>
+            </InfoCard>
 
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2 flex items-center gap-2">
-                <span className="w-5 h-5 text-[var(--success-500)] flex items-center justify-center">⚡</span>
+                <Zap className="w-5 h-5 text-[var(--success-500)]" />
                 A 120V outlet — or room for a small solar panel
               </h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 A wired node draws less power than a wifi router. Don't have an outlet on the roof? A 10W solar panel and a small battery run a node indefinitely. We've got documented setups for both.
               </p>
-            </div>
+            </InfoCard>
 
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2 flex items-center gap-2">
-                <span className="w-5 h-5 text-[var(--success-500)] flex items-center justify-center">🔧</span>
+                <Wrench className="w-5 h-5 text-[var(--success-500)]" />
                 Willingness to host modest hardware
               </h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 We're talking about a $60–$200 device the size of a paperback, plus a small antenna. Not commercial telecom gear. Weekend-project scale. If something breaks, the worst case is somebody comes out and swaps the box.
               </p>
-            </div>
+            </InfoCard>
           </div>
         </section>
 
@@ -186,18 +205,15 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
             If you see yourself in any of these, you're exactly who we're trying to reach.
           </p>
 
-          <div className="grid sm:grid-cols-2 gap-4 mb-8">
-            {hostTypes.map((host, index) => (
-              <div
-                key={index}
-                className="relative bg-white/5 border border-white/10 rounded-2xl p-6 transition-all hover:bg-white/10 hover:border-white/20 hover:-translate-y-1"
-              >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-gradient-to-br ${host.color}`}>
-                  {host.icon}
-                </div>
-                <h3 className="text-lg text-white mb-2">{host.name}</h3>
-                <p className="text-white/60 text-[15px] leading-relaxed">{host.description}</p>
-              </div>
+          <div className="space-y-3 mb-8">
+            {hostTypes.map((host) => (
+              <AudienceRow
+                key={host.name}
+                icon={host.icon}
+                accent={host.accent}
+                name={host.name}
+                description={host.description}
+              />
             ))}
           </div>
         </section>
@@ -207,37 +223,46 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
           <h2 className="text-white mb-6">What KC Mesh provides in return</h2>
 
           <p className="text-white/70 mb-8 leading-relaxed">
-            This is a hobbyist project, not a vendor relationship. But here's what we bring to the table:
+            Hosting a node is a favor. Here's what we do in return.
           </p>
 
           <div className="space-y-4">
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2">Equipment guidance — and sometimes the equipment itself</h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 We'll pick hardware that fits your site, your power situation, and your budget. For priority backbone locations, we can usually find someone in the community willing to donate or split the cost of the device.
               </p>
-            </div>
+            </InfoCard>
 
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2">Hands-on deployment help</h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 Someone from the community will come out, mount the antenna, configure the node, and confirm it's healthy on the mesh. You don't need to learn LoRa to host one.
               </p>
-            </div>
+            </InfoCard>
 
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2">Ongoing monitoring via Discord</h3>
-              <p className="text-white/60 leading-relaxed">
+              <p className="text-white/70 leading-relaxed">
                 If your node falls off the mesh, somebody in the Discord will notice — usually within an hour. We'll let you know and help you bring it back up.
               </p>
-            </div>
+            </InfoCard>
 
-            <div className="bg-[var(--neutral-900)] border border-white/10 rounded-xl p-6">
+            <InfoCard>
               <h3 className="text-white mb-2">Public credit on the coverage map</h3>
-              <p className="text-white/60 leading-relaxed">
-                Your site shows up on <a href="https://map.kansascitymesh.live" target="_blank" rel="noopener noreferrer" className="text-[var(--success-500)] hover:underline">map.kansascitymesh.live</a> as a contributing backbone node. If you're a business, we'll happily call you out by name; if you'd rather be anonymous, we don't have to.
+              <p className="text-white/70 leading-relaxed">
+                Your site shows up on{' '}
+                <a
+                  href="https://map.kansascitymesh.live"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--success-500)] hover:underline"
+                >
+                  map.kansascitymesh.live
+                </a>
+                {' '}as a contributing backbone node. If you're a business, we'll happily call you out by name; if you'd rather be anonymous, we don't have to.
               </p>
-            </div>
+            </InfoCard>
           </div>
         </section>
 
@@ -245,9 +270,9 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
         <section className="mb-16">
           <h2 className="text-white mb-6">What this looks like in practice</h2>
 
-          <div className="message-banner">
+          <MessageBanner>
             <p className="text-white/70 mb-4 leading-relaxed">
-              Right now the proof-of-concept is my own router. It's a Heltec V3 in a weatherproof box, mounted about 25 feet up, drawing power from a regular outdoor outlet. Total hardware cost was under $100. Total install time was an afternoon.
+              The proof of concept is already up. One of our first router nodes is a Heltec V3 in a weatherproof box, mounted about 25 feet up, drawing power from a regular outdoor outlet. Total hardware cost was under $100. Total install time was an afternoon.
             </p>
 
             <p className="text-white/70 mb-4 leading-relaxed">
@@ -257,7 +282,7 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
             <p className="text-white/70 leading-relaxed">
               We need more like it — out at the edges, and along I-70 in both directions to close the chain to the existing outliers. That's the whole ask.
             </p>
-          </div>
+          </MessageBanner>
         </section>
 
         {/* Get in touch */}
@@ -269,13 +294,12 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 mb-8">
-            <a
-              href={`mailto:${HOST_EMAIL}?subject=KC%20Backbone%20Initiative%20%E2%80%94%20potential%20host%20site`}
+            <PrimaryButton
+              href={`mailto:${CONTACT_EMAIL}?subject=KC%20Backbone%20Initiative%20%E2%80%94%20potential%20host%20site`}
               onClick={() => trackEvent('host_email_click', 'host-page-cta')}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 bg-[var(--success-500)] text-black rounded-xl font-medium text-[15px] transition-all hover:bg-[var(--success-600)] hover:text-white hover:scale-105 hover:shadow-2xl active:scale-100"
             >
               Email about a host site
-            </a>
+            </PrimaryButton>
 
             <DiscordButton href={DISCORD_INVITE} trackingLabel="host-page-discord">
               Or come say hi in Discord
@@ -283,7 +307,7 @@ export default function HostANodePage({ onNavigate }: HostANodePageProps) {
           </div>
 
           <p className="text-white/50 text-sm leading-relaxed">
-            Not sure yet? No problem. The Discord is open — lurk for a while, see what people are doing, and circle back whenever it makes sense.
+            Not sure yet? The Discord is open — lurk for a while, see what people are doing, and circle back whenever it makes sense.
           </p>
         </section>
 
