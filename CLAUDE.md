@@ -167,3 +167,4 @@ The deprecated "Four-Router Backbone Strategy" (Router 1 East / Router 2 West / 
 - Run `npm run build` to verify the production build is clean.
 - When changing copy, check the work against `docs/VOICE-AUDIT-2026-05.md` and the `jeremy-voice` skill's anti-pattern catalog.
 - When changing visual treatment, use the canonical components from the Design System section. Don't introduce a third card style or fourth button pattern without a real reason.
+- **Bump the version in the PR that ships the change.** Loose semver — patch for copy/fact/small fixes, minor for new sections/features/live-data work, major only for full overhauls. Update `package.json` and run `npm install --package-lock-only` to keep the lock in sync. Footer reads `pkg.version` and updates on deploy. Full rules in [CONTRIBUTING.md](CONTRIBUTING.md#versioning).

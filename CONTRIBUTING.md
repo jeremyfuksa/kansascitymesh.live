@@ -111,6 +111,18 @@ are $35–$40. Spotted by @jdoe in Discord.
 
 Not enforced by tooling, just convention.
 
+## Versioning
+
+The site shows a version stamp in the footer, sourced from `package.json`. We bump it in the same PR that ships the change, sized to the scope of what's shipping. Loose semver — not library-strict, but enough signal to know what kind of change just landed.
+
+- **Patch** (`2.2.0` → `2.2.1`) — copy edits, fact corrections, color tweaks, small content updates, dependency bumps that aren't user-visible.
+- **Minor** (`2.2` → `2.3`) — new sections, new pages, new live-data features, a redesigned component, anything a returning visitor would notice.
+- **Major** (`2` → `3`) — full visual overhaul, route restructure, architecture flip (e.g. moving off Astro). Rare.
+
+Bump `package.json`, then run `npm install --package-lock-only` to keep `package-lock.json` in sync. CI doesn't enforce this — it's a discipline, not a gate.
+
+If a PR ships multiple things and you're unsure of scope, pick the larger of the bumps. When in doubt, bump.
+
 ## Pull requests
 
 1. **Branch from `main`** with a descriptive name: `fix/heltec-price`, `docs/faq-clarify-licensing`, `feat/log-add-blue-springs-post`.
