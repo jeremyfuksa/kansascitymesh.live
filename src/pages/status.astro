@@ -210,22 +210,33 @@ import PulsingDot from '../components/PulsingDot.astro';
           </a>{' '}
           for the recommendations.
         </p>
-        <div
-          class="bg-(--neutral-900) border border-white/10 rounded-md overflow-hidden"
-          data-live-hardware="30d"
-        >
-          {/* Placeholder rows shown until the fetch resolves. Replaced by liveStats.ts. */}
-          {
-            Array.from({ length: 5 }).map(() => (
-              <div class="flex items-baseline gap-3 px-4 py-3 border-b border-white/5 last:border-b-0">
-                <div class="flex-1 min-w-0">
-                  <div class="text-white/30 text-sm">—</div>
+        <div class="grid gap-6 md:grid-cols-[260px_1fr] md:items-start">
+          {/* Donut chart — populated client-side by liveStats.ts. */}
+          <div
+            class="bg-(--neutral-900) border border-white/10 rounded-md p-5 min-h-[260px] flex items-center justify-center"
+            data-live-hardware-chart="30d"
+          >
+            <div class="text-white/30 text-xs uppercase tracking-[0.08em]">Loading…</div>
+          </div>
+
+          {/* Existing top-5 list. */}
+          <div
+            class="bg-(--neutral-900) border border-white/10 rounded-md overflow-hidden"
+            data-live-hardware="30d"
+          >
+            {/* Placeholder rows shown until the fetch resolves. Replaced by liveStats.ts. */}
+            {
+              Array.from({ length: 5 }).map(() => (
+                <div class="flex items-baseline gap-3 px-4 py-3 border-b border-white/5 last:border-b-0">
+                  <div class="flex-1 min-w-0">
+                    <div class="text-white/30 text-sm">—</div>
+                  </div>
+                  <span class="font-mono text-white/30 text-sm">—</span>
+                  <span class="font-mono text-white/30 text-xs min-w-[48px] text-right">—</span>
                 </div>
-                <span class="font-mono text-white/30 text-sm">—</span>
-                <span class="font-mono text-white/30 text-xs min-w-[48px] text-right">—</span>
-              </div>
-            ))
-          }
+              ))
+            }
+          </div>
         </div>
       </section>
 

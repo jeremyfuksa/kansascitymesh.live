@@ -5,7 +5,7 @@
  * /home/admin/generate-mesh-stats.py on a 5-minute cron. The script fetches
  * MeshMonitor's API plus the Discord guild API and writes a unified blob.
  *
- * Three hydration mechanisms:
+ * Four hydration mechanisms:
  *
  *   1. Simple text swap. Elements opt in by adding `data-live-stat="<key>"`.
  *      The HTML carries a placeholder value (em-dash, "just now", etc.) as
@@ -16,11 +16,16 @@
  *      top_hardware_* array. The container's pre-existing children are
  *      removed.
  *
- *   3. Backbone table rendering. A `<tbody data-live-backbone>` gets one
+ *   3. Hardware donut chart. A container with
+ *      `data-live-hardware-chart="30d"` (or `"all"`) gets an inline SVG
+ *      donut + legend showing the top-5 hardware distribution plus an
+ *      "Other" wedge for everything outside the top 5.
+ *
+ *   4. Backbone table rendering. A `<tbody data-live-backbone>` gets one
  *      `<tr>` per backbone node from the backbone_nodes array.
  *
- * If the fetch fails, placeholders stay and the list containers stay empty
- * (page is still meaningful — those sections just go quiet).
+ * If the fetch fails, placeholders stay and the list/chart containers stay
+ * empty (page is still meaningful — those sections just go quiet).
  *
  * Supported data-live-stat keys:
  *   active_1h / active_24h / active_7d / active_30d / active_90d
@@ -28,7 +33,7 @@
  *   discord_total_members / discord_online
  *   generated_at_relative   (e.g. "2m ago")
  *
- * Supported data-live-hardware values:
+ * Supported data-live-hardware and data-live-hardware-chart values:
  *   "30d"  — top 5 hardware in the last 30 days
  *   "all"  — top 5 hardware all-time
  */
@@ -325,12 +330,169 @@ function renderBackboneTable(tbody: HTMLElement, rows: BackboneNode[]): void {
   });
 }
 
+/**
+ * Donut chart for the hardware distribution. Renders an inline SVG into a
+ * container marked with `data-live-hardware-chart="30d"` (or `"all"`),
+ * showing the top 5 hardware models plus an "Other" wedge for everything
+ * outside the top 5. Center label is the total node count represented by
+ * the chart.
+ *
+ * SVG is plain — no charting library. Slice geometry is computed by
+ * setting stroke-dasharray and stroke-dashoffset on a series of <circle>
+ * elements, which is the standard pure-SVG donut technique.
+ */
+const SLICE_COLORS = [
+  'var(--primary-500)',
+  'var(--secondary-500)',
+  'var(--success-500)',
+  'var(--info-500)',
+  'var(--warning-500)',
+];
+const OTHER_COLOR = 'var(--neutral-700)';
+
+interface ChartSlice {
+  label: string;
+  color: string;
+  count: number;
+  percent: number;
+}
+
+function buildChartSlices(rows: MeshtasticStats['top_hardware_30d']): {
+  slices: ChartSlice[];
+  totalCount: number;
+} {
+  const top = rows.slice(0, 5);
+  const slices: ChartSlice[] = top.map((row, i) => ({
+    label: hardwareEntry(row.name).name,
+    color: SLICE_COLORS[i] ?? OTHER_COLOR,
+    count: row.count,
+    percent: row.percent,
+  }));
+
+  // Sum of the top-5 percent values. The server emits percents to one
+  // decimal so the sum can land at e.g. 88.7%; everything missing is
+  // "Other". We don't get raw "other count" from the server, but we have
+  // enough to compute it from the relationship percent = count/total.
+  const topPercent = slices.reduce((acc, s) => acc + s.percent, 0);
+  const otherPercent = Math.max(0, 100 - topPercent);
+
+  // Total count the chart represents: derive from row 0 (count/percent =
+  // total). If percent is 0 (degenerate), fall back to summing top counts.
+  const totalCount =
+    top[0] && top[0].percent > 0
+      ? Math.round((top[0].count / top[0].percent) * 100)
+      : top.reduce((acc, r) => acc + r.count, 0);
+
+  const otherCount = Math.max(0, totalCount - top.reduce((acc, r) => acc + r.count, 0));
+  if (otherPercent > 0.1) {
+    slices.push({
+      label: 'Other',
+      color: OTHER_COLOR,
+      count: otherCount,
+      percent: otherPercent,
+    });
+  }
+
+  return { slices, totalCount };
+}
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+
+function renderHardwareChart(
+  container: HTMLElement,
+  rows: MeshtasticStats['top_hardware_30d'],
+): void {
+  const { slices, totalCount } = buildChartSlices(rows);
+  container.replaceChildren();
+
+  // Donut geometry. We use a 100×100 viewBox, a circle of radius 40
+  // centered at (50, 50). Circumference = 2π·40 ≈ 251.327.
+  const radius = 40;
+  const circumference = 2 * Math.PI * radius;
+  const strokeWidth = 16;
+
+  const svg = document.createElementNS(SVG_NS, 'svg');
+  svg.setAttribute('viewBox', '0 0 100 100');
+  svg.setAttribute('class', 'block w-full h-auto max-w-[260px] mx-auto');
+  svg.setAttribute('role', 'img');
+  svg.setAttribute('aria-label', 'Hardware distribution donut chart');
+
+  // Slices, rotated so the first one starts at 12 o'clock.
+  let offsetPercent = 0;
+  slices.forEach((slice) => {
+    const slicePath = document.createElementNS(SVG_NS, 'circle');
+    slicePath.setAttribute('cx', '50');
+    slicePath.setAttribute('cy', '50');
+    slicePath.setAttribute('r', String(radius));
+    slicePath.setAttribute('fill', 'transparent');
+    slicePath.setAttribute('stroke', slice.color);
+    slicePath.setAttribute('stroke-width', String(strokeWidth));
+    const sliceLength = (slice.percent / 100) * circumference;
+    slicePath.setAttribute('stroke-dasharray', `${sliceLength} ${circumference - sliceLength}`);
+    const dashOffset = circumference - (offsetPercent / 100) * circumference + circumference / 4;
+    slicePath.setAttribute('stroke-dashoffset', String(dashOffset));
+    svg.appendChild(slicePath);
+    offsetPercent += slice.percent;
+  });
+
+  // Center label — total count + units, two lines.
+  const centerNumber = document.createElementNS(SVG_NS, 'text');
+  centerNumber.setAttribute('x', '50');
+  centerNumber.setAttribute('y', '48');
+  centerNumber.setAttribute('text-anchor', 'middle');
+  centerNumber.setAttribute('dominant-baseline', 'middle');
+  centerNumber.setAttribute('fill', 'rgb(255 255 255)');
+  centerNumber.setAttribute('class', 'font-mono');
+  centerNumber.setAttribute('font-size', '12');
+  centerNumber.setAttribute('font-weight', '600');
+  centerNumber.textContent = totalCount.toLocaleString('en-US');
+  svg.appendChild(centerNumber);
+
+  const centerLabel = document.createElementNS(SVG_NS, 'text');
+  centerLabel.setAttribute('x', '50');
+  centerLabel.setAttribute('y', '60');
+  centerLabel.setAttribute('text-anchor', 'middle');
+  centerLabel.setAttribute('dominant-baseline', 'middle');
+  centerLabel.setAttribute('fill', 'rgb(255 255 255 / 0.5)');
+  centerLabel.setAttribute('font-size', '6');
+  centerLabel.setAttribute('letter-spacing', '0.4');
+  centerLabel.textContent = 'NODES';
+  svg.appendChild(centerLabel);
+
+  container.appendChild(svg);
+
+  // Legend below the donut, mobile-readable.
+  const legend = document.createElement('ul');
+  legend.className = 'mt-4 space-y-1.5 text-xs';
+  slices.forEach((slice) => {
+    const li = document.createElement('li');
+    li.className = 'flex items-center gap-2';
+
+    const swatch = document.createElement('span');
+    swatch.className = 'inline-block w-3 h-3 rounded-sm shrink-0';
+    swatch.style.background = slice.color;
+
+    const label = document.createElement('span');
+    label.className = 'flex-1 min-w-0 text-white/70 truncate';
+    label.textContent = slice.label;
+
+    const pct = document.createElement('span');
+    pct.className = 'font-mono text-white/50 tabular-nums';
+    pct.textContent = `${slice.percent.toFixed(1)}%`;
+
+    li.append(swatch, label, pct);
+    legend.appendChild(li);
+  });
+  container.appendChild(legend);
+}
+
 export function hydrateLiveStats(): void {
   if (typeof window === 'undefined') return;
   const hasStats = document.querySelector('[data-live-stat]');
   const hasHardware = document.querySelector('[data-live-hardware]');
+  const hasHardwareChart = document.querySelector('[data-live-hardware-chart]');
   const hasBackbone = document.querySelector('[data-live-backbone]');
-  if (!hasStats && !hasHardware && !hasBackbone) return;
+  if (!hasStats && !hasHardware && !hasHardwareChart && !hasBackbone) return;
 
   void (async () => {
     try {
@@ -355,6 +517,11 @@ export function hydrateLiveStats(): void {
       if (hw30.length > 0) renderHardwareList(hw30, stats.top_hardware_30d);
       const hwAll = document.querySelectorAll<HTMLElement>('[data-live-hardware="all"]');
       if (hwAll.length > 0) renderHardwareList(hwAll, stats.top_hardware_all);
+
+      const chart30 = document.querySelectorAll<HTMLElement>('[data-live-hardware-chart="30d"]');
+      chart30.forEach((c) => renderHardwareChart(c, stats.top_hardware_30d));
+      const chartAll = document.querySelectorAll<HTMLElement>('[data-live-hardware-chart="all"]');
+      chartAll.forEach((c) => renderHardwareChart(c, stats.top_hardware_all));
 
       const backbone = document.querySelectorAll<HTMLElement>('[data-live-backbone]');
       if (backbone.length > 0 && stats.backbone_nodes) {
