@@ -197,6 +197,40 @@ import { STATUS_NODES, statusColor } from '../data/networkStatus';
         </div>
       </section>
 
+      {/* Top hardware in the wild — live from /api/stats.json */}
+      <section class="mb-12">
+        <h2 class="text-2xl text-white mb-4">Top hardware in the wild</h2>
+        <p class="text-white/70 leading-relaxed mb-4">
+          The five most common devices on the KC mesh in the last 30 days, sourced from
+          MeshMonitor's hardware-model telemetry. This is what people are actually running right now
+          — not an editorial recommendation. See{' '}
+          <a
+            href="/hardware"
+            class="text-white hover:text-(--success-500) underline underline-offset-4"
+          >
+            our hardware picks
+          </a>{' '}
+          for the recommendations.
+        </p>
+        <div
+          class="bg-(--neutral-900) border border-white/10 rounded-md overflow-hidden"
+          data-live-hardware="30d"
+        >
+          {/* Placeholder rows shown until the fetch resolves. Replaced by liveStats.ts. */}
+          {
+            Array.from({ length: 5 }).map(() => (
+              <div class="flex items-baseline gap-3 px-4 py-3 border-b border-white/5 last:border-b-0">
+                <div class="flex-1 min-w-0">
+                  <div class="text-white/30 text-sm">—</div>
+                </div>
+                <span class="font-mono text-white/30 text-sm">—</span>
+                <span class="font-mono text-white/30 text-xs min-w-[48px] text-right">—</span>
+              </div>
+            ))
+          }
+        </div>
+      </section>
+
       {/* Node table — labeled as sample until we have a per-node API */}
       <section class="mb-12">
         <div class="flex items-center justify-between flex-wrap gap-3 mb-4">
