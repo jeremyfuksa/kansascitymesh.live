@@ -24,3 +24,7 @@ pnpm-debug.log*
 .idea/
 
 mt/
+
+# python bytecode (from local-testing deploy scripts)
+__pycache__/
+*.pyc

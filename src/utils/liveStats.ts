@@ -5,17 +5,21 @@
  * /home/admin/generate-mesh-stats.py on a 5-minute cron. The script fetches
  * MeshMonitor's API plus the Discord guild API and writes a unified blob.
  *
- * Two hydration mechanisms:
+ * Three hydration mechanisms:
  *
  *   1. Simple text swap. Elements opt in by adding `data-live-stat="<key>"`.
  *      The HTML carries a placeholder value (em-dash, "just now", etc.) as
  *      its text content; this script swaps it once the fetch completes.
  *
- *   2. List rendering. A container with `data-live-hardware="30d"` (or
- *      `"all"`) gets a list of rows built into it from the top_hardware_*
- *      array. The container's pre-existing children are removed.
+ *   2. Hardware list rendering. A container with `data-live-hardware="30d"`
+ *      (or `"all"`) gets a list of rows built into it from the
+ *      top_hardware_* array. The container's pre-existing children are
+ *      removed.
  *
- * If the fetch fails, placeholders stay and the list container stays empty
+ *   3. Backbone table rendering. A `<tbody data-live-backbone>` gets one
+ *      `<tr>` per backbone node from the backbone_nodes array.
+ *
+ * If the fetch fails, placeholders stay and the list containers stay empty
  * (page is still meaningful — those sections just go quiet).
  *
  * Supported data-live-stat keys:
@@ -54,6 +58,19 @@ interface MeshtasticStats {
   }>;
   discord_total_members: number | null;
   discord_online: number | null;
+  backbone_nodes?: BackboneNode[];
+  backbone_window_seconds?: number;
+}
+
+interface BackboneNode {
+  short_name: string;
+  long_name: string;
+  hw_model_id: number | null;
+  hw_model_name: string | null;
+  role: string | null;
+  hops: number | null;
+  last_heard_epoch: number;
+  last_heard_age_seconds: number | null;
 }
 
 const STATS_URL = '/api/stats.json';
@@ -244,11 +261,76 @@ function renderHardwareList(
   });
 }
 
+function formatRelativeFromSeconds(seconds: number | null): string {
+  if (seconds === null || !Number.isFinite(seconds)) return '—';
+  const s = Math.max(0, Math.round(seconds));
+  if (s < 60) return 'just now';
+  const minutes = Math.round(s / 60);
+  if (minutes < 60) return `${minutes}m ago`;
+  const hours = Math.round(minutes / 60);
+  if (hours < 24) return `${hours}h ago`;
+  const days = Math.round(hours / 24);
+  return `${days}d ago`;
+}
+
+/**
+ * Status color for a backbone row based on how recently we heard from it.
+ * Mirrors the sample data's three-tier system: up if within 24h, degraded
+ * within a week, otherwise down. Anything still in the array is by
+ * definition within 30d (server-side filter), so we never need a fourth
+ * "stale" tier here.
+ */
+function backboneStatusColor(ageSeconds: number | null): string {
+  if (ageSeconds === null) return 'var(--warning-500)';
+  if (ageSeconds <= 86400) return 'var(--success-500)';
+  if (ageSeconds <= 7 * 86400) return 'var(--warning-500)';
+  return 'var(--danger-500)';
+}
+
+function renderBackboneTable(tbody: HTMLElement, rows: BackboneNode[]): void {
+  tbody.replaceChildren();
+  rows.forEach((row, i) => {
+    const tr = document.createElement('tr');
+    if (i < rows.length - 1) tr.className = 'border-b border-white/5';
+
+    const dotCell = document.createElement('td');
+    dotCell.className = 'px-4 py-3.5 w-6';
+    const dot = document.createElement('span');
+    dot.className = 'inline-block w-2 h-2 rounded-full';
+    dot.style.background = backboneStatusColor(row.last_heard_age_seconds);
+    dotCell.appendChild(dot);
+
+    const nameCell = document.createElement('td');
+    nameCell.className = 'px-4 py-3.5 text-white font-medium font-mono text-sm';
+    nameCell.textContent = row.short_name || '—';
+
+    const longCell = document.createElement('td');
+    longCell.className = 'px-4 py-3.5 text-white/70 text-sm';
+    longCell.textContent = row.long_name || '';
+
+    const hwCell = document.createElement('td');
+    hwCell.className = 'px-4 py-3.5 text-white/70 text-sm';
+    hwCell.textContent = row.hw_model_name ? hardwareEntry(row.hw_model_name).name : '—';
+
+    const hopsCell = document.createElement('td');
+    hopsCell.className = 'px-4 py-3.5 text-white/70 text-sm font-mono';
+    hopsCell.textContent = row.hops === null || row.hops === undefined ? '—' : String(row.hops);
+
+    const seenCell = document.createElement('td');
+    seenCell.className = 'px-4 py-3.5 text-white/70 text-sm';
+    seenCell.textContent = formatRelativeFromSeconds(row.last_heard_age_seconds);
+
+    tr.append(dotCell, nameCell, longCell, hwCell, hopsCell, seenCell);
+    tbody.appendChild(tr);
+  });
+}
+
 export function hydrateLiveStats(): void {
   if (typeof window === 'undefined') return;
   const hasStats = document.querySelector('[data-live-stat]');
   const hasHardware = document.querySelector('[data-live-hardware]');
-  if (!hasStats && !hasHardware) return;
+  const hasBackbone = document.querySelector('[data-live-backbone]');
+  if (!hasStats && !hasHardware && !hasBackbone) return;
 
   void (async () => {
     try {
@@ -273,6 +355,11 @@ export function hydrateLiveStats(): void {
       if (hw30.length > 0) renderHardwareList(hw30, stats.top_hardware_30d);
       const hwAll = document.querySelectorAll<HTMLElement>('[data-live-hardware="all"]');
       if (hwAll.length > 0) renderHardwareList(hwAll, stats.top_hardware_all);
+
+      const backbone = document.querySelectorAll<HTMLElement>('[data-live-backbone]');
+      if (backbone.length > 0 && stats.backbone_nodes) {
+        backbone.forEach((tbody) => renderBackboneTable(tbody, stats.backbone_nodes ?? []));
+      }
     } catch {
       // Leave placeholders in place. Page is still meaningful.
     }
