@@ -31,9 +31,9 @@ DISCORD_GUILD_ID = "1424474686619783191"
 DISCORD_API_BASE = "https://discord.com/api/v10"
 OUTPUT_PATH = Path("/home/admin/kcml-stats/stats.json")
 ENV_FILE = Path("/home/admin/.env")
-USER_AGENT = "kcml-stats/2"
+USER_AGENT = "kcml-stats/3"
 HTTP_TIMEOUT = 15
-SCHEMA_VERSION = 2
+SCHEMA_VERSION = 3
 
 ACTIVE_WINDOWS = {
     "1h": 3600,
@@ -92,6 +92,15 @@ HW_MODELS = {
 }
 
 TOP_HARDWARE_LIMIT = 10
+
+# Backbone-table selector. Role 12 is ROUTER_LATE in current firmware — the
+# role intended for fixed, infrastructure-grade nodes. We surface every
+# role-12 node that's been heard in the last BACKBONE_WINDOW_SECONDS, sorted
+# by last-heard descending, capped at BACKBONE_LIMIT. Older role-12 nodes
+# fall off naturally instead of cluttering the table.
+BACKBONE_ROLES = {"12"}
+BACKBONE_WINDOW_SECONDS = 30 * 86400
+BACKBONE_LIMIT = 15
 
 
 def fetch_json(url: str, headers: dict | None = None) -> object:
@@ -152,6 +161,22 @@ def hw_entry(hw_id: int, count: int, total: int) -> dict:
     }
 
 
+def backbone_entry(node: dict, now_epoch: int) -> dict:
+    user = node.get("user") or {}
+    last_heard = node.get("lastHeard") or 0
+    hw_id = user.get("hwModel")
+    return {
+        "short_name": user.get("shortName") or "",
+        "long_name": user.get("longName") or "",
+        "hw_model_id": hw_id,
+        "hw_model_name": HW_MODELS.get(hw_id) if hw_id is not None else None,
+        "role": user.get("role"),
+        "hops": node.get("lastMessageHops"),
+        "last_heard_epoch": last_heard,
+        "last_heard_age_seconds": max(0, now_epoch - last_heard) if last_heard else None,
+    }
+
+
 def compute_stats(
     nodes: list,
     upstream_stats: dict,
@@ -165,6 +190,7 @@ def compute_stats(
     active_counts = {label: 0 for label in ACTIVE_WINDOWS}
     hw_counts_all: Counter = Counter()
     hw_counts_30d: Counter = Counter()
+    backbone_candidates: list[tuple[int, dict]] = []
 
     thirty_d = ACTIVE_WINDOWS["30d"]
 
@@ -186,9 +212,15 @@ def compute_stats(
             if last_heard and age <= thirty_d:
                 hw_counts_30d[hw] += 1
 
+        if user.get("role") in BACKBONE_ROLES and last_heard and age <= BACKBONE_WINDOW_SECONDS:
+            backbone_candidates.append((last_heard, node))
+
     top_all = [hw_entry(hw, c, nodes_with_hw) for hw, c in hw_counts_all.most_common(TOP_HARDWARE_LIMIT)]
     top_30d_total = sum(hw_counts_30d.values())
     top_30d = [hw_entry(hw, c, top_30d_total) for hw, c in hw_counts_30d.most_common(TOP_HARDWARE_LIMIT)]
+
+    backbone_candidates.sort(key=lambda pair: pair[0], reverse=True)
+    backbone_nodes = [backbone_entry(n, now_epoch) for _, n in backbone_candidates[:BACKBONE_LIMIT]]
 
     return {
         "schema_version": SCHEMA_VERSION,
@@ -203,6 +235,8 @@ def compute_stats(
         "active_counts": active_counts,
         "top_hardware_30d": top_30d,
         "top_hardware_all": top_all,
+        "backbone_nodes": backbone_nodes,
+        "backbone_window_seconds": BACKBONE_WINDOW_SECONDS,
         "unknown_hwmodel_ids": sorted(unknown_ids),
         "discord_total_members": discord_stats.get("discord_total_members"),
         "discord_online": discord_stats.get("discord_online"),
