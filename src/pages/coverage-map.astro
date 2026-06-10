@@ -51,15 +51,16 @@ const siteCount = coverageData.features.length;
         </FeatureCard>
         <div class="flex flex-wrap items-center gap-5 mt-5 text-sm text-white/70">
           <span class="flex items-center gap-2">
-            <span class="legend-dot legend-gap"></span> Coverage gap — host wanted
+            <span class="legend-dot legend-node"></span> Active node — heard in the last 7 days
           </span>
           <span class="flex items-center gap-2">
-            <span class="legend-dot legend-node"></span> Live mesh node
+            <span class="legend-dot legend-gap"></span> Where we'd love a node — host wanted
           </span>
         </div>
         <p class="text-sm text-white/50 mt-3">
-          <span class="font-mono text-white/70">{siteCount}</span> wanted sites, ranked by impact. Live
-          nodes refresh from the mesh. Base map © OpenStreetMap contributors.
+          <span class="font-mono text-white/70">{siteCount}</span> wanted sites, ranked by impact. Green
+          dots are nodes heard on the mesh in the last 7 days — hover one to see when it last checked
+          in. Base map © OpenStreetMap contributors.
         </p>
       </div>
     </section>
@@ -118,11 +119,20 @@ const siteCount = coverageData.features.length;
       if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
 
       // Live mesh nodes (green), drawn in a pane beneath the "wanted" flags.
-      // Same-origin /api/nodes.json proxies MeshMonitor's public embed API.
+      // Same-origin /api/nodes.json proxies MeshMonitor's public embed API
+      // (nodes heard in the last 7 days).
       map.createPane('nodes');
       map.getPane('nodes').style.zIndex = '350';
-      const nodeRenderer = L.svg({ pane: 'nodes' });
       const nodeColor = styles.getPropertyValue('--meshtastic-green').trim() || '#10b981';
+      const nodeStroke = styles.getPropertyValue('--neutral-950').trim() || '#1c1f26';
+      const nodeRenderer = L.svg({ pane: 'nodes' });
+      const heardAgo = (epoch: number) => {
+        const s = Math.floor(Date.now() / 1000) - epoch;
+        if (!epoch || s < 0) return '';
+        if (s < 3600) return `${Math.max(1, Math.round(s / 60))} min ago`;
+        if (s < 86400) return `${Math.round(s / 3600)} hr ago`;
+        return `${Math.round(s / 86400)} days ago`;
+      };
       fetch('/api/nodes.json')
         .then((r) => (r.ok ? r.json() : []))
         .then((nodes) => {
@@ -130,16 +140,17 @@ const siteCount = coverageData.features.length;
             const pos = n.position || {};
             if (pos.latitude == null || pos.longitude == null) continue;
             const nm = (n.user && (n.user.longName || n.user.shortName)) || 'node';
+            const ago = heardAgo(n.lastHeard);
             L.circleMarker([pos.latitude, pos.longitude], {
               renderer: nodeRenderer,
-              radius: 4,
-              color: nodeColor,
-              weight: 1,
+              radius: 6,
+              color: nodeStroke,
+              weight: 1.5,
               fillColor: nodeColor,
-              fillOpacity: 0.65,
+              fillOpacity: 0.95,
             })
               .addTo(map)
-              .bindTooltip(esc(nm), { direction: 'top' });
+              .bindTooltip(ago ? `${esc(nm)} · heard ${ago}` : esc(nm), { direction: 'top' });
           }
         })
         .catch(() => {});
@@ -214,6 +225,7 @@ const siteCount = coverageData.features.length;
     }
     .legend-node {
       background: var(--meshtastic-green);
+      border: 1.5px solid var(--neutral-950);
     }
   </style>
 </Layout>
