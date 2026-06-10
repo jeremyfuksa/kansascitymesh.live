@@ -49,9 +49,17 @@ const siteCount = coverageData.features.length;
           >
           </div>
         </FeatureCard>
-        <p class="text-sm text-white/50 mt-4">
-          <span class="font-mono text-white/70">{siteCount}</span> wanted sites, ranked by impact. Base
-          map © OpenStreetMap contributors.
+        <div class="flex flex-wrap items-center gap-5 mt-5 text-sm text-white/70">
+          <span class="flex items-center gap-2">
+            <span class="legend-dot legend-gap"></span> Coverage gap — host wanted
+          </span>
+          <span class="flex items-center gap-2">
+            <span class="legend-dot legend-node"></span> Live mesh node
+          </span>
+        </div>
+        <p class="text-sm text-white/50 mt-3">
+          <span class="font-mono text-white/70">{siteCount}</span> wanted sites, ranked by impact. Live
+          nodes refresh from the mesh. Base map © OpenStreetMap contributors.
         </p>
       </div>
     </section>
@@ -108,6 +116,33 @@ const siteCount = coverageData.features.length;
           );
       }
       if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+
+      // Live mesh nodes (green), drawn in a pane beneath the "wanted" flags.
+      // Same-origin /api/nodes.json proxies MeshMonitor's public embed API.
+      map.createPane('nodes');
+      map.getPane('nodes').style.zIndex = '350';
+      const nodeRenderer = L.svg({ pane: 'nodes' });
+      const nodeColor = styles.getPropertyValue('--meshtastic-green').trim() || '#10b981';
+      fetch('/api/nodes.json')
+        .then((r) => (r.ok ? r.json() : []))
+        .then((nodes) => {
+          for (const n of nodes) {
+            const pos = n.position || {};
+            if (pos.latitude == null || pos.longitude == null) continue;
+            const nm = (n.user && (n.user.longName || n.user.shortName)) || 'node';
+            L.circleMarker([pos.latitude, pos.longitude], {
+              renderer: nodeRenderer,
+              radius: 4,
+              color: nodeColor,
+              weight: 1,
+              fillColor: nodeColor,
+              fillOpacity: 0.65,
+            })
+              .addTo(map)
+              .bindTooltip(esc(nm), { direction: 'top' });
+          }
+        })
+        .catch(() => {});
     }
   </script>
 
@@ -165,6 +200,20 @@ const siteCount = coverageData.features.length;
     .cov-cta:hover {
       background: var(--success-600);
       color: #fff;
+    }
+    .legend-dot {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 9999px;
+      flex: none;
+    }
+    .legend-gap {
+      background: var(--warning-600);
+      border: 2px solid #fff;
+    }
+    .legend-node {
+      background: var(--meshtastic-green);
     }
   </style>
 </Layout>

@@ -1,5 +1,4 @@
 ---
-import { ExternalLink } from '@lucide/astro';
 import { DISCORD_INVITE } from '../constants/discord';
 import pkg from '../../package.json';
 
@@ -12,14 +11,8 @@ const yearRange = currentYear > startYear ? `${startYear}–${currentYear}` : `$
 <footer class="px-4 py-12 bg-(--neutral-900) border-t border-white/10">
   <div class="max-w-6xl mx-auto">
     <nav class="flex flex-wrap justify-center gap-8 mb-8">
-      <a
-        href="https://map.kansascitymesh.live"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="flex items-center gap-1 text-white/70 hover:text-white transition-colors text-sm"
-      >
-        <span>Coverage Map</span>
-        <ExternalLink class="w-3.5 h-3.5" />
+      <a href="/coverage-map" class="text-white/70 hover:text-white transition-colors text-sm">
+        Coverage Map
       </a>
       <a href="/getting-started" class="text-white/70 hover:text-white transition-colors text-sm">
         Get Started
