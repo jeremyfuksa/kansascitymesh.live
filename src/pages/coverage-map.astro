@@ -1,0 +1,170 @@
+---
+import { ChevronLeft } from '@lucide/astro';
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import coverageData from '../data/coverage-sites.json';
+
+const siteCount = coverageData.features.length;
+---
+
+<Layout
+  title="Coverage map — Kansas City Meshtastic"
+  description="A help-wanted map of high-value coverage gaps in the KC mesh. Live near a flag? Host a node and put your corner of the metro on the map."
+  path="/coverage-map"
+>
+  <div class="min-h-screen bg-(--neutral-950)">
+    <Nav currentPage="home" />
+
+    <div
+      class="px-4 py-12 mt-16 border-b border-white/10 bg-linear-to-b from-(--neutral-900) to-(--neutral-950)"
+    >
+      <div class="max-w-6xl mx-auto">
+        <a
+          href="/"
+          class="flex items-center gap-2 text-white/70 hover:text-white transition-colors mb-8 text-sm w-fit"
+        >
+          <ChevronLeft class="w-4 h-4" />
+          Back to home
+        </a>
+        <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">Coverage map</h1>
+        <p class="text-xl text-white/70 leading-relaxed max-w-3xl">
+          These are the spots we'd most love a node. Each flag marks high ground or a gap where one
+          router would noticeably widen the mesh — and plenty of them are just somebody's roofline
+          or back fence, no 40-foot tower required. Live near one?{' '}
+          <a class="text-white underline hover:no-underline" href="/host-a-node">Host a node</a> and put
+          your corner of the metro on the map.
+        </p>
+      </div>
+    </div>
+
+    <section class="px-4 py-10">
+      <div class="max-w-6xl mx-auto">
+        <FeatureCard padding="none" class="overflow-hidden">
+          <div
+            id="coverage-map"
+            class="w-full bg-(--neutral-900)"
+            style="height: 70vh; min-height: 440px;"
+          >
+          </div>
+        </FeatureCard>
+        <p class="text-sm text-white/50 mt-4">
+          <span class="font-mono text-white/70">{siteCount}</span> wanted sites, ranked by impact. Base
+          map © OpenStreetMap contributors.
+        </p>
+      </div>
+    </section>
+
+    <Footer />
+  </div>
+
+  {/* Vendored Leaflet — self-hosted in /public/vendor/leaflet, no CDN/CSP dependency */}
+  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
+  <script type="application/json" id="coverage-data" set:html={JSON.stringify(coverageData)} />
+  <script is:inline src="/vendor/leaflet/leaflet.js"></script>
+
+  <script>
+    const L = (window as any).L;
+    const dataEl = document.getElementById('coverage-data');
+    if (L && dataEl && document.getElementById('coverage-map')) {
+      const styles = getComputedStyle(document.documentElement);
+      const flag = styles.getPropertyValue('--warning-600').trim() || 'orange';
+      const fc = JSON.parse(dataEl.textContent || '{"features":[]}');
+      const esc = (s: unknown) =>
+        String(s).replace(
+          /[&<>"]/g,
+          (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c] as string,
+        );
+
+      const map = L.map('coverage-map', { scrollWheelZoom: false });
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors',
+        maxZoom: 18,
+      }).addTo(map);
+
+      const bounds: [number, number][] = [];
+      for (const f of fc.features) {
+        const [lng, lat] = f.geometry.coordinates;
+        const p = f.properties;
+        bounds.push([lat, lng]);
+        L.circleMarker([lat, lng], {
+          radius: 9,
+          color: '#ffffff',
+          weight: 2,
+          fillColor: flag,
+          fillOpacity: 0.95,
+        })
+          .addTo(map)
+          .bindTooltip(esc(p.name), { direction: 'top' })
+          .bindPopup(
+            `<div class="cov-popup">
+               <span class="cov-rank">#${esc(p.rank)}</span>
+               <strong>${esc(p.name)}</strong>
+               <div class="cov-area">${esc(p.area)}</div>
+               <div class="cov-why">${esc(p.why)}</div>
+               <a class="cov-cta" href="/host-a-node" data-track-event="coverage_cta_click" data-track-label="${esc(p.name)}">Host a node here</a>
+             </div>`,
+          );
+      }
+      if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
+    }
+  </script>
+
+  {/* Global because Leaflet renders popups outside Astro's scoped DOM. Dark to match the site. */}
+  <style is:global>
+    .leaflet-popup .leaflet-popup-content-wrapper,
+    .leaflet-popup .leaflet-popup-tip {
+      background: var(--neutral-900);
+      color: #fff;
+    }
+    .leaflet-popup .leaflet-popup-content-wrapper {
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+    }
+    .leaflet-popup-close-button {
+      color: rgba(255, 255, 255, 0.6) !important;
+    }
+    .cov-popup {
+      min-width: 210px;
+    }
+    .cov-rank {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .cov-popup strong {
+      display: block;
+      font-size: 0.95rem;
+      margin: 1px 0 3px;
+      color: #fff;
+    }
+    .cov-area {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.8rem;
+    }
+    .cov-why {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.85rem;
+      margin: 7px 0 11px;
+      line-height: 1.45;
+    }
+    .cov-cta {
+      display: inline-block;
+      background: var(--success-500);
+      color: #000;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 6px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      transition:
+        background 0.15s,
+        color 0.15s;
+    }
+    .cov-cta:hover {
+      background: var(--success-600);
+      color: #fff;
+    }
+  </style>
+</Layout>
