@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import { ExternalLink, Radio } from '@lucide/astro';
+import { Radio } from '@lucide/astro';
 import DiscordButton from './DiscordButton.astro';
 import FeatureCard from './FeatureCard.astro';
 import SecondaryButton from './SecondaryButton.astro';
@@ -103,18 +103,16 @@ import { DISCORD_INVITE } from '../constants/discord';
           />
         </div>
         <div class="p-6 bg-linear-to-br from-(--primary-600) to-(--info-600)">
-          <h3 class="text-xl mb-2 text-white">Live Mesh Map of KC</h3>
+          <h3 class="text-xl mb-2 text-white">Live mesh map of KC</h3>
           <p class="text-white mb-4 text-sm leading-relaxed">
             See where the action is. Identify places to fill out the mesh.
           </p>
           <SecondaryButton
-            href="https://map.kansascitymesh.live"
-            external
+            href="/coverage-map"
             trackEvent="coverage_map_click"
             trackLabel="hero-cta"
           >
-            <span>View Live Map</span>
-            <ExternalLink class="w-4 h-4" />
+            <span>View the map</span>
           </SecondaryButton>
         </div>
       </FeatureCard>

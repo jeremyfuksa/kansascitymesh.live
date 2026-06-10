@@ -1,5 +1,4 @@
 ---
-import { ExternalLink } from '@lucide/astro';
 import PulsingDot from './PulsingDot.astro';
 import DiscordButton from './DiscordButton.astro';
 import logo from '../assets/kc-mesh-logo-green.png';
@@ -50,13 +49,10 @@ const linkClass = (active: boolean) => (active ? 'text-white' : 'text-white/70 h
       {/* Right: Navigation */}
       <div class="flex items-center gap-3 md:gap-6">
         <a
-          href="https://map.kansascitymesh.live"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="flex items-center gap-1 text-sm text-white/70 hover:text-white transition-colors hidden md:flex"
+          href="/coverage-map"
+          class="text-sm text-white/70 hover:text-white transition-colors hidden md:block"
         >
-          <span>Coverage Map</span>
-          <ExternalLink class="w-3.5 h-3.5" />
+          Coverage Map
         </a>
         <a
           href="/host-a-node"

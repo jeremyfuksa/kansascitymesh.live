@@ -1,0 +1,136 @@
+{
+  "type": "FeatureCollection",
+  "name": "KC Mesh — Help Wanted Coverage Sites",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.94, 39.3]
+      },
+      "properties": {
+        "rank": 1,
+        "name": "Fort Leavenworth bluffs",
+        "area": "Leavenworth, KS",
+        "why": "High ground — 335 m elevation, 50 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.265, 39.168]
+      },
+      "properties": {
+        "rank": 2,
+        "name": "Fort Osage / Sibley",
+        "area": "Jackson County, MO",
+        "why": "Fills a coverage gap + high ground — 281 m elevation, 33 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.195, 39.06]
+      },
+      "properties": {
+        "rank": 3,
+        "name": "McLouth / Tonganoxie",
+        "area": "Jefferson County, KS",
+        "why": "Extends the network's edge + high ground — 332 m elevation, 34 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.475, 39.06]
+      },
+      "properties": {
+        "rank": 4,
+        "name": "South KC (Grandview/Ruskin)",
+        "area": "Kansas City, MO",
+        "why": "Fills a coverage gap + high ground — 307 m elevation, 39 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.06, 39.408]
+      },
+      "properties": {
+        "rank": 5,
+        "name": "Easton uplands",
+        "area": "Leavenworth County, KS",
+        "why": "High ground — 337 m elevation, 43 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.255, 39.168]
+      },
+      "properties": {
+        "rank": 6,
+        "name": "Oskaloosa / Williamstown",
+        "area": "Jefferson County, KS",
+        "why": "Extends the network's edge + high ground — 353 m elevation, 21 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-95.255, 38.832]
+      },
+      "properties": {
+        "rank": 7,
+        "name": "Baldwin City area",
+        "area": "Douglas County, KS",
+        "why": "High ground — 345 m elevation, 38 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.775, 39.132]
+      },
+      "properties": {
+        "rank": 8,
+        "name": "Western Wyandotte (KCK)",
+        "area": "Kansas City, KS",
+        "why": "Fills a coverage gap + high ground — 309 m elevation, 37 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.205, 39.432]
+      },
+      "properties": {
+        "rank": 9,
+        "name": "Lawson / Excelsior Springs",
+        "area": "Lawson, MO",
+        "why": "Extends the network's edge + high ground — 324 m elevation, 22 m prominence."
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-94.94, 39.12]
+      },
+      "properties": {
+        "rank": 10,
+        "name": "Basehor / Bonner Springs",
+        "area": "Basehor, KS",
+        "why": "Fills a coverage gap + high ground — 298 m elevation, 21 m prominence."
+      }
+    }
+  ]
+}
