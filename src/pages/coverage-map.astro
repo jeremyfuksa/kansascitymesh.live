@@ -43,25 +43,26 @@ const siteCount = coverageData.features.length;
     <section class="px-4 py-10">
       <div class="max-w-6xl mx-auto">
         <FeatureCard padding="none" class="overflow-hidden">
-          <div
-            id="coverage-map"
-            class="w-full bg-(--neutral-900)"
+          <iframe
+            src="https://map.kansascitymesh.live/embed/f623d95c-9665-44e2-b548-9b0b95a56a89"
+            title="Kansas City Meshtastic live coverage map"
+            loading="lazy"
+            class="w-full block border-0 bg-(--neutral-900)"
             style="height: 70vh; min-height: 440px;"
           >
-          </div>
+          </iframe>
         </FeatureCard>
         <div class="flex flex-wrap items-center gap-5 mt-5 text-sm text-white/70">
           <span class="flex items-center gap-2">
-            <span class="legend-dot legend-node"></span> Active node — heard in the last 7 days
+            <span class="legend-dot legend-node"></span> Active node — heard recently
           </span>
           <span class="flex items-center gap-2">
             <span class="legend-dot legend-gap"></span> Where we'd love a node — host wanted
           </span>
         </div>
         <p class="text-sm text-white/50 mt-3">
-          <span class="font-mono text-white/70">{siteCount}</span> wanted sites, ranked by impact. Green
-          dots are nodes heard on the mesh in the last 7 days — hover one to see when it last checked
-          in. Base map © OpenStreetMap contributors.
+          <span class="font-mono text-white/70">{siteCount}</span> wanted sites, ranked by impact. The
+          live map is the Kansas City mesh's own MeshMonitor — click any dot for details.
         </p>
       </div>
     </section>
@@ -69,150 +70,7 @@ const siteCount = coverageData.features.length;
     <Footer />
   </div>
 
-  {/* Vendored Leaflet — self-hosted in /public/vendor/leaflet, no CDN/CSP dependency */}
-  <link rel="stylesheet" href="/vendor/leaflet/leaflet.css" />
-  <script type="application/json" id="coverage-data" set:html={JSON.stringify(coverageData)} />
-  <script is:inline src="/vendor/leaflet/leaflet.js"></script>
-
-  <script>
-    const L = (window as any).L;
-    const dataEl = document.getElementById('coverage-data');
-    if (L && dataEl && document.getElementById('coverage-map')) {
-      const styles = getComputedStyle(document.documentElement);
-      const gapColor = styles.getPropertyValue('--warning-600').trim() || 'orange';
-      const fc = JSON.parse(dataEl.textContent || '{"features":[]}');
-      const esc = (s: unknown) =>
-        String(s).replace(
-          /[&<>"]/g,
-          (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c] as string,
-        );
-
-      const map = L.map('coverage-map', { scrollWheelZoom: false });
-      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; OpenStreetMap contributors',
-        maxZoom: 18,
-      }).addTo(map);
-
-      const bounds: [number, number][] = [];
-      for (const f of fc.features) {
-        const [lng, lat] = f.geometry.coordinates;
-        const p = f.properties;
-        bounds.push([lat, lng]);
-        L.circleMarker([lat, lng], {
-          radius: 9,
-          color: '#ffffff',
-          weight: 2,
-          fillColor: gapColor,
-          fillOpacity: 0.95,
-        })
-          .addTo(map)
-          .bindTooltip(esc(p.name), { direction: 'top' })
-          .bindPopup(
-            `<div class="cov-popup">
-               <span class="cov-rank">#${esc(p.rank)}</span>
-               <strong>${esc(p.name)}</strong>
-               <div class="cov-area">${esc(p.area)}</div>
-               <div class="cov-why">${esc(p.why)}</div>
-               <a class="cov-cta" href="/host-a-node" data-track-event="coverage_cta_click" data-track-label="${esc(p.name)}">Host a node here</a>
-             </div>`,
-          );
-      }
-      if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
-
-      // Live mesh nodes (green), drawn in a pane beneath the orange wanted-site dots.
-      // Same-origin /api/nodes.json proxies MeshMonitor's public embed API
-      // (nodes heard in the last 7 days).
-      map.createPane('nodes');
-      map.getPane('nodes').style.zIndex = '350';
-      const nodeColor = styles.getPropertyValue('--meshtastic-green').trim() || '#10b981';
-      const nodeStroke = styles.getPropertyValue('--neutral-950').trim() || '#1c1f26';
-      const nodeRenderer = L.svg({ pane: 'nodes' });
-      const heardAgo = (epoch: number) => {
-        const s = Math.floor(Date.now() / 1000) - epoch;
-        if (!epoch || s < 0) return '';
-        if (s < 3600) return `${Math.max(1, Math.round(s / 60))} min ago`;
-        if (s < 86400) return `${Math.round(s / 3600)} hr ago`;
-        return `${Math.round(s / 86400)} days ago`;
-      };
-      fetch('/api/nodes.json')
-        .then((r) => (r.ok ? r.json() : []))
-        .then((nodes) => {
-          for (const n of nodes) {
-            const pos = n.position || {};
-            if (pos.latitude == null || pos.longitude == null) continue;
-            const nm = (n.user && (n.user.longName || n.user.shortName)) || 'node';
-            const ago = heardAgo(n.lastHeard);
-            L.circleMarker([pos.latitude, pos.longitude], {
-              renderer: nodeRenderer,
-              radius: 6,
-              color: nodeStroke,
-              weight: 1.5,
-              fillColor: nodeColor,
-              fillOpacity: 0.95,
-            })
-              .addTo(map)
-              .bindTooltip(ago ? `${esc(nm)} · heard ${ago}` : esc(nm), { direction: 'top' });
-          }
-        })
-        .catch(() => {});
-    }
-  </script>
-
-  {/* Global because Leaflet renders popups outside Astro's scoped DOM. Dark to match the site. */}
   <style is:global>
-    .leaflet-popup .leaflet-popup-content-wrapper,
-    .leaflet-popup .leaflet-popup-tip {
-      background: var(--neutral-900);
-      color: #fff;
-    }
-    .leaflet-popup .leaflet-popup-content-wrapper {
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
-    }
-    .leaflet-popup-close-button {
-      color: rgba(255, 255, 255, 0.6) !important;
-    }
-    .cov-popup {
-      min-width: 210px;
-    }
-    .cov-rank {
-      font-family: var(--font-mono);
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.5);
-    }
-    .cov-popup strong {
-      display: block;
-      font-size: 0.95rem;
-      margin: 1px 0 3px;
-      color: #fff;
-    }
-    .cov-area {
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.8rem;
-    }
-    .cov-why {
-      color: rgba(255, 255, 255, 0.8);
-      font-size: 0.85rem;
-      margin: 7px 0 11px;
-      line-height: 1.45;
-    }
-    .cov-cta {
-      display: inline-block;
-      background: var(--success-500);
-      color: #000;
-      text-decoration: none;
-      padding: 7px 14px;
-      border-radius: 6px;
-      font-weight: 500;
-      font-size: 0.85rem;
-      transition:
-        background 0.15s,
-        color 0.15s;
-    }
-    .cov-cta:hover {
-      background: var(--success-600);
-      color: #fff;
-    }
     .legend-dot {
       display: inline-block;
       width: 12px;
