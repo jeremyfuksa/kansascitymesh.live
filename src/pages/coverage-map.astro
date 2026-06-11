@@ -11,7 +11,7 @@ const siteCount = coverageData.features.length;
 
 <Layout
   title="Coverage map — Kansas City Meshtastic"
-  description="A help-wanted map of high-value coverage gaps in the KC mesh. Live near a flag? Host a node and put your corner of the metro on the map."
+  description="A help-wanted map of the KC mesh: live nodes plus the high-value spots where we'd most love a new one. Host a node and put your corner of the metro on the map."
   path="/coverage-map"
 >
   <div class="min-h-screen bg-(--neutral-950)">
@@ -30,9 +30,10 @@ const siteCount = coverageData.features.length;
         </a>
         <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">Coverage map</h1>
         <p class="text-xl text-white/70 leading-relaxed max-w-3xl">
-          These are the spots we'd most love a node. Each flag marks high ground or a gap where one
-          router would noticeably widen the mesh — and plenty of them are just somebody's roofline
-          or back fence, no 40-foot tower required. Live near one?{' '}
+          The green dots are nodes already on the air. The orange dots are the spots we'd most love
+          a new one — high ground or a gap where a single router would noticeably widen the mesh,
+          and plenty of them are just somebody's roofline or back fence, no 40-foot tower required.
+          Live near one?{' '}
           <a class="text-white underline hover:no-underline" href="/host-a-node">Host a node</a> and put
           your corner of the metro on the map.
         </p>
@@ -78,7 +79,7 @@ const siteCount = coverageData.features.length;
     const dataEl = document.getElementById('coverage-data');
     if (L && dataEl && document.getElementById('coverage-map')) {
       const styles = getComputedStyle(document.documentElement);
-      const flag = styles.getPropertyValue('--warning-600').trim() || 'orange';
+      const gapColor = styles.getPropertyValue('--warning-600').trim() || 'orange';
       const fc = JSON.parse(dataEl.textContent || '{"features":[]}');
       const esc = (s: unknown) =>
         String(s).replace(
@@ -101,7 +102,7 @@ const siteCount = coverageData.features.length;
           radius: 9,
           color: '#ffffff',
           weight: 2,
-          fillColor: flag,
+          fillColor: gapColor,
           fillOpacity: 0.95,
         })
           .addTo(map)
@@ -118,7 +119,7 @@ const siteCount = coverageData.features.length;
       }
       if (bounds.length) map.fitBounds(bounds, { padding: [40, 40] });
 
-      // Live mesh nodes (green), drawn in a pane beneath the "wanted" flags.
+      // Live mesh nodes (green), drawn in a pane beneath the orange wanted-site dots.
       // Same-origin /api/nodes.json proxies MeshMonitor's public embed API
       // (nodes heard in the last 7 days).
       map.createPane('nodes');
