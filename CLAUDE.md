@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working in this
 
 ## Project Overview
 
-Kansas City Meshtastic Network website — a community-run mesh networking project in the KC metro. About 60 active nodes today (130 total registered, 200+ in Discord), a working backbone running up and down the I-35 corridor, and an ongoing recruiting effort for hosted infrastructure to round out the metro and reach outlier nodes in Manhattan, Columbia, Lawrence, and Topeka.
+Kansas City Meshtastic Network website — a community-run mesh networking project in the KC metro. A working backbone running up and down the I-35 corridor, and an ongoing recruiting effort for hosted infrastructure to round out the metro and reach outlier nodes in Manhattan, Columbia, Lawrence, and Topeka. Current node and Discord counts are live at `/status`, hydrated from `/api/stats.json` — check there before quoting numbers (see Network Architecture Context for a dated snapshot).
 
 The project was originally seeded by one person (Jeremy Fuksa) who deployed the first router and documented the process, but the site now speaks for the broader community. The voice direction below makes this explicit.
 
-**Current Status**: Active development. Voice and design audits live in `docs/` — see `VOICE-AUDIT-2026-05.md` and `DESIGN-AUDIT-2026-05.md` for the most recent passes. The site is being prepared for a complete design system overhaul by Claude Design.
+**Current Status**: Active development. Voice and design audits live in `docs/` — see `VOICE-AUDIT-2026-05.md` and `DESIGN-AUDIT-2026-05.md` for the most recent passes.
 
 **Critical Voice Direction**: Collective first person — the site speaks as the KC Mesh community of 200+. "We're building..." not "I'm building..." and not "The network provides...". The community is the implied speaker; specific people get named only when accuracy requires it. Honest about gaps and the learning curve. Welcoming to everyday people. Combat perfectionism that prevents deployment.
 
@@ -40,57 +40,30 @@ The project was originally seeded by one person (Jeremy Fuksa) who deployed the 
 
 ## Design System
 
-The implementation is **single-mode dark**, not the dual-mode warm palette originally specced. The colors live as CSS custom properties in `src/styles/globals.css`. Use the named tokens (e.g. `var(--primary-600)`), not raw hex values.
+The canonical design and voice rules live in the repo-local **`kc-mesh-design` skill** — `.claude/skills/kc-mesh-design/SKILL.md` plus `references/design-system.md` and `references/voice.md`. That skill owns the palette tables, the component vocabulary, and the decision rules. Don't duplicate them here; the two documents will drift (they already did once).
 
-**Palette tokens** (each color has 50/100/200/.../950 progression in `globals.css`):
+The short version, for orientation only:
 
-- `--primary-*` — **Cello** (desaturated steel blue, `#4c627d` at -600). Primary CTAs, brand backgrounds, link color when not on a dark surface.
-- `--secondary-*` — **Terracotta** (warm red-orange, `#a8654f` at -600). Secondary accents, warm highlights.
-- `--neutral-*` — **Black Rock** (cool dark gray, `#2b303b` at -900 for cards, `#1c1f26` at -950 for page backgrounds). Surface system.
-- `--success-*` — **Sage** (`#8fb14b` at -500, `#739038` at -600). Sage-green CTAs ("Become a host"), success/healthy states.
-- `--warning-*` — **Golden Amber** (`#f9c574` at -500). Caution, badges.
-- `--danger-*` — **Flamingo** (`#e75351` at -500). Reserved; not yet used in UI copy.
-- `--info-*` — **Blue Calx** (`#b8c5d9` at -500). Information accents, drone-fly callout color, link color on dark backgrounds (use -300 or -400 for legible text).
-- `--meshtastic-green` — `#10b981` (emerald). **Intentionally outside the sage scale** — the brighter green that says "live" on `<PulsingDot>` indicators. Aligns with Meshtastic project brand color.
-
-**Surface treatments** (the visual hierarchy):
-
-- **`<InfoCard>`** — solid `bg-[var(--neutral-900)]` with subtle white border. Reads as "information to absorb." Used for in-content lists.
-- **`<FeatureCard>`** — `bg-white/5 backdrop-blur-xl` glass with shadow. Reads as "focal element." Used for hero cards, homepage CTAs, hardware showcase.
-- **`<TipBanner>`** — sage-green gradient highlight, Info icon. Reads as "pay attention to this."
-- **`<MessageBanner>`** — slate-gradient narrative block. Reads as "storytelling moment."
-- **`<AudienceRow>`** — horizontal row with a left-edge gradient accent stripe. Reads as "this is for you, specifically." Used for the "Who should consider hosting" section.
-
-**Button hierarchy**:
-
-- **`<PrimaryButton>`** — sage-green, black text, scale-up hover. The single most-important action on a page.
-- **`<DiscordButton>`** — Discord brand color. Sizes: `small` (nav), `default` (in-content), `large` (hero closer).
-- **`<SecondaryButton>`** — outline pill. Supporting actions ("View Live Map," external partner links).
-
-**Text-opacity scale** on dark surfaces:
-
-- `text-white` — heading text
-- `text-white/70` — body prose, nav links (canonical body color)
-- `text-white/50` — muted secondary, copyright, micro-text
-- `text-white/30` — version stamps and similar "fades into background" signals
-- `text-white/80` — reserved for tip-banner body emphasis only
-
-**Design Principles**:
-
-- Mobile-first responsive (field use on phones priority)
-- High-end professional aesthetic with local KC identity (rendered through the Cello/Terracotta/Sage palette, not literal KC sports colors)
-- Single-mode dark (light mode tokens exist in `globals.css` but are unused)
-- Narrative-driven content (not bullet-heavy)
-- Clear information hierarchy for scanning
+- **Single-mode dark.** Page `var(--neutral-950)`, cards `var(--neutral-900)`. The palette lives as CSS custom properties in `src/styles/globals.css` — use the named tokens (e.g. `var(--primary-600)`), not raw hex values.
+- **Two cards, four buttons, two banners — no third of anything.** `InfoCard` + `FeatureCard`; `PrimaryButton` + `DiscordButton` + `SecondaryButton` + plain text links; `TipBanner` + `MessageBanner`. When you think you need a new surface, one of the existing ones almost always covers it.
+- **Data wears mono (Inconsolata). Prose wears sans (General Sans).**
+- Mobile-first responsive (field use on phones priority); narrative-driven content, not bullet-heavy.
 
 ## Site Structure (as implemented)
 
-Four pages, file-based routing under `src/pages/`:
+Eleven routes, file-based routing under `src/pages/`:
 
-- **`/` (`src/pages/index.astro`)** — Home. Hero (intro + live map preview) → Hardware showcase grid → Resources cards → HostInfrastructureCTA → DroneFlyCTA → FinalCTASection → Footer.
-- **`/getting-started` (`src/pages/getting-started.astro`)** — Five-step onboarding. Choose hardware → buy hardware → flash firmware → configure node → say hello on the mesh.
-- **`/host-a-node` (`src/pages/host-a-node.astro`)** — The KC Backbone Initiative recruiting page. Why it matters → criteria → audience targeting (AudienceRow) → what we provide back → success story → contact.
-- **`/steal-this-network` (`src/pages/steal-this-network.astro`)** — Open invitation to other cities. CC-BY-SA framing, lineage credit to Austin Mesh and Cascadia Mesh, partner-mesh list, operational tips for starting a new community mesh.
+- **`/` (`index.astro`)** — Home. HeroSection (intro + live map preview) → NetworkPulse (live activity strip) → HardwareSection → ResourcesSection → HostInfrastructureCTA → DroneFlyCTA → FinalCTASection → Footer.
+- **`/getting-started`** — Five-step onboarding. Choose hardware → buy hardware → flash firmware → configure node → say hello on the mesh.
+- **`/hardware` (`hardware/index.astro`)** — The four devices the KC community actually runs ($35–$90, field-tested), driven by `src/data/hardware.ts`.
+- **`/hardware/[id]`** — Per-device detail pages, one static route per entry in `src/data/hardware.ts`.
+- **`/host-a-node`** — The KC Backbone Initiative recruiting page. Why it matters → criteria → audience targeting (AudienceRow) → what we provide back → success story → contact.
+- **`/coverage-map`** — Help-wanted coverage map. Embeds the live MeshMonitor map and lists the high-value spots where we'd most love a new node (`src/data/coverage-sites.json`).
+- **`/status`** — Live network status: active node counts, total registered, hardware breakdown, backbone table — hydrated from `/api/stats.json` (see Live stats below).
+- **`/faq`** — The questions we actually get in Discord: licensing, privacy, hosting, hardware.
+- **`/log` (`log/index.astro`)** — Field log index. Deployment stories and lessons learned, written by the people doing the work.
+- **`/log/bonner-tower`** — First field log entry: the Bonner Springs water tower deployment that closed the I-70 hop chain on the west side.
+- **`/steal-this-network`** — Open invitation to other cities. CC-BY-SA framing, lineage credit to Austin Mesh and Cascadia Mesh, partner-mesh list, operational tips for starting a new community mesh.
 
 External destinations linked throughout:
 
@@ -109,9 +82,9 @@ External destinations linked throughout:
 
 ## Network Architecture Context
 
-The site currently describes a real, in-progress backbone — not a planning exercise. As of May 2026:
+The site currently describes a real, in-progress backbone — not a planning exercise:
 
-- ~60 active nodes, ~130 total registered, 200+ in Discord
+- Node and Discord counts are live from `/api/stats.json` (rendered on `/status` and the homepage NetworkPulse) — check there, don't hardcode. One dated snapshot for orientation, as of July 2026: ~65 nodes active in the last 7 days, ~205 in the last 30, ~900 total in MeshMonitor's database, ~225 in Discord.
 - A working I-35 spine from downtown through Westport, Overland Park, and the southern suburbs
 - Active recruiting for hosted infrastructure at the metro edges (Bonner Springs, Independence, Blue Springs)
 - Active recruiting along the I-70 hop chain east and west to reach existing outlier nodes in Manhattan, KS and Columbia, MO
@@ -145,25 +118,41 @@ The deprecated "Four-Router Backbone Strategy" (Router 1 East / Router 2 West / 
 
 ## Technical Stack (as implemented)
 
-- **Astro 5 (static)** — `astro.config.mjs` at the project root. Pages live in `src/pages/`, each a `.astro` file that maps to a route. The site builds to fully static HTML with no client-side framework runtime.
+- **Astro 6 (static)** — `astro.config.mjs` at the project root, no integrations. Pages live in `src/pages/`, each a `.astro` file that maps to a route. The site builds to fully static HTML with no client-side framework runtime.
 - **Layout component** — `src/layouts/Layout.astro` wraps every page. Owns the `<head>` block (per-page title/description, OG/Twitter meta, canonical URL, GA initialization) and renders the shared body shell.
-- **Tailwind CSS via `@astrojs/tailwind`** — `src/styles/globals.css` is imported by the layout and defines the palette as CSS custom properties. Astro's Tailwind integration is configured with `applyBaseStyles: false` so our globals.css remains the source of truth for base styles.
+- **Tailwind CSS 4 via `@tailwindcss/postcss`** — wired up in `postcss.config.cjs`, not an Astro integration (`@astrojs/tailwind` is gone). `src/styles/globals.css` starts with `@import 'tailwindcss'`, defines the palette as CSS custom properties, and carries the theme overrides in `@theme { }`. It remains the source of truth for base styles.
 - **`@lucide/astro`** — Iconography, native Astro components.
 - **`astro:assets`** — Image optimization for hardware photos and the meshmonitor screenshot. Static imports type as `ImageMetadata`; the `<Image>` component emits WebP automatically.
-- **Client interactivity** — Two small inline `<script>` blocks. (1) The Layout has an event-delegation listener for `[data-track-event]` attributes that forwards clicks to `trackEvent()`. (2) Nav.astro has a scroll-listener script that toggles the nav background on the home page only.
-- **No client-side framework runtime** — No React, no Vue, no Svelte. The only JS shipped is the two inline scripts above (~1 KB) plus the external Google Analytics loader (unchanged from before).
-- **No backend** — The Discord, the coverage map, and the GitHub repo are external. The site is static.
+- **Client interactivity** — Three small scripts. (1) The Layout has an event-delegation listener for `[data-track-event]` attributes that forwards clicks to `trackEvent()`. (2) Nav.astro has a scroll-listener script that toggles the nav background on the home page only. (3) The Layout imports `src/utils/liveStats.ts`, which hydrates live network numbers on page load (see Live stats below).
+- **No client-side framework runtime** — No React, no Vue, no Svelte. The only JS shipped is the three scripts above plus the external Google Analytics loader.
+- **Static site, one live endpoint** — The pages are static and there is no application server. The Discord, the coverage map, and the GitHub repo are external. The one dynamic piece is `/api/stats.json`, a file regenerated on the production droplet every five minutes (see Live stats below).
+
+**Live stats** (the one moving part):
+
+- `src/utils/liveStats.ts` (~530 lines) runs on every page via the Layout. It fetches `/api/stats.json` and hydrates four things: `[data-live-stat]` text swaps, hardware lists (`[data-live-hardware]`), a hardware donut chart (`[data-live-hardware-chart]`), and the backbone table (`tbody[data-live-backbone]`). If the fetch fails, the build-time placeholders stay and the page still reads fine.
+- `/api/stats.json` is generated by `deploy/server/generate-mesh-stats.py`, which runs on the droplet every 5 minutes via cron. It pulls the MeshMonitor API (`map.kansascitymesh.live/api/nodes` + `/api/stats`) and the Discord guild API, and atomically writes one combined blob. Details in [deploy/README.md](deploy/README.md).
+- `src/data/networkStatus.ts` holds the placeholder activity rows that NetworkPulse renders at build time; the live hydration replaces them.
 
 **Project conventions**:
 
 - Astro components live in `src/components/`. Pages in `src/pages/`. Layout in `src/layouts/`.
-- Shared data lives in `src/data/` (hardware list) and `src/constants/` (Discord invite, contact email, GA measurement ID).
+- Shared data lives in `src/data/` (hardware list, network-status placeholder rows, coverage-map sites) and `src/constants/` (Discord invite, contact email, GA measurement ID).
 - Analytics events fire via `src/utils/analytics.ts` (`trackEvent`, `trackPageView`). Components opt in by setting `data-track-event` and optionally `data-track-label` attributes; the Layout's delegated listener calls `trackEvent` on click. Specialized buttons (PrimaryButton, SecondaryButton, FeatureCard, DiscordButton) accept `trackEvent`/`trackLabel` props that forward to these attributes.
 - Voice and design audits are kept in `docs/`. Major changes get an audit doc.
+
+## Deploy and hosting
+
+Merging to `main` deploys the site — treat merges as production releases.
+
+- `.github/workflows/deploy.yml` builds on every push to main (`npm ci` → `format:check` → `check` → `build`), tars `dist/`, and streams it over SSH to the DigitalOcean droplet. The deploy key is pinned to a forced command (`deploy-kcmesh.sh`) that atomically swaps the new dist behind the `mesh-web` nginx container, Traefik in front. The workflow then smoke-tests `/`, `/faq/`, and `/api/stats.json`.
+- `.github/workflows/ci.yml` runs the same format/check/build gauntlet on every PR.
+- The server-side scripts (`deploy-kcmesh.sh`, `generate-mesh-stats.py`) live in `deploy/server/` as the source of truth and get copied to the droplet by hand when they change.
+- Full architecture, secrets, deploy-key rotation, and the manual-deploy fallback are documented in [deploy/README.md](deploy/README.md) — don't duplicate that here.
 
 ## Working in this repo
 
 - Run `npm run check` before committing — `astro check` must pass.
+- Run `npm run format:check` before committing — CI fails the pipeline on the Prettier format check. `npm run format` fixes what it flags.
 - Run `npm run build` to verify the production build is clean.
 - When changing copy, check the work against `docs/VOICE-AUDIT-2026-05.md` and the `jeremy-voice` skill's anti-pattern catalog.
 - When changing visual treatment, use the canonical components from the Design System section. Don't introduce a third card style or fourth button pattern without a real reason.
