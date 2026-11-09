@@ -1,7 +1,7 @@
 {
   "name": "kansascitymesh.live",
   "private": true,
-  "version": "2.3.4",
+  "version": "2.4.0",
   "type": "module",
   "engines": {
     "node": ">=22"
@@ -12,7 +12,8 @@
     "preview": "astro preview",
     "check": "astro check",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "test": "node --experimental-strip-types --test tests/*.test.mjs"
   },
   "dependencies": {
     "@lucide/astro": "^1.16.0"

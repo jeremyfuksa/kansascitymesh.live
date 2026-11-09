@@ -33,6 +33,9 @@ jobs:
       - name: Format check
         run: npm run format:check
 
+      - name: Test live-data states
+        run: npm test
+
       - name: Typecheck
         run: npm run check
 

@@ -40,7 +40,7 @@ CI runs the last two on every PR. Run them locally first if you can; it shortens
 | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------- |
 | `src/pages/`             | One `.astro` file per route. Astro turns the file path into the URL.                                                                        |
 | `src/components/`        | Reusable Astro components — `InfoCard`, `FeatureCard`, `PrimaryButton`, `TipBanner`, etc.                                                   |
-| `src/data/`              | Editable data — `hardware.ts` is the hardware list, `networkStatus.ts` is the live-status block.                                            |
+| `src/data/`              | Editable data — `hardware.ts` is the hardware list. Live network numbers come from `/api/stats.json`.                                       |
 | `src/constants/`         | Discord invite, contact email, GA measurement ID.                                                                                           |
 | `src/styles/globals.css` | Color palette + font tokens + a few base styles.                                                                                            |
 | `src/assets/`            | Product photos + logo. Astro's image pipeline auto-converts to WebP.                                                                        |
@@ -51,7 +51,7 @@ CI runs the last two on every PR. Run them locally first if you can; it shortens
 
 ### Update a node count or stat
 
-Edit [`src/components/HeroSection.astro`](src/components/HeroSection.astro) for the homepage "60+ active nodes" claim. Edit [`src/data/networkStatus.ts`](src/data/networkStatus.ts) for the NetworkPulse and `/status` page numbers.
+The homepage and `/status` hydrate from `/api/stats.json`. Change presentation in `src/utils/liveStats.ts`; update data collection in `deploy/server/generate-mesh-stats.py`. Keep missing or stale observations explicit, and never add sample nodes to the public feed.
 
 ### Add or fix a hardware item
 

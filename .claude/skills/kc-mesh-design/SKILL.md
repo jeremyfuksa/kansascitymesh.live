@@ -51,7 +51,7 @@ If a contributor is forking for their own city, the voice direction will need a 
 - **Tailwind CSS 4** via `@tailwindcss/postcss` — theme overrides live in `@theme { }` inside `globals.css`
 - **`@lucide/astro`** for icons
 - **`astro:assets`** for image optimization
-- **No client-side framework runtime** — two small inline `<script>` blocks for analytics delegation + live-stats hydration
+- **No client-side framework runtime** — small scripts for analytics delegation, live-stats hydration, and mobile navigation
 
 ## When invoked without specific guidance
 

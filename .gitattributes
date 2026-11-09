@@ -1,0 +1,2 @@
+# Match Prettier and Linux CI, including on Windows contributor checkouts.
+* text=auto eol=lf
