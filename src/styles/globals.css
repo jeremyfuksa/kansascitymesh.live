@@ -180,3 +180,14 @@ body {
     line-height: 1.5;
   }
 }
+
+/* Snapshot freshness has a text label as well as a color. */
+[data-live-status][data-state='stale'],
+[data-live-status][data-state='unavailable'] {
+  color: var(--warning-500);
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-ping {
+    animation: none;
+  }
+}

@@ -1,8 +1,6 @@
 ---
 import { ArrowRight } from '@lucide/astro';
 import InfoCard from './InfoCard.astro';
-import PulsingDot from './PulsingDot.astro';
-import { NETWORK_ACTIVITY, statusColor } from '../data/networkStatus';
 ---
 
 <section class="relative px-4 py-16 bg-black border-t border-white/10 overflow-hidden">
@@ -11,10 +9,12 @@ import { NETWORK_ACTIVITY, statusColor } from '../data/networkStatus';
     <div class="flex items-end justify-between flex-wrap gap-4 mb-8">
       <div>
         <div class="inline-flex items-center gap-2 mb-3">
-          <PulsingDot />
-          <span class="font-mono text-[13px] text-white/60 tracking-[0.02em]">
-            LIVE · updated <span data-live-stat="generated_at_relative">just now</span>
-          </span>
+          <span
+            data-live-status
+            role="status"
+            class="font-mono text-[13px] text-white/70 tracking-[0.02em]"
+            >Loading observations…</span
+          >
         </div>
         <h2 class="text-[clamp(28px,4vw,40px)] text-white tracking-tight leading-[1.1] mb-2">
           The mesh, right now.
@@ -86,39 +86,17 @@ import { NETWORK_ACTIVITY, statusColor } from '../data/networkStatus';
     {/* Activity strip */}
     <div class="bg-(--neutral-900) border border-white/10 rounded-md overflow-hidden">
       <div
-        class="flex items-center justify-between px-4 py-2.5 bg-white/3 border-b border-white/5 text-white/50 text-[11px] uppercase tracking-[0.08em] font-medium"
+        class="flex flex-wrap items-center justify-between gap-2 px-4 py-2.5 bg-white/3 border-b border-white/5 text-white/50 text-[11px] uppercase tracking-[0.08em] font-medium"
       >
-        <span>Recent activity · sample</span>
-        <span class="font-mono normal-case tracking-normal">per-node feed coming soon</span>
+        <span>Recently heard routers</span>
+        <span class="font-mono normal-case tracking-normal">MeshMonitor observations</span>
       </div>
-
-      <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-        {
-          NETWORK_ACTIVITY.map((row, i) => {
-            const color = statusColor[row.status];
-            const ringShadow = row.status === 'up' ? `0 0 0 3px ${color}26` : 'none';
-            const borderTop = i >= 3 ? '1px solid rgba(255,255,255,0.05)' : 'none';
-            const borderRight = i % 3 !== 2 ? '1px solid rgba(255,255,255,0.05)' : 'none';
-            return (
-              <div
-                class="flex items-center gap-3 px-4 py-3.5"
-                style={`border-top: ${borderTop}; border-right: ${borderRight};`}
-              >
-                <span
-                  class="inline-block w-2 h-2 rounded-full shrink-0"
-                  style={`background: ${color}; box-shadow: ${ringShadow};`}
-                />
-                <span class="flex-1 text-white font-mono text-sm font-medium tracking-[0.01em]">
-                  {row.node}
-                </span>
-                <span class="text-white/[0.55] text-[13px] flex-1 min-w-0">{row.area}</span>
-                <span class="text-white/50 font-mono text-xs min-w-[64px] text-right">
-                  {row.when}
-                </span>
-              </div>
-            );
-          })
-        }
+      <p class="px-4 py-3 text-white/70 text-sm border-b border-white/5">
+        These are the latest router observations we’ve received. A node heard here doesn’t establish
+        coverage at your location.
+      </p>
+      <div data-live-recent-activity class="grid md:grid-cols-2 min-h-24 text-white/70 text-sm">
+        <p class="px-4 py-3">Loading router observations…</p>
       </div>
     </div>
   </div>

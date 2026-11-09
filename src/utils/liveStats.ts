@@ -1,42 +1,13 @@
-/**
- * Runtime hydration of "live" stats on the site.
- *
- * One source: `/api/stats.json`, generated server-side by
- * /home/admin/generate-mesh-stats.py on a 5-minute cron. The script fetches
- * MeshMonitor's API plus the Discord guild API and writes a unified blob.
- *
- * Four hydration mechanisms:
- *
- *   1. Simple text swap. Elements opt in by adding `data-live-stat="<key>"`.
- *      The HTML carries a placeholder value (em-dash, "just now", etc.) as
- *      its text content; this script swaps it once the fetch completes.
- *
- *   2. Hardware list rendering. A container with `data-live-hardware="30d"`
- *      (or `"all"`) gets a list of rows built into it from the
- *      top_hardware_* array. The container's pre-existing children are
- *      removed.
- *
- *   3. Hardware donut chart. A container with
- *      `data-live-hardware-chart="30d"` (or `"all"`) gets an inline SVG
- *      donut + legend showing the top-5 hardware distribution plus an
- *      "Other" wedge for everything outside the top 5.
- *
- *   4. Backbone table rendering. A `<tbody data-live-backbone>` gets one
- *      `<tr>` per backbone node from the backbone_nodes array.
- *
- * If the fetch fails, placeholders stay and the list/chart containers stay
- * empty (page is still meaningful — those sections just go quiet).
- *
- * Supported data-live-stat keys:
- *   active_1h / active_24h / active_7d / active_30d / active_90d
- *   total_nodes / nodes_with_hwmodel / message_count / channel_count
- *   discord_total_members / discord_online
- *   generated_at_relative   (e.g. "2m ago")
- *
- * Supported data-live-hardware and data-live-hardware-chart values:
- *   "30d"  — top 5 hardware in the last 30 days
- *   "all"  — top 5 hardware all-time
- */
+/** Hydrate the public MeshMonitor snapshot without implying continuous coverage. */
+import {
+  HARDWARE_PATHS,
+  STALE_AFTER_SECONDS,
+  hardwareDistribution,
+  observedAge,
+  recentRouters,
+  relativeAge,
+  snapshotAge,
+} from './networkData.ts';
 
 interface MeshtasticStats {
   schema_version: number;
@@ -192,21 +163,8 @@ function hardwareEntry(enumName: string): HardwareEntry {
 }
 
 function formatNumber(n: number | null | undefined): string | null {
-  if (n === null || n === undefined) return null;
+  if (n === null || n === undefined || !Number.isFinite(n)) return '—';
   return n.toLocaleString('en-US');
-}
-
-function formatRelative(isoTimestamp: string): string {
-  const then = Date.parse(isoTimestamp);
-  if (!Number.isFinite(then)) return '';
-  const seconds = Math.max(0, Math.round((Date.now() - then) / 1000));
-  if (seconds < 60) return `${seconds}s ago`;
-  const minutes = Math.round(seconds / 60);
-  if (minutes < 60) return `${minutes}m ago`;
-  const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.round(hours / 24);
-  return `${days}d ago`;
 }
 
 function replaceStat(key: string, value: string | null) {
@@ -238,8 +196,13 @@ function renderHardwareList(
       const labelWrap = document.createElement('div');
       labelWrap.className = 'flex-1 min-w-0';
 
-      const nameEl = document.createElement('div');
-      nameEl.className = 'text-white text-sm font-medium';
+      const path = HARDWARE_PATHS[row.name];
+      const nameEl = document.createElement(path ? 'a' : 'div');
+      if (nameEl instanceof HTMLAnchorElement && path) {
+        nameEl.href = path;
+        nameEl.className = 'underline underline-offset-4 hover:text-(--success-500)';
+      }
+      nameEl.classList.add('text-white', 'text-sm', 'font-medium');
       nameEl.textContent = entry.name;
       labelWrap.appendChild(nameEl);
 
@@ -266,18 +229,6 @@ function renderHardwareList(
   });
 }
 
-function formatRelativeFromSeconds(seconds: number | null): string {
-  if (seconds === null || !Number.isFinite(seconds)) return '—';
-  const s = Math.max(0, Math.round(seconds));
-  if (s < 60) return 'just now';
-  const minutes = Math.round(s / 60);
-  if (minutes < 60) return `${minutes}m ago`;
-  const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  const days = Math.round(hours / 24);
-  return `${days}d ago`;
-}
-
 /**
  * Status color for a backbone row based on how recently we heard from it.
  * Mirrors the sample data's three-tier system: up if within 24h, degraded
@@ -302,7 +253,8 @@ function renderBackboneTable(tbody: HTMLElement, rows: BackboneNode[]): void {
     dotCell.className = 'px-4 py-3.5 w-6';
     const dot = document.createElement('span');
     dot.className = 'inline-block w-2 h-2 rounded-full';
-    dot.style.background = backboneStatusColor(row.last_heard_age_seconds);
+    dot.style.background = backboneStatusColor(observedAge(row.last_heard_epoch));
+    dot.setAttribute('aria-label', `Last heard ${relativeAge(observedAge(row.last_heard_epoch))}`);
     dotCell.appendChild(dot);
 
     const nameCell = document.createElement('td');
@@ -322,8 +274,9 @@ function renderBackboneTable(tbody: HTMLElement, rows: BackboneNode[]): void {
     hopsCell.textContent = row.hops === null || row.hops === undefined ? '—' : String(row.hops);
 
     const seenCell = document.createElement('td');
-    seenCell.className = 'px-4 py-3.5 text-white/70 text-sm';
-    seenCell.textContent = formatRelativeFromSeconds(row.last_heard_age_seconds);
+    seenCell.className = 'px-4 py-3.5 text-white/70 text-sm font-mono';
+    seenCell.title = new Date(row.last_heard_epoch * 1000).toLocaleString();
+    seenCell.textContent = relativeAge(observedAge(row.last_heard_epoch));
 
     tr.append(dotCell, nameCell, longCell, hwCell, hopsCell, seenCell);
     tbody.appendChild(tr);
@@ -357,42 +310,29 @@ interface ChartSlice {
   percent: number;
 }
 
-function buildChartSlices(rows: MeshtasticStats['top_hardware_30d']): {
+function buildChartSlices(
+  rows: MeshtasticStats['top_hardware_30d'],
+  total?: number,
+): {
   slices: ChartSlice[];
   totalCount: number;
 } {
-  const top = rows.slice(0, 5);
-  const slices: ChartSlice[] = top.map((row, i) => ({
+  const distribution = hardwareDistribution(rows, total);
+  const totalCount = distribution.total;
+  const slices: ChartSlice[] = distribution.rows.map((row, i) => ({
     label: hardwareEntry(row.name).name,
     color: SLICE_COLORS[i] ?? OTHER_COLOR,
     count: row.count,
     percent: row.percent,
   }));
-
-  // Sum of the top-5 percent values. The server emits percents to one
-  // decimal so the sum can land at e.g. 88.7%; everything missing is
-  // "Other". We don't get raw "other count" from the server, but we have
-  // enough to compute it from the relationship percent = count/total.
-  const topPercent = slices.reduce((acc, s) => acc + s.percent, 0);
-  const otherPercent = Math.max(0, 100 - topPercent);
-
-  // Total count the chart represents: derive from row 0 (count/percent =
-  // total). If percent is 0 (degenerate), fall back to summing top counts.
-  const totalCount =
-    top[0] && top[0].percent > 0
-      ? Math.round((top[0].count / top[0].percent) * 100)
-      : top.reduce((acc, r) => acc + r.count, 0);
-
-  const otherCount = Math.max(0, totalCount - top.reduce((acc, r) => acc + r.count, 0));
-  if (otherPercent > 0.1) {
+  if (distribution.other > 0) {
     slices.push({
       label: 'Other',
       color: OTHER_COLOR,
-      count: otherCount,
-      percent: otherPercent,
+      count: distribution.other,
+      percent: (distribution.other / totalCount) * 100,
     });
   }
-
   return { slices, totalCount };
 }
 
@@ -401,8 +341,9 @@ const SVG_NS = 'http://www.w3.org/2000/svg';
 function renderHardwareChart(
   container: HTMLElement,
   rows: MeshtasticStats['top_hardware_30d'],
+  total?: number,
 ): void {
-  const { slices, totalCount } = buildChartSlices(rows);
+  const { slices, totalCount } = buildChartSlices(rows, total);
   container.replaceChildren();
 
   // Donut geometry. We use a 100×100 viewBox, a circle of radius 40
@@ -413,9 +354,12 @@ function renderHardwareChart(
 
   const svg = document.createElementNS(SVG_NS, 'svg');
   svg.setAttribute('viewBox', '0 0 100 100');
-  svg.setAttribute('class', 'block w-full h-auto max-w-[260px] mx-auto');
+  svg.setAttribute('class', 'block w-full h-auto max-w-[420px] mx-auto');
   svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', 'Hardware distribution donut chart');
+  svg.setAttribute(
+    'aria-label',
+    `Hardware distribution: ${slices.map((s) => `${s.label}, ${s.count} nodes`).join('; ')}`,
+  );
 
   // Slices, rotated so the first one starts at 12 o'clock.
   let offsetPercent = 0;
@@ -473,12 +417,12 @@ function renderHardwareChart(
     swatch.style.background = slice.color;
 
     const label = document.createElement('span');
-    label.className = 'flex-1 min-w-0 text-white/70 truncate';
+    label.className = 'flex-1 min-w-0 text-white/70';
     label.textContent = slice.label;
 
     const pct = document.createElement('span');
     pct.className = 'font-mono text-white/50 tabular-nums';
-    pct.textContent = `${slice.percent.toFixed(1)}%`;
+    pct.textContent = `${slice.count.toLocaleString('en-US')} · ${slice.percent.toFixed(1)}%`;
 
     li.append(swatch, label, pct);
     legend.appendChild(li);
@@ -486,49 +430,210 @@ function renderHardwareChart(
   container.appendChild(legend);
 }
 
-export function hydrateLiveStats(): void {
-  if (typeof window === 'undefined') return;
-  const hasStats = document.querySelector('[data-live-stat]');
-  const hasHardware = document.querySelector('[data-live-hardware]');
-  const hasHardwareChart = document.querySelector('[data-live-hardware-chart]');
-  const hasBackbone = document.querySelector('[data-live-backbone]');
-  if (!hasStats && !hasHardware && !hasHardwareChart && !hasBackbone) return;
-
-  void (async () => {
-    try {
-      const res = await fetch(STATS_URL, { cache: 'no-store' });
-      if (!res.ok) return;
-      const stats = (await res.json()) as MeshtasticStats;
-
-      replaceStat('active_1h', formatNumber(stats.active_counts['1h']));
-      replaceStat('active_24h', formatNumber(stats.active_counts['24h']));
-      replaceStat('active_7d', formatNumber(stats.active_counts['7d']));
-      replaceStat('active_30d', formatNumber(stats.active_counts['30d']));
-      replaceStat('active_90d', formatNumber(stats.active_counts['90d']));
-      replaceStat('total_nodes', formatNumber(stats.total_nodes));
-      replaceStat('nodes_with_hwmodel', formatNumber(stats.nodes_with_hwmodel));
-      replaceStat('message_count', formatNumber(stats.message_count));
-      replaceStat('channel_count', formatNumber(stats.channel_count));
-      replaceStat('discord_total_members', formatNumber(stats.discord_total_members));
-      replaceStat('discord_online', formatNumber(stats.discord_online));
-      replaceStat('generated_at_relative', formatRelative(stats.generated_at));
-
-      const hw30 = document.querySelectorAll<HTMLElement>('[data-live-hardware="30d"]');
-      if (hw30.length > 0) renderHardwareList(hw30, stats.top_hardware_30d);
-      const hwAll = document.querySelectorAll<HTMLElement>('[data-live-hardware="all"]');
-      if (hwAll.length > 0) renderHardwareList(hwAll, stats.top_hardware_all);
-
-      const chart30 = document.querySelectorAll<HTMLElement>('[data-live-hardware-chart="30d"]');
-      chart30.forEach((c) => renderHardwareChart(c, stats.top_hardware_30d));
-      const chartAll = document.querySelectorAll<HTMLElement>('[data-live-hardware-chart="all"]');
-      chartAll.forEach((c) => renderHardwareChart(c, stats.top_hardware_all));
-
-      const backbone = document.querySelectorAll<HTMLElement>('[data-live-backbone]');
-      if (backbone.length > 0 && stats.backbone_nodes) {
-        backbone.forEach((tbody) => renderBackboneTable(tbody, stats.backbone_nodes ?? []));
-      }
-    } catch {
-      // Leave placeholders in place. Page is still meaningful.
+function renderRecentActivity(rows: BackboneNode[]): void {
+  document.querySelectorAll<HTMLElement>('[data-live-recent-activity]').forEach((container) => {
+    container.replaceChildren();
+    const recent = recentRouters(rows);
+    if (!recent.length) {
+      container.textContent = 'No recent router observations in this snapshot.';
+      return;
     }
-  })();
+    recent.forEach((row) => {
+      const item = document.createElement('div');
+      item.className =
+        'flex flex-wrap items-baseline gap-x-3 gap-y-1 px-4 py-3.5 border-b border-white/5';
+      const name = document.createElement('span');
+      name.className = 'font-mono text-white text-sm';
+      name.textContent = row.short_name || 'Unnamed router';
+      const detail = document.createElement('span');
+      detail.className = 'flex-1 min-w-0 text-white/70 text-sm break-words';
+      detail.textContent = row.long_name || row.role || 'Router';
+      const time = document.createElement('time');
+      time.className = 'font-mono text-white/50 text-xs';
+      time.dateTime = new Date(row.last_heard_epoch * 1000).toISOString();
+      time.title = new Date(row.last_heard_epoch * 1000).toLocaleString();
+      time.textContent = relativeAge(observedAge(row.last_heard_epoch));
+      item.append(name, detail, time);
+      container.appendChild(item);
+    });
+  });
+}
+
+/** Required fields are validated before replacing any last-good snapshot. */
+export function validateStats(value: unknown): MeshtasticStats {
+  if (!value || typeof value !== 'object') throw new Error('Invalid snapshot');
+  const stats = value as MeshtasticStats;
+  if (typeof stats.generated_at !== 'string') throw new Error('Missing snapshot timestamp');
+  snapshotAge(stats.generated_at);
+  const count = (n: unknown) => typeof n === 'number' && Number.isInteger(n) && n >= 0;
+  if (
+    !count(stats.total_nodes) ||
+    !count(stats.nodes_with_hwmodel) ||
+    !stats.active_counts ||
+    !['1h', '24h', '7d', '30d', '90d'].every((k) =>
+      count(stats.active_counts[k as keyof typeof stats.active_counts]),
+    )
+  ) {
+    throw new Error('Invalid node counts');
+  }
+  for (const rows of [stats.top_hardware_all, stats.top_hardware_30d]) {
+    if (
+      !Array.isArray(rows) ||
+      !rows.every(
+        (row) =>
+          row &&
+          typeof row.name === 'string' &&
+          count(row.count) &&
+          Number.isFinite(row.percent) &&
+          row.percent >= 0 &&
+          row.percent <= 100,
+      )
+    ) {
+      throw new Error('Invalid hardware counts');
+    }
+  }
+  if (
+    stats.nodes_with_hwmodel > stats.total_nodes ||
+    stats.top_hardware_all.reduce((sum, row) => sum + row.count, 0) > stats.nodes_with_hwmodel
+  ) {
+    throw new Error('Inconsistent hardware total');
+  }
+  for (const countValue of [
+    stats.message_count,
+    stats.channel_count,
+    stats.discord_total_members,
+    stats.discord_online,
+  ]) {
+    if (countValue !== undefined && countValue !== null && !count(countValue))
+      throw new Error('Invalid optional count');
+  }
+  if (
+    stats.backbone_nodes !== undefined &&
+    (!Array.isArray(stats.backbone_nodes) ||
+      !stats.backbone_nodes.every(
+        (row) =>
+          row &&
+          typeof row.short_name === 'string' &&
+          typeof row.long_name === 'string' &&
+          Number.isFinite(row.last_heard_epoch) &&
+          (row.hw_model_name == null || typeof row.hw_model_name === 'string') &&
+          (row.role == null || typeof row.role === 'string') &&
+          (row.hops == null || count(row.hops)),
+      ))
+  ) {
+    throw new Error('Invalid router observations');
+  }
+  return stats;
+}
+
+export function hydrateLiveStats(): void {
+  if (
+    typeof window === 'undefined' ||
+    !document.querySelector('[data-live-stat], [data-live-hardware], [data-live-recent-activity]')
+  )
+    return;
+  let current: MeshtasticStats | undefined;
+  let failed = false;
+  let refreshing = false;
+  const freshness = () => {
+    let label = 'Observations unavailable — retrying automatically';
+    let state = 'unavailable';
+    if (current) {
+      const age = snapshotAge(current.generated_at);
+      state = failed || age > STALE_AFTER_SECONDS ? 'stale' : 'fresh';
+      label = `${state === 'fresh' ? 'Snapshot' : 'Stale snapshot'} · updated ${relativeAge(age)}${failed ? ' · refresh failed' : ''}`;
+      replaceStat('generated_at_relative', relativeAge(age));
+    }
+    document.querySelectorAll<HTMLElement>('[data-live-status]').forEach((el) => {
+      el.textContent = label;
+      el.dataset.state = state;
+    });
+  };
+  const refresh = async () => {
+    if (refreshing) return;
+    refreshing = true;
+    try {
+      const res = await fetch(STATS_URL, { cache: 'no-store', signal: AbortSignal.timeout(12000) });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const stats = validateStats(await res.json());
+      for (const key of ['1h', '24h', '7d', '30d', '90d'] as const)
+        replaceStat(`active_${key}`, formatNumber(stats.active_counts[key]));
+      for (const key of [
+        'total_nodes',
+        'nodes_with_hwmodel',
+        'message_count',
+        'channel_count',
+        'discord_total_members',
+        'discord_online',
+      ] as const)
+        replaceStat(key, formatNumber(stats[key]));
+      for (const period of ['30d', 'all'] as const) {
+        const rows = stats[period === 'all' ? 'top_hardware_all' : 'top_hardware_30d'];
+        const list = document.querySelectorAll<HTMLElement>(`[data-live-hardware="${period}"]`);
+        renderHardwareList(
+          list,
+          period === 'all' ? hardwareDistribution(rows, stats.nodes_with_hwmodel).rows : rows,
+        );
+        document
+          .querySelectorAll<HTMLElement>(`[data-live-hardware-chart="${period}"]`)
+          .forEach((c) => {
+            if (!rows.length) {
+              c.textContent = 'No hardware observations in this snapshot.';
+              return;
+            }
+            renderHardwareChart(c, rows, period === 'all' ? stats.nodes_with_hwmodel : undefined);
+          });
+        if (!rows.length)
+          list.forEach((c) => {
+            c.textContent = 'No hardware observations in this snapshot.';
+          });
+      }
+      const routers = stats.backbone_nodes ?? [];
+      document.querySelectorAll<HTMLElement>('[data-live-backbone]').forEach((tbody) => {
+        renderBackboneTable(tbody, routers);
+        if (!routers.length) {
+          const cell = document.createElement('td');
+          cell.colSpan = 6;
+          cell.className = 'px-4 py-3 text-white/70';
+          cell.textContent = 'No router observations in this snapshot.';
+          const row = document.createElement('tr');
+          row.append(cell);
+          tbody.append(row);
+        }
+      });
+      renderRecentActivity(routers);
+      current = stats;
+      failed = false;
+    } catch {
+      failed = true;
+      if (!current) {
+        document
+          .querySelectorAll<HTMLElement>(
+            '[data-live-hardware], [data-live-hardware-chart], [data-live-recent-activity]',
+          )
+          .forEach((el) => {
+            el.textContent = 'Observations unavailable. We’ll try again shortly.';
+          });
+      }
+    } finally {
+      refreshing = false;
+      freshness();
+    }
+  };
+  void refresh();
+  window.setInterval(() => {
+    if (!document.hidden) void refresh();
+  }, 60000);
+  window.setInterval(() => {
+    if (current) {
+      renderRecentActivity(current.backbone_nodes ?? []);
+      document.querySelectorAll<HTMLElement>('[data-live-backbone]').forEach((t) => {
+        if (current?.backbone_nodes?.length) renderBackboneTable(t, current.backbone_nodes);
+      });
+      freshness();
+    }
+  }, 30000);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) void refresh();
+  });
 }

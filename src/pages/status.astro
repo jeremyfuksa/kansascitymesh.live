@@ -5,7 +5,6 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import InfoCard from '../components/InfoCard.astro';
 import FeatureCard from '../components/FeatureCard.astro';
-import PulsingDot from '../components/PulsingDot.astro';
 ---
 
 <Layout
@@ -28,10 +27,9 @@ import PulsingDot from '../components/PulsingDot.astro';
           Back to home
         </a>
         <div class="flex items-center gap-3 mb-4">
-          <PulsingDot />
-          <span class="text-sm text-white/70 font-mono">
-            Updated <span data-live-stat="generated_at_relative">just now</span>
-          </span>
+          <span data-live-status role="status" class="text-sm text-white/70 font-mono"
+            >Loading observations…</span
+          >
         </div>
         <h1 class="text-5xl md:text-6xl mb-4 tracking-tight text-white">Network status</h1>
         <p class="text-xl text-white/70 leading-relaxed">
@@ -62,7 +60,7 @@ import PulsingDot from '../components/PulsingDot.astro';
             >
               —
             </div>
-            <div class="text-white/50 text-[13px]">on the air now</div>
+            <div class="text-white/50 text-[13px]">heard within the last hour</div>
           </InfoCard>
           <InfoCard>
             <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Last 24h</div>
@@ -72,7 +70,7 @@ import PulsingDot from '../components/PulsingDot.astro';
             >
               —
             </div>
-            <div class="text-white/50 text-[13px]">heard from yesterday</div>
+            <div class="text-white/50 text-[13px]">heard within the last day</div>
           </InfoCard>
           <InfoCard>
             <div class="text-white/50 text-xs uppercase tracking-[0.06em] mb-2">Last 7 days</div>
@@ -197,22 +195,22 @@ import PulsingDot from '../components/PulsingDot.astro';
       <section class="mb-12">
         <h2 class="text-2xl text-white mb-4">Top hardware in the wild</h2>
         <p class="text-white/70 leading-relaxed mb-4">
-          The five most common devices on the KC mesh in the last 30 days, sourced from
-          MeshMonitor's hardware-model telemetry. This is what people are actually running right now
-          — not an editorial recommendation. See{' '}
+          The five most common devices we’ve recorded on the KC mesh, across all time. Counts
+          include historical nodes with an identified hardware model; they don’t indicate how many
+          are online. See{' '}
           <a
             href="/hardware"
             class="text-white hover:text-(--success-500) underline underline-offset-4"
           >
             our hardware picks
           </a>{' '}
-          for the recommendations.
+          for device recommendations.
         </p>
-        <div class="grid gap-6 md:grid-cols-[260px_1fr] md:items-start">
+        <div class="grid gap-6 md:grid-cols-[1.4fr_1fr] md:items-start">
           {/* Donut chart — populated client-side by liveStats.ts. */}
           <div
-            class="bg-(--neutral-900) border border-white/10 rounded-md p-5 min-h-[260px] flex items-center justify-center"
-            data-live-hardware-chart="30d"
+            class="bg-(--neutral-900) border border-white/10 rounded-md p-5 min-h-[260px]"
+            data-live-hardware-chart="all"
           >
             <div class="text-white/30 text-xs uppercase tracking-[0.08em]">Loading…</div>
           </div>
@@ -220,7 +218,7 @@ import PulsingDot from '../components/PulsingDot.astro';
           {/* Existing top-5 list. */}
           <div
             class="bg-(--neutral-900) border border-white/10 rounded-md overflow-hidden"
-            data-live-hardware="30d"
+            data-live-hardware="all"
           >
             {/* Placeholder rows shown until the fetch resolves. Replaced by liveStats.ts. */}
             {
@@ -242,7 +240,7 @@ import PulsingDot from '../components/PulsingDot.astro';
       <section class="mb-12">
         <h2 class="text-2xl text-white mb-4">Backbone routers</h2>
         <p class="text-white/70 leading-relaxed mb-4">
-          Every node configured as <code class="font-mono text-white/90">ROUTER_LATE</code> that we've
+          Up to 15 nodes configured as <code class="font-mono text-white/90">ROUTER_LATE</code> that we've
           heard from in the last 30 days, sorted most-recently-heard first. The dot is green if we've
           heard the node in the last day, amber within a week, red older than that.
         </p>
